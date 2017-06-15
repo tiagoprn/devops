@@ -1,0 +1,17 @@
+[Unit]
+Description=uwsgi for django project
+# After=syslog.target
+After=network.target
+
+[Service]
+Type=forking
+User=root
+Group=root
+Restart=on-failure
+RestartSec=30s
+TimeoutSec=300
+ExecStart=/path/to/django_project/uwsgi_start.sh
+ExecStop=/path/to/django_project/uwsgi_stop.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -2,3 +2,5 @@ shared/**
 *.crt
 *.key
 data/**
+*~
+
