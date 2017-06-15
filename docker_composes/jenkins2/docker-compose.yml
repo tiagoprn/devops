@@ -1,0 +1,27 @@
+version: '2'
+services:
+  jenkins:
+    image: jenkins:latest
+    container_name: jenkins-samsung-i3-server
+    restart: always
+    network_mode: "host"
+    pid: "host"
+    privileged: true
+    ports:
+      - 8080:8080
+    volumes:
+      - JENKINS_HOME:/var/jenkins_home
+      - JENKINS_LOG:/var/log/jenkins
+      - JENKINS_CACHE:/var/cache/jenkins 
+      - /mnt:/mnt
+      - /home/tiago:/home/tiago
+      - /home/tiago/.ssh:/var/jenkins_home/.ssh 
+      - /etc/localtime:/etc/localtime
+volumes:
+  JENKINS_HOME:
+    driver: local
+  JENKINS_LOG:
+    driver: local    
+  JENKINS_CACHE:
+    driver: local
+

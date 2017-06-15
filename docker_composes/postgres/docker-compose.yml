@@ -1,0 +1,20 @@
+dbdata:
+  image: postgres:9.5
+  volumes:
+    - /var/lib/postgresql
+  command: /bin/true
+database:
+  image: postgres:9.5
+  volumes:
+    - "./shared:/shared"
+    - "./utils:/utils"
+  volumes_from:
+    - dbdata
+  expose:
+    - 5432
+  ports:
+    - "5432:5432"
+  environment:
+    - POSTGRES_USER=tmc
+    - POSTGRES_PASSWORD=v3t3x2y2
+    - POSTGRES_DB=tmc_financeiro
