@@ -1,0 +1,14 @@
+alpynert:
+  image: tiagoprn/alpynert:latest
+  command: ipython notebook --no-browser --ip=0.0.0.0 --port 8888
+  ports:
+    - 8888:8888 
+  volumes:
+    - "./tmp:/shared"
+    - "/etc/localtime:/etc/localtime"  
+  environment:
+    C_FORCE_ROOT: "true"
+    TERM: xterm
+    TERMINFO: /etc/terminfo
+    LC_ALL: en_US.utf8
+    LANG: en_US.utf8  

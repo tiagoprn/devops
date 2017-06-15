@@ -3,4 +3,5 @@ shared/**
 *.key
 data/**
 *~
+*.swp
 
