@@ -1,0 +1,12 @@
+version: '2'                                        
+services:                                           
+  ansible:                                          
+    image: williamyeh/ansible:centos7-onbuild                        
+    container_name: ansible
+    command: tail -f /dev/null  # to keep running forever    
+    restart: always                                 
+    network_mode: "host"                            
+    pid: "host"                                     
+    privileged: true                                
+    volumes:                                        
+      - /etc/localtime:/etc/localtime               
