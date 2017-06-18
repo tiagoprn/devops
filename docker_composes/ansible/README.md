@@ -33,6 +33,12 @@ machine:
     $ cd /etc/ansible/playbooks
     $ ansible-playbook -k -s provision.yml 
 
+To ignore "Host key mismatch for <ip>" here, configure this environment
+variable: 
+
+    $ export ANSIBLE_HOST_KEY_CHECKING=False
+
+
 ## REFERENCE: 
 https://serversforhackers.com/an-ansible-tutorial
     
