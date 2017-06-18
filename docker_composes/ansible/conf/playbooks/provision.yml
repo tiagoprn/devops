@@ -10,7 +10,7 @@
       - name: Install docker
         yum: pkg=docker state=installed update_cache=true
         notify:
-            - Start docker  # handler to be called
+            - Start docker  # handler to be called below
 
       - name: Install python-pip
         yum: pkg=python-pip state=installed update_cache=true
@@ -21,7 +21,7 @@
       - name: Install rsyslog
         yum: pkg=rsyslog state=installed update_cache=true
         notify:
-            - Start rsyslog        
+            - Start rsyslog  # handler to be called below        
 
   handlers:
       - name: Start docker
