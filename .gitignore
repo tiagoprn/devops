@@ -4,4 +4,4 @@ shared/**
 data/**
 *~
 *.swp
-
+*.retry
