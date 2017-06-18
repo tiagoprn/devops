@@ -3,7 +3,7 @@ help:
 	@echo -e "make up \n\t Raises (run) the container.\n"
 	@echo -e "make version \n\t Show ansible version.\n"
 	@echo -e "make kill \n\t KILL the ansible container.\n"
-	@echo -e "make exec \n\t Enter the ansible container.\n"
+	@echo -e "make bash \n\t Enter the ansible container.\n"
 
 up:
 	@docker-compose up -d

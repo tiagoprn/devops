@@ -9,4 +9,6 @@ services:
     pid: "host"                                     
     privileged: true                                
     volumes:                                        
-      - /etc/localtime:/etc/localtime               
+      - /etc/localtime:/etc/localtime
+      - ./conf:/etc/ansible  
+      - ./shared:/shared        
