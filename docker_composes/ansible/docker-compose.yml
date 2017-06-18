@@ -10,5 +10,6 @@ services:
     privileged: true                                
     volumes:                                        
       - /etc/localtime:/etc/localtime
-      - ./conf:/etc/ansible  
+      - ./conf:/etc/ansible
+      - ../../ansible_playbooks:/etc/ansible/playbooks  
       - ./shared:/shared        
