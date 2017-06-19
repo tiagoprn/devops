@@ -1,0 +1,19 @@
+[DEFAULT]
+ignoreip = 127.0.0.1/8
+
+# Override /etc/fail2ban/jail.d/00-firewalld.conf:
+banaction = iptables-multiport
+
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = %(sshd_log)s
+bantime = 604800  # ban access for 1 week 
+findtime = 60  
+maxretry = 5  # 5 failed attempts in findtime seconds 
+
+# I can configure also other services here, like nginx, e.g. 
+# To do that, I must only add a section for the desired service here.
+
+

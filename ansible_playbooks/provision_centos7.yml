@@ -23,10 +23,24 @@
         notify:
             - Start rsyslog  # handler to be called below        
 
+      - name: Install pyinotify  # requirement to fail2ban
+        pip: name=pyinotify    
+
+      - name: Install fail2ban
+        yum: pkg=fail2ban state=installed update_cache=true
+
+      - name: Add fail2ban config
+        copy: src=files/jail.local dest=/etc/fail2ban owner=root group=root
+        notify:
+            - Start fail2ban
+
   handlers:
       - name: Start docker
         service: name=docker state=started
 
       - name: Start rsyslog
         service: name=rsyslog state=started
+  
+      - name: Start fail2ban
+        service: name=fail2ban state=started
   
