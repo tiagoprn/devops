@@ -7,10 +7,14 @@
       - name: Install epel-release
         yum: pkg=epel-release state=installed update_cache=true  
 
+      - name: Add portainer init script
+        copy: src=files/run_portainer.sh dest=/opt owner=root group=root mode=0777
+
       - name: Install docker
         yum: pkg=docker state=installed update_cache=true
         notify:
             - Start docker  # handler to be called below
+            - Start portainer  
 
       - name: Install python-pip
         yum: pkg=python-pip state=installed update_cache=true
@@ -34,6 +38,12 @@
         notify:
             - Start fail2ban
 
+      - name: Install vim 
+        yum: pkg=vim state=installed update_cache=true
+
+      - name: install tmux
+        yum: pkg=tmux state=installed update_cache=true
+
   handlers:
       - name: Start docker
         service: name=docker state=started
@@ -43,4 +53,7 @@
   
       - name: Start fail2ban
         service: name=fail2ban state=started
+  
+      - name: Start portainer
+        command: bash /opt/run_portainer.sh
   
