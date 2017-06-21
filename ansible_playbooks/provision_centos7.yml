@@ -14,7 +14,9 @@
         yum: pkg=docker state=installed update_cache=true
         notify:
             - Start docker  # handler to be called below
-            - Start portainer  
+            - Start portainer
+            - Check portainer passwd
+            - Print portainer passwd
 
       - name: Install python-pip
         yum: pkg=python-pip state=installed update_cache=true
@@ -56,4 +58,12 @@
   
       - name: Start portainer
         command: bash /opt/run_portainer.sh
-  
+
+      - name: Check portainer passwd
+        command: /bin/cat /root/portainer.admin.passwd
+        register: password  # record the command stdout to the "password" variable
+        changed_when: False  # this make this task always run
+
+      - name: Print portainer passwd
+        debug: var=password.stdout  # prints the value of the "password" variable
+
