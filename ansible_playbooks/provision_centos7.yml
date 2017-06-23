@@ -13,7 +13,8 @@
       - name: Install docker
         yum: pkg=docker state=installed update_cache=true
         notify:
-            - Start docker  # handler to be called below
+            - Configure docker daemon
+            - Start docker
             - Start portainer
             - Check portainer passwd
             - Print portainer passwd
@@ -47,6 +48,9 @@
         yum: pkg=tmux state=installed update_cache=true
 
   handlers:
+      - name: Configure docker daemon
+        copy: src=files/daemon.json dest=/etc/docker owner=root group=root
+
       - name: Start docker
         service: name=docker state=started
 
