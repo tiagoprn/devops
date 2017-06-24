@@ -79,7 +79,6 @@
             - lsof
             - tcpdump
             - nmap
-            - fsarchiver
             - git
             - rsync
 
