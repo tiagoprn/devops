@@ -60,11 +60,28 @@
         notify:
             - Start fail2ban
 
-      - name: Install vim 
-        yum: pkg=vim state=installed update_cache=true
-
-      - name: install tmux
-        yum: pkg=tmux state=installed update_cache=true
+      - name: Install additional utilities 
+        yum: pkg={{item}} state=installed update_cache=true
+        with_items:
+            - vim
+            - tmux
+            - ncdu 
+            - tree
+            - sysstat
+            - iotop
+            - siege
+            - curl
+            - wget
+            - links
+            - elinks
+            - htop
+            - dstat
+            - lsof
+            - tcpdump
+            - nmap
+            - fsarchiver
+            - git
+            - rsync
 
   handlers:
       - name: Start fail2ban
