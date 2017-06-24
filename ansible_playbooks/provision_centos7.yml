@@ -12,23 +12,42 @@
 
       - name: Install docker
         yum: pkg=docker state=installed update_cache=true
-        notify:
-            - Configure docker daemon
-            - Start docker
-            - Start portainer
-            - Check portainer passwd
-            - Print portainer passwd
+
+      - name: Start docker
+        service: name=docker state=started
+
+      - name: Run docker version
+        command: docker version
+        register: dockerversion
+        changed_when: False  # this make this task always run
+
+      - name: Print docker version
+        debug: var=dockerversion.stdout
+
+      - name: Run docker info
+        command: docker info
+        register: dockerinfo
+        changed_when: False  # this make this task always run
+
+      - name: Print docker info
+        debug: var=dockerinfo.stdout
+
+      - name: Start portainer
+        command: bash /opt/run_portainer.sh
+
+      - name: Check portainer passwd
+        command: /bin/cat /root/portainer.admin.passwd
+        register: password  # record the command stdout to the "password" variable
+        changed_when: False  # this make this task always run
+
+      - name: Print portainer passwd
+        debug: var=password.stdout  # prints the value of the "password" variable
 
       - name: Install python-pip
         yum: pkg=python-pip state=installed update_cache=true
 
       - name: Install docker-compose
         pip: name=docker-compose    
-
-      - name: Install rsyslog
-        yum: pkg=rsyslog state=installed update_cache=true
-        notify:
-            - Start rsyslog  # handler to be called below        
 
       - name: Install pyinotify  # requirement to fail2ban
         pip: name=pyinotify    
@@ -48,26 +67,7 @@
         yum: pkg=tmux state=installed update_cache=true
 
   handlers:
-      - name: Configure docker daemon
-        copy: src=files/daemon.json dest=/etc/docker owner=root group=root
-
-      - name: Start docker
-        service: name=docker state=started
-
-      - name: Start rsyslog
-        service: name=rsyslog state=started
-  
       - name: Start fail2ban
         service: name=fail2ban state=started
   
-      - name: Start portainer
-        command: bash /opt/run_portainer.sh
-
-      - name: Check portainer passwd
-        command: /bin/cat /root/portainer.admin.passwd
-        register: password  # record the command stdout to the "password" variable
-        changed_when: False  # this make this task always run
-
-      - name: Print portainer passwd
-        debug: var=password.stdout  # prints the value of the "password" variable
 

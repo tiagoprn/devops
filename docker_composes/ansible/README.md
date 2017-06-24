@@ -31,7 +31,7 @@ The ping responding, now we should be able to run a playbook to provision the
 machine: 
 
     $ cd /etc/ansible/playbooks
-    $ ansible-playbook -k -s provision_centos7.yml 
+    $ ansible-playbook -vv -k -s provision_centos7.yml 
 
 To ignore "Host key mismatch for <ip>" here, configure this environment
 variable: 
