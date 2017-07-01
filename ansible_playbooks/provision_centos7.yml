@@ -98,7 +98,11 @@
       - name: Print ssh public key
         debug: var=cat.stdout      
 
-      - name: TODO: Copy a id_rsa.pub file from the ansible host machine to here, and add it to the authorized_keys of the user "dev" created above.  
+      - name: Authorize the ssh key from this ansible host to the dev user.
+        authorized_key:
+            user: dev
+            state: present
+            key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
 
   handlers:
       - name: Start fail2ban

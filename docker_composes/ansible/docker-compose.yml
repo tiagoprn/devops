@@ -12,4 +12,7 @@ services:
       - /etc/localtime:/etc/localtime
       - ./filesystem/conf:/etc/ansible
       - ../../ansible_playbooks:/etc/ansible/playbooks  
-      - ./shared:/shared        
+      - ./shared:/shared
+    environment:
+      - ANSIBLE_HOST_KEY_CHECKING=False
+
