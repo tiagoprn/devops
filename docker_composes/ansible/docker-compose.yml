@@ -1,7 +1,7 @@
 version: '2'                                        
 services:                                           
   ansible:                                          
-    image: williamyeh/ansible:centos7-onbuild                        
+    image: tiagoprn/ansible2:20170701
     container_name: ansible
     command: tail -f /dev/null  # to keep running forever    
     restart: on-failure                                 
