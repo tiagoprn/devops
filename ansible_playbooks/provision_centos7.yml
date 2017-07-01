@@ -104,6 +104,17 @@
             state: present
             key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
 
+      - name: Set user sudo without password
+        copy: src=files/sudoers dest=/etc owner=root group=root mode=0440
+
+      - name: Set sshd configuration only with keys without password
+        copy: src=files/sshd_config dest=/etc/ssh owner=root group=root mode=0600
+        notify: 
+            - Restart sshd
+
   handlers:
       - name: Start fail2ban
         service: name=fail2ban state=started
+      - name: Restart sshd
+        service: name=sshd state=restarted
+
