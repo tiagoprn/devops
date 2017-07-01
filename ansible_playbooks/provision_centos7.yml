@@ -82,6 +82,12 @@
             - git
             - rsync
 
+      - name: Authorize the ssh key from this ansible host to the root user.
+        authorized_key:
+            user: root
+            state: present
+            key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+
       - name: Create user
         user: name=dev 
               shell=/bin/bash 

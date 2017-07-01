@@ -33,7 +33,8 @@ First, let's test if the remote machines are responding:
 
 IMPORTANT:
 `-k` here means we want to type the password of the root user of the CentOS 7 
-machine instead of using ssh keys to connect to it.
+machine instead of using ssh keys to connect to it. Once you have the host ssh
+keys to connect to the hosts, it can be safely ommited.
 
 The ping responding, now we should be able to run a playbook to provision the
 machine: 
