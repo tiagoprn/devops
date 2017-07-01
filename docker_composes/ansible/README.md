@@ -11,6 +11,11 @@ To start the container:
 
     $ make up
 
+Then, create the ssh keys, that will be generated to allow the ansible host to
+directly connect to its slaves: 
+    
+    $ make generate-keys
+
 To enter the container to run ansible commands: 
 
     $ make bash
@@ -18,6 +23,9 @@ To enter the container to run ansible commands:
 Now, we can start running ansible commands or playbooks. 
 
 ## RUNNING PLAYBOOKS
+
+IMPORTANT: The `hosts` (remote machines) that ansible will connect to 
+to run the playbooks are defined at `filesystem/conf/hosts` at this repository.  
 
 First, let's test if the remote machines are responding: 
 
@@ -34,7 +42,7 @@ machine:
     $ ansible-playbook -vv -k -s provision_centos7.yml 
 
 To ignore "Host key mismatch for <ip>" here, configure this environment
-variable: 
+variable (this is already set on the docker-compose file): 
 
     $ export ANSIBLE_HOST_KEY_CHECKING=False
 
