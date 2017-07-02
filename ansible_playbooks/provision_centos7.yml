@@ -118,9 +118,21 @@
         notify: 
             - Restart sshd
 
+      - name: Install ntp
+        yum: pkg={{item}} state=installed update_cache=true
+        with_items:
+            - ntp
+            - ntpdate
+        
+      - name: Copy ntp configuration
+        copy: src=files/ntp.conf dest=/etc owner=root group=root mode=0644
+        notify:
+            - Start ntp     
+
   handlers:
       - name: Start fail2ban
         service: name=fail2ban state=started
       - name: Restart sshd
         service: name=sshd state=restarted
-
+      - name: Start ntp
+        service: name=ntpd state=started
