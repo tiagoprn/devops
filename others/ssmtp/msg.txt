@@ -1,0 +1,5 @@
+To: Notifications <notifications@tiagoprnl.me>
+From: Mailer <mailer@tiagoprnl.me>
+Subject: Alert testing
+
+The server is down!

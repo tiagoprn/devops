@@ -1,0 +1,16 @@
+Debug=YES
+root=mailer@domain.com
+mailhub=smtp.domain.conf:587
+RewriteDomain=domain.com
+
+hostname=host01.machine.me
+
+Hostname=vbox01
+AuthUser=mailer@domain.com
+AuthPass=myuserpass
+UseSTARTTLS=YES
+AuthMethod=AUTOMATIC
+TLS_CA_File=/etc/pki/tls/certs/ca-bundle.crt
+
+# Email 'From header's can override the default domain?
+FromLineOverride=yes
