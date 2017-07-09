@@ -87,7 +87,9 @@
         yum: pkg={{item}} state=installed update_cache=true
         with_items:
             - vim
-            - ncdu 
+            - ncdu
+            - bash-completion
+            - bash-completion-extras  
             - tree
             - sysstat
             - iotop
@@ -171,7 +173,39 @@
         copy: src=files/ntp.conf dest=/etc owner=root group=root mode=0644
         notify:
             - Start ntp     
-        tags: ntp      
+        tags: ntp
+
+      - name: Clone dot_files
+        become_user: dev
+        git:
+            repo: 'https://github.com/tiagoprn/dot_files.git'
+            dest: /home/dev/dot_files
+        tags: dotfiles
+
+      - name: link bashrc
+        become_user: dev
+        shell: mv .bashrc .bashrc.OLD && ln -s /home/dev/dot_files/.bashrc /home/dev/.bashrc     
+        tags: dotfiles
+
+      - name: Copy tmux configuration script
+        become_user: dev
+        copy: src=files/configure_tmux.sh dest=/home/dev/local/bin owner=dev group=dev mode=0777
+        tags: conftmux
+
+      - name: Run tmux configuration script
+        become_user: dev
+        shell: /home/dev/local/bin/configure_tmux.sh
+        tags: conftmux
+
+      - name: Copy vim configuration script
+        become_user: dev
+        copy: src=files/configure_vim.sh dest=/home/dev/local/bin owner=dev group=dev mode=0777
+        tags: confvim
+
+      - name: Run vim configuration script
+        become_user: dev
+        shell: /home/dev/local/bin/configure_vim.sh
+        tags: confvim
 
   handlers:
       - name: Start fail2ban
