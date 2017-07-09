@@ -7,6 +7,11 @@
       - name: Install epel-release
         yum: pkg=epel-release state=installed update_cache=true  
 
+      - name: Install development tools
+        yum:
+            name: "@Development tools"
+            state: present   
+
       - name: Add portainer init script
         copy: src=files/run_portainer.sh dest=/opt owner=root group=root mode=0777
 
@@ -64,7 +69,6 @@
         yum: pkg={{item}} state=installed update_cache=true
         with_items:
             - vim
-            - tmux
             - ncdu 
             - tree
             - sysstat
@@ -117,6 +121,19 @@
         copy: src=files/sshd_config dest=/etc/ssh owner=root group=root mode=0600
         notify: 
             - Restart sshd
+
+      - name: Download recent tmux
+        become_user: dev
+        get_url:
+            url: https://raw.githubusercontent.com/tiagoprn/bin_public/master/install_tmux_on_home_folder.sh
+            dest: /home/dev/install_tmux.sh
+            mode: 0500
+        tags: tmux    
+
+      - name: Install downloaded tmux
+        become_user: dev
+        shell: /bin/bash /home/dev/install_tmux.sh
+        tags: tmux      
 
       - name: Install ntp
         yum: pkg={{item}} state=installed update_cache=true
