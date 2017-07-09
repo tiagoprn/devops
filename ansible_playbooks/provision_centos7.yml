@@ -3,67 +3,85 @@
   tasks:
       - name: upgrade all packages
         yum: name=* state=latest
+        tags: bootstrap
 
       - name: Install epel-release
         yum: pkg=epel-release state=installed update_cache=true  
+        tags: bootstrap
 
       - name: Install development tools
         yum:
             name: "@Development tools"
             state: present   
+        tags: bootstrap
 
       - name: Add portainer init script
         copy: src=files/run_portainer.sh dest=/opt owner=root group=root mode=0777
+        tags: docker
 
       - name: Install docker
         yum: pkg=docker state=installed update_cache=true
+        tags: docker
 
       - name: Start docker
         service: name=docker state=started
+        tags: docker
 
       - name: Run docker version
         command: docker version
         register: dockerversion
         changed_when: False  # this make this task always run
+        tags: docker
 
       - name: Print docker version
         debug: var=dockerversion.stdout
+        tags: docker
 
       - name: Run docker info
         command: docker info
         register: dockerinfo
         changed_when: False  # this make this task always run
+        tags: docker
 
       - name: Print docker info
         debug: var=dockerinfo.stdout
+        tags: docker
 
       - name: Start portainer
         command: bash /opt/run_portainer.sh
+        tags: docker
 
       - name: Check portainer passwd
         command: /bin/cat /root/portainer.admin.passwd
         register: password  # record the command stdout to the "password" variable
         changed_when: False  # this make this task always run
+        tags: docker
 
       - name: Print portainer passwd
         debug: var=password.stdout  # prints the value of the "password" variable
+        tags: docker
 
       - name: Install python-pip
         yum: pkg=python-pip state=installed update_cache=true
+        tags: docker
 
       - name: Install docker-compose
         pip: name=docker-compose    
+        tags: docker
 
       - name: Install pyinotify  # requirement to fail2ban
         pip: name=pyinotify    
+        tags: fail2ban
 
       - name: Install fail2ban
         yum: pkg=fail2ban state=installed update_cache=true
+        tags: fail2ban
 
       - name: Add fail2ban config
         copy: src=files/jail.local dest=/etc/fail2ban owner=root group=root
         notify:
             - Start fail2ban
+        tags: fail2ban
 
       - name: Install additional utilities 
         yum: pkg={{item}} state=installed update_cache=true
@@ -85,12 +103,14 @@
             - nmap
             - git
             - rsync
+        tags: utilities
 
       - name: Authorize the ssh key from this ansible host to the root user.
         authorized_key:
             user: root
             state: present
             key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+        tags: auth
 
       - name: Create user
         user: name=dev 
@@ -99,12 +119,14 @@
               groups=dockerroot,users,input 
               generate_ssh_key=yes 
               ssh_key_bits=2048
+        tags: auth
 
       - name: Get ssh public key
         command: /bin/cat /home/dev/.ssh/id_rsa.pub
         register: cat
         changed_when: False
-      
+        tags: auth
+
       - name: Print ssh public key
         debug: var=cat.stdout      
 
@@ -113,14 +135,17 @@
             user: dev
             state: present
             key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+        tags: auth
 
       - name: Set user sudo without password
         copy: src=files/sudoers dest=/etc owner=root group=root mode=0440
+        tags: auth
 
       - name: Set sshd configuration only with keys without password
         copy: src=files/sshd_config dest=/etc/ssh owner=root group=root mode=0600
         notify: 
             - Restart sshd
+        tags: auth
 
       - name: Download recent tmux
         become_user: dev
@@ -140,11 +165,13 @@
         with_items:
             - ntp
             - ntpdate
-        
+        tags: ntp
+
       - name: Copy ntp configuration
         copy: src=files/ntp.conf dest=/etc owner=root group=root mode=0644
         notify:
             - Start ntp     
+        tags: ntp      
 
   handlers:
       - name: Start fail2ban
