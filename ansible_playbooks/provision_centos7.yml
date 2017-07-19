@@ -230,6 +230,8 @@
         shell: /home/dev/local/bin/configure_vim.sh
         tags: confvim
 
+      # Add a task here to enable all services started below at each boot
+
   handlers:
       - name: Start fail2ban
         service: name=fail2ban state=started
