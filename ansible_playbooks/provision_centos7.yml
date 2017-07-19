@@ -83,6 +83,13 @@
             - Start fail2ban
         tags: fail2ban
 
+      - name: Install syslog-ng
+        yum: pkg=syslog-ng state=installed update_cache=true
+        notify:
+            - Copy syslog-ng conf
+            - Start syslog-ng
+        tags: syslog      
+
       - name: Install additional utilities 
         yum: pkg={{item}} state=installed update_cache=true
         with_items:
@@ -190,7 +197,7 @@
 
       - name: link bashrc
         become_user: dev
-        shell: mv .bashrc .bashrc.OLD && ln -s /home/dev/dot_files/.bashrc /home/dev/.bashrc     
+        shell: mv .bashrc .bashrc.OLD && ln -s /home/dev/dot_files/.bashrc /home/dev/.bashrc && source /home/dev/.bashrc     
         tags: dotfiles
 
       - name: Copy tmux configuration script
@@ -216,6 +223,10 @@
   handlers:
       - name: Start fail2ban
         service: name=fail2ban state=started
+      - name: Copy syslog-ng conf
+        copy: src=files/journald.conf dest=/etc/syslog-ng/conf.d owner=root group=root
+      - name: Start syslog-ng
+        service: name=syslog-ng state=started
       - name: Restart sshd
         service: name=sshd state=restarted
       - name: Start ntp
