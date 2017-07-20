@@ -36,12 +36,33 @@
         copy: src=files/run_portainer.sh dest=/opt owner=root group=root mode=0777
         tags: docker
 
+      - name: Install docker pkg requirements
+        yum: pkg={{item}} state=installed update_cache=true
+        with_items:
+            - yum-utils
+            - device-mapper-persistent-data
+            - lvm2
+        tags: docker 
+
+      - name: Download docker-ce repository
+        get_url:
+            url: https://download.docker.com/linux/centos/docker-ce.repo 
+            dest: /etc/yum.repos.d/docker-ce.repo
+        tags: docker    
+
       - name: Install docker
-        yum: pkg=docker state=installed update_cache=true
+        yum: pkg=docker-ce state=installed update_cache=true
         tags: docker
 
       - name: Start docker
         service: name=docker state=started
+        tags: docker
+
+      - name: Add docker config (logging driver)
+        copy: src=files/docker-daemon.json dest=/etc/docker/daemon.json owner=root group=root
+
+      - name: Restart docker
+        service: name=docker state=restarted
         tags: docker
 
       - name: Run docker version
@@ -135,7 +156,7 @@
         user: name=dev 
               shell=/bin/bash 
               home=/home/dev 
-              groups=dockerroot,users,input 
+              groups=docker,users,input 
               generate_ssh_key=yes 
               ssh_key_bits=2048
         tags: auth
