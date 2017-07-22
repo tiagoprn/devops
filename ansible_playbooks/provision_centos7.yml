@@ -201,7 +201,7 @@
         tags: tmux      
 
       - name: Set timezone
-        shell: /bin/bash timedatectl set-timezone America/Sao_Paulo && timedatectl
+        shell: timedatectl set-timezone America/Sao_Paulo && timedatectl
         tags: timezone      
 
       - name: Install ntp
