@@ -15,6 +15,14 @@
             dest: /etc/yum.repos.d/czanik-syslog-ng310-epel-7.repo
         tags: syslog    
 
+      - name: Copy auditd configuration rules
+        copy: src=files/auditd.rules dest=/etc/audit/rules.d owner=root group=root mode=0644
+        tags: auditd
+
+      - name: Restart auditd
+        command: service auditd restart  # it has to be this way on this specific package
+        tags: auditd
+
       - name: Uninstall rsyslog
         yum: pkg=rsyslog state=removed update_cache=true  
         tags: syslog
@@ -265,13 +273,6 @@
         service: name=ntpd state=started
         tags: ntp
 
-      - name: Copy auditd configuration rules
-        copy: src=files/auditd.rules dest=/etc/audit/rules.d owner=root group=root mode=0644
-        tags: auditd
-
-      - name: Restart auditd
-        command: service auditd restart  # it has to be this way on this specific package
-        tags: auditd
 
       - name: Clone dot_files
         become_user: dev
