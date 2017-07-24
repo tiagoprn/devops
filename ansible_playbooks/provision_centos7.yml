@@ -21,10 +21,15 @@
 
       - name: Install syslog-ng
         yum: pkg=syslog-ng state=installed update_cache=true
-        notify:
-            - Copy syslog-ng conf
-            - Start syslog-ng
         tags: syslog      
+
+      - name: Copy syslog-ng conf
+        copy: src=files/syslog-ng.conf dest=/etc/syslog-ng owner=root group=root
+        tags: syslog
+
+      - name: Start syslog-ng
+        service: name=syslog-ng state=started
+        tags: syslog
 
       - name: Install development tools
         yum:
@@ -37,13 +42,24 @@
         tags: sysctl
 
       - name: Reboot machine
-        shell: reboot
-        async: 0
-        poll: 0
+        command: shutdown -r +1 'Rebooting in 1 minute by order from ansible...' 
         tags: reboot
 
       - name: Waiting for the machine to come back 
-        local_action: wait_for host={{ ansible_ssh_host }} state=started port=22 delay=30 timeout=300 connect_timeout=15 # waiting for the host to be back online, on port, don't check for delay seconds, timeout for something to happen on the machine, wait for connect_timeout seconds for a connection to happen before closing and retrying
+        local_action: wait_for 
+            host={{ ansible_default_ipv4.address }} 
+            state=started 
+            port=22 
+            delay=90 
+            timeout=300 
+            connect_timeout=15 
+            # waiting for the host to be back online, on port, 
+            # don't check for delay seconds (1 minute from the shutdown 
+            #                                parameter + 30 seconds for the 
+            #                                machine to be up), 
+            # timeout for something to happen on the machine, 
+            # wait for connect_timeout seconds for a connection 
+            # to happen before closing and retrying
         tags: reboot
 
       - name: Get sysctl configuration
@@ -84,6 +100,7 @@
 
       - name: Add docker config (logging driver)
         copy: src=files/docker-daemon.json dest=/etc/docker/daemon.json owner=root group=root
+        tags: docker
 
       - name: Restart docker
         service: name=docker state=restarted
@@ -141,8 +158,10 @@
 
       - name: Add fail2ban config
         copy: src=files/jail.local dest=/etc/fail2ban owner=root group=root
-        notify:
-            - Start fail2ban
+        tags: fail2ban
+
+      - name: Start fail2ban
+        service: name=fail2ban state=started
         tags: fail2ban
 
       - name: Install additional utilities 
@@ -192,7 +211,8 @@
         tags: auth
 
       - name: Print ssh public key
-        debug: var=cat.stdout      
+        debug: var=cat.stdout
+        tags: auth      
 
       - name: Authorize the ssh key from this ansible host to the dev user.
         authorized_key:
@@ -207,8 +227,10 @@
 
       - name: Set sshd configuration only with keys without password
         copy: src=files/sshd_config dest=/etc/ssh owner=root group=root mode=0600
-        notify: 
-            - Restart sshd
+        tags: auth
+
+      - name: Restart sshd
+        service: name=sshd state=restarted
         tags: auth
 
       - name: Download recent tmux
@@ -237,14 +259,18 @@
 
       - name: Copy ntp configuration
         copy: src=files/ntp.conf dest=/etc owner=root group=root mode=0644
-        notify:
-            - Start ntp     
+        tags: ntp
+
+      - name: Start ntp
+        service: name=ntpd state=started
         tags: ntp
 
       - name: Copy auditd configuration rules
         copy: src=files/auditd.rules dest=/etc/audit/rules.d owner=root group=root mode=0644
-        notify:
-            - Restart auditd     
+        tags: auditd
+
+      - name: Restart auditd
+        command: service auditd restart  # it has to be this way on this specific package
         tags: auditd
 
       - name: Clone dot_files
@@ -279,19 +305,13 @@
         shell: /home/dev/local/bin/configure_vim.sh
         tags: confvim
 
-      # Add a task here to enable all services started below at each boot
-
-  handlers:
-      - name: Start fail2ban
-        service: name=fail2ban state=started
-      - name: Copy syslog-ng conf
-        copy: src=files/syslog-ng.conf dest=/etc/syslog-ng owner=root group=root
-      - name: Start syslog-ng
-        service: name=syslog-ng state=started
-      - name: Restart sshd
-        service: name=sshd state=restarted
-      - name: Start ntp
-        service: name=ntpd state=started
-      - name: Restart auditd
-        command: service auditd restart  # it has to be this way on this specific package
-       
+      - name: Enable all services 
+        service: name={{item}} enabled=yes
+        with_items:
+            - docker 
+            - fail2ban
+            - syslog-ng
+            - sshd
+            - ntpd
+            - auditd  
+        tags: services
