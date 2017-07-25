@@ -251,11 +251,11 @@
 
       - name: Install downloaded tmux
         become_user: dev
-        shell: /bin/bash /home/dev/install_tmux.sh
+        command: /bin/bash /home/dev/install_tmux.sh
         tags: tmux      
 
       - name: Set timezone
-        shell: timedatectl set-timezone America/Sao_Paulo && timedatectl
+        command: timedatectl set-timezone America/Sao_Paulo && timedatectl
         tags: timezone      
 
       - name: Install ntp
@@ -283,7 +283,7 @@
 
       - name: link bashrc
         become_user: dev
-        shell: mv .bashrc .bashrc.OLD && ln -s /home/dev/dot_files/.bashrc /home/dev/.bashrc && source /home/dev/.bashrc     
+        command: mv .bashrc .bashrc.OLD && ln -s /home/dev/dot_files/.bashrc /home/dev/.bashrc && source /home/dev/.bashrc     
         tags: dotfiles
 
       - name: Copy tmux configuration script
@@ -293,7 +293,7 @@
 
       - name: Run tmux configuration script
         become_user: dev
-        shell: /home/dev/local/bin/configure_tmux.sh
+        command: /home/dev/local/bin/configure_tmux.sh
         tags: conftmux
 
       - name: Copy vim configuration script
@@ -303,7 +303,7 @@
 
       - name: Run vim configuration script
         become_user: dev
-        shell: /home/dev/local/bin/configure_vim.sh
+        command: /home/dev/local/bin/configure_vim.sh
         tags: confvim
 
       - name: Enable all services 
@@ -316,3 +316,8 @@
             - ntpd
             - auditd  
         tags: services
+
+      - name: Remove downloaded yum packages
+        command: yum clean all
+        tags: cleanup
+
