@@ -255,7 +255,10 @@
         tags: tmux      
 
       - name: Set timezone
-        command: timedatectl set-timezone America/Sao_Paulo && timedatectl
+        command: "{{item}}" 
+        with_items:  # this is the only way to run more than one command with the ansible "command" module
+            - timedatectl set-timezone America/Sao_Paulo
+            - timedatectl  
         tags: timezone      
 
       - name: Install ntp
