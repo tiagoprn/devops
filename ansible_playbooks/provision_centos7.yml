@@ -276,7 +276,6 @@
         service: name=ntpd state=started
         tags: ntp
 
-
       - name: Clone dot_files
         become_user: dev
         git:
@@ -286,7 +285,10 @@
 
       - name: link bashrc
         become_user: dev
-        command: mv .bashrc .bashrc.OLD && ln -s /home/dev/dot_files/.bashrc /home/dev/.bashrc && source /home/dev/.bashrc     
+        command: "{{item}}" 
+        with_items:
+            - mv .bashrc .bashrc.OLD
+            - ln -s /home/dev/dot_files/.bashrc /home/dev/.bashrc
         tags: dotfiles
 
       - name: Copy tmux configuration script
