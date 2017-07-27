@@ -106,7 +106,7 @@
         service: name=docker state=started
         tags: docker
 
-      - name: Add docker config (logging driver)
+      - name: Add docker config (logging driver and log format)
         copy: src=files/docker-daemon.json dest=/etc/docker/daemon.json owner=root group=root
         tags: docker
 
