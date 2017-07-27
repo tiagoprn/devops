@@ -9,9 +9,14 @@ enabled = true
 port = ssh
 filter = sshd
 logpath = %(sshd_log)s
-bantime = 604800  # ban access for 1 week 
+
+# ban access for 1 week
+bantime = 604800 
+
 findtime = 60  
-maxretry = 5  # 5 failed attempts in findtime seconds 
+
+# 5 failed attempts in findtime seconds
+maxretry = 5   
 
 # I can configure also other services here, like nginx, e.g. 
 # To do that, I must only add a section for the desired service here.
