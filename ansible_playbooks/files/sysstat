@@ -1,0 +1,20 @@
+# Run system activity accounting tool every 10 minutes
+# There are two issues, here. Firstly, 10 minutes is fairly low resolution. 
+# Secondly, the sample only covers 1 second out of 600, so the remaining 9:59 
+# are not really included in it. This is somewhat OK for long-term trending, 
+# where low-resolution random sampling is sufficient. 
+# */10 * * * * root /usr/lib64/sa/sa1 1 1
+
+# Instead of the package default above, we will use the configuration below. 
+# Which collects one sample per minute, and every sample covers one minute. 
+# The -S XALL means all statistics should be collected, including interrupts, 
+# individual block devices and partitions, etc. See man sadc for more details.
+* * * * * root /usr/lib64/sa/sa1 -S XALL 60 1
+
+# Reference for the configuration above: 
+# https://blog.2ndquadrant.com/in-the-defense-of-sar/
+
+# Generate a daily summary of process accounting at 23:53
+53 23 * * * root /usr/lib64/sa/sa2 -A
+
+55 23 * * * /var/log/sysstat/sar_report_daily.sh

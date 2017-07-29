@@ -45,6 +45,37 @@
             state: present   
         tags: bootstrap
 
+      - name: Install additional utilities 
+        yum: pkg={{item}} state=installed update_cache=true
+        with_items:
+            - vim
+            - ncdu
+            - bash-completion
+            - bash-completion-extras  
+            - tree
+            - sysstat
+            - iotop
+            - siege
+            - curl
+            - wget
+            - links
+            - elinks
+            - htop
+            - lsof
+            - tcpdump
+            - nmap
+            - git
+            - rsync
+        tags: utilities
+
+      - name: Copy script to generate sysstat sar report
+        copy: src=files/sar_report_daily.sh dest=/var/log/sysstat owner=root group=root mode=0700
+        tags: sysstat
+
+      - name: Override sysstat cronjob configuration
+        copy: src=files/sysstat dest=/etc/cron.d/sysstat owner=root group=root mode=0600
+        tags: sysstat
+
       - name: sysctl configuration (fs, kernel and net configuration for hardening)
         copy: src=files/hardening.conf dest=/etc/sysctl.d owner=root group=root
         tags: sysctl
@@ -171,30 +202,6 @@
       - name: Start fail2ban
         service: name=fail2ban state=started
         tags: fail2ban
-
-      - name: Install additional utilities 
-        yum: pkg={{item}} state=installed update_cache=true
-        with_items:
-            - vim
-            - ncdu
-            - bash-completion
-            - bash-completion-extras  
-            - tree
-            - sysstat
-            - iotop
-            - siege
-            - curl
-            - wget
-            - links
-            - elinks
-            - htop
-            - dstat
-            - lsof
-            - tcpdump
-            - nmap
-            - git
-            - rsync
-        tags: utilities
 
       - name: Authorize the ssh key from this ansible host to the root user.
         authorized_key:
