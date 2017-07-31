@@ -69,7 +69,7 @@
         tags: utilities
 
       - name: Copy script to generate sysstat sar report
-        copy: src=files/sar_report_daily.sh dest=/var/log/sysstat owner=root group=root mode=0700
+        copy: src=files/sar_report_daily.sh dest=/var/log/sysstat/ owner=root group=root mode=0700
         tags: sysstat
 
       - name: Override sysstat cronjob configuration
