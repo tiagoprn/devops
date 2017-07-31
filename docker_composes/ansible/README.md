@@ -39,12 +39,12 @@ keys to connect to the hosts, it can be safely ommited.
 The ping responding, now we should be able to run a playbook to provision the
 machine: 
 
-    $ cd /etc/ansible/playbooks
-    $ ansible-playbook -vv -k -s provision_centos7.yml
+    $ cd /etc/ansible/playbooks/provision-centos7
+    $ ansible-playbook -vv -k -s main.yml
 
 To run just some tasks that were tagged on the playbook: 
 
-    $ ansible-playbook --tags utilities,dotfiles -vv -k -s provision_centos7.yml
+    $ ansible-playbook --tags utilities,dotfiles -vv -k -s main.yml
 
 (with `--skip-tags` you can do the opposite, and you can also use
 `--start-at-task`)
