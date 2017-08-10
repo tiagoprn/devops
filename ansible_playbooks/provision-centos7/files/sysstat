@@ -1,3 +1,6 @@
+# IMPORTANT: To run correctly, the crontab lines here must explicitly 
+# contain the user also (root e.g.)
+
 # Run system activity accounting tool every 10 minutes
 # There are two issues, here. Firstly, 10 minutes is fairly low resolution. 
 # Secondly, the sample only covers 1 second out of 600, so the remaining 9:59 
@@ -17,5 +20,5 @@
 # Generate a daily summary of process accounting at 23:53
 53 23 * * * root /usr/lib64/sa/sa2 -A
 
-55 23 * * * /var/log/sysstat/sar_report_daily.sh
+55 23 * * * root /var/log/sysstat/sar_report_daily.sh
 
