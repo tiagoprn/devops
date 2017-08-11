@@ -6,7 +6,8 @@ This playbook can provision a freshly installed CentOS 7 server with the followi
 * syslog-ng repository, version 3.10, and its corresponding binaries
 * auditd with custom configuration rules 
 * Development Tools (git, svn, kernel headers, etc...) 
-* Miscelaneous utilities (`sysstat` between them, with is useful to collect server metrics and persist a daily consolidated report of it on the syslog-ng log path)
+* Miscelaneous utilities: `sysstat` between them, with is useful to collect server metrics in real-time or generate reports. 
+Includes a daily consolidated report of system status metrics in json format on the syslog-ng log path.
 * sysctl configuration, with focus on hardening the server 
 * docker-ce repository, which provides the most recent docker
 * portainer, a docker container which provides a Web UI to managing docker containers, locally or remotely
@@ -15,4 +16,5 @@ This playbook can provision a freshly installed CentOS 7 server with the followi
 * a `dev` user account, so the server can be accessed by the ansible host without using root or username/passwords
 * `tmux` and a custom configuration based on my dot files, for the user `dev`.
 * `bashrc` and `vimrc` based on my dot files, for the user `dev`. 
-* `ntp`, configured for Brazil time
+* `ntp`, configured for Brazil time zone.
+
