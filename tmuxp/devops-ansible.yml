@@ -1,0 +1,10 @@
+session_name: devops_ansible
+windows:
+  - window_name: main
+    layout: even-vertical
+    start_directory: ~/git/github/devops
+    panes:
+      - cd docker-composes/ansible
+      - cd docker-composes/ansible
+      - cd ansible_playbooks 
+      - cd ansible_playbooks 

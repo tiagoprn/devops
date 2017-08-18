@@ -1,0 +1,8 @@
+session_name: monitoring
+windows:
+  - window_name: dashboard
+    layout: even-vertical
+    panes:
+      - sudo htop
+      - jlogs
+      - sudo watch -n 1 docker ps  
