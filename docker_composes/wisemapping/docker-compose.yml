@@ -1,0 +1,23 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7.12
+    container_name: wisemapping_mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - MYSQL_DATA:/var/lib/mysql
+    restart: always
+
+  app:
+    build: docker
+    container_name: wisemapping_app
+    restart: always
+    links:
+      - mysql:mysql
+    ports:
+      - 7555:8080
+volumes:
+  MYSQL_DATA:
+    driver: local    
+
