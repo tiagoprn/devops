@@ -1,0 +1,20 @@
+version: '2'
+services:
+  minio1:
+    image: minio/minio
+    container_name: minio
+    volumes:
+      - DATA:/export
+      - CONFIG:/root/.minio
+    ports:
+      - 9000:9000
+    environment:
+      MINIO_ACCESS_KEY: ACCESS01
+      MINIO_SECRET_KEY: SECRET01
+    command: server /export
+    restart: always  
+volumes:
+  DATA:
+    driver: local
+  CONFIG:
+    driver: local    
