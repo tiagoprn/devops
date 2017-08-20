@@ -1,0 +1,14 @@
+version: '2'
+services:
+  drawio:
+    image: ivonet/draw.io
+    container_name: draw-io
+    volumes:
+      - TMP:/tmp
+    ports:
+      - 9000:80
+      - 9443:443  
+    restart: always
+volumes:
+  TMP:
+    driver: local    
