@@ -6,8 +6,8 @@ services:
     volumes:
       - TMP:/tmp
     ports:
-      - 9000:80
-      - 9443:443  
+      - 6000:80
+      - 6443:443  
     restart: always
 volumes:
   TMP:

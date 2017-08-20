@@ -11,7 +11,7 @@ restart: stop start
 up:
 	docker-compose up -d
 	clear
-	@echo -e 'Reach the web application at https://localhost:9443/'
+	@echo -e 'Reach the web application at https://localhost:6443/'
 	sleep 10  # This hack is to give some time for the mysql container to be up to run the "install" command below
 
 kill: stop
