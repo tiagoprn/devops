@@ -5,4 +5,5 @@ windows:
     panes:
       - sudo htop
       - jlogs
+      - dmesg -wH  
       - sudo watch -n 1 docker ps  
