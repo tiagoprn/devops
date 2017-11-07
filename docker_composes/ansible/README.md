@@ -1,20 +1,16 @@
 ## INTRODUCTION
 
 This container can be used to provision CentOS 7 servers, installed from
-the minimal installation, through ssh using ansible. I assume you have a root
-user on this server and you know its password to connect to it and run the
-playbook.  
+the CentOS 7 Cloud Image, through ssh using ansible. This image assumes you 
+have a centos user on this server (it is already on the cloud image) and you 
+have your machine's ssh public key authorized to connect to it and run 
+the playbook.  
 
 ## USING THE CONTAINER
 
 To start the container: 
 
     $ make up
-
-Then, create the ssh keys, that will be generated to allow the ansible host to
-directly connect to its slaves: 
-    
-    $ make generate-keys
 
 To enter the container to run ansible commands: 
 
@@ -29,22 +25,17 @@ to run the playbooks are defined at `filesystem/conf/hosts` at this repository.
 
 First, let's test if the remote machines are responding: 
 
-    $ ansible all -m ping -k   
-
-IMPORTANT:
-`-k` here means we want to type the password of the root user of the CentOS 7 
-machine instead of using ssh keys to connect to it. Once you have the host ssh
-keys to connect to the hosts, it can be safely ommited.
+    $ ansible all -m ping   
 
 The ping responding, now we should be able to run a playbook to provision the
 machine: 
 
     $ cd /etc/ansible/playbooks/provision-centos7
-    $ ansible-playbook -vv -k -s main.yml
+    $ ansible-playbook -vv main.yml
 
 To run just some tasks that were tagged on the playbook: 
 
-    $ ansible-playbook --tags utilities,dotfiles -vv -k -s main.yml
+    $ ansible-playbook --tags utilities,dotfiles -vv main.yml
 
 (with `--skip-tags` you can do the opposite, and you can also use
 `--start-at-task`)

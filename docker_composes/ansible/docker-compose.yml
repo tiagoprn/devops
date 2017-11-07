@@ -13,6 +13,7 @@ services:
       - ./filesystem/conf:/etc/ansible
       - ../../ansible_playbooks:/etc/ansible/playbooks  
       - ./shared:/shared
+      - /home/tiago/.ssh:/root/.ssh  
     environment:
       - ANSIBLE_HOST_KEY_CHECKING=False
 
