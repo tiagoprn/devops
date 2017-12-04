@@ -5,3 +5,5 @@ data/**
 *~
 *.swp
 *.retry
+*.log
+*.txt

@@ -1,0 +1,102 @@
+## Config for GNU GRand Unified Bootloader (GRUB)
+## /boot/grub/grub.cfg
+
+## Timeout for menu
+set timeout=30
+
+## Default boot entry
+set default=0
+
+## Menu Colours
+set menu_color_normal=white/black
+set menu_color_highlight=white/green
+
+## Boot ISOs
+
+# for various boot grub configurations:
+# https://github.com/Thermionix/multipass-usb/tree/master/bootisos
+# https://wiki.archlinux.org/index.php/Grub2#Arch_Linux
+# https://github.com/thuandt/multiboot/tree/master/grub
+
+# http://forums.fedoraforum.org/showthread.php?t=293864
+menuentry "Fedora 21 Workstation (64 bit)" {
+    set isoname="Fedora-Live-WS-x86_64-21-5"
+    set isofile="/iso/${isoname}.iso"
+    loopback loop $isofile
+    linux (loop)/isolinux/vmlinuz0 root=live:CDLABEL=${isoname} rootfstype=auto ro rd.live.image quiet rhgb rd.luks=0 rd.md=0 rd.dm=0 iso-scan/filename=${isofile}
+    initrd (loop)/isolinux/initrd0.img
+}
+
+menuentry "Ubuntu 14.04 Desktop - 64bit" {
+    set iso="/iso/ubuntu-14.04-desktop-amd64.iso"
+    loopback loop $iso
+    linux (loop)/casper/vmlinuz.efi boot=casper iso-scan/filename=$iso noprompt noeject
+    initrd (loop)/casper/initrd.lz
+}
+
+menuentry "SystemRescueCD 4.2.0 ISO" {
+    loopback loop /iso/systemrescuecd-x86-4.2.0.iso
+    linux (loop)/isolinux/rescue64 isoloop=/iso/systemrescuecd-x86-4.2.0.iso
+    initrd (loop)/isolinux/initram.igz
+}
+
+menuentry "Arch Linux 2014 x86_64" {
+    set isofile="/iso/archlinux-2014.04.01-dual.iso"
+    loopback loop $isofile
+    set drive_label="multiboot"
+    linux (loop)/arch/boot/x86_64/vmlinuz earlymodules=loop lang=en locale=en_US.UTF-8 ramdisk_size=75% img_dev=/dev/disk/by-label/$drive_label img_loop=$isofile archisolabel=ARCH_201404
+    initrd (loop)/arch/boot/x86_64/archiso.img
+}
+
+menuentry "Debian 7.5 64-bit Live" {
+    search --set -f "/iso/debian-live-7.5.0-amd64-kde-desktop.iso"
+    loopback loop "/iso/debian-live-7.5.0-amd64-kde-desktop.iso"
+    linux (loop)/live/vmlinuz rw quickusbmodules fromiso=/dev/disk/by-uuid/3646-F883/iso/debian-live-7.5.0-amd64-kde-desktop.iso boot=live config live-config live-config.locales=en_US.UTF-8 live-config.keyboard-layouts=us live-config.timezone=America/Sao_Paulo quiet quickreboot
+    initrd (loop)/live/initrd.img
+}
+
+menuentry "CentOS 6.5 Live CD ISO" {
+    insmod part_msdos
+    insmod ext2
+    set isoname="CentOS-6.5-x86_64-LiveCD"
+    set isofile="/iso/${isoname}.iso"
+    loopback loop $isofile
+
+    linux   (loop)/EFI/boot/vmlinuz0 root=UUID=3646-F883 rootfstype=auto live_dir=/LiveOS liveimg ro rhgb
+    # linux (loop)/EFI/boot/vmlinuz0 root=live:LABEL=${isoname} rootfstype=auto ro rd.live.image iso-scan/filename=${isofile}
+    initrd  (loop)/EFI/boot/initrd0.img
+}
+
+menuentry "CentOS 7.0 Minimal" {
+    insmod part_msdos
+    insmod ext2
+    set isoname="CentOS-7.0-1406-x86_64-Minimal"
+    set isofile="/iso/${isoname}.iso"
+    loopback loop $isofile
+    linux   (loop)/isolinux/vmlinuz root=live:CDLABEL=CentOS-7.0-1406-x86_64-Minimal iso-scan/filename=$isofile rd.live.image
+    initrd  (loop)/isolinux/initrd.img
+}
+
+menuentry "CentOS 7.0 GnomeLive" {
+    insmod part_msdos
+    insmod ext2
+    set isoname="CentOS-7.0-1406-x86_64-GnomeLive"
+    set isofile="/iso/${isoname}.iso"
+    loopback loop $isofile
+    linux   (loop)/isolinux/vmlinuz0 root=live:CDLABEL=CentOS-7-live-GNOME-x86_64 iso-scan/filename=$isofile rd.live.image
+    initrd  (loop)/isolinux/initrd0.img
+}
+
+menuentry "TAILS - The Amnesic Incognito Live System 1.1" {
+    set iso="/iso/tails-i386-1.1.iso"
+    loopback loop $iso
+    linux (loop)/live/vmlinuz boot=live config live-media=removable nopersistent noprompt quiet timezone=America/Sao_Paulo block.events_dfl_poll_msecs=1000 splash nox11autologin module=Tails findiso=$iso quiet_
+    initrd (loop)/live/initrd.img
+}
+
+menuentry 'Kali 1.0.7 amd64' {
+    set isofile='/iso/kali-linux-1.0.7-amd64.iso'
+    loopback loop $isofile
+    linux (loop)/live/vmlinuz boot=live findiso=$isofile noconfig=sudo username=root hostname=kali noswap
+    initrd (loop)/live/initrd.img
+}
