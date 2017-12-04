@@ -7,4 +7,5 @@ windows:
       - cd docker_composes/ansible
       - cd docker_composes/ansible
       - cd ansible_playbooks 
-      - cd ansible_playbooks 
+      - cd ansible_playbooks
+      - sudo watch -n 1 docker ps  
