@@ -25,17 +25,16 @@ to run the playbooks are defined at `filesystem/conf/hosts` at this repository.
 
 First, let's test if the remote machines are responding: 
 
-    $ ansible all -m ping   
+    $ make ping   
 
 The ping responding, now we should be able to run a playbook to provision the
 machine: 
 
-    $ cd /etc/ansible/playbooks/provision-centos7
-    $ ansible-playbook -vv main.yml
+    $ make play playbook=provision-centos7/main.yml
 
 To run just some tasks that were tagged on the playbook: 
 
-    $ ansible-playbook --tags utilities,dotfiles -vv main.yml
+    $ make bash && ansible-playbook --tags utilities,dotfiles -vv main.yml
 
 (with `--skip-tags` you can do the opposite, and you can also use
 `--start-at-task`)
