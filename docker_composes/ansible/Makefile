@@ -6,7 +6,7 @@ help:
 	@echo -e "make rm \n\t STOP and DELETE the ansible container.\n"
 	@echo -e "make bash \n\t Enter the ansible container.\n"
 	@echo -e "make ping \n\t Check ansible host which you will run playbooks is responding.\n"
-	@echo -e "make play playbook=[playbook-path] \n\t Run a playbook (e.g. make play playbook=provision-centos7/main.yml). \n"
+	@echo -e "make play playbook=[playbook-path] \n\t Run a playbook (e.g. make play playbook=provision-centos7/roles/tasks/main.yml). \n"
 
 up:
 	@docker-compose up -d
