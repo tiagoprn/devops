@@ -1,8 +1,7 @@
 #!/bin/bash 
 
+# TODO: Get the variables below from arguments passed to this script 
 VM_NAME=centos7-01
-
-# TODO: Get the bridge name here from an argument passed by this script 
 BRIDGE_NAME=br1
 
 echo 'Downloading the CentOS 7 cloud image...';
