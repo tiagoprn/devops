@@ -58,6 +58,9 @@ sudo virt-install --import --name $VM_NAME --ram $RAM_MB --vcpus $CPUS --disk /k
 echo 'Ejecting the iso created by cloud-init...'
 sudo virsh change-media $VM_NAME hda --eject --config 
 
+echo 'Removing the iso created by cloud-init, since it will not be necessary anymore...'
+sudo rm /kvm/iso/$VM_NAME-cloud-init-data.iso
+
 echo 'FINISHED! The machine is named' $VM_NAME', has a network bridge at '$BRIDGE_NAME', '$RAM_MB' MB of RAM and uses '$CPUS 'cpu(s). Here are its credentials:'
 bash ./get_domain_ip.sh $VM_NAME
 
