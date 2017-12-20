@@ -1,8 +1,20 @@
 #!/bin/bash 
 
-# TODO: Get the variables below from arguments passed to this script 
-VM_NAME=centos7-01
-BRIDGE_NAME=br1
+# e.g.
+# ./create-vm.sh -n centos7-02 -b br1 -r 1024 -c 1
+
+while getopts n:b:r:c: option
+do
+  case "${option}"
+  in
+  n) VM_NAME=${OPTARG};;
+  b) BRIDGE_NAME=${OPTARG};;
+  r) RAM_MB=${OPTARG};;
+  c) CPUS=$OPTARG;;
+  esac
+done
+
+# TODO: set values if any of the variables above was not set
 
 echo 'Downloading the CentOS 7 cloud image...';
 bash ./download_centos7_cloud_image.sh;
@@ -21,7 +33,7 @@ echo 'Creating a new VM from the image...'
 cp -farv /kvm/templates/CentOS-7-x86_64-GenericCloud.template.qcow2 /kvm/images/$VM_NAME.qcow2
 ./generate_cloud_init_iso.sh $VM_NAME
 cp -farv ~/distros/images/$VM_NAME-cloud-init-data.iso /kvm/iso
-sudo virt-install --import --name $VM_NAME --ram 1024 --vcpus 1 --disk /kvm/images/$VM_NAME.qcow2,format=qcow2,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=rhel7 --noautoconsole
+sudo virt-install --import --name $VM_NAME --ram $RAM_MB --vcpus $CPUS --disk /kvm/images/$VM_NAME.qcow2,format=qcow2,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=rhel7 --noautoconsole
 
 echo 'Ejecting the iso created by cloud-init...'
 sudo virsh change-media $VM_NAME hda --eject --config 
