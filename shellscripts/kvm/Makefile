@@ -17,7 +17,7 @@ help:
 	@echo -e "make net-attach vm=[name] bridge-name=[brXXX] \n\t Attach a network to a running VM (live).\n"
 	@echo -e "make net vm=[name] \n\t Show all network interfaces attached to a VM.\n"
 	@echo -e "make rm vm=[name] \n\t Removes a vm permanently.\n"
-	@echo -e "make create vm=[name] bridge-name=[brXXX] \n\t Create a VM (you must have a bridge available, use `make nets` to see the ones available).\n"
+	@echo -e "make create vm=[name] bridge-name=[brXXX] ram-in-mb=712 cpus-total=1 \n\t Create a VM (you must have a bridge available, use `make nets` to see the ones available).\n"
 
 status:
 	sudo virsh list --all
@@ -77,5 +77,5 @@ rm: down
 	sudo virsh undefine $(vm)
 
 create:
-	echo 'TODO - Criar um outro shell script com os comandos para criar a VM e chamar aqui.'
+	bash ./create-vm.sh -n $(vm) -b $(bridge-name) -r $(ram-in-mb) -c $(cpus-total)
 
