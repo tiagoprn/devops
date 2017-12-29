@@ -47,7 +47,7 @@ up:
 	sudo virsh start $(vm)
 
 down:
-	sudo virsh shutdown $(vm)
+	-sudo virsh shutdown $(vm)
 
 kill:
 	sudo virsh destroy $(vm)
