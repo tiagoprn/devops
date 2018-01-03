@@ -8,25 +8,29 @@ help:
 	@echo -e "make ping \n\t Check ansible host which you will run playbooks is responding.\n"
 	@echo -e "make play playbook=[playbook-path] \n\t Run a playbook (e.g. make play playbook=provision-centos7/roles/tasks/main.yml). \n"
 
-up:
-	@docker-compose up -d
+build:
+	@./build-docker-compose-with-env-vars.sh
+
+up: build
+	@sudo docker-compose up -d
+	@sudo docker exec -t $$(sudo docker ps | grep ansible | awk '{print $$1}') chown -R root.root /root/.ssh
 
 centos-version:
-	@docker exec -t $$(docker ps | grep ansible | awk '{print $$1}') cat /etc/centos-release
+	@sudo docker exec -t $$(sudo docker ps | grep ansible | awk '{print $$1}') cat /etc/centos-release
 
 version:
-	@docker exec -t $$(docker ps | grep ansible | awk '{print $$1}') ansible --version
+	@sudo docker exec -t $$(sudo docker ps | grep ansible | awk '{print $$1}') ansible --version
 
 rm:
-	@docker-compose stop && docker-compose rm -f
+	@sudo docker-compose stop && sudo docker-compose rm -f
 
 bash:
-	@docker exec -it $$(docker ps | grep ansible | awk '{print $$1}') bash
+	@sudo docker exec -it $$(sudo docker ps | grep ansible | awk '{print $$1}') bash
 
 ping: 
-	@docker exec -it $$(docker ps | grep ansible | awk '{print $$1}') ansible -i /etc/ansible/hosts all -m ping
+	@sudo docker exec -it $$(sudo docker ps | grep ansible | awk '{print $$1}') ansible -i /etc/ansible/hosts all -m ping
 
 play:
-	docker exec -it $$(docker ps | grep ansible | awk '{print $$1}')  ansible-playbook -vv /etc/ansible/playbooks/$(playbook) 
+	sudo docker exec -it $$(sudo docker ps | grep ansible | awk '{print $$1}')  ansible-playbook -vv /etc/ansible/playbooks/$(playbook) 
 
 
