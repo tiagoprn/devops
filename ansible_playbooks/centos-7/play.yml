@@ -1,4 +1,6 @@
 - hosts: all
   roles:
-    - bootstrap
+    # - bootstrap
+    # - auditd
+    - syslog  
 
