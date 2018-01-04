@@ -2,5 +2,6 @@
   roles:
     # - bootstrap
     # - auditd
-    - syslog  
+    # - syslog
+    - utilities  
 
