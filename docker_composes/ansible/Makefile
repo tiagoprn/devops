@@ -8,11 +8,9 @@ help:
 	@echo -e "make ping \n\t Check ansible host which you will run playbooks is responding.\n"
 	@echo -e "make play playbook=[playbook-path] \n\t Run a playbook (e.g. make play playbook=provision-centos7/roles/tasks/main.yml). \n"
 
-build:
-	@./build-docker-compose-with-env-vars.sh
-
-up: build
+up:
 	@sudo docker-compose up -d
+	@sudo docker cp ~/.ssh $$(sudo docker ps | grep ansible | awk '{print $$1}'):/root 
 	@sudo docker exec -t $$(sudo docker ps | grep ansible | awk '{print $$1}') chown -R root.root /root/.ssh
 
 centos-version:
