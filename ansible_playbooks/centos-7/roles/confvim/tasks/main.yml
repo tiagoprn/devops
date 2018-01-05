@@ -1,0 +1,10 @@
+- name: Copy vim configuration script
+  become_user: dev
+  copy: src=files/configure_vim.sh dest=/home/dev/local/bin owner=dev group=dev mode=0777
+  tags: confvim
+
+- name: Run vim configuration script
+  become_user: dev
+  command: /home/dev/local/bin/configure_vim.sh
+  tags: confvim
+

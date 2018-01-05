@@ -1,7 +1,21 @@
 - hosts: all
   roles:
-    # - bootstrap
-    # - auditd
-    # - syslog
+    - bootstrap
+    - auditd
+    - syslog
     - utilities  
-
+    - sysstat
+    - set-sysctl
+    - reboot
+    - get-sysctl
+    - docker
+    - fail2ban
+    - auth
+    - tmux
+    - timezone
+    - ntp
+    - dotfiles
+    - conftmux
+    - confvim
+    - services
+    - cleanup  

@@ -1,0 +1,11 @@
+- name: Enable all services 
+  service: name={{item}} enabled=yes
+  with_items:
+      - docker 
+      - fail2ban
+      - syslog-ng
+      - sshd
+      - ntpd
+      - auditd  
+  tags: services
+

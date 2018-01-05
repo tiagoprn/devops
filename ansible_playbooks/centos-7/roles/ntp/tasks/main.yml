@@ -1,0 +1,15 @@
+- name: Install ntp
+  yum: pkg={{item}} state=installed update_cache=true
+  with_items:
+      - ntp
+      - ntpdate
+  tags: ntp
+
+- name: Copy ntp configuration
+  copy: src=files/ntp.conf dest=/etc owner=root group=root mode=0644
+  tags: ntp
+
+- name: Start ntp
+  service: name=ntpd state=started
+  tags: ntp
+

@@ -1,0 +1,4 @@
+- name: Remove downloaded yum packages
+  command: yum clean all
+  tags: cleanup
+

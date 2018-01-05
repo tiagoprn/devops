@@ -1,0 +1,13 @@
+- name: Download recent tmux
+  become_user: dev
+  get_url:
+      url: https://raw.githubusercontent.com/tiagoprn/bin_public/master/install_tmux_on_home_folder.sh
+      dest: /home/dev/install_tmux.sh
+      mode: 0500
+  tags: tmux    
+
+- name: Install downloaded tmux
+  become_user: dev
+  command: /bin/bash /home/dev/install_tmux.sh
+  tags: tmux      
+

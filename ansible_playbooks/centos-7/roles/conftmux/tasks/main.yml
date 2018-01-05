@@ -1,0 +1,10 @@
+- name: Copy tmux configuration script
+  become_user: dev
+  copy: src=files/configure_tmux.sh dest=/home/dev/local/bin owner=dev group=dev mode=0777
+  tags: conftmux
+
+- name: Run tmux configuration script
+  become_user: dev
+  command: /home/dev/local/bin/configure_tmux.sh
+  tags: conftmux
+
