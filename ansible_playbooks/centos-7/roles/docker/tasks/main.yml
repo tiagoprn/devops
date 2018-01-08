@@ -1,6 +1,5 @@
 - name: Add portainer init script
   copy: src=files/run_portainer.sh dest=/opt owner=root group=root mode=0777
-  tags: docker
 
 - name: Install docker pkg requirements
   yum: pkg={{item}} state=installed update_cache=true
@@ -8,69 +7,54 @@
       - yum-utils
       - device-mapper-persistent-data
       - lvm2
-  tags: docker 
 
 - name: Download docker-ce repository
   get_url:
       url: https://download.docker.com/linux/centos/docker-ce.repo 
       dest: /etc/yum.repos.d/docker-ce.repo
-  tags: docker    
 
 - name: Install docker
   yum: pkg=docker-ce state=installed update_cache=true
-  tags: docker
 
 - name: Start docker
   service: name=docker state=started
-  tags: docker
 
 - name: Add docker config (logging driver and log format)
   copy: src=files/docker-daemon.json dest=/etc/docker/daemon.json owner=root group=root
-  tags: docker
 
 - name: Restart docker
   service: name=docker state=restarted
-  tags: docker
 
 - name: Run docker version
   command: docker version
   register: dockerversion
   changed_when: False  # this make this task always run
-  tags: docker
 
 - name: Print docker version
   debug: var=dockerversion.stdout
-  tags: docker
 
 - name: Run docker info
   command: docker info
   register: dockerinfo
   changed_when: False  # this make this task always run
-  tags: docker
 
 - name: Print docker info
   debug: var=dockerinfo.stdout
-  tags: docker
 
 - name: Start portainer
   command: bash /opt/run_portainer.sh
-  tags: docker
 
 - name: Check portainer passwd
   command: /bin/cat /root/portainer.admin.passwd
   register: password  # record the command stdout to the "password" variable
   changed_when: False  # this make this task always run
-  tags: docker
 
 - name: Print portainer passwd
   debug: var=password.stdout  # prints the value of the "password" variable
-  tags: docker
 
 - name: Install python-pip
   yum: pkg=python-pip state=installed update_cache=true
-  tags: docker
 
 - name: Install docker-compose
   pip: name=docker-compose    
-  tags: docker
 

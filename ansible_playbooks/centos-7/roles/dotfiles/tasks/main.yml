@@ -3,7 +3,6 @@
   git:
       repo: 'https://github.com/tiagoprn/dot_files.git'
       dest: /home/dev/dot_files
-  tags: dotfiles
 
 - name: link bashrc
   become_user: dev
@@ -11,5 +10,4 @@
   with_items:
       - mv .bashrc .bashrc.OLD
       - ln -s /home/dev/dot_files/.bashrc /home/dev/.bashrc
-  tags: dotfiles
 

@@ -1,6 +1,5 @@
 - name: Reboot machine
   command: shutdown -r +1 'Rebooting in 1 minute by order from ansible...' 
-  tags: reboot
 
 - name: Waiting for the machine to come back 
   local_action: wait_for 
@@ -17,4 +16,3 @@
       # timeout for something to happen on the machine, 
       # wait for connect_timeout seconds for a connection 
       # to happen before closing and retrying
-  tags: reboot

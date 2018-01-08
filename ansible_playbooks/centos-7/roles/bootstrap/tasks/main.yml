@@ -1,14 +1,11 @@
 - name: upgrade all packages
   yum: name=* state=latest
-  tags: bootstrap
 
 - name: Install epel-release
   yum: pkg=epel-release state=installed update_cache=true  
-  tags: bootstrap
 
 - name: Install development tools
   yum:
     name: "@Development tools"
     state: present   
-  tags: bootstrap
 

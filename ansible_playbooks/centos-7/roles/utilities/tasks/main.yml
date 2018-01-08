@@ -19,5 +19,4 @@
       - nmap
       - git
       - rsync
-  tags: utilities
 

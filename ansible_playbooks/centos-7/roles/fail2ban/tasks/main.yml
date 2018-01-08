@@ -1,16 +1,12 @@
 - name: Install pyinotify  # requirement to fail2ban
   pip: name=pyinotify    
-  tags: fail2ban
 
 - name: Install fail2ban
   yum: pkg=fail2ban state=installed update_cache=true
-  tags: fail2ban
 
 - name: Add fail2ban config
   copy: src=files/jail.local dest=/etc/fail2ban owner=root group=root
-  tags: fail2ban
 
 - name: Start fail2ban
   service: name=fail2ban state=started
-  tags: fail2ban
 

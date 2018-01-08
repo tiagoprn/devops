@@ -1,21 +1,16 @@
 - name: Uninstall rsyslog
   yum: pkg=rsyslog state=removed update_cache=true  
-  tags: syslog
 
 - name: Download syslog-ng repository
   get_url:
     url: https://copr.fedorainfracloud.org/coprs/czanik/syslog-ng310/repo/epel-7/czanik-syslog-ng310-epel-7.repo 
     dest: /etc/yum.repos.d/czanik-syslog-ng310-epel-7.repo
-  tags: syslog    
 
 - name: Install syslog-ng
   yum: pkg=syslog-ng state=installed update_cache=true
-  tags: syslog      
 
 - name: Copy syslog-ng conf
   copy: src=files/syslog-ng.conf dest=/etc/syslog-ng owner=root group=root
-  tags: syslog
 
 - name: Start syslog-ng
   service: name=syslog-ng state=started
-  tags: syslog

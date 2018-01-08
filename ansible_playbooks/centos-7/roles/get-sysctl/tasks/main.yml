@@ -2,9 +2,7 @@
   command: sysctl -a
   register: sysctl
   changed_when: False  # this make this task always run
-  tags: sysctl
 
 - name: Print sysctl configuration
   debug: var=sysctl.stdout
-  tags: sysctl
 

@@ -7,5 +7,4 @@
       - sshd
       - ntpd
       - auditd  
-  tags: services
 

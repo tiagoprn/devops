@@ -3,5 +3,4 @@
   with_items:  # this is the only way to run more than one command with the ansible "command" module
       - timedatectl set-timezone America/Sao_Paulo
       - timedatectl  
-  tags: timezone      
 
