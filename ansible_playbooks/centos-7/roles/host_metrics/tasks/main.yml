@@ -1,0 +1,29 @@
+- name: Copy influxdb repository file 
+  copy: src=files/influxdb.repo dest=/etc/yum.repos.d owner=root group=root mode=0644
+
+- name: Copy grafana repository file 
+  copy: src=files/grafana.repo dest=/etc/yum.repos.d owner=root group=root mode=0644
+
+- name: Install collectd, influxdb and grafana 
+  yum: pkg={{item}} state=installed update_cache=true
+  with_items:
+      - collectd
+      - influxdb
+      - grafana
+
+- name: Configure collectd
+  copy: src=files/collectd.conf dest=/etc owner=root group=root mode=0644
+
+- name: Configure influxdb
+  copy: src=files/influxdb.conf dest=/etc/influxdb owner=root group=root mode=0644
+
+- name: Configure grafana
+  copy: src=files/grafana.ini dest=/etc/grafana owner=root group=grafana mode=0640
+
+- name: Enable the services
+  service: name={{item}} enabled=yes
+  with_items:
+      - collectd
+      - influxdb
+      - grafana-server
+ 
