@@ -40,6 +40,12 @@
     dest: /etc/collectd.d/
     mode: 0755
 
+- name: Copy SElinux policy to allow the collectd python plugin to work
+  copy: src=files/cgp.pp dest=/etc owner=root group=root mode=0640
+
+- name: Enable the SELinux policy for the collectd python plugin to work  
+  command: semodule -i /etc/cgp.pp
+
 - name: Enable the services
   service: name={{item}} enabled=yes
   with_items:
