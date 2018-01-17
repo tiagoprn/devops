@@ -20,6 +20,26 @@
 - name: Configure grafana
   copy: src=files/grafana.ini dest=/etc/grafana owner=root group=grafana mode=0640
 
+- name: Create folder to hold the collectd vmstat plugin
+  file:
+    path: /usr/share/collectd/vmstat-collectd/
+    state: directory
+    mode: 0755
+    group: root
+    owner: root
+
+- name: download collectd vmstat plugin to get metrics from vmstat
+  get_url:
+    url: https://raw.githubusercontent.com/signalfx/vmstat-collectd/master/vmstat_collectd.py
+    dest: /usr/share/collectd/vmstat-collectd/
+    mode: 0744     
+
+- name: download collectd vmstat plugin default configuration
+  get_url:
+    url: https://raw.githubusercontent.com/signalfx/integrations/master/collectd-vmstat/10-vmstat.conf 
+    dest: /etc/collectd.d/
+    mode: 0755
+
 - name: Enable the services
   service: name={{item}} enabled=yes
   with_items:
