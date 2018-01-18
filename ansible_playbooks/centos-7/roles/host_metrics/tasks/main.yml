@@ -17,8 +17,36 @@
 - name: Configure influxdb
   copy: src=files/influxdb.conf dest=/etc/influxdb owner=root group=root mode=0644
 
+
+
+
+
+###########
+
+- name: download the script to generate a random password
+  get_url:
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh 
+    dest: /opt
+    mode: 0744     
+
+- name: Generate a random password for grafana admin user
+  command: bash /opt/random_password.sh
+  register: password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+- name: Print grafana admin user passwd
+  debug: var=password.stdout  # prints the value of the "password" variable
+
+# TODO: Instead of directly copying grafana.ini here, fill it from a jinja2
+# template file, injecting the password generated on the previous task   
 - name: Configure grafana
   copy: src=files/grafana.ini dest=/etc/grafana owner=root group=grafana mode=0640
+
+###########
+
+
+
+
 
 - name: Create folder to hold the collectd vmstat plugin
   file:
