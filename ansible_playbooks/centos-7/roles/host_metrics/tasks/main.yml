@@ -34,10 +34,13 @@
   debug: var=password.stdout  # prints the value of the "password" variable
 
 - name: Configure grafana
-  # copy: src=files/grafana.ini dest=/etc/grafana owner=root group=grafana mode=0640
   template:
     src: grafana.ini.j2 
-    dest: /etc/grafana/grafana.ini owner=root group=grafana mode=0640      
+    dest: /etc/grafana/grafana.ini 
+    owner: root 
+    group: grafana 
+    mode: 0640      
+    backup: yes
 
 ###########
 

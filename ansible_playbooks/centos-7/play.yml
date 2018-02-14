@@ -1,6 +1,7 @@
 - hosts: all
   roles:
-    - bootstrap
+    # - upgrade
+    - prepare
     # - auditd
     # - syslog
     # - utilities  

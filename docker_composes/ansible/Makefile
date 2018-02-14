@@ -6,7 +6,8 @@ help:
 	@echo -e "make rm \n\t STOP and DELETE the ansible container.\n"
 	@echo -e "make bash \n\t Enter the ansible container.\n"
 	@echo -e "make ping \n\t Check ansible host which you will run playbooks is responding.\n"
-	@echo -e "make play playbook=[playbook-path] \n\t Run a playbook (e.g. make play playbook=provision-centos7/roles/tasks/main.yml). \n"
+	@echo -e "make play playbook=[playbook-path] \n\t Run a playbook (e.g. make play playbook=centos-7/play.yml). \n"
+	@echo -e "make play_debug playbook=[playbook-path] \n\t Run a playbook (e.g. make play playbook=centos-7/play.yml). \n"
 
 up:
 	@sudo docker-compose up -d
@@ -31,4 +32,6 @@ ping:
 play:
 	sudo docker exec -it $$(sudo docker ps | grep ansible | awk '{print $$1}')  ansible-playbook -vv /etc/ansible/playbooks/$(playbook) 
 
+play_debug:
+	sudo docker exec -it $$(sudo docker ps | grep ansible | awk '{print $$1}')  ansible-playbook -vvv /etc/ansible/playbooks/$(playbook) 
 

@@ -1,6 +1,3 @@
-- name: upgrade all packages
-  yum: name=* state=latest
-
 - name: Install epel-release
   yum: pkg=epel-release state=installed update_cache=true  
 
