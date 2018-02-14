@@ -61,7 +61,7 @@ echo 'Creating a new VM from the image...'
 cp -farv /kvm/templates/CentOS-7-x86_64-GenericCloud.template.qcow2 $VM_IMAGE_FILE 
 ./generate_cloud_init_iso.sh $VM_NAME
 cp -farv ~/distros/images/$VM_NAME-cloud-init-data.iso /kvm/iso
-sudo virt-install --import --name $VM_NAME --ram $RAM --vcpus $CPUS --disk /kvm/images/$VM_NAME.qcow2,format=qcow2,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=rhel7 --noautoconsole
+sudo virt-install --import --name $VM_NAME --ram $RAM --vcpus $CPUS --cpu host --disk /kvm/images/$VM_NAME.qcow2,format=qcow2,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=rhel7 --noautoconsole
 
 echo 'Ejecting the iso created by cloud-init...'
 sudo virsh change-media $VM_NAME hda --eject --config 
