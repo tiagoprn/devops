@@ -4,8 +4,8 @@ windows:
     layout: even-vertical
     start_directory: /storage/src/github/devops 
     panes:
-      - cd docker_composes/ansible
-      - cd docker_composes/ansible
-      - cd ansible_playbooks 
-      - cd ansible_playbooks
+      - cd docker_composes/ansible && clear
+      - cd docker_composes/ansible && clear
+      - cd ansible_playbooks && clear
+      - cd ansible_playbooks && clear
       - sudo watch -n 1 docker ps  
