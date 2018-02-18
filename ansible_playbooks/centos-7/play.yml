@@ -5,7 +5,8 @@
     # - auditd
     # - syslog
     - utilities
-    - rclone  
+    - rclone
+    - suricata  
     # - sysstat
     # - set-sysctl
     # - reboot

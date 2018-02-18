@@ -52,9 +52,6 @@
 - name: Print portainer passwd
   debug: var=password.stdout  # prints the value of the "password" variable
 
-- name: Install python-pip
-  yum: pkg=python-pip state=installed update_cache=true
-
 - name: Install docker-compose
   pip: name=docker-compose    
 

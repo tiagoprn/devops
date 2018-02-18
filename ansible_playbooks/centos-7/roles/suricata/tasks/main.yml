@@ -1,0 +1,12 @@
+- name: Copy suricata installation script
+  copy: src=files/install.sh dest=/tmp mode=0777
+
+- name: Run vim configuration script
+  command: /tmp/install.sh
+
+- name: Copy suricata configuration file
+  copy: src=files/suricata.yaml dest=/etc/suricata backup=yes owner=suri group=suri mode=0600
+
+- name: Install suricata-update
+  pip: name=suricata-update
+
