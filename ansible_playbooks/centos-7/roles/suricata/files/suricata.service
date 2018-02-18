@@ -1,0 +1,20 @@
+[Unit]
+Description=Suricata IDS
+After=network.target
+Requires=network.target
+
+[Service]
+# "TimeoutStartSec=0" to turn off timeouts, as daemons may take a while to start.
+TimeoutStartSec=0 
+Type=forking
+User=suri
+Group=suri
+Restart=on-failure
+RestartSec=10s
+TimeoutSec=300
+Environment="LD_LIBRARY_PATH=/usr/lib"
+ExecStart=/usr/bin/suricata -c /etc/suricata/suricata.yaml -i eth0 -l /var/log/suricata --user=suri --group=suri -D
+ExecStop=/bin/ps aux | /usr/bin/grep suricata | /usr/bin/awk '{print $2}' | /usr/bin/xargs /usr/bin/kill 
+
+[Install]
+WantedBy=multi-user.target
