@@ -17,8 +17,6 @@
 - name: Configure influxdb
   copy: src=files/influxdb.conf dest=/etc/influxdb owner=root group=root mode=0644
 
-###########
-
 - name: download the script to generate a random password
   get_url:
     url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh 
@@ -41,8 +39,6 @@
     group: grafana 
     mode: 0640      
     backup: yes
-
-###########
 
 - name: Create folder to hold the collectd vmstat plugin
   file:
@@ -70,10 +66,3 @@
 - name: Enable the SELinux policy for the collectd python plugin to work  
   command: semodule -i /etc/cgp.pp
 
-- name: Enable the services
-  service: name={{item}} enabled=yes
-  with_items:
-      - collectd
-      - influxdb
-      - grafana-server
- 

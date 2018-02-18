@@ -4,7 +4,8 @@
     - prepare
     # - auditd
     # - syslog
-    # - utilities  
+    - utilities
+    - rclone  
     # - sysstat
     # - set-sysctl
     # - reboot
@@ -15,7 +16,7 @@
     # - tmux
     # - timezone
     # - ntp
-    - host_metrics
+    # - host_metrics
     # - dotfiles
     # - conftmux
     # - confvim

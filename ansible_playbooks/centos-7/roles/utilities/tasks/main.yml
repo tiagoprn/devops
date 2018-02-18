@@ -19,4 +19,7 @@
       - nmap
       - git
       - rsync
+      - ioping
+      - man
+      - unzip  
 

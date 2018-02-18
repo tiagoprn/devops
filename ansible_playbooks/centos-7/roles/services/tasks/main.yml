@@ -7,4 +7,6 @@
       - sshd
       - ntpd
       - auditd  
-
+      - collectd
+      - influxdb
+      - grafana-server
