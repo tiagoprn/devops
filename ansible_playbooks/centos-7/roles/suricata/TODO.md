@@ -1,4 +1,3 @@
 - Test if the systemd unit file starts and stops suricata correctly.
-- Move the variables on files/install.sh into ansible vars and change install.sh to a jinja2 template (like I did with host-metrics/influxdb).
 - Install suricata-update: https://suricata-update.readthedocs.io/en/latest/quickstart.html#install-suricata-update
 - Put suricata-update as a systemd crontab unit.

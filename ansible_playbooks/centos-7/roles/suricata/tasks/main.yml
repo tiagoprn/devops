@@ -1,7 +1,10 @@
 - name: Copy suricata installation script
-  copy: src=files/install.sh dest=/tmp mode=0777
+  template:     
+    src: install.sh.j2
+    dest: /tmp/install.sh
+    mode: 0777
 
-- name: Run vim configuration script
+- name: Run installation script
   command: /tmp/install.sh
 
 - name: Copy suricata configuration file

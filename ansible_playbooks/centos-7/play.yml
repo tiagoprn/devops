@@ -1,11 +1,12 @@
 - hosts: all
+  # strategy: debug  ## interactive debug console when a task fails.
   roles:
     # - upgrade
     - prepare
     # - auditd
     # - syslog
     - utilities
-    - rclone
+    # - rclone
     - suricata  
     # - sysstat
     # - set-sysctl
