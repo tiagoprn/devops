@@ -5,10 +5,10 @@ This is a modular ansible playbook, which can be used to setup a new CentOS 7 se
 This setup does its best to provide security, logs and metrics monitoring. The following is provided: 
 
 - Development tools (compilers, git, python pip and other dependencies to build packages)
-- auditd: useful for... 
+- auditd rules: auditd is useful to monitor pretty much anything that happens on the linux kernel, prividing logs and watchs for interesting system calls (providing a hook into any system operation we could possibly want). It is also used as the logger for SELinux.
 - syslog-ng: log daemon, which centralizes logs from systemd, docker, auditd, fail2ban and the syslog logs into `/var/log/syslog-ng` as json files.
 - rclone: to backup data from/into S3-compatible storages.
-- suricata: an IDS, useful to report suspicious activity on the machine related to malware and other security threats. 
+- suricata: an IDS, useful to report suspicious activity on the machine related to malware and other security threats (the idea is to scan against the most updated possible list of threats). 
 - sysstat: to get performance metrics on a linux system
 - sysctl configuration for tuning kernel parameters 
 - docker/portainer: docker daemon and a web UI to interact with it. 
