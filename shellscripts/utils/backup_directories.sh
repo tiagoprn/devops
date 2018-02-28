@@ -1,4 +1,4 @@
-DIRECTORIES="$HOME/.ssh $HOME/.config $HOME/.local $HOME/.gnupg /storage/work"
+DIRECTORIES="$HOME/.ssh $HOME/.config $HOME/.local $HOME/.gnupg /storage/work /storage/private"
 
 DESTINATION="/storage/BACKUPS/"
 TIMESTAMP="$(date "+%Y%m%d.%H%M.%S")"
@@ -11,5 +11,8 @@ for directory in $DIRECTORIES; do
    tar cfjv $DESTINATION/$TIMESTAMP/$BACKUP_FILE_NAME.tar.bz2 $directory
    echo '-------------------------------------';
 done
+
+tar cfv $DESTINATION/$(hostname).$TIMESTAMP.tar $DESTINATION/$TIMESTAMP
+rm -fr $DESTINATION/$TIMESTAMP
 
 echo "Finished backup of $(hostname)."
