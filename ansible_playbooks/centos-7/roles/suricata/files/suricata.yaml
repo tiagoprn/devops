@@ -139,7 +139,7 @@ outputs:
 
   # Extensible Event Format (nicknamed EVE) event log in JSON format
   - eve-log:
-      enabled: no
+      enabled: yes
       filetype: regular #regular|syslog|unix_dgram|unix_stream|redis
       filename: eve.json
       #prefix: "@cee: " # prefix to prepend to each log entry
@@ -183,7 +183,7 @@ outputs:
             # helpful when reviewing alerts for traffic that is being reverse
             # or forward proxied.
             xff:
-              enabled: no
+              enabled: yes
               # Two operation modes are available, "extra-data" and "overwrite".
               mode: extra-data
               # Two proxy deployments are supported, "reverse" and "forward". In
