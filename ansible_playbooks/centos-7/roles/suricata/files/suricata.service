@@ -15,7 +15,7 @@ TimeoutSec=300
 Environment="LD_LIBRARY_PATH=/usr/lib"
 PIDFile=/var/run/suricata.pid
 ExecStart=/usr/bin/suricata -D --af-packet -c /etc/suricata/suricata.yaml --pidfile /var/run/suricata.pid
-ExecReload=/usr/bin/suricatasc -c reload-rules ; /bin/kill -HUP $MAINPID
+ExecReload=/usr/bin/suricatasc -c reload-rules ; /bin/kill -HUP $(cat /var/run/suricata.pid)
 ExecStop=/usr/bin/suricatasc -c shutdown
 Restart=on-failure
 # https://www.reddit.com/r/linux/comments/27cjcl/systemd_protecthome_and_protectsystem_directives/
