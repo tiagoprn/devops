@@ -17,7 +17,7 @@
     # - tmux
     # - timezone
     # - ntp
-    # - host_metrics
+    - host_metrics
     # - dotfiles
     # - conftmux
     # - confvim
