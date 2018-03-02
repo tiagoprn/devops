@@ -4,7 +4,6 @@
     # - upgrade
     - prepare
     # - auditd
-    - syslog
     - utilities
     # - rclone
     - suricata  
