@@ -3,7 +3,6 @@
   with_items:
       - docker 
       - fail2ban
-      - syslog-ng
       - sshd
       - ntpd
       - auditd  

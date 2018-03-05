@@ -1,25 +1,25 @@
 - hosts: all
   # strategy: debug  ## interactive debug console when a task fails.
   roles:
-    # - upgrade
+    - upgrade
     - prepare
-    # - auditd
+    - auditd
     - utilities
-    # - rclone
+    - rclone
     - suricata  
-    # - sysstat
-    # - set-sysctl
-    # - reboot
-    # - get-sysctl
-    # - docker
-    # - fail2ban
-    # - auth
-    # - tmux
-    # - timezone
-    # - ntp
+    - sysstat
+    - set-sysctl
+    - reboot
+    - get-sysctl
+    - docker
+    - fail2ban
+    - auth
+    - tmux
+    - timezone
+    - ntp
     - host_metrics
-    # - dotfiles
-    # - conftmux
-    # - confvim
-    # - services
-    # - cleanup  
+    - dotfiles
+    - conftmux
+    - confvim
+    - services
+    - cleanup  
