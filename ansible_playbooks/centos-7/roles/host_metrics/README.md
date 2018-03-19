@@ -23,6 +23,7 @@ PASSWORD: [check grafana.ini: $ sudo cat /etc/grafana/grafana.ini | grep admin_p
 - collectd-nginx
 - collectd-postgresql
 - collectd-redis
+- collectd-rabbitmq
 - collectd-virt
 - collectd-write_mongodb
 - collectd-write_redis
