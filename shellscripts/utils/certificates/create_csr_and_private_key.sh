@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Field Meaning              Example
 # /C=   Country              GB
 # /ST=  State                London
