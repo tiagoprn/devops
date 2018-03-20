@@ -25,11 +25,11 @@
 
 - name: Generate a random password for grafana admin user
   command: bash /opt/random_password.sh
-  register: password  # record the command stdout to the "password" variable
+  register: grafana_password  # record the command stdout to the "password" variable
   changed_when: False  # this make this task always run
 
 - name: Print grafana admin user passwd
-  debug: var=password.stdout  # prints the value of the "password" variable
+  debug: var=grafana_password.stdout  # prints the value of the "password" variable
 
 - name: Configure grafana
   template:
@@ -39,6 +39,23 @@
     group: grafana 
     mode: 0640      
     backup: yes
+
+- name: Start influxdb service, to be able to create an admin user
+  systemd: name=influxdb daemon-reload=yes state=started enabled=yes
+ 
+- name: Generate a random password for an influxdb admin user
+  command: bash /opt/random_password.sh
+  register: influx_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+- name: Print influxdb admin user passwd
+  debug: var=influx_password.stdout  # prints the value of the "password" variable
+
+- name: Create the admin user on influxdb
+  command: influx -execute "CREATE USER admin WITH PASSWORD '{{ influx_password.stdout }}' WITH ALL PRIVILEGES"
+
+- name: Validate the influxdb user was created on influxdb
+  command: influx -username admin -password {{ influx_password.stdout }} -execute "SHOW USERS"  
 
 - name: Create folder to hold the collectd vmstat plugin
   file:
