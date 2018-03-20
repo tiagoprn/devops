@@ -9,3 +9,4 @@
 # /CN=  Common Name          example.com
 
 openssl req -new -key private.key -out 2nd_certificate.csr -subj "/C=BR/ST=Sao_Paulo/L=Sao_Paulo/O=My Domination Company/OU=IT Department/CN=localhost"
+cat 2nd_certificate.csr private.key > 2nd_certificate.with_private_key.pem
