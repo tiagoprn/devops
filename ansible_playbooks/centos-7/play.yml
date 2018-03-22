@@ -3,23 +3,23 @@
   roles:
     - upgrade
     - prepare
-    - auditd
-    - utilities
-    - rclone
-    - suricata  
-    - sysstat
-    - set-sysctl
-    - reboot
-    - get-sysctl
-    - docker
-    - fail2ban
-    - auth
-    - tmux
-    - timezone
-    - ntp
+      # - auditd
+      # - utilities
+      # - rclone
+      # - suricata  
+      # - sysstat
+      # - set-sysctl
+      # - reboot
+      # - get-sysctl
+      # - docker
+      # - fail2ban
+      # - auth
+      # - tmux
+      # - timezone
+      # - ntp
     - host_metrics
-    - dotfiles
-    - conftmux
-    - confvim
+      # - dotfiles
+      # - conftmux
+      # - confvim
     - services
-    - cleanup  
+      #- cleanup  

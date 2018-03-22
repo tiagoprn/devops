@@ -27,10 +27,13 @@ fi
 
 mkdir -p $OUTPUT_DIR
 
-echo 'Generating the certificate and the private key separately...'
+echo 'Generating the certificate signing request (csr) and the private key separately...'
 openssl req -nodes -newkey rsa:4096 -keyout $OUTPUT_DIR/private.key -out $OUTPUT_DIR/certificate.csr -subj "/C=BR/ST=Sao_Paulo/L=Sao_Paulo/O=My Domination Company/OU=IT Department/CN=localhost"
 
-echo 'Generating concatenated certificate, with the private_key bundled...' 
-cat $OUTPUT_DIR/certificate.csr $OUTPUT_DIR/private.key > $OUTPUT_DIR/certificate.full.pem
+echo 'Generating the self-signed certificate...'
+openssl x509 -req -sha256 -days 365 -in $OUTPUT_DIR/certificate.csr -signkey $OUTPUT_DIR/private.key -out $OUTPUT_DIR/certificate.crt
 
-echo "DONE. The certificate and private key are at $OUTPUT_DIR. You may use individually the CSR and KEY files, or for your convenience the PEM file which contains both files."
+echo 'Generating concatenated certificate, with the private_key bundled...' 
+cat $OUTPUT_DIR/private.key $OUTPUT_DIR/certificate.crt > $OUTPUT_DIR/certificate.full.pem
+
+echo "DONE. The certificate and private key are at $OUTPUT_DIR. You may use individually the CRT and KEY files, or for your convenience the PEM file which contains both files."

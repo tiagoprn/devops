@@ -27,10 +27,13 @@ fi
 
 OUTPUT_DIR=$(dirname $PRIVATE_KEY_FULL_PATH)
 
-echo 'Generating a new certificate from the existing private key...'
+echo 'Generating a new certificate signing request (csr) from the existing private key...'
 openssl req -new -key $PRIVATE_KEY_FULL_PATH -out $OUTPUT_DIR/2nd_certificate.csr -subj "/C=BR/ST=Sao_Paulo/L=Sao_Paulo/O=My Domination Company/OU=IT Department/CN=localhost"
 
-echo 'Generating concatenated certificate, with the private_key bundled...' 
-cat $OUTPUT_DIR/2nd_certificate.csr $PRIVATE_KEY_FULL_PATH > $OUTPUT_DIR/2nd_certificate.full.pem
+echo 'Generating the self-signed certificate...'
+openssl x509 -req -sha256 -days 365 -in $OUTPUT_DIR/2nd_certificate.csr -signkey $PRIVATE_KEY_FULL_PATH -out $OUTPUT_DIR/2nd_certificate.crt
 
-echo "DONE. The certificate and private key are at $OUTPUT_DIR. You may use individually the CSR and KEY files, or for your convenience the PEM file which contains both files."
+echo 'Generating concatenated certificate, with the private_key bundled...' 
+cat $PRIVATE_KEY_FULL_PATH $OUTPUT_DIR/2nd_certificate.crt > $OUTPUT_DIR/2nd_certificate.full.pem
+
+echo "DONE. The certificate and private key are at $OUTPUT_DIR. You may use individually the CRT and KEY files, or for your convenience the PEM file which contains both files."

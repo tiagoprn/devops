@@ -27,13 +27,17 @@
 #################################### Server ####################################
 [server]
 # Protocol (http, https, socket)
-;protocol = http
+protocol = https
 
 # The ip address to bind to, empty will bind to all interfaces
 ;http_addr =
 
 # The http port  to use
-;http_port = 3000
+http_port = 3000
+
+# certs 
+cert_file = /certificates/grafana/certificate.crt
+cert_key =  /certificates/grafana/private.key
 
 # The public facing domain name used to access grafana from a browser
 ;domain = localhost
