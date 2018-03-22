@@ -17,10 +17,6 @@
 - name: Configure influxdb
   copy: src=files/influxdb.conf dest=/etc/influxdb owner=root group=root mode=0644
 
-
-
-
-
 - name: download the script to generate a random password
   get_url:
     url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh 
@@ -35,9 +31,6 @@
 - name: Print grafana admin user passwd
   debug: var=grafana_password.stdout  # prints the value of the "password" variable
 
-
-
-
 - name: Download the script to generate the tls certificates
   get_url:
     url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/certificates/create-csr-and-private-key.sh
@@ -46,9 +39,6 @@
 
 - name: Generate the TLS certificates
   command: bash /opt/create-csr-and-private-key.sh -o /certificates/grafana
-
-
-
 
 - name: Configure grafana
   template:
