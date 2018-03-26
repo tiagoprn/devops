@@ -41,6 +41,15 @@
 - name: Print docker info
   debug: var=dockerinfo.stdout
 
+- name: Download the script to generate the tls certificates
+  get_url:
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/certificates/create-csr-and-private-key.sh
+    dest: /opt
+    mode: 0744     
+
+- name: Generate the TLS certificates
+  command: bash /opt/create-csr-and-private-key.sh -o /certificates/portainer
+
 - name: Start portainer
   command: bash /opt/run_portainer.sh
 

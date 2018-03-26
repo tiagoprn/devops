@@ -18,6 +18,6 @@ then
     printf 'Portainer is already running on port 9000, nothing to be done here.'
 else    
     printf 'Starting portainer in the background...\n'
-    docker run -d --restart always -p 9000:9000 --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime portainer/portainer --admin-password $(cat /root/portainer.admin.encrypted) 
+    docker run -d --restart always -p 9000:9000 --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime -v /certificates/portainer/certificate.crt:/certs/portainer.crt -v /certificates/portainer/private.key:/certs/portainer.key portainer/portainer --admin-password $(cat /root/portainer.admin.encrypted) --ssl true --sslcert /certs/portainer.crt --sslkey /certs/portainer.key 
     printf 'Portainer started. It can be reached through port 9000.'
 fi
