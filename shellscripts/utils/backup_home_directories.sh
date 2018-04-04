@@ -1,4 +1,4 @@
-DIRECTORIES="$HOME/.ssh $HOME/.config $HOME/.local $HOME/.gnupg /storage/work /storage/private"
+DIRECTORIES="$HOME/.ssh $HOME/.config $HOME/.local $HOME/.gnupg $HOME/.s3cmd"
 
 DESTINATION="/storage/BACKUPS/"
 TIMESTAMP="$(date "+%Y%m%d.%H%M.%S")"
