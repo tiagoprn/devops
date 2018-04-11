@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  seafile:
+    image: stratordev/seafile
+    volumes:
+      - /mnt/EXT5TH/docker/seafile:/opt/seafile
+    ports:
+      - "10000:8080"
+      - "8082:8082"  
+    environment:
+      SEAFILE_VERSION: 6.0.5
+      SEAFILE_ADMIN_EMAIL: tiago@tiagoprnl.me
+      SEAFILE_ADMIN_PASSWORD: B47B5D91
+      SEAFILE_PORT: 8080
+    restart: always  
+#   command: /clean 
+#   command: /init  
+#   command: /upgrade 
+#   env_file: env_vars/webapp_env_vars.env
+#   network_mode: "host"  # this equivalent to net=host on the docker cli. Then I do not need to expose ports explicitly.

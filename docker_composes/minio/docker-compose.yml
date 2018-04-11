@@ -1,20 +1,17 @@
 version: '2'
+
 services:
   minio1:
     image: minio/minio
-    container_name: minio
     volumes:
-      - DATA:/export
-      - CONFIG:/root/.minio
+      - /mnt/EXT5TH/docker/minio/data:/export
+      - /mnt/EXT5TH/docker/minio/config:/root/.minio
     ports:
-      - 9000:9000
+      - "9000:9000"
     environment:
-      MINIO_ACCESS_KEY: ACCESS01
-      MINIO_SECRET_KEY: SECRET01
+      MINIO_ACCESS_KEY: samsung-i3-server
+      MINIO_SECRET_KEY: RZ174B47B5D91
     command: server /export
     restart: always  
-volumes:
-  DATA:
-    driver: local
-  CONFIG:
-    driver: local    
+#   env_file: env_vars/webapp_env_vars.env
+#   network_mode: "host"  # this equivalent to net=host on the docker cli. Then I do not need to expose ports explicitly.

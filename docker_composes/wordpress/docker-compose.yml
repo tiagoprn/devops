@@ -1,0 +1,12 @@
+wordpress:
+  image: wordpress
+  links:
+    - wordpressdb:mysql
+  ports:
+    - 1313:80
+wordpressdb:
+  image: mariadb
+  volumes:
+    - "/vault/BACKUPS/databases/wordpress:/BACKUPS"
+  environment:
+    MYSQL_ROOT_PASSWORD: v3t3x2y2

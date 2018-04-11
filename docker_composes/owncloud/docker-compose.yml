@@ -1,0 +1,17 @@
+# owncloud data folder must be set at:
+# chmod -R 770 /vault/containers/data/owncloud; sudo chgrp -R 33 /vault/containers/data/owncloud
+# chmod -R 770 /vault/containers/config/owncloud; sudo chgrp -R 33 /vault/containers/config/owncloud
+owncloud:
+  image: l3iggs/owncloud
+  volumes:
+    - "/vault/ssl_certificates:/https"  
+    - "/vault/containers/data/owncloud:/usr/share/webapps/owncloud/data"
+    - "/vault/containers/config/owncloud/:/etc/webapps/owncloud/config"
+     
+  ports:
+    - "80:80"
+    - "443:443"
+  # environment:
+  #  - REGENERATE_SSL_CERT=true
+  #  - SUBJECT=/C=BR/ST=SP/L=CITY/O=ORGANIZATION/OU=UNIT/CN=tanos.tools
+  restart: always    
