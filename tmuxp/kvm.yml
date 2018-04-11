@@ -4,6 +4,6 @@ windows:
     layout: even-vertical
     start_directory: /storage/src 
     panes:
-      - cd github/devops/shellscripts/kvm && clear
+      - cd devops/shellscripts/kvm && clear
       - cd ~/distros/images && clear
       - cd /kvm && clear && tree

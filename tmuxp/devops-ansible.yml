@@ -2,7 +2,7 @@ session_name: devops_ansible
 windows:
   - window_name: main
     layout: even-vertical
-    start_directory: /storage/src/github/devops 
+    start_directory: /storage/src/devops 
     panes:
       - cd docker_composes/ansible && clear
       - cd docker_composes/ansible && clear
