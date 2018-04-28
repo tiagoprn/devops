@@ -26,7 +26,7 @@ nets:
 	sudo virsh net-list --all
 
 net-create: 
-	sudo virsh net-define $(bridge-name) $(xml-file)
+	sudo virsh net-define $(xml-file)
 	sudo virsh net-start $(bridge-name)
 	sudo virsh net-autostart $(bridge-name)
 	@echo 'Now checking if the bridge was successfully created...'
