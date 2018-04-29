@@ -4,7 +4,7 @@ windows:
     layout: even-vertical
     start_directory: /storage/src/devops 
     panes:
-      - cd docker_composes/ansible && clear && cat filesystem/conf/hosts
-      - cd shellscripts/kvm && clear && make status
-      - cd ansible_playbooks && clear
+      - cd docker_composes/ansible && cat filesystem/conf/hosts
+      - cd shellscripts/kvm && make status
+      - cd ansible_playbooks
       - sudo watch -n 1 docker ps  
