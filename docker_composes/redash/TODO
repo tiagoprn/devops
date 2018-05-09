@@ -1,3 +1,4 @@
 - Create a self-signed SSL certificate (add a command to the Makefile to do
   that), and setup it on the nginx configuration.
+- Make backup of the postgres docker volume on the Makefile.
 
