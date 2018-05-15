@@ -8,7 +8,7 @@ DUMPS_PATH="$BACKUPS_ROOT/all"
 FILE="$DUMPS_PATH/${DATABASE}.${FORMAT}.backup"
 UNIX_TIMESTAMP=$(date +%Y%m%d-%H%M%S-%N)
 
-printf "When prompted, type PASSWORD: ${POSTGRES_PASSWORD}\n"
+printf "When prompted, type PASSWORD: ${PGPASSWORD}\n"
 
 mkdir -p $DUMPS_PATH
 
