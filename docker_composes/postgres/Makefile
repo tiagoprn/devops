@@ -9,7 +9,7 @@ help:
 	@echo -e " make restore  - Restore to the most recent database backup."
 	@echo -e " make stop     - Stop the container."
 	@echo -e " make remove   - Remove (delete) the container."
-	@echo -e " make restore  - Start the container. If there is another instance of it running, it will be killed and removed first."
+	@echo -e " make start    - Start the container. If there is another instance of it running, it will be killed and removed first."
 
 env:
 	source postgres.env
