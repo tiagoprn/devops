@@ -5,7 +5,7 @@ PORT=5432
 FORMAT="c"
 BACKUPS_ROOT="/backups"
 DUMPS_PATH="$BACKUPS_ROOT/all"
-FILE="$DUMPS_PATH/${DATABASE}.${FORMAT}.backup"
+FILE="$DUMPS_PATH/${POSTGRES_DB}.${FORMAT}.backup"
 UNIX_TIMESTAMP=$(date +%Y%m%d-%H%M%S-%N)
 
 printf "When prompted, type PASSWORD: ${PGPASSWORD}\n"
