@@ -4,3 +4,5 @@ s3cmd
 ipdb
 ipython
 click
+pgcli
+mycli
