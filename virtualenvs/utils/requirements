@@ -1,6 +1,6 @@
 tmuxp
 cookiecutter
 s3cmd
-bpython
-pudb
+ipdb
+ipython
 click
