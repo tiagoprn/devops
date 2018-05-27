@@ -3,4 +3,4 @@ cookiecutter
 s3cmd
 bpython
 pudb
-
+click
