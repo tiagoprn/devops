@@ -6,3 +6,4 @@ ipython
 click
 pgcli
 mycli
+psycopg2-binary
