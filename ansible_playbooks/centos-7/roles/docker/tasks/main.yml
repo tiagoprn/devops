@@ -70,6 +70,15 @@
 - name: Copy the portainer admin password to a file
   copy: content="{{ portainer_password.stdout }}" dest="/root/portainer.admin.passwd"
 
+- name: Create the folder to the portainer compose file
+  file:
+    path: /opt/containers/portainer
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
 - name: Create the docker-compose file for portainer
   template:
     src: docker-compose.yml.j2
