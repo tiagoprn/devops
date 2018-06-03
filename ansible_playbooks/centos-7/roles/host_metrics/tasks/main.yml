@@ -60,6 +60,9 @@
 - name: Print influxdb admin user passwd
   debug: var=influx_password.stdout  # prints the value of the "password" variable
 
+- name: Copy the influxdb password to a file
+  copy: content="{{ influx_password.stdout }}" dest="/root/influxdb.admin.passwd"
+
 - name: Create the admin user on influxdb
   command: influx -execute "CREATE USER admin WITH PASSWORD '{{ influx_password.stdout }}' WITH ALL PRIVILEGES"
 
