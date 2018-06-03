@@ -41,6 +41,9 @@
 - name: Print docker info
   debug: var=dockerinfo.stdout
 
+- name: Install docker-compose
+  pip: name=docker-compose    
+
 - name: Download the script to generate the tls certificates
   get_url:
     url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/certificates/create-csr-and-private-key.sh
@@ -50,17 +53,29 @@
 - name: Generate the TLS certificates
   command: bash /opt/create-csr-and-private-key.sh -o /certificates/portainer
 
-- name: Start portainer
-  command: bash /opt/run_portainer.sh
+- name: download the script to generate a random password
+  get_url:
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh 
+    dest: /opt
+    mode: 0744     
 
-- name: Check portainer passwd
-  command: /bin/cat /root/portainer.admin.passwd
-  register: password  # record the command stdout to the "password" variable
+- name: Generate a random password for portainer admin user
+  command: bash /opt/random_password.sh
+  register: portainer_password  # record the command stdout to the "password" variable
   changed_when: False  # this make this task always run
 
-- name: Print portainer passwd
-  debug: var=password.stdout  # prints the value of the "password" variable
+- name: Print portainer admin user passwd
+  debug: var=portainer_password.stdout  # prints the value of the "password" variable
 
-- name: Install docker-compose
-  pip: name=docker-compose    
+- name: Create the docker-compose file for portainer
+  template:
+    src: docker-compose.ini.j2
+    dest: /opt/containers/portainer/docker-compose.yml
+    owner: root
+    group: root
+    mode: 0700
+    backup: yes
+
+- name: Start portainer
+  command: bash /opt/run_portainer.sh
 

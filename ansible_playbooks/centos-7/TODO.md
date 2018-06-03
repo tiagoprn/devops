@@ -1,5 +1,4 @@
 ## INITIAL IMPLEMENTATION
-- Output the influxdb password as a file to `/root`, with the other files.
 - Migrate the role to run portainer to a docker-compose file, generate the
   systemd unit files and use it as a starting point to generate the redash containers later on.
 - Install and make redash work - backup its postgresql docker volume into this
