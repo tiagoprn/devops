@@ -95,5 +95,10 @@
   command: bash /opt/containers/portainer/start.sh
 
 - name: Change the password for the admin user
-  command: curl --header "Content-Type: application/json" --request POST --data '{"password":"{{ portainer_password.stdout }}"}' https://127.0.0.1:9000/api/users/admin/init
-
+  uri:
+    url: https://127.0.0.1:9000/api/users/admin/init
+    method: POST
+    body: '{"password":"{{ portainer_password.stdout }}"}'
+    body_format: json
+    headers:
+      Content-Type: "application/json"
