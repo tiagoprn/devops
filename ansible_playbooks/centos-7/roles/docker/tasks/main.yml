@@ -80,7 +80,7 @@
   debug: var=portainer_password.stdout  # prints the value of the "password" variable
 
 - name: Copy the portainer admin password to a file
-  copy: content="{{ portainer_password.stdout }}" dest="/root/portainer.admin.passwd"
+  copy: content="{{ portainer_password.stdout }}" dest="/opt/containers/portainer/admin.passwd"
 
 - name: Create the docker-compose file for portainer
   template:
@@ -94,11 +94,3 @@
 - name: Start portainer
   command: bash /opt/containers/portainer/start.sh
 
-- name: Change the password for the admin user
-  uri:
-    url: https://127.0.0.1:9000/api/users/admin/init
-    method: POST
-    body: '{"password":"{{ portainer_password.stdout }}"}'
-    body_format: json
-    headers:
-      Content-Type: "application/json"

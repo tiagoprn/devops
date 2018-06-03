@@ -5,7 +5,7 @@ services:
     container_name: portainer
     privileged: true
     restart: unless-stopped
-    command: --ssl --sslcert /certs/portainer.crt --sslkey /certs/portainer.key --host=unix:///var/run/docker.sock
+    command: --admin-password-file /tmp/admin.passwd --ssl --sslcert /certs/portainer.crt --sslkey /certs/portainer.key --host=unix:///var/run/docker.sock
     ports:
       - 9000:9000
     volumes:
@@ -13,6 +13,7 @@ services:
       - "/etc/localtime:/etc/localtime"
       - "/certificates/portainer/certificate.crt:/certs/portainer.crt"
       - "/certificates/portainer/private.key:/certs/portainer.key"
+      - "/opt/containers/portainer/admin.passwd:/tmp/admin.passwd"
       - PORTAINER_DATA:/data
 volumes:
   PORTAINER_DATA:
