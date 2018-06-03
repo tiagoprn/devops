@@ -60,10 +60,11 @@ finally starts (I had to do that many times until it worked).
 (And remember that you can write your own metrics directly to influxdb, from
 python. It should be interesting to monitor uwsgi, and celery workers e.g. ) 
 
-## And here are some queries you can try on your grafana server/influxdb CLI  related to
+## And here are some queries you can try on your grafana server related to
 `vmstat`: 
 
 SELECT mean("value") AS cs FROM "vmstat_value" WHERE $timeFilter AND type_instance='cs' GROUP BY time($__interval) fill(null)
 SELECT mean("value") AS wa FROM "vmstat_value" WHERE $timeFilter AND type_instance='wa' GROUP BY time($__interval) fill(null)
 SELECT mean("value") AS in_m FROM "vmstat_value" WHERE $timeFilter AND type_instance='in' GROUP BY time($__interval) fill(null) 
+
 
