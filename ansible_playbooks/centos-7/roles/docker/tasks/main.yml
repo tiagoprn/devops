@@ -67,6 +67,9 @@
 - name: Print portainer admin user passwd
   debug: var=portainer_password.stdout  # prints the value of the "password" variable
 
+- name: Copy the portainer admin password to a file
+  copy: content="{{ portainer_password.stdout }}" dest="/root/portainer.admin.passwd"
+
 - name: Create the docker-compose file for portainer
   template:
     src: docker-compose.ini.j2
