@@ -72,7 +72,7 @@
 
 - name: Create the docker-compose file for portainer
   template:
-    src: docker-compose.ini.j2
+    src: docker-compose.yml.j2
     dest: /opt/containers/portainer/docker-compose.yml
     owner: root
     group: root
