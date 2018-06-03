@@ -5,7 +5,7 @@ services:
     container_name: portainer
     privileged: true
     restart: unless-stopped
-    command: --admin-password {{ portainer_password.stdout }} --ssl --sslcert /certs/portainer.crt --sslkey /certs/portainer.key --host=unix:///var/run/docker.sock
+    command: --ssl --sslcert /certs/portainer.crt --sslkey /certs/portainer.key --host=unix:///var/run/docker.sock
     ports:
       - 9000:9000
     volumes:

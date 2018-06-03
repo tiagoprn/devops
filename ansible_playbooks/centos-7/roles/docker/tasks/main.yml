@@ -1,6 +1,3 @@
-- name: Add portainer init script
-  copy: src=files/run_portainer.sh dest=/opt owner=root group=root mode=0777
-
 - name: Install docker pkg requirements
   yum: pkg={{item}} state=installed update_cache=true
   with_items:
@@ -44,6 +41,21 @@
 - name: Install docker-compose
   pip: name=docker-compose    
 
+- name: Create the folder to hold portainer compose file and start/stop scripts
+  file:
+    path: /opt/containers/portainer
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Add portainer start script
+  copy: src=files/start.sh dest=/opt/containers/portainer owner=root group=root mode=0777
+
+- name: Add portainer stop script
+  copy: src=files/stop.sh dest=/opt/containers/portainer owner=root group=root mode=0777
+
 - name: Download the script to generate the tls certificates
   get_url:
     url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/certificates/create-csr-and-private-key.sh
@@ -70,15 +82,6 @@
 - name: Copy the portainer admin password to a file
   copy: content="{{ portainer_password.stdout }}" dest="/root/portainer.admin.passwd"
 
-- name: Create the folder to the portainer compose file
-  file:
-    path: /opt/containers/portainer
-    state: directory
-    owner: root
-    group: root
-    mode: 0775
-    recurse: yes
-
 - name: Create the docker-compose file for portainer
   template:
     src: docker-compose.yml.j2
@@ -89,5 +92,8 @@
     backup: yes
 
 - name: Start portainer
-  command: bash /opt/run_portainer.sh
+  command: bash /opt/containers/portainer/start.sh
+
+- name: Change the password for the admin user
+  command: curl --header "Content-Type: application/json" --request POST --data '{"password":"{{ portainer_password.stdout }}"}' https://127.0.0.1:9000/api/users/admin/init
 
