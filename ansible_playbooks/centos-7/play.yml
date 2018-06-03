@@ -22,4 +22,5 @@
       # - conftmux
       # - confvim
     - services
-      #- cleanup  
+    - cleanup
+    - reboot  

@@ -1,6 +1,9 @@
-Exemplo de queries de vmstat para adicionar no grafana: 
+## INITIAL IMPLEMENTATION
+- Install and make redash work - backup its postgresql docker volume into this
+  repository, so it contains the dashboards configured.
+- After redash working, remove grafana (since redash can read influx
+  databases). 
 
-SELECT mean("value") AS cs FROM "vmstat_value" WHERE $timeFilter AND type_instance='cs' GROUP BY time($__interval) fill(null);
-SELECT mean("value") AS wa FROM "vmstat_value" WHERE $timeFilter AND type_instance='wa' GROUP BY time($__interval) fill(null);
-SELECT mean("value") AS in_m FROM "vmstat_value" WHERE $timeFilter AND type_instance='in' GROUP BY time($__interval) fill(null);
+## FUTURE ENHANCEMENTS
+- Find a way to aggregate all logs into a single place as JSON to later be consolidated on elasticsearch using something like... logstash? 
 

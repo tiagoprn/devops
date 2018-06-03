@@ -3,9 +3,9 @@
   with_items:
     - docker 
       # - fail2ban
-      # - sshd
+    - sshd
       # - ntpd
       # - auditd  
     - collectd
     - influxdb
-    - grafana-server
+      # - grafana-server
