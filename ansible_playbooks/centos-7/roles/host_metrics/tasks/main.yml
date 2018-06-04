@@ -65,3 +65,4 @@
 - name: Enable the SELinux policy for the collectd python plugin to work  
   command: semodule -i /etc/cgp.pp
 
+# TODO: continue with the redash container here
