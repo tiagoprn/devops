@@ -1,15 +1,11 @@
 - name: Copy influxdb repository file 
   copy: src=files/influxdb.repo dest=/etc/yum.repos.d owner=root group=root mode=0644
 
-- name: Copy grafana repository file 
-  copy: src=files/grafana.repo dest=/etc/yum.repos.d owner=root group=root mode=0644
-
-- name: Install collectd, influxdb and grafana 
+- name: Install collectd and influxdb 
   yum: pkg={{item}} state=installed update_cache=true
   with_items:
       - collectd
       - influxdb
-      - grafana
 
 - name: Configure collectd
   copy: src=files/collectd.conf dest=/etc owner=root group=root mode=0644
@@ -22,32 +18,6 @@
     url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh 
     dest: /opt
     mode: 0744     
-
-- name: Generate a random password for grafana admin user
-  command: bash /opt/random_password.sh
-  register: grafana_password  # record the command stdout to the "password" variable
-  changed_when: False  # this make this task always run
-
-- name: Print grafana admin user passwd
-  debug: var=grafana_password.stdout  # prints the value of the "password" variable
-
-- name: Download the script to generate the tls certificates
-  get_url:
-    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/certificates/create-csr-and-private-key.sh
-    dest: /opt
-    mode: 0744     
-
-- name: Generate the TLS certificates
-  command: bash /opt/create-csr-and-private-key.sh -o /certificates/grafana
-
-- name: Configure grafana
-  template:
-    src: grafana.ini.j2 
-    dest: /etc/grafana/grafana.ini 
-    owner: root 
-    group: grafana 
-    mode: 0640      
-    backup: yes
 
 - name: Start influxdb service, to be able to create an admin user
   systemd: name=influxdb daemon-reload=yes state=started enabled=yes
