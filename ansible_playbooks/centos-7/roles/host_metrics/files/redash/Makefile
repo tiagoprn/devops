@@ -6,6 +6,8 @@ help:
 	@echo -e " make up                             - Run docker-compose."
 	@echo -e " make run                            - USE THIS COMMAND to start the stack, it makes sure the database is also properly inittiated."
 
+# TODO: call the scripts to backup/restore the redash postgres docker volume here.
+
 setup_database:
 	docker exec -t $$(docker ps | grep redash_server | awk '{print $$1}') python manage.py database create_tables
 

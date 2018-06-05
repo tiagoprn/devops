@@ -2,11 +2,10 @@
 
 ### redash
 
+- Check the TODO on the Makefile
 - Create a shell script to stop all the containers (using docker-compose stop) 
-- Create a shell script to make a backup of the docker volume that contains the
-  postgresql data
-- Create a shell script to restore the backup of the docker volume that
-  contains the postgresql data 
+- Generate an ansible jinja2 template of docker-compose.yml, changing the values of 
+  `REDASH_COOKIE_SECRET`, `POSTGRES_PASSWORD` and `REDASH_DATABASE_URL`.
 - Configure the host dashboards on redash (pointing to the influxdb database)
 - After the host dashboards configured, make a backup of the docker volume and
   put it on `roles/host_metrics/files`, and include in the playbook a task to
