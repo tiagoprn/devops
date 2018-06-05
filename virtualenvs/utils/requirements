@@ -7,3 +7,4 @@ click
 pgcli
 mycli
 psycopg2-binary
+speedtest-cli
