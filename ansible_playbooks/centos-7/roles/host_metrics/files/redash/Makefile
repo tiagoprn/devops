@@ -8,6 +8,7 @@ help:
 	@echo -e " make setup_database                 - Create the initial postgres database."
 	@echo -e " make redash_server                  - Log on the redash server."
 	@echo -e " make redash_worker                  - Log on the redis worker."
+	@echo -e " make database                       - Log on the postgresql instance on bash."
 	@echo -e " make psql                           - Log on the postgresql instance on psql."
 	@echo -e " make up                             - Run docker-compose."
 	@echo -e " make run                            - USE THIS COMMAND to start the stack, it makes sure the database is also properly inittiated."
@@ -31,8 +32,11 @@ redash_server:
 redash_worker:
 	docker exec -it $$(docker ps | grep redash_worker | awk '{print $$1}') bash
 
+database: env
+	docker exec -it $$(docker ps | grep postgres_redash | awk '{print $$1}') bash
+
 psql: env
-	docker exec -it $$(docker ps | grep redash_postgres | awk '{print $$1}') psql -U redash redash
+	docker exec -it $$(docker ps | grep postgres_redash | awk '{print $$1}') psql -U redash redash
 
 up: 
 	docker-compose rm -f && docker-compose up -d 
