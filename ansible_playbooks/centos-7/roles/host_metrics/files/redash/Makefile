@@ -1,7 +1,8 @@
-SHELL := /bin/bash  # necessary to use the source command, which is not on sh, Makefile's default shell ;)
+.EXPORT_ALL_VARIABLES:
+SHELL=/bin/bash
+REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR=/storage/containers/backups/volumes/postgres_redash
 
 help:
-	@echo -e " make vars                           - Export environment variables to backup/restore redash database."
 	@echo -e " make backup_redash_database         - Backup redash postgres database volume."
 	@echo -e " make restore_redash_database        - Restore redash postgres database volume."
 	@echo -e " make setup_database                 - Create the initial postgres database."
@@ -11,23 +12,22 @@ help:
 	@echo -e " make up                             - Run docker-compose."
 	@echo -e " make run                            - USE THIS COMMAND to start the stack, it makes sure the database is also properly inittiated."
 
-vars:
-	export REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR=/storage/containers/backups/volumes/postgres_redash
-
-backup_redash_database: vars
+backup_redash_database:
+	@echo -e  $$REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR
+	@echo -e 'Creating $$REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR if it does not exist... '
 	mkdir -p $$REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR
-	echo 'Starting backup of redash postgres database... '
-	./docker_volume_backup.sh docker-compose.yml postgres $$REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR backup
-	echo 'Backup finished.'
+	@echo -e 'Starting backup of redash postgres database... '
+	./docker-volume-backup.sh docker-compose.yml postgres_redash $$REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR backup
+	@echo -e 'Backup finished.'
 
-restore_redash_database: vars
-	echo 'These are the available backups: '
-	ls $$REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR
-	echo 'Which backup you want to restore?'
-	read RESTORE
-	echo 'Restoring $$RESTORE... '
-	./docker_volume_backup.sh docker-compose.yml postgres $$REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR restore $$RESTORE
-	echo 'Restoration finished.'
+restore_redash_database:
+	@echo -e 'These are the available backups: '
+	@ls $$REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR
+	@echo -e 'Which backup you want to restore?'
+	@read RESTORE
+	@echo -e 'Restoring $$RESTORE... '
+	./docker-volume-backup.sh docker-compose.yml postgres_redash $$REDASH_POSGRES_DOCKER_VOLUME_BACKUP_DIR restore $$RESTORE
+	@echo -e 'Restoration finished.'
 
 setup_database:
 	docker exec -t $$(docker ps | grep redash_server | awk '{print $$1}') python manage.py database create_tables

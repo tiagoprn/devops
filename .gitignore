@@ -7,3 +7,4 @@ data/**
 *.retry
 *.log
 *.txt
+*.env

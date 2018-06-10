@@ -10,7 +10,7 @@ services:
     image: redash/redash:latest
     command: server
     depends_on:
-      - postgres
+      - postgres_redash
       - redis
     ports:
       - "5000:5000"
@@ -18,7 +18,7 @@ services:
       PYTHONUNBUFFERED: 0
       REDASH_LOG_LEVEL: "INFO"
       REDASH_REDIS_URL: "redis://redis:6379/0"
-      REDASH_DATABASE_URL: "postgresql://redash:r3da5h@postgres/redash"
+      REDASH_DATABASE_URL: "postgresql://redash:r3da5h@postgres_redash/redash"
       REDASH_COOKIE_SECRET: RedashWithDockerRules
       REDASH_WEB_WORKERS: 4
     restart: unless-stopped
@@ -29,7 +29,7 @@ services:
       PYTHONUNBUFFERED: 0
       REDASH_LOG_LEVEL: "INFO"
       REDASH_REDIS_URL: "redis://redis:6379/0"
-      REDASH_DATABASE_URL: "postgresql://redash:r3da5h@postgres/redash"
+      REDASH_DATABASE_URL: "postgresql://redash:r3da5h@postgres_redash/redash"
       QUEUES: "queries,scheduled_queries,celery"
       WORKERS_COUNT: 2
     restart: unless-stopped
@@ -37,11 +37,11 @@ services:
     hostname: redis
     image: redis:3.0-alpine
     restart: unless-stopped
-  postgres:
-    hostname: postgres
+  postgres_redash:
+    hostname: postgres_redash
     image: postgres:9.5.6-alpine
     volumes:
-      - POSTGRESQL_DATA:/var/lib/postgresql/data
+      - REDASH_POSTGRESQL_DATA:/var/lib/postgresql/data
     restart: unless-stopped
     environment:
       - POSTGRES_USER=redash
@@ -57,6 +57,6 @@ services:
       - server:redash
     restart: unless-stopped
 volumes:
-  POSTGRESQL_DATA:
+  REDASH_POSTGRESQL_DATA:
     driver: local
 
