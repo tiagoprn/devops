@@ -2,9 +2,8 @@
 
 ### redash
 
-- Generate an ansible jinja2 template of redash.env, changing the values of 
-  `REDASH_COOKIE_SECRET`, `POSTGRES_PASSWORD` and `REDASH_DATABASE_URL` and
-recording the file at /opt/containers/redash.
+- Create the tasks to copy the redash container and start them on the playbook.
+  Te copy command is not working, says `files/redash` do not exist. Check why.
 - Configure the host dashboards on redash (pointing to the influxdb database)
 - After the host dashboards configured, make a backup of the postgres database and
   put it on `roles/host_metrics/files`, and include in the playbook a task to
