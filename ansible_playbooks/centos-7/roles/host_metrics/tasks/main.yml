@@ -77,6 +77,6 @@
 - name: Copy redash container files
   copy: src=files/redash dest=/opt/containers remote_src=yes directory_mode=yes owner=root group=root
 
-- name: Start the redash container: 
+- name: Start the redash container 
   command: cd /opt/containers/redash && make run
 
