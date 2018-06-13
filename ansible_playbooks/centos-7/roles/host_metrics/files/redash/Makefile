@@ -45,6 +45,5 @@ psql: env
 up: 
 	docker-compose rm -f && docker-compose up -d 
   
-run: up setup_database
+run: env up setup_database
 	@echo -e 'Ready. If you are running locally, point your browser to: http://172.17.0.1:8555 and have fun! =D' 
-
