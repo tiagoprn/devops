@@ -3,6 +3,7 @@ services:
   server:
     image: redash/redash:latest
     command: server
+    privileged: true
     depends_on:
       - postgres_redash
       - redis
@@ -14,6 +15,7 @@ services:
   worker:
     image: redash/redash:latest
     command: scheduler
+    privileged: true
     env_file: 
       - redash.env    
     restart: unless-stopped

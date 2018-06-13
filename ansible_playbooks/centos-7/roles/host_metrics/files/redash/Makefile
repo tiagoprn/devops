@@ -2,7 +2,8 @@
 SHELL=/bin/bash
 
 help:
-	@echo -e " make env      - Load the environment variables."
+	@echo -e " make generate_env                   - Create the environment variables for redash."
+	@echo -e " make env                            - Load the environment variables."
 	@echo -e " make backup_redash_database         - Backup redash postgres database volume."
 	@echo -e " make restore_redash_database        - Restore redash postgres database volume."
 	@echo -e " make setup_database                 - Create the initial postgres database."
@@ -13,7 +14,10 @@ help:
 	@echo -e " make up                             - Run docker-compose."
 	@echo -e " make run                            - USE THIS COMMAND to start the stack, it makes sure the database is also properly inittiated."
 
-env:
+generate_env:
+	@bash generate_env.sh
+
+env: generate_env
 	source redash.env
 
 backup_redash_database: env
