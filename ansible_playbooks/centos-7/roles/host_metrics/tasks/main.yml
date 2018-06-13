@@ -69,5 +69,5 @@
   copy: src=files/redash dest=/opt/containers owner=root group=root
 
 - name: Start the redash container 
-  command: cd /opt/containers/redash && make run
+  command: cd /opt/containers/redash && sudo make run
 
