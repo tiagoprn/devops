@@ -68,6 +68,3 @@
 - name: Copy redash container files
   copy: src=files/redash dest=/opt/containers owner=root group=root
 
-- name: Start the redash container 
-  command: cd /opt/containers/redash && sudo make run
-

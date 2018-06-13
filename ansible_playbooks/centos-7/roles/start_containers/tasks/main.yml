@@ -1,0 +1,3 @@
+- name: Start the redash container 
+  command: cd /opt/containers/redash && sudo make run
+

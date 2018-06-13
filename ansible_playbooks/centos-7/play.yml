@@ -23,4 +23,6 @@
       # - confvim
     - services
     - cleanup
-    - reboot  
+    - reboot
+    - start_containers
+  
