@@ -1,6 +1,7 @@
 - name: Build and first start of the redash container
   shell: "{{ item }}"
   args:
+    executable: /bin/bash      
     chdir: /opt/containers/redash
   with_items:
     - sudo make run
