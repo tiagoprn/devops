@@ -1,3 +1,6 @@
-- name: Start the redash container 
-  command: cd /opt/containers/redash && sudo make run
-
+- name: Build and first start of the redash container
+  shell: "{{ item }}"
+  args:
+    chdir: /opt/containers/redash
+  with_items:
+    - sudo make run
