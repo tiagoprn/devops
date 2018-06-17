@@ -66,5 +66,5 @@
   command: semodule -i /etc/cgp.pp
 
 - name: Copy redash container files
-  copy: src=files/redash dest=/opt/containers owner=root group=root
+  copy: src=files/redash dest=/opt/containers owner=root group=root mode=0755
 
