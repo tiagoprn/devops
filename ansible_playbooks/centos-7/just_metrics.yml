@@ -1,11 +1,10 @@
 - hosts: all
   # strategy: debug  ## interactive debug console when a task fails.
   roles:
-    # - upgrade
     - prepare
     - docker
     - host_metrics
     - services
-    - cleanup
+    - reboot  
     - start_containers
   

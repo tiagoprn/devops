@@ -21,13 +21,13 @@ env: generate_env
 	source redash.env
 
 backup_redash_database: env
-	docker exec -i $$(docker ps | grep postgres | awk '{print $$1}') /utils/dump.sh
+	docker exec -t $$(docker ps | grep postgres | awk '{print $$1}') /utils/dump.sh
 
 restore_redash_database: env
-	docker exec -i $$(docker ps | grep postgres | awk '{print $$1}') /utils/restore.sh
+	docker exec -t $$(docker ps | grep postgres | awk '{print $$1}') /utils/restore.sh
 
 setup_database: env
-	docker exec -i $$(docker ps | grep postgres | awk '{print $$1}') /utils/setup.sh
+	docker exec -t $$(docker ps | grep postgres | awk '{print $$1}') /utils/setup.sh
 	docker exec -t $$(docker ps | grep redash_server | awk '{print $$1}') python manage.py database create_tables
 
 redash_server:
