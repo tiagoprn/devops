@@ -2,8 +2,8 @@
 
 ### redash
 
-- Create the admin user as admin, with the email as devops@localhost and
-  password admin.
+- Create the admin user as admin, with the email as devops@localhost.localdomain and
+  password admin12345678.
 - Create the tasks to copy the redash container and start them on the playbook.
   Te copy command is not working, says `files/redash` do not exist. Check why.
 - Configure the host dashboards on redash (pointing to the influxdb database)
