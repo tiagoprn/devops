@@ -5,4 +5,4 @@
     executable: /bin/bash      
     chdir: /opt/containers/redash
   with_items:
-    - make run
+    - make run 2>&1
