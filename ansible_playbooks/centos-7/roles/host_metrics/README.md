@@ -1,28 +1,7 @@
 ## About
 
 This installs collectd (with a plugin to collect information from vmstat),
-influxdb to store the metrics and grafana to present them beautifully. 
-
-## Notes
-
-- grafana.ini is generated from a jinja2 template, since the password will be
-randomically generated. 
-
-- To login on grafana, you must use the following credentials: 
-
-```
-URL: [vm_host]:3000
-USER: admin
-PASSWORD: [check grafana.ini: $ sudo cat /etc/grafana/grafana.ini | grep admin_password) 
-```
-
-- influxdb is installed and then the ansible role connects to it and generates an admin user
-  with a random password. The influxdb password is print on screen when running
-the role task. To connect to influx using the local client: 
-
-```
-influx -username admin -password generated-password-here
-``` 
+influxdb to store the metrics and redash to present them beautifully. 
 
 ## On collectd
 
@@ -60,11 +39,30 @@ finally starts (I had to do that many times until it worked).
 (And remember that you can write your own metrics directly to influxdb, from
 python. It should be interesting to monitor uwsgi, and celery workers e.g. ) 
 
-## And here are some queries you can try on your grafana server related to
-`vmstat`: 
+## Notes
 
+- influxdb is installed and then the ansible role connects to it and generates an admin user
+  with a random password. The influxdb password is print on screen when running
+the role task. To connect to influx using the local client: 
+
+```
+influx -username admin -password generated-password-here
+``` 
+
+- redash database uri (to connect on influxdb): 
+
+e.g. 
+
+```
+influxdb://admin:generated_password@centos7-host-ip:8086/collectd
+```
+
+- here are some queries you can try on influx related to `vmstat`: 
+
+```
 SELECT mean("value") AS cs FROM "vmstat_value" WHERE $timeFilter AND type_instance='cs' GROUP BY time($__interval) fill(null)
 SELECT mean("value") AS wa FROM "vmstat_value" WHERE $timeFilter AND type_instance='wa' GROUP BY time($__interval) fill(null)
 SELECT mean("value") AS in_m FROM "vmstat_value" WHERE $timeFilter AND type_instance='in' GROUP BY time($__interval) fill(null) 
+```
 
 
