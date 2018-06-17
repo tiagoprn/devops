@@ -1,3 +1,6 @@
+- name: Memory comsuption BEFORE reboot
+  command: free -h 
+
 - name: Reboot machine
   command: shutdown -r +1 'Rebooting in 1 minute by order from ansible...' 
 
@@ -16,3 +19,7 @@
       # timeout for something to happen on the machine, 
       # wait for connect_timeout seconds for a connection 
       # to happen before closing and retrying
+
+- name: Memory comsuption AFTER reboot
+  command: free -h 
+
