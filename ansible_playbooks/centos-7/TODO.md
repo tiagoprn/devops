@@ -1,14 +1,16 @@
 ## INITIAL IMPLEMENTATION
 
 ### redash
-
+- Rerun the playbook
 - Create the admin user as admin, with the email as devops@localhost.localdomain and
   password admin12345678.
-- Create the tasks to copy the redash container and start them on the playbook.
-  Te copy command is not working, says `files/redash` do not exist. Check why.
-- Configure the host dashboards on redash (pointing to the influxdb database)
-- After the host dashboards configured, make a backup of the postgres database and
-  put it on `roles/host_metrics/files`, and include in the playbook a task to
+- Create a script to restore the data from
+  /storage/src/devops/ansible_playbooks/centos-7/roles/host_metrics/files/redash/database_queries_and_dashboards, 
+so that I can have the dashboard pre_configured. IMPORTANT: maybe the tables
+users, groups and organizations should not be restored at this point. 
+- If the previous restoration worked, backup everything again so I can have the
+  admin user stated as above. 
+- include in the playbook a task to
 restore this backup so that the dashboard can come up preconfigured.
 - Add another step to the start_containers/redash task and make it restore the
   postgresql backup created. Add a message after the playbook execution and at  

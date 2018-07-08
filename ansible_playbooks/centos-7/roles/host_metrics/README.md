@@ -65,4 +65,9 @@ SELECT mean("value") AS wa FROM "vmstat_value" WHERE $timeFilter AND type_instan
 SELECT mean("value") AS in_m FROM "vmstat_value" WHERE $timeFilter AND type_instance='in' GROUP BY time($__interval) fill(null) 
 ```
 
+Admin credentials to redash web ui: 
+user: admin
+email: admin@localhost.localdomain 
+password: Sk8HB00lWJJJy
+organization name: local
 
