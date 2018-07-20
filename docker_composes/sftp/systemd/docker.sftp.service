@@ -1,0 +1,21 @@
+[Unit]
+Description=Dockerized SFTP Server
+After=network.target docker.service
+Requires=network.target docker.service
+
+[Service]
+# "TimeoutStartSec=0" to turn off timeouts, 
+# as the docker pull may take a while.
+TimeoutStartSec=0 
+Type=forking
+User=engdeploy
+Group=users
+Restart=on-failure
+RestartSec=10s
+TimeoutSec=300
+ExecStart=/opt/precifica/business_utils/containers/production/sftp/systemd/docker-sftp-start.sh
+ExecStop=/opt/precifica/business_utils/containers/production/sftp/systemd/docker-sftp-stop.sh
+
+
+[Install]
+WantedBy=multi-user.target
