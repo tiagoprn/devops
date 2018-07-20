@@ -1,5 +1,5 @@
 database:
-  image: mysql 
+  image: mysql:5.6 
   volumes:
     - "./shared:/shared"
     - "./utils:/utils"
@@ -8,6 +8,7 @@ database:
   ports:
     - "3306:3306"
   environment:
-    - MYSQL_USER=root
-    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    - MYSQL_DATABASE=sampledb
+    - MYSQL_RANDOM_ROOT_PASSWORD=true  
+    - MYSQL_USER=tester
+    - MYSQL_PASSWORD=12345678  
+    - MYSQL_DATABASE=local_db

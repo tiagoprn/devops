@@ -1,4 +1,1 @@
-#!/bin/bash
-
-##### FULL DATABASE #####
-pg_restore --host localhost --port 5432 --username "tmc" --dbname "tmc_financeiro" --clean --role "tmc" -W --jobs 1 --verbose /utils/postgres/tmc_financeiro.c.backup
+mysql -h 127.0.0.1 -u tester -p12345678 local_db < /shared/dump.sql
