@@ -1,0 +1,17 @@
+# Provides an sftp server, using openssh. 
+# Reference: http://blog.raphaelivan.com.br/configurando-um-servidor-de-sftp-no-linux.html
+
+# https://hub.docker.com/r/luzifer/sftp-share
+# https://github.com/luzifer-docker/sftp-share
+
+# Container with preinstalled user precifica / pR3c$1fc
+
+sftp:
+  build: .
+  ports:
+    - "22222:22" 
+  volumes:
+    - "./shared:/shared"
+  environment:
+    - USER=precifica
+    - PASS=pR3c$1fc
