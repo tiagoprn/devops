@@ -1,4 +1,3 @@
-shared
 *.crt
 *.key
 data/**
