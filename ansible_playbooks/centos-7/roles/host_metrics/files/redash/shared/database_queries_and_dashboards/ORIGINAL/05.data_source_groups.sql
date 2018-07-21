@@ -16,17 +16,17 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Data for Name: organizations; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: data_source_groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.organizations VALUES ('2018-07-21 15:11:07.640079+00', '2018-07-21 15:11:07.640079+00', 1, 'devops', 'default', '{}');
+INSERT INTO public.data_source_groups VALUES (1, 1, 2, false);
 
 
 --
--- Name: organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: data_source_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.organizations_id_seq', 1, true);
+SELECT pg_catalog.setval('public.data_source_groups_id_seq', 1, true);
 
 
 --

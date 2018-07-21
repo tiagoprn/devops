@@ -19,7 +19,7 @@ SET row_security = off;
 -- Data for Name: organizations; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.organizations VALUES ('2018-07-21 15:11:07.640079+00', '2018-07-21 15:11:07.640079+00', 1, 'devops', 'default', '{}');
+INSERT INTO public.organizations VALUES ('2018-07-06 22:04:29.309747+00', '2018-07-06 22:04:29.309747+00', 1, 'local', 'default', '{}');
 
 
 --

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Backup specific tables to sql files. It will backup just the data, so the
-# tables should alredy be created on the database for it to work as intended.
+# tables should already be created on the destination database 
+# for it to work as intended.
 
 HOST="localhost"
 PORT=5432

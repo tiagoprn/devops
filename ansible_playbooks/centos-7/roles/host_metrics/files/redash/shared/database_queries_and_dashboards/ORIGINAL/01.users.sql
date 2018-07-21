@@ -16,17 +16,17 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Data for Name: organizations; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.organizations VALUES ('2018-07-21 15:11:07.640079+00', '2018-07-21 15:11:07.640079+00', 1, 'devops', 'default', '{}');
+INSERT INTO public.users VALUES ('2018-07-06 22:04:29.402462+00', '2018-07-06 22:04:29.402462+00', 1, 1, 'admin', 'admin@localhost.localdomain', NULL, '$6$rounds=95890$dcfCj.k3fn4pCv21$RUfFGiu6MgkxCwVerOQq6OcozzKurAG.qYoaQ7P.iuYxTtk5t/amWtkuSk7xUPS.RnfBRvjXHq8QKGsl6eoTR/', '{1,2}', 'lfNfuMHKexaPhh82oTccTVmKpGTVDs2CU1DxO67Z');
 
 
 --
--- Name: organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.organizations_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_id_seq', 1, true);
 
 
 --

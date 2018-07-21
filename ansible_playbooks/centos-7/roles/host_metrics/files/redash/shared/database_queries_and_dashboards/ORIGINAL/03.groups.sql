@@ -19,8 +19,8 @@ SET row_security = off;
 -- Data for Name: groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.groups VALUES (1, 1, 'builtin', 'admin', '{admin,super_admin}', '2018-07-21 15:11:07.640079+00');
-INSERT INTO public.groups VALUES (2, 1, 'builtin', 'default', '{create_dashboard,create_query,edit_dashboard,edit_query,view_query,view_source,execute_query,list_users,schedule_query,list_dashboards,list_alerts,list_data_sources}', '2018-07-21 15:11:07.640079+00');
+INSERT INTO public.groups VALUES (1, 1, 'builtin', 'admin', '{admin,super_admin}', '2018-07-06 22:04:29.309747+00');
+INSERT INTO public.groups VALUES (2, 1, 'builtin', 'default', '{create_dashboard,create_query,edit_dashboard,edit_query,view_query,view_source,execute_query,list_users,schedule_query,list_dashboards,list_alerts,list_data_sources}', '2018-07-06 22:04:29.309747+00');
 
 
 --

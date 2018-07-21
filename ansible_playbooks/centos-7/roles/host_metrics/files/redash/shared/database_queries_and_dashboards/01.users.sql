@@ -19,7 +19,7 @@ SET row_security = off;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.users VALUES ('2018-07-06 22:04:29.402462+00', '2018-07-06 22:04:29.402462+00', 1, 1, 'admin', 'admin@localhost.localdomain', NULL, '$6$rounds=95890$dcfCj.k3fn4pCv21$RUfFGiu6MgkxCwVerOQq6OcozzKurAG.qYoaQ7P.iuYxTtk5t/amWtkuSk7xUPS.RnfBRvjXHq8QKGsl6eoTR/', '{1,2}', 'lfNfuMHKexaPhh82oTccTVmKpGTVDs2CU1DxO67Z');
+INSERT INTO public.users VALUES ('2018-07-21 15:11:07.750924+00', '2018-07-21 15:11:07.750924+00', 1, 1, 'devops', 'devops@localhost.localdomain', NULL, '$6$rounds=108335$wz0O2aYhqh0APfc0$hOVVLnhJ9QRvj1kJ6Y/ujw5S5DIXOStCWC7d5vRpCg7FIgq7amxHTPftjNwFr7G6LOUulV8Fj0qvIs.tV//N1.', '{1,2}', 'MtHSb14emobBdlrHZPaZF1D3puIIE80LXy2pperd');
 
 
 --

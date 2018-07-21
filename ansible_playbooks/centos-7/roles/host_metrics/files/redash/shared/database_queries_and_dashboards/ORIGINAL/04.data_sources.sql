@@ -16,17 +16,17 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Data for Name: organizations; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: data_sources; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.organizations VALUES ('2018-07-21 15:11:07.640079+00', '2018-07-21 15:11:07.640079+00', 1, 'devops', 'default', '{}');
+INSERT INTO public.data_sources VALUES (1, 1, 'local influxdb', 'influxdb', '{"url": "influxdb://admin:cKDkS65DvlkfSHSwy@10.0.5.27:8086/collectd"}', 'queries', 'scheduled_queries', '2018-07-06 22:06:06.350317+00');
 
 
 --
--- Name: organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: data_sources_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.organizations_id_seq', 1, true);
+SELECT pg_catalog.setval('public.data_sources_id_seq', 1, true);
 
 
 --
