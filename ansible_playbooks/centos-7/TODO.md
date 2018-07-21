@@ -11,7 +11,10 @@ users, groups and organizations should not be restored at this point.
 - If the previous restoration worked, backup everything again so I can have the
   admin user stated as above. 
 - include in the playbook a task to
-restore this backup so that the dashboard can come up preconfigured.
+restore this backup so that the dashboard can come up preconfigured. Turn the
+file files/redash/database_queries_and_dashboards/04.data_sources.sql into a
+jinja template, to change the host ip and the password to the ones created on
+the playbook. 
 - Add another step to the start_containers/redash task and make it restore the
   postgresql backup created. Add a message after the playbook execution and at  
 the documentation that I should change the admin user email and password 
