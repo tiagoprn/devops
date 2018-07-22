@@ -6,5 +6,6 @@ windows:
     panes:
       - cd docker_composes/ansible && cat filesystem/conf/hosts
       - cd shellscripts/kvm && make status
+      - cd /kvm && tree .  
       - cd ansible_playbooks
       - sudo watch -n 1 docker ps  

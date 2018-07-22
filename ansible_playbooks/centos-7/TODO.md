@@ -27,6 +27,10 @@ tcpconns_value
   attention to change xx.queries.sql to set the column 7 as NULL - before the
 column "name" - find a way to automate this too)  
 
+- instalar o stress-ng para permitir fazer o benchmark do container e ver os
+  grãficos no redash. Criar shellscripts separados para testar memõria, cpu,
+disco e rede. 
+
 - include in the playbook a task to
 restore this backup so that the dashboard can come up preconfigured. Turn the
 file files/redash/database_queries_and_dashboards/04.data_sources.sql into a
