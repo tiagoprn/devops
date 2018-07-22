@@ -14,7 +14,7 @@ printf "When prompted, type PASSWORD: ${PGPASSWORD}\n"
 
 mkdir -p $DUMPS_PATH
 
-TABLES="01.users 02.organizations 03.groups 04.data_sources 05.data_source_groups 06.dashboards 07.queries 08.visualizations 09.widgets"
+TABLES="01.organizations 02.users 03.groups 04.data_sources 05.data_source_groups 06.dashboards 07.queries 08.visualizations 09.widgets"
 
 for table in $TABLES; do
         # below I split each table index.name into 2 variables, table and name

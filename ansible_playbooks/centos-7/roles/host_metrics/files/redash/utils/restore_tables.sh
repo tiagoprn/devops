@@ -13,7 +13,7 @@ DUMPS_PATH="/shared/database_queries_and_dashboards"
 
 printf "If prompted for a password, type: ${PGPASSWORD}\n"
 
-TABLES="01.users 02.organizations 03.groups 04.data_sources 05.data_source_groups 06.dashboards 07.queries 08.visualizations 09.widgets"
+TABLES="01.organizations 02.users 03.groups 04.data_sources 05.data_source_groups 06.dashboards 07.queries 08.visualizations 09.widgets"
 # TABLES="04.data_sources 05.data_source_groups 06.dashboards 07.queries 08.visualizations 09.widgets"
 
 for table in $TABLES; do
