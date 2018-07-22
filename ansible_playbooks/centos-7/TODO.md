@@ -6,9 +6,9 @@
 so that I can have the dashboard pre_configured. Enable the disk plugin (https://collectd.org/wiki/index.php/Plugin:Disk) and put
 its data on a redash dashboard.
 
-- Backup the redash postgresql database after adding the new queries (pay
-  attention to change xx.queries.sql to set the column 7 as NULL - before the
-column "name" - find a way to automate this too)  
+- Backup the redash postgresql database after adding the new queries and copy
+  it to this repository on files/redash/shared (run roles/host_metrics/files/redash/shared/database_queries_and_dashboards/replace_7th_column_foreign_key_with_null.py 
+  to change 07.queries.sql to set the column 7 as NULL - before the column "name")  
 
 - instalar o stress-ng para permitir fazer o benchmark do container e ver os
   grãficos no redash. Criar shellscripts separados para testar memõria, cpu,
