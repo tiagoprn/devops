@@ -3,25 +3,8 @@
 ### redash
 - Restore the data from
   /storage/src/devops/ansible_playbooks/centos-7/roles/host_metrics/files/redash/shared/database_queries_and_dashboards, 
-so that I can have the dashboard pre_configured. Add dashboards for the
-following metrics (enabled yesterday): 
-
-(The admin user e-mail is devops@localhost.localdomain and password admin12345678.)
-
-interface_rx
-interface_tx
-processes_majflt
-processes_minflt
-processes_processes
-processes_read
-processes_rx
-processes_syst
-processes_threads
-processes_tx
-processes_user
-processes_value
-processes_write
-tcpconns_value
+so that I can have the dashboard pre_configured. Enable the disk plugin (https://collectd.org/wiki/index.php/Plugin:Disk) and put
+its data on a redash dashboard.
 
 - Backup the redash postgresql database after adding the new queries (pay
   attention to change xx.queries.sql to set the column 7 as NULL - before the
