@@ -19,7 +19,7 @@ SET row_security = off;
 -- Data for Name: data_sources; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.data_sources VALUES (1, 1, 'local influxdb', 'influxdb', '{"url": "influxdb://admin:XbwGCxGqBYIUmpvQyi@10.0.5.80:8086/collectd"}', 'queries', 'scheduled_queries', '2018-07-06 22:06:06.350317+00');
+INSERT INTO public.data_sources VALUES (1, 1, 'local influxdb', 'influxdb', '{"url": "influxdb://admin:Rz6BMjtGlyyQzd5cMABi@10.0.5.54:8086/collectd"}', 'queries', 'scheduled_queries', '2018-07-06 22:06:06.350317+00');
 
 
 --

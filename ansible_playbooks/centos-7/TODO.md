@@ -3,8 +3,8 @@
 ### redash
 - Restore the data from
   /storage/src/devops/ansible_playbooks/centos-7/roles/host_metrics/files/redash/shared/database_queries_and_dashboards, 
-so that I can have the dashboard pre_configured. Enable the disk plugin (https://collectd.org/wiki/index.php/Plugin:Disk) and put
-its data on a redash dashboard.
+so that I can have the dashboard pre_configured. Create a dashboard "Disk" on
+Redash with all Disk queries I created yesterday.
 
 - Backup the redash postgresql database after adding the new queries and copy
   it to this repository on files/redash/shared (run roles/host_metrics/files/redash/shared/database_queries_and_dashboards/replace_7th_column_foreign_key_with_null.py 
