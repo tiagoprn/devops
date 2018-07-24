@@ -4,7 +4,9 @@
 
 - instalar o stress-ng para permitir fazer o benchmark do container e ver os
   grãficos no redash. Criar shellscripts separados para testar memõria, cpu,
-disco e rede. 
+disco e rede.
+
+ex.: $ stress-ng --cpu 1 --vm 1 --hdd 1 --fork 1 --switch 1 --timeout 10 --metrics 
 
 - include in the playbook a task to
 restore the backup so that the dashboard can come up preconfigured. Turn the
