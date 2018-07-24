@@ -24,13 +24,14 @@ INSERT INTO public.dashboards VALUES ('2018-07-06 23:28:23.273231+00', '2018-07-
 INSERT INTO public.dashboards VALUES ('2018-07-22 16:26:01.421481+00', '2018-07-22 16:22:49.898886+00', 3, 2, 1, 'network', 'Network', 1, '[]', false, false, false);
 INSERT INTO public.dashboards VALUES ('2018-07-22 17:52:33.852882+00', '2018-07-22 17:29:12.556764+00', 4, 2, 1, 'tcp-connections', 'TCP Connections', 1, '[]', false, false, false);
 INSERT INTO public.dashboards VALUES ('2018-07-22 22:39:49.797256+00', '2018-07-22 21:33:18.778172+00', 5, 3, 1, 'processes', 'Critical Processes metrics', 1, '[]', false, false, false);
+INSERT INTO public.dashboards VALUES ('2018-07-24 11:16:45.456615+00', '2018-07-24 11:09:10.629416+00', 6, 2, 1, 'disks', 'Disks', 1, '[]', false, false, false);
 
 
 --
 -- Name: dashboards_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.dashboards_id_seq', 5, true);
+SELECT pg_catalog.setval('public.dashboards_id_seq', 6, true);
 
 
 --

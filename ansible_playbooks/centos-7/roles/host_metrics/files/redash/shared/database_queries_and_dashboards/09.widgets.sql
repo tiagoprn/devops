@@ -68,13 +68,22 @@ INSERT INTO public.widgets VALUES ('2018-07-22 22:00:17.62893+00', '2018-07-22 2
 INSERT INTO public.widgets VALUES ('2018-07-22 22:01:09.369168+00', '2018-07-22 21:39:11.502783+00', 43, 76, '', 1, '{"position": {"autoHeight": false, "sizeX": 1, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 3, "row": 6}, "isHidden": false}', 5);
 INSERT INTO public.widgets VALUES ('2018-07-22 22:34:21.799818+00', '2018-07-22 22:33:11.555859+00', 53, 98, '', 1, '{"position": {"autoHeight": false, "sizeX": 2, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 4, "row": 18}, "isHidden": false}', 5);
 INSERT INTO public.widgets VALUES ('2018-07-22 22:38:59.527773+00', '2018-07-22 22:38:08.778285+00', 54, 104, '', 1, '{"position": {"autoHeight": false, "sizeX": 6, "sizeY": 8, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 0, "row": 15}, "isHidden": false}', 1);
+INSERT INTO public.widgets VALUES ('2018-07-24 11:10:37.081904+00', '2018-07-24 11:10:17.132307+00', 57, 108, '', 1, '{"position": {"autoHeight": false, "sizeX": 2, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 4, "row": 0}, "isHidden": false}', 6);
+INSERT INTO public.widgets VALUES ('2018-07-24 11:10:37.081956+00', '2018-07-24 11:09:52.860324+00', 56, 110, '', 1, '{"position": {"autoHeight": false, "sizeX": 2, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 2, "row": 0}, "isHidden": false}', 6);
+INSERT INTO public.widgets VALUES ('2018-07-24 11:10:37.081811+00', '2018-07-24 11:09:31.151662+00', 55, 112, '', 1, '{"position": {"autoHeight": false, "sizeX": 2, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 0, "row": 0}, "isHidden": false}', 6);
+INSERT INTO public.widgets VALUES ('2018-07-24 11:15:07.041251+00', '2018-07-24 11:14:10.919872+00', 62, 124, '', 1, '{"position": {"autoHeight": false, "sizeX": 2, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 2, "row": 12}, "isHidden": false}', 6);
+INSERT INTO public.widgets VALUES ('2018-07-24 11:12:09.765251+00', '2018-07-24 11:10:50.661404+00', 58, 114, '', 1, '{"position": {"autoHeight": false, "sizeX": 2, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 0, "row": 6}, "isHidden": false}', 6);
+INSERT INTO public.widgets VALUES ('2018-07-24 11:12:09.766255+00', '2018-07-24 11:11:14.905253+00', 59, 116, '', 1, '{"position": {"autoHeight": false, "sizeX": 2, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 2, "row": 6}, "isHidden": false}', 6);
+INSERT INTO public.widgets VALUES ('2018-07-24 11:12:49.439183+00', '2018-07-24 11:11:40.892845+00', 60, 118, '', 1, '{"position": {"autoHeight": false, "sizeX": 2, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 4, "row": 6}, "isHidden": false}', 6);
+INSERT INTO public.widgets VALUES ('2018-07-24 11:14:15.432643+00', '2018-07-24 11:13:31.825481+00', 61, 120, '', 1, '{"position": {"autoHeight": false, "sizeX": 2, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 0, "row": 12}, "isHidden": false}', 6);
+INSERT INTO public.widgets VALUES ('2018-07-24 11:16:36.739835+00', '2018-07-24 11:15:00.191997+00', 63, 122, '', 1, '{"position": {"autoHeight": false, "sizeX": 2, "sizeY": 6, "maxSizeY": 1000, "maxSizeX": 6, "minSizeY": 5, "minSizeX": 1, "col": 4, "row": 12}, "isHidden": false}', 6);
 
 
 --
 -- Name: widgets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.widgets_id_seq', 54, true);
+SELECT pg_catalog.setval('public.widgets_id_seq', 63, true);
 
 
 --
