@@ -1,5 +1,11 @@
 # CentOS 7 provisioning playbook 
 
+Important: given specially due to the fact that this scripts installs a local
+postgres database for redash, it it recommended that it runs on machines/VMs with
+2GB+ of RAM for it to finish successfully. I had errors running it on a 1GB RAM
+VM with exit code 137 on the setup_redash_container task, probably due to that
+fact.
+
 This is a modular ansible playbook, which can be used to setup a new CentOS 7 server instance. 
 
 This setup does its best to provide security, logs and metrics monitoring. The following is provided: 
