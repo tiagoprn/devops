@@ -22,4 +22,4 @@
       - ioping
       - man
       - unzip  
-
+      - stress-ng

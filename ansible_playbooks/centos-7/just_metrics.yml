@@ -2,6 +2,7 @@
   # strategy: debug  ## interactive debug console when a task fails.
   roles:
     - prepare
+    - utilities  
     - docker
     - host_metrics
     - services
