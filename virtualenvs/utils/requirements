@@ -9,3 +9,6 @@ mycli
 influx-prompt
 psycopg2-binary
 speedtest-cli
+click 
+jinja2
+
