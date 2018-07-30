@@ -4,6 +4,7 @@ SHELL=/bin/bash
 help:
 	@echo -e " make generate_env                   - Create the environment variables for redash."
 	@echo -e " make env                            - Load the environment variables."
+	@echo -e " make restore_redash_collect_metrics - Restore redash collectd metrics dashboard."	
 	@echo -e " make backup_redash_database         - Backup redash postgres database volume."
 	@echo -e " make restore_redash_database        - Restore redash postgres database volume."
 	@echo -e " make setup_database                 - Create the initial postgres database."
@@ -19,6 +20,9 @@ generate_env:
 
 env: generate_env
 	source redash.env
+
+restore_redash_collectd_metrics: env
+	docker exec -t $$(docker ps | grep postgres | awk '{print $$1}') /utils/restore_tables.sh
 
 backup_redash_database: env
 	docker exec -t $$(docker ps | grep postgres | awk '{print $$1}') /utils/dump.sh
