@@ -2,7 +2,7 @@
 
 ### redash
 
-- [DOING ] Create a self-signed SSL certificate and setup it on the nginx configuration.
+- [DOING ] Edit the ./nginx/default.conf with the certificates that are at /etc/certificates (and redirect all traffic to https, not just port 443).
 
 - [ ] Adicionar instruções no README de como rodar o stress-ng.  
 
