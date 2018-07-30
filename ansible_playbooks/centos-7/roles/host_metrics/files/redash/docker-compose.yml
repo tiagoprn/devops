@@ -1,4 +1,5 @@
 version: '2'
+
 services:
   server:
     image: redash/redash:latest
@@ -46,6 +47,10 @@ services:
     links:
       - server:redash
     restart: unless-stopped
+    volumes:
+      - "./shared:/shared"
+      - "/certificates/redash:/etc/certificates"  
+
 volumes:
   PG_REDASH_DATA:
     driver: local

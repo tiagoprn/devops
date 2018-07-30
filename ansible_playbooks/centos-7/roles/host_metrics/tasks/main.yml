@@ -65,6 +65,18 @@
 - name: Enable the SELinux policy for the collectd python plugin to work  
   command: semodule -i /etc/cgp.pp
 
+- name: Create the folder to hold redash certificates
+  file:
+    path: /certificates/redash
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Generate redash TLS certificates
+  command: bash /opt/create-csr-and-private-key.sh -o /certificates/redash
+
 - name: Copy redash container files
   copy: src=files/redash dest=/opt/containers owner=root group=root mode=0755
 
