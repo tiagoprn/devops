@@ -73,5 +73,3 @@
       src: 04.data_sources.sql.j2
       dest: /opt/containers/redash/shared/database_queries_and_dashboards/04.data_sources.sql
       mode: 0777
-
-      

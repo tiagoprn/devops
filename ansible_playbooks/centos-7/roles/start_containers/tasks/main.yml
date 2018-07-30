@@ -6,3 +6,4 @@
     chdir: /opt/containers/redash
   with_items:
     - make run
+    - make restore_redash_collectd_metrics  
