@@ -57,17 +57,14 @@ e.g.
 influxdb://admin:generated_password@centos7-host-ip:8086/collectd
 ```
 
-- here are some queries you can try on influx related to `vmstat`: 
+## Redash:
 
-```
-SELECT mean("value") AS cs FROM "vmstat_value" WHERE $timeFilter AND type_instance='cs' GROUP BY time($__interval) fill(null)
-SELECT mean("value") AS wa FROM "vmstat_value" WHERE $timeFilter AND type_instance='wa' GROUP BY time($__interval) fill(null)
-SELECT mean("value") AS in_m FROM "vmstat_value" WHERE $timeFilter AND type_instance='in' GROUP BY time($__interval) fill(null) 
-```
+- The Redash container listens on port 443 (https) and redirects trafic from
+  http (port 80) to https automatically.
 
-Admin credentials to redash web ui: 
-user: admin
-email: admin@localhost.localdomain 
-password: Sk8HB00lWJJJy
-organization name: local
+- Admin credentials to redash web ui: 
+
+    url: http://centos7-host-ip e.g. http://10.0.5.100
+    email: devops@localhost.localdomain 
+    password: admin12345678 (we recommend you change it to a more secure one).
 

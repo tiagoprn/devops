@@ -2,9 +2,7 @@
 
 ### redash
 
-- [DOING ] Edit the ./nginx/default.conf with the certificates that are at /etc/certificates (and redirect all traffic to https, not just port 443).
-
-- [ ] Adicionar instruções no README de como rodar o stress-ng.  
+- Adicionar instruções no README de como rodar o stress-ng.  
 
 ex.: $ stress-ng --cpu 1 --vm 1 --hdd 1 --fork 1 --switch 1 --timeout 10 --metrics 
 
