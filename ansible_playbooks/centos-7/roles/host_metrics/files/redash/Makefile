@@ -52,4 +52,4 @@ up:
 	docker-compose rm -f && docker-compose up -d 
   
 run: env up setup_database
-	@echo -e 'Ready. If you are running locally, point your browser to: http://172.17.0.1:8555, login with user=devops@localhost.localdomain and password=admin12345678 (and please, for you safety change this user password as soon as possible ;)' 
+	@echo -e 'Ready. If you are running locally, point your browser to: http://172.17.0.1, login with user=devops@localhost.localdomain and password=admin12345678 (and please, for you safety change this user password as soon as possible ;)' 
