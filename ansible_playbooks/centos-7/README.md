@@ -1,11 +1,5 @@
 # CentOS 7 provisioning playbook 
 
-Important: given specially due to the fact that this scripts installs a local
-postgres database for redash, it it recommended that it runs on machines/VMs with
-2GB+ of RAM for it to finish successfully. I had errors running it on a 1GB RAM
-VM with exit code 137 on the setup_redash_container task, probably due to that
-fact.
-
 This is a modular ansible playbook, which can be used to setup a new CentOS 7 server instance. 
 
 This setup does its best to provide security, logs and metrics monitoring. The following is provided: 
@@ -21,13 +15,30 @@ This setup does its best to provide security, logs and metrics monitoring. The f
 - auth: create a sudo user with access to the docker daemon and also sets the ssh keys for it. 
 - tmux: the tmux multiplexer, with my custom configuration for it 
 - timezone/ntp configured for America/Sao_Paulo.
-- host_metrics: collectd to store metrics, influxdb to persist them and grafana to see them on beautiful dashboards. :) 
+- host_metrics: collectd to store metrics, influxdb to persist them and redash with visualizations configured to see them on beautiful dashboards. :) 
 - dotfiles: my dot files to vim, bash, git, etc...
 - configures tmux and vim according to my dotfiles
 - services: starts all daemons from the playbook 
 - cleanup: do some final cleaning up (remove yum cache, etc...)
 
-References: 
+## Important: 
+
+- Specially due to the fact that this scripts installs a local
+postgres database for redash, it it recommended that it runs on machines/VMs with
+2GB+ of RAM for it to finish successfully. I had errors running it on a 1GB RAM
+VM with exit code 137 on the setup_redash_container task, probably due to that
+fact.
+
+- To make some benchmarks after the playbook finishes, you can use two tools
+  that are installed: 
+
+    - stress-ng 
+    - ioping
+
+On my [personal blog](https://tiagopr.nl), you can find instructions on how to
+use both of them.
+
+## References: 
 - https://www.digitalocean.com/community/tutorials/how-to-use-ansible-roles-to-abstract-your-infrastructure-environment
 - https://github.com/stefangweichinger/ansible-rclone/blob/master/vars/Ubuntu.yml (used as the base for the rclone role).
 
