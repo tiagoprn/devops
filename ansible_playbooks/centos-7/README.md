@@ -21,6 +21,7 @@ This setup does its best to provide security (although I'm by no means an expert
 - services: starts all daemons from the playbook 
 - cleanup: do some final cleaning up (remove yum cache, etc...)
 
+
 ## Important: 
 
 - Specially due to the fact that this scripts installs a local
@@ -38,17 +39,26 @@ fact.
 On my [personal blog](https://tiagopr.nl), you can find instructions on how to
 use both of them.
 
-- The roles `host_metrics` and `suricata` have their own README files on their
-  folders with addicional instructions. 
+- The roles `host_metrics` and `suricata` have their own README files on their folders with addicional instructions. 
 
-- You can find the auto-generated passwords to access Portainer and Redash 
-  web ui at `/root`, and both are also print when the playbook runs. 
+- You can find the auto-generated password to the influxdb admin user at `/root/influxdb.admin.passwd`, and the portainer admin password at `/opt/containers/portainer/admin.passwd`. Both are also print when the playbook runs. 
 
-- All content related to the containers (especially the docker-compose files),
-  are located at `/opt/containers`. 
+- All content related to the containers (especially the docker-compose files) is located at `/opt/containers`. 
 
-- The self-signed TLS certificates to access Portainer and Redash are at
-  `/certificates`. 
+- The self-signed TLS certificates to access Portainer and Redash are at `/certificates`. 
+
+- To access the redash web UI to see the system metrics: 
+
+    URL: https://your-centos-host-ip-or-name
+    email: devops@localhost.localdomain
+    password: admin12345678 (change it as soon as possible) 
+
+- To access the portainer Web UI to manage containers: 
+
+    URL: https://your-centos-host-ip-or-name:9000
+    user: admin 
+    password: (enter the one generated at `/opt/containers/portainer/admin.passwd`)
+
 
 ## References: 
 - https://www.digitalocean.com/community/tutorials/how-to-use-ansible-roles-to-abstract-your-infrastructure-environment
