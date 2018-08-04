@@ -2,7 +2,7 @@
 
 This is a modular ansible playbook, which can be used to setup a new CentOS 7 server instance. 
 
-This setup does its best to provide security, logs and metrics monitoring. The following is provided: 
+This setup does its best to provide security (although I'm by no means an expert on it I tried my best through researching), logs and metrics monitoring. The following is provided: 
 
 - Development tools (compilers, git, python pip and other dependencies to build packages)
 - auditd rules: auditd is useful to monitor pretty much anything that happens on the linux kernel, prividing logs and watchs for interesting system calls (providing a hook into any system operation we could possibly want). It is also used as the logger for SELinux.
@@ -37,6 +37,18 @@ fact.
 
 On my [personal blog](https://tiagopr.nl), you can find instructions on how to
 use both of them.
+
+- The roles `host_metrics` and `suricata` have their own README files on their
+  folders with addicional instructions. 
+
+- You can find the auto-generated passwords to access Portainer and Redash 
+  web ui at `/root`, and both are also print when the playbook runs. 
+
+- All content related to the containers (especially the docker-compose files),
+  are located at `/opt/containers`. 
+
+- The self-signed TLS certificates to access Portainer and Redash are at
+  `/certificates`. 
 
 ## References: 
 - https://www.digitalocean.com/community/tutorials/how-to-use-ansible-roles-to-abstract-your-infrastructure-environment
