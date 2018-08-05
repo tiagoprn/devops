@@ -1,0 +1,10 @@
+[Unit]
+Description=Updates gnome wallpaper
+
+[Service]
+Type=oneshot
+WorkingDirectory=/storage/src/pyshots/pyshots
+ExecStart=%h/.pyenv/versions/pyshots/bin/python download_wallpaper.py
+
+[Install]
+WantedBy=default.target

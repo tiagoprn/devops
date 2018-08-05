@@ -1,0 +1,10 @@
+[Unit]
+Description=Updates gnome wallpaper
+
+[Timer]
+Persistent=true
+OnCalendar=*-*-* 18:52:00
+Unit=cycle-wallpaper.service
+
+[Install]
+WantedBy=timers.target
