@@ -3,7 +3,7 @@ Description=Updates gnome wallpaper
 
 [Timer]
 Persistent=true
-OnCalendar=*-*-* 18:52:00
+OnCalendar=*-*-* 08:00:00
 Unit=cycle-wallpaper.service
 
 [Install]
