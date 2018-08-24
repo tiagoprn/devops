@@ -1,0 +1,7 @@
+session_name: logs
+windows:
+  - window_name: dashboard
+    layout: even-vertical
+    panes:
+      - jlogs
+      - dmesg -wH  

@@ -1,9 +1,11 @@
-session_name: devops
+session_name: devops_ansible
 windows:
   - window_name: main
     layout: even-vertical
     start_directory: /storage/src/devops 
     panes:
-      - 
-      - clear && df -h
-
+      - cd docker_composes/ansible && cat filesystem/conf/hosts
+      - cd shellscripts/kvm && make status
+      - cd /kvm && tree .  
+      - cd ansible_playbooks
+      - cd ansible_playbooks  
