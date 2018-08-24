@@ -1,4 +1,4 @@
-session_name: devops_ansible
+session_name: devops
 windows:
   - window_name: main
     layout: even-vertical
