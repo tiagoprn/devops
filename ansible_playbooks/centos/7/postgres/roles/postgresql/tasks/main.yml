@@ -1,0 +1,30 @@
+- name: Download postgresql package containing the repository
+  get_url:
+      url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm 
+      dest: /root/pgdg-centos10-10-2.noarch.rpm
+
+- name: Install postgresql repository
+  yum: name=/root/pgdg-centos10-10-2.noarch.rpm state=installed update_cache=true
+
+- name: Install postgresql
+  yum: pkg=postgresql10-* state=installed update_cache=true
+
+- name: Initialize the database
+  command: /usr/pgsql-10/bin/postgresql-10-setup initdb
+
+- name: download the script to generate a random password
+  get_url:
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh 
+    dest: /opt
+    mode: 0744     
+
+- name: Generate a random password for postgresql admin user
+  command: bash /opt/random_password.sh
+  register: postgresql_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+- name: Print postgresql admin user passwd
+  debug: var=postgresql_password.stdout  # prints the value of the "password" variable
+
+- name: Copy the postgresql admin password to a file
+  copy: content="{{ postgresql_password.stdout }}" dest="/root/postgresql.admin.passwd"
