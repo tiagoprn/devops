@@ -4,4 +4,5 @@ windows:
     layout: even-vertical
     panes:
       - jlogs
-      - dmesg -wH  
+      - dmesg -wH
+      - i3-dump-log -f  
