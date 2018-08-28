@@ -41,4 +41,4 @@ convert "$tmpbg" -filter Gaussian -thumbnail 20% -sample 500% "$tmpbg"
 convert "$tmpbg" "$icon" -gravity center -composite "$tmpbg"
 
 # lock the screen with the color parameters
-i3lock -k "${PARAM[@]}" -i "$tmpbg"
+i3lock --timesize=100 -k "${PARAM[@]}" -i "$tmpbg"
