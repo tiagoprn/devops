@@ -18,6 +18,7 @@ help:
 	@echo -e "make net vm=[name] \n\t Show all network interfaces attached to a VM.\n"
 	@echo -e "make rm vm=[name] \n\t Removes a vm permanently.\n"
 	@echo -e "make create vm=[name] bridge=[brXXX] ram=712 cpus=1 \n\t Create a VM (you must have a bridge available, use `make nets` to see the ones available).\n"
+	@echo -e "make live-backup vm=[name] \n\t Makes a live backup of the VM.\n"
 
 status:
 	sudo virsh list --all
@@ -78,4 +79,7 @@ rm: down
 
 create:
 	bash ./create-vm.sh -n $(vm) -b $(bridge) -r $(ram) -c $(cpus)
+
+live-backup:
+	sudo ./live-backup-vm.sh -n $(vm)
 
