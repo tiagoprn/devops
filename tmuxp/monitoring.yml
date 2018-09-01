@@ -4,4 +4,6 @@ windows:
     layout: even-vertical
     panes:
       - sudo htop
-      - sudo watch -n 1 docker ps  
+      - sudo watch -n 1 docker ps
+      - sudo iotop
+
