@@ -19,6 +19,7 @@ help:
 	@echo -e "make rm vm=[name] \n\t Removes a vm permanently.\n"
 	@echo -e "make create vm=[name] bridge=[brXXX] ram=712 cpus=1 \n\t Create a VM (you must have a bridge available, use `make nets` to see the ones available).\n"
 	@echo -e "make live-backup vm=[name] \n\t Makes a live backup of the VM.\n"
+	@echo -e "make live-restore xml=[config] vm=[name] qcow2-image=[image file] \n\t Makes a live restore of the VM.\n"
 
 status:
 	sudo virsh list --all
@@ -83,3 +84,5 @@ create:
 live-backup:
 	sudo ./live-backup-vm.sh -n $(vm)
 
+live-restore:
+	sudo ./live-restore.vm.sh -x $(xml) -n $(vm) -i $(qcow2-image)
