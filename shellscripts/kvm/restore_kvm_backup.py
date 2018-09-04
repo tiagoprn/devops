@@ -35,6 +35,14 @@ BACKUP_IMAGE_FILE = args['backup_image_file']
 IMAGE_FILE = args['destination_image_file']
 XML_RESTORATION_FILE = '/tmp/restoration.xml'
 
+if not os.path.exists(XML_FILE):
+    print('The backup vm XML config file was not found, impossible to move on.')
+    sys.exit(1)
+
+if not os.path.exists(BACKUP_IMAGE_FILE):
+    print('The backup image file was not found, impossible to move on.')
+    sys.exit(1)
+
 
 def change_backup_xml_configuration_to_restore_vm():
     tree = et.parse(XML_FILE)
