@@ -37,14 +37,6 @@ XML_RESTORATION_FILE = '/tmp/restoration.xml'
 
 
 def change_backup_xml_configuration_to_restore_vm():
-    if not os.path.exists(XML_FILE):
-        print('XML file={} does not exist.'.format(XML_FILE))
-        sys.exit(1)
-
-    if not os.path.exists(IMAGE_FILE):
-        print('Image file={} does not exist.'.format(IMAGE_FILE))
-        sys.exit(1)
-
     tree = et.parse(XML_FILE)
     root = tree.getroot()
 
@@ -69,7 +61,8 @@ if __name__ == "__main__":
     print('Removing existing vm...')
     subprocess.run(['sudo', 'virsh', 'undefine', VM_NAME])
     print('Removing disk for the existing vm...')
-    os.unlink(IMAGE_FILE)
+    if os.path.exists(IMAGE_FILE):
+        os.unlink(IMAGE_FILE)
     print('Changing backup kvm config to restoration...')
     change_backup_xml_configuration_to_restore_vm()
     print('Copying the backup disk as the vm disk...')
