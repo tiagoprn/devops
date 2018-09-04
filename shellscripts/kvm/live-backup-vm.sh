@@ -29,7 +29,7 @@ virsh -c qemu:///system dumpxml $VM_NAME > $BACKUPS_DIR/config.xml
 VM_PATH=$(virsh -c qemu:///system domblklist centos7-60 | grep vda | awk {'print $2'})
 BACKUP_NAME="$VM_NAME.$TIMESTAMP" 
 echo 'Creating the snapshot, so that the disk operations will be directed to it for you to copy the original disk file to a safe place...'
-virsh snapshot-create-as --domain $VM_NAME $BACKUP_NAME --diskspec vda,file=$SNAPSHOTS_DIR/$VM_NAME --disk-only --atomic
+virsh snapshot-create-as --no-metadata --domain $VM_NAME $BACKUP_NAME --diskspec vda,file=$SNAPSHOTS_DIR/$VM_NAME --disk-only --atomic
 echo 'Backing up the original disk...'
 cp -farv $VM_PATH $BACKUPS_DIR
 tar cfjv $BACKUPS_ROOT/$BACKUP_NAME.tar.bz2 $BACKUPS_DIR
