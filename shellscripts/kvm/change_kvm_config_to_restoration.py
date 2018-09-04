@@ -17,14 +17,17 @@ cli_parser.add_argument("-x", "--xml-file", required=True,
                         help="the kvm xml configuration file "
                              "containing the machine description.")
 cli_parser.add_argument("-n", "--vm-name", required=True,
-                        help="image name of the mv to show on make status")
-cli_parser.add_argument("-i", "--image-file", required=True,
-                        help="the full path to the qcow2 image file")
+                        help="image name of the vm to show on make status")
+cli_parser.add_argument("-b", "--backup-image-file", required=True,
+                        help="the full path to the qcow2 image file to be restored")
+cli_parser.add_argument("-i", "--destination-image-file", required=True,
+                        help="the full path to where the qcow2 image must be restored")
 args = vars(cli_parser.parse_args())
 
 XML_FILE = args['xml_file']
 VM_NAME = args['vm_name']
-IMAGE_FILE = args['image_file']
+BACKUP_IMAGE_FILE = args['backup_image_file']
+IMAGE_FILE = args['destination_image_file']
 XML_RESTORATION_FILE = '/tmp/restoration.xml'
 
 if not os.path.exists(XML_FILE):
