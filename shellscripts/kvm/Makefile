@@ -75,7 +75,7 @@ net:
 	sudo virsh domiflist $(vm)
 
 rm: down
-	sudo virsh undefine $(vm)
+	sudo virsh undefine $(vm) --snapshots-metadata
 
 create:
 	bash ./create-vm.sh -n $(vm) -b $(bridge) -r $(ram) -c $(cpus)
