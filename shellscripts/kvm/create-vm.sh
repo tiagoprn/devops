@@ -68,10 +68,12 @@ sudo virsh change-media $VM_NAME hda --eject --config  # --config should not be 
 echo 'Removing the iso created by cloud-init, since it will not be necessary anymore...'
 sudo rm /kvm/iso/$VM_NAME-cloud-init-data.iso
 
-echo 'FINISHED! The machine is named' $VM_NAME', has a network bridge at '$BRIDGE_NAME', '$RAM' MB of RAM and uses '$CPUS 'cpu(s). Here are its credentials:'
+echo '==> The machine is named' $VM_NAME', has a network bridge at '$BRIDGE_NAME', '$RAM' MB of RAM and uses '$CPUS 'cpu(s). Here are its credentials:'
 bash ./get_domain_ip.sh $VM_NAME
 
 echo 'Ejecting the iso created by cloud-init - final time...' # this updates the registry that generates the dumpxml command, so the backup does not need the iso anymore.
 sudo virsh change-media $VM_NAME hda --eject 
 echo 'Virtual disks attached to the VM:'
 sudo virsh domblklist $VM_NAME
+
+echo 'FINISHED!'
