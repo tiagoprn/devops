@@ -64,9 +64,12 @@ cp -farv ~/distros/images/$VM_NAME-cloud-init-data.iso /kvm/iso
 sudo virt-install --import --name $VM_NAME --ram $RAM --vcpus $CPUS --cpu host --disk /kvm/images/$VM_NAME.qcow2,format=qcow2,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=rhel7 --noautoconsole
 
 echo 'Ejecting the iso created by cloud-init...'
-sudo virsh change-media $VM_NAME hda --eject --config 
+sudo virsh change-media $VM_NAME hda --eject 
 echo 'Removing the iso created by cloud-init, since it will not be necessary anymore...'
 sudo rm /kvm/iso/$VM_NAME-cloud-init-data.iso
+
+echo 'Virtual disks attached to the VM:'
+sudo virsh domblklist $VM_NAME
 
 echo 'FINISHED! The machine is named' $VM_NAME', has a network bridge at '$BRIDGE_NAME', '$RAM' MB of RAM and uses '$CPUS 'cpu(s). Here are its credentials:'
 bash ./get_domain_ip.sh $VM_NAME

@@ -15,6 +15,11 @@
 - name: Copy postgresql configuration - pg_hba.conf
   copy: src=files/pg_hba.conf dest=/var/lib/pgsql/10/data owner=postgres group=postgres mode=0600
 
+- name: Remove the existing data directory to initialize a new custom database
+  file:
+      path: /var/lib/pgsql/10/data
+      state: absent
+
 - name: Initialize the database
   command: /usr/pgsql-10/bin/postgresql-10-setup initdb
 
