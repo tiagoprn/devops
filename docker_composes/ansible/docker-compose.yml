@@ -4,7 +4,7 @@ services:
     image: tiagoprn/ansible2:20170701-2
     container_name: ansible
     command: tail -f /dev/null  # to keep running forever    
-    restart: on-failure                                 
+    restart: unless-stopped                                 
     network_mode: "host"                            
     pid: "host"                                     
     privileged: true                                

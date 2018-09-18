@@ -36,13 +36,19 @@ fqdn: $1.vbox.local
 
 # Users
 users:
-    - default
+    - name: centos
+      groups: ['${SUDOGROUP}']
+      shell: /bin/bash
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      ssh_authorized_keys:
+        - ${KEY}
     - name: ops
       groups: ['${SUDOGROUP}']
       shell: /bin/bash
       sudo: ALL=(ALL) NOPASSWD:ALL
       ssh_authorized_keys:
         - ${KEY}
+
 
 bootcmd:
   - echo 'My ip addresses are '$(hostname --ip-address) 
