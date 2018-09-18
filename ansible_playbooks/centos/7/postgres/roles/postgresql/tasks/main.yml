@@ -9,12 +9,6 @@
 - name: Install postgresql
   yum: pkg=postgresql10-* state=installed update_cache=true
 
-- name: Copy postgresql configuration - postgresql.conf
-  copy: src=files/postgresql.conf dest=/var/lib/pgsql/10/data owner=postgres group=postgres mode=0600
-
-- name: Copy postgresql configuration - pg_hba.conf
-  copy: src=files/pg_hba.conf dest=/var/lib/pgsql/10/data owner=postgres group=postgres mode=0600
-
 - name: Remove the existing data directory to initialize a new custom database
   file:
       path: /var/lib/pgsql/10/data
@@ -22,6 +16,12 @@
 
 - name: Initialize the database
   command: /usr/pgsql-10/bin/postgresql-10-setup initdb
+
+- name: Copy postgresql configuration - postgresql.conf
+  copy: src=files/postgresql.conf dest=/var/lib/pgsql/10/data owner=postgres group=postgres mode=0600
+
+- name: Copy postgresql configuration - pg_hba.conf
+  copy: src=files/pg_hba.conf dest=/var/lib/pgsql/10/data owner=postgres group=postgres mode=0600
 
 - name: download the script to generate a random password
   get_url:
@@ -39,3 +39,7 @@
 
 - name: Copy the postgresql admin password to a file
   copy: content="{{ postgresql_password.stdout }}" dest="/root/postgresql.admin.passwd"
+
+- name: Show service status
+  command: systemctl status postgresql-10
+  

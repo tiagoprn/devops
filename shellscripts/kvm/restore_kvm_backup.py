@@ -17,6 +17,9 @@ import subprocess
 import sys
 import xml.etree.ElementTree as et
 
+from time import sleep
+
+
 cli_parser = argparse.ArgumentParser()
 cli_parser.add_argument("-x", "--xml-file", required=True,
                         help="the backup kvm xml configuration file "
@@ -77,6 +80,8 @@ if __name__ == "__main__":
     subprocess.run(['sudo', 'cp', '-farv', BACKUP_IMAGE_FILE, IMAGE_FILE])
     print('Restoring vm to the backup image...')
     subprocess.run(['sudo', 'virsh', '-c', 'qemu:///system', 'define', XML_RESTORATION_FILE])
+    print('Giving some time before starting the vm...')
+    sleep(5)
     print('Starting the restored vm now...')
     subprocess.run(['sudo', 'virsh', '-c', 'qemu:///system', 'start', VM_NAME])
     print('DONE.')
