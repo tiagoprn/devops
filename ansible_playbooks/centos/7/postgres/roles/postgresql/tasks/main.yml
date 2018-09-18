@@ -40,6 +40,3 @@
 - name: Copy the postgresql admin password to a file
   copy: content="{{ postgresql_password.stdout }}" dest="/root/postgresql.admin.passwd"
 
-- name: Show service status
-  command: systemctl status postgresql-10
-  
