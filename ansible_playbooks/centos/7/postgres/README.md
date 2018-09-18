@@ -9,4 +9,6 @@ PostgreSQL listens on all interfaces, on port 5999.
 
 Reference: https://www.vivaolinux.com.br/dica/FreeRADIUS-PostgreSQL-10
 
+### How to run a query interactively, using the user password:
 
+    $ PGPASSWORD='1234' psql -U postgres -p 5999 -c '\dt'
