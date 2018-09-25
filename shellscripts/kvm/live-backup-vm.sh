@@ -32,8 +32,8 @@ echo 'Creating the snapshot, so that the disk operations will be directed to it 
 virsh snapshot-create-as --no-metadata --domain $VM_NAME $BACKUP_NAME --diskspec vda,file=$SNAPSHOTS_DIR/$VM_NAME --disk-only --atomic
 echo 'Backing up the original disk...'
 cp -farv $VM_PATH $BACKUPS_DIR
+echo 'Creating a compressed copy of the backup...'
 tar cfjv $BACKUPS_ROOT/$BACKUP_NAME.tar.bz2 $BACKUPS_DIR
-rm -fr $BACKUPS_DIR
 echo 'Redirecting disk operations to the original disk...'
 virsh blockcommit $VM_NAME vda --active --pivot --shallow --verbose
-echo 'DONE.'
+echo "DONE. The unpacked backup is at $BACKUPS_DIR."
