@@ -1,5 +1,5 @@
 #!/bin/bash
-NEWVERSION=20170701-2
+NEWVERSION=20180927-3
 docker ps | grep ansible | awk '{print $1}' | xargs docker kill
 docker build -t tiagoprn/ansible2:$NEWVERSION .
 docker run -t tiagoprn/ansible2:$NEWVERSION tail -f /dev/null &
