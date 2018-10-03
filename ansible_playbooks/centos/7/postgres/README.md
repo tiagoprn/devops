@@ -11,4 +11,5 @@ Reference: https://www.vivaolinux.com.br/dica/FreeRADIUS-PostgreSQL-10
 
 ### How to run a query interactively, using the user password:
 
-    $ PGPASSWORD='1234' psql -U postgres -p 5999 -c '\dt'
+    $ PGPASSWORD='12345678' psql -h 10.0.5.31 -U postgres -p 5999 -c "\l";
+
