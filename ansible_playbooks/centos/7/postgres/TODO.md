@@ -1,27 +1,3 @@
-- Criar um container atualizado com o ansible
-
-- Habilitar o firewall-cmd na porta 5999 do postgres via firewalld: 
-
-    - SHORT VERSION (tested):
-
-        $ firewall-cmd --permanent --zone=public --add-port=5999/tcp && firewall-cmd --reload
-
-    - LONG VERSION (untested):
-
-        firewall-cmd --permanent --new-service=native_postgresql
-        firewall-cmd --permanent --service=native_postgresql --set-short="Custom PostgreSQL Service Ports"
-        firewall-cmd --permanent --service=native_postgresql --set-description="Custom PostgreSQL service firewalld port exceptions"
-        firewall-cmd --permanent --service=native_postgresql --add-port=5999/tcp
-        firewall-cmd --permanent --add-service=native_postgresql
-        firewall-cmd --zone=public --add-service=native_postgresql --permanent
-        firewall-cmd --reload
-
-    (ver como fazer os comandos acima usando o ansible module firewalld:
-    https://docs.ansible.com/ansible/2.5/modules/firewalld_module.html)  
-
-- Configure files/pg_hba.conf to allow IP connections with password 
-(https://pt.wikibooks.org/wiki/PostgreSQL_Pr%C3%A1tico/Configura%C3%A7%C3%B5es/Configurar_acessos)
-
 - Use the generated password on the postgres superuser.
 
 How to programatically set a user's password through psql:

@@ -5,10 +5,10 @@ and change the contents of the nodes "name" and "disk/source.file".
 Usage:
 
 python restore_kvm_backup.py \
--x '/kvm/backups/centos7-02/kvm/backups/centos7-02/20180917.2231.38/config.xml' \
--b '/kvm/backups/centos7-02/kvm/backups/centos7-02/20180917.2231.38/centos7-02.qcow2' \
--n 'centos7-02' \
--i '/kvm/images/centos7-02.qcow2';
+-x '/kvm/backups/centos7-06/kvm/backups/centos7-06/20180924.0850.23/config.xml' \
+-b '/kvm/backups/centos7-06/kvm/backups/centos7-06/20180924.0850.23/centos7-06.qcow2' \
+-n 'centos7-06' \
+-i '/kvm/images/centos7-06.qcow2';
 
 """
 
