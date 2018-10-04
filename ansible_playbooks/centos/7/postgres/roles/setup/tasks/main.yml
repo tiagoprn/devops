@@ -50,3 +50,7 @@
   become_user: postgres
   command: psql -U postgres -p 5999 -c "ALTER USER postgres WITH PASSWORD '{{ postgresql_password.stdout }}';"
 
+- debug:
+    msg: 
+      - 'Finished! You can connect to you new postgresql instance using psql:'
+      - 'PGPASSWORD="{{ postgresql_password.stdout }}" psql -h {{ ansible_default_ipv4.address }} -U postgres -p 5999 -c "\l"; '  
