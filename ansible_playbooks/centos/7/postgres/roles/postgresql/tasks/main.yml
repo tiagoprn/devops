@@ -40,3 +40,13 @@
 - name: Copy the postgresql admin password to a file
   copy: content="{{ postgresql_password.stdout }}" dest="/root/postgresql.admin.passwd"
 
+- name: Enable and start postgresql service
+  systemd: name={{item}} daemon-reload=yes state=started enabled=yes
+  with_items:
+    - postgresql-10 
+
+- name: change the database postgres user password
+  become: yes
+  become_user: postgres
+  command: psql -U postgres -p 5999 -c "ALTER USER postgres WITH PASSWORD '{{ postgresql_password.stdout }}';"
+

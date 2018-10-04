@@ -2,6 +2,5 @@
   # strategy: debug  ## interactive debug console when a task fails.
   roles:
     - postgresql
-    - services
     - firewalld
 
