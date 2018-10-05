@@ -47,6 +47,10 @@ the role task. To connect to influx using the local client:
 
 ```
 influx -username admin -password generated-password-here
+
+e.g.
+
+influx -username admin -password $(cat /root/influxdb.admin.passwd)
 ``` 
 
 - redash database uri (to connect on influxdb): 
