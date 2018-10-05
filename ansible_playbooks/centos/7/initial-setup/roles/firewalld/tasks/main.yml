@@ -1,8 +1,12 @@
 - name: Add a firewall rule to allow external connections to influxdb port
   shell:
     firewall-cmd --permanent --zone=public --add-port=8086/tcp
+  tags:
+      - firewall
 
 - name: Reload firewalld to apply the new configuration
   shell:
     firewall-cmd --reload
+  tags:
+      - firewall
 
