@@ -22,6 +22,7 @@
     - conftmux
     - confvim
     - services
+    - firewalld  
     - cleanup
     - reboot
     - start_containers
