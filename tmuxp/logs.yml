@@ -5,4 +5,6 @@ windows:
     panes:
       - jlogs
       - dmesg -wH
-      - i3-dump-log -f  
+      - i3-dump-log -f
+      - journalctl -u cronie --since today -f
+  
