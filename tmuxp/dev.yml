@@ -1,0 +1,10 @@
+session_name: DEV
+windows:
+  - window_name: main
+    layout: even-vertical
+    start_directory: /storage/src 
+    panes:
+      - pyenv deactivate && clear
+      - pyenv deactivate && clear
+      - pyenv deactivate && clear
+  
