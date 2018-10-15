@@ -1,8 +1,10 @@
 #!/bin/bash
-# pyenv deactivate;
-# pyenv uninstall utils; 
-# rm -fr ~/.pyenv/versions/3.7.0/envs/utils/;
-# pyenv virtualenv 3.7.0 utils && pyenv activate utils
+echo 'Deleting and recreating the virtualenv...'
+pyenv deactivate;
+pyenv uninstall -f utils; 
+rm -fr ~/.pyenv/versions/utils ~/.pyenv/versions/3.7.0/envs/utils/
+pyenv virtualenv 3.7.0 utils && pyenv activate utils
+
 echo 'Upgrading pip...';
 pip install --upgrade pip
 echo 'Installing requirements...';
