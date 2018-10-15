@@ -10,3 +10,5 @@ mycli==1.18.0
 psycopg2-binary
 speedtest-cli==2.0.2
 jinja2==2.10
+ansible==2.7.0
+
