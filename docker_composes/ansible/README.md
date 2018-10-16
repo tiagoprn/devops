@@ -1,11 +1,5 @@
 ## INTRODUCTION
 
-This container can be used to provision CentOS 7 servers, installed from
-the CentOS 7 Cloud Image, through ssh using ansible. This image assumes you 
-have a centos user on this server (it is already on the cloud image) and you 
-have your machine's ssh public key authorized to connect to it and run 
-the playbook.  
-
 ## USING THE CONTAINER
 
 To start the container: 
