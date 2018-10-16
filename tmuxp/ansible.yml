@@ -1,9 +1,17 @@
 session_name: ansible
 windows:
-  - window_name: main
+  - window_name: public
     layout: even-vertical
     start_directory: /storage/src/devops 
     panes:
       - cd docker_composes/ansible && cat filesystem/conf/hosts
       - cd ansible_playbooks
-      - cd ansible_playbooks  
+      - cd ansible_playbooks
+
+  - window_name: private
+    layout: even-vertical
+    start_directory: /storage/src/playbooks
+    panes:
+      - clear 
+      - clear
+      - clear
