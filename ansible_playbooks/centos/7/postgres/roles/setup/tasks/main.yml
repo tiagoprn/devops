@@ -1,6 +1,6 @@
 - name: Download postgresql package containing the repository
   get_url:
-      url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm 
+      url: https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
       dest: /root/pgdg-centos10-10-2.noarch.rpm
 
 - name: Install postgresql repository
@@ -25,9 +25,9 @@
 
 - name: download the script to generate a random password
   get_url:
-    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh 
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh
     dest: /opt
-    mode: 0744     
+    mode: 0744
 
 - name: Generate a random password for postgresql admin user
   command: bash /opt/random_password.sh
@@ -40,10 +40,24 @@
 - name: Copy the postgresql admin password to a file
   copy: content="{{ postgresql_password.stdout }}" dest="/root/postgresql.admin.passwd"
 
+- name: Create custom fact directory to allow storing postgresql password to be read by any playbook
+  file:
+    path: /etc/ansible/facts.d
+    state: directory
+
+- name: Insert fact file containing the postgresql password to be read as hostvars.host.ansible_local.postgres_password
+  copy:
+    src: files/postgres_password.fact
+    dest: /etc/ansible/facts.d/postgres_password.fact
+    mode: 0755
+
+- name: Re-run setup to use postgres_password fact
+  setup: ~
+
 - name: Enable and start postgresql service
   systemd: name={{item}} daemon-reload=yes state=started enabled=yes
   with_items:
-    - postgresql-10 
+    - postgresql-10
 
 - name: change the database postgres user password
   become: yes
@@ -51,6 +65,6 @@
   command: psql -U postgres -p 5999 -c "ALTER USER postgres WITH PASSWORD '{{ postgresql_password.stdout }}';"
 
 - debug:
-    msg: 
+    msg:
       - 'Finished! You can connect to you new postgresql instance using psql:'
-      - 'PGPASSWORD="{{ postgresql_password.stdout }}" psql -h {{ ansible_default_ipv4.address }} -U postgres -p 5999 -c "\l"; '  
+      - 'PGPASSWORD="{{ postgresql_password.stdout }}" psql -h {{ ansible_default_ipv4.address }} -U postgres -p 5999 -c "\l"; '
