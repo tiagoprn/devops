@@ -4,13 +4,13 @@ windows:
     layout: even-vertical
     start_directory: /storage/src/devops/ansible_playbooks
     panes:
-      - git status -s 
+      - git status -s
       - clear
       - clear
   - window_name: private
     layout: even-vertical
-    start_directory: /storage/src/playbooks
+    start_directory: /storage/src/private-playbooks
     panes:
-      - clear 
+      - clear
       - clear
       - clear
