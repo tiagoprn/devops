@@ -31,7 +31,13 @@ else # dark background so use the light icon
 fi
 
 # blur the screenshot by resizing and scaling back up
-convert "$tmpbg" -filter Gaussian -thumbnail 20% -sample 500% "$tmpbg"
+# convert "$tmpbg" -filter Gaussian -thumbnail 20% -sample 500% "$tmpbg"
+
+# apply a gaussian filter before locking
+convert "$tmpbg" -filter Gaussian -resize 20% -define "filter:sigma=50.0" -resize 500.5% "$tmpbg"
+
+# TODO: go to an empty workspace to show the wallpaper before locking
 
 # lock the screen with the color parameters
 i3lock -e -f -t -n -u --timesize=100 -k "${PARAM[@]}" -i "$tmpbg" --datestr="%A, %d %b %Y"
+
