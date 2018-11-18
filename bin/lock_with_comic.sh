@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-bash ./download_random_commitstrip.sh
+bash /storage/src/devops/bin/download_random_commitstrip.sh
 
 COMIC_PATH=$HOME/tmp
 
