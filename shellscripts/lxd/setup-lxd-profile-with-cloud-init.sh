@@ -3,7 +3,7 @@
 # reference: https://gist.github.com/bloodearnest/ebf044476e70c4baee59c5000a10f4c8
 
 # To launch a container using this profile:
-#   $ lxc launch ubuntu: -p default -p $USER
+#   $ lxc launch ubuntu: -p default -p $PROFILE_NAME
 
 set -eu
 
