@@ -51,6 +51,9 @@ config:
           ssh_authorized_keys:
             - ${KEY}
 
+    bootcmd:
+        - echo 'Starting cloud-init for hostname '$(hostname)
+
     # Remove cloud-init when finished with it
     runcmd:
         - [ yum, -y, remove, cloud-init ]
