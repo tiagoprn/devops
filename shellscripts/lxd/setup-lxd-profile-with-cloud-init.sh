@@ -33,7 +33,7 @@ name: $PROFILE_NAME
 description: setup cloud-init for a centos 7 container
 config:
   # note: user.user-data is still available
-  user.vendor-data: |
+  user.user-data: |
     #cloud-config
 
     # Users
@@ -52,7 +52,7 @@ config:
             - ${KEY}
 
     bootcmd:
-        - echo 'Starting cloud-init for hostname '$(hostname)
+        - echo '>>>>>> Starting cloud-init... <<<<<<'
 
     # Remove cloud-init when finished with it
     runcmd:
