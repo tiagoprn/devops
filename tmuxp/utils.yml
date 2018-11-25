@@ -1,10 +1,9 @@
-session_name: DEV
+session_name: UTILS (PYENV)
 windows:
   - window_name: main
     layout: even-vertical
     start_directory: /storage/src
     panes:
+      - cd ~ && clear
       - clear
       - clear
-      - clear
-
