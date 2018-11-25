@@ -2,9 +2,12 @@ session_name: logs
 windows:
   - window_name: dashboard
     layout: even-vertical
+    shell_command_before:
+      - pyenv deactivate utils
+      - clear
     panes:
       - jlogs
       - dmesg -wH
       - i3-dump-log -f
       - journalctl -u cronie --since today -f
-  
+

@@ -1,8 +1,11 @@
-session_name: kvm 
+session_name: kvm
 windows:
   - window_name: main
     layout: even-vertical
-    start_directory: /storage/src 
+    start_directory: /storage/src
+    shell_command_before:
+      - pyenv deactivate utils
+      - clear
     panes:
       - cd /storage/src/devops/shellscripts/kvm && clear
       - cd ~/distros/images && clear

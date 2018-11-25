@@ -3,6 +3,9 @@ windows:
   - window_name: public
     layout: even-vertical
     start_directory: /storage/src/devops/ansible_playbooks
+    shell_command_before:
+      - pyenv deactivate utils
+      - clear
     panes:
       - git status -s
       - clear
@@ -10,6 +13,9 @@ windows:
   - window_name: private
     layout: even-vertical
     start_directory: /storage/src/private-playbooks
+    shell_command_before:
+      - pyenv deactivate utils
+      - clear
     panes:
       - clear
       - clear

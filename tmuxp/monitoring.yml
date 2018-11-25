@@ -2,6 +2,9 @@ session_name: monitoring
 windows:
   - window_name: dashboard
     layout: even-vertical
+    shell_command_before:
+      - pyenv deactivate utils
+      - clear
     panes:
       - sudo watch -n 1 docker ps
       - sudo iotop

@@ -2,7 +2,10 @@ session_name: multiboot
 windows:
   - window_name: main
     layout: even-vertical
+    shell_command_before:
+      - pyenv deactivate utils
+      - clear
     panes:
-      - sudo mkdir -p /run/media/tiago/temp      
+      - sudo mkdir -p /run/media/tiago/temp
       - cd /run/media/tiago/90A9-80BA/boot/grub && ls
       - cd /run/media/tiago/90A9-80BA/iso && ls

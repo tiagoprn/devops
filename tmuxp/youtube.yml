@@ -2,5 +2,7 @@ session_name: youtube
 windows:
   - window_name: dashboard
     layout: even-vertical
+    shell_command_before:
+      - clear
     panes:
       - youtube-player

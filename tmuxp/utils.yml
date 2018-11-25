@@ -1,13 +1,13 @@
-session_name: DEV
+session_name: UTILS (PYENV)
 windows:
   - window_name: main
     layout: even-vertical
     start_directory: /storage/src
     shell_command_before:
-      - pyenv deactivate utils
+      - pyenv activate utils
       - clear
     panes:
       - clear
       - clear
-      - clear
+      - cd ~ && clear
 

@@ -3,8 +3,11 @@ windows:
   - window_name: main
     layout: even-vertical
     start_directory: /storage/src
+    shell_command_before:
+      - pyenv deactivate utils
+      - clear
     panes:
-      - pyenv deactivate && cd dot_files && clear
-      - pyenv deactivate && cd devops && clear
-      - pyenv deactivate && cd ~ && clear
+      - cd dot_files && clear
+      - cd devops && clear
+      - cd ~ && clear
 
