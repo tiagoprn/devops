@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo "Script $0 started..."
+notify-send -u normal -t 3000 -i info 'Script Started!' $0
+
+clip_command="xclip -selection clipboard -o"
+current_value=`$clip_command`
+
+while true
+do
+   new_value=`$clip_command`
+
+   if [[ ! ("$current_value" == "$new_value") ]];
+   then
+      echo 'Clipboard Modified...'
+      notify-send -u normal -t 3000 -i info 'Clipboard Modified!' 'Your clipboard has been modified.'
+
+      current_value=$new_value
+   else
+      echo "Polliing..."
+   fi
+
+   sleep 1.5
+done
+
