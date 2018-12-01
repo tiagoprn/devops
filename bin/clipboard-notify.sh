@@ -12,8 +12,7 @@ do
 
    if [[ ! ("$current_value" == "$new_value") ]];
    then
-      echo 'Clipboard Modified...'
-      notify-send -u normal -t 3000 -i info 'Clipboard Modified!' 'Your clipboard has been modified.'
+      notify-send 'Clipboard was updated.' --urgency low
 
       current_value=$new_value
    else
