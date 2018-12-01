@@ -3,10 +3,10 @@
   roles:
     - upgrade
     - prepare
-    - auditd
+    # - auditd  # Failing
     - utilities
     - rclone
-    - suricata  
+    - suricata
     - sysstat
     - set-sysctl
     - reboot
@@ -22,8 +22,8 @@
     - conftmux
     - confvim
     - services
-    - firewalld  
+    - firewalld
     - cleanup
     - reboot
     - start_containers
-  
+
