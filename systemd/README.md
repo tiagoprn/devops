@@ -1,6 +1,12 @@
 # Pre-Conditions
 
-The unit/timer files must be at: `~/.config/systemd/user` (the script `setup-user-systemd.sh` already did that to you)
+- Enable the loginctl user lingering functionality. It causes a separate service manager for the respective user being started at boot,
+so your user-defined units in `~/.config/systemd/user` will be picked up and processed at boot and shutdown times
+according to your service configuration. E.g.:
+
+    $ loginctl enable-linger tiago
+
+- The unit/timer files must be at: `~/.config/systemd/user` (the script `setup-user-systemd.sh` already did that to you)
 
 # How to enable the timers:
 
@@ -12,9 +18,9 @@ The unit/timer files must be at: `~/.config/systemd/user` (the script `setup-use
 	$ systemctl --user daemon-reload  # reloads the user daemon to detect the changes
 	$ systemctl --user start cycle-wallpaper.timer  # start the timer
 
-	$ systemctl --user list-timers  # show all configured timers - now you should see the new timer 
+	$ systemctl --user list-timers  # show all configured timers - now you should see the new timer
 
 	$ systemctl --user status cycle-wallpaper.timer  # show the timer status
 
-	$ journalctl --user -f -u cycle-wallpaper -n 50  # this is to see the timer logs interactively 
+	$ journalctl --user -f -u cycle-wallpaper -n 50  # this is to see the timer logs interactively
 
