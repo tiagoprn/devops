@@ -10,4 +10,4 @@ windows:
       - dmesg -wH
       - i3-dump-log -f
       - journalctl -u cronie --since today -f
-
+      - journalctl --user --since today -f
