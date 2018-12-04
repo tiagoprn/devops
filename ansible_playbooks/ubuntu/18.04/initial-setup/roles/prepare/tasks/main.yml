@@ -1,0 +1,22 @@
+# TODO: Adapt this to ubuntu
+- name: Install development tools
+  yum:
+    name: "@Development tools"
+    state: present
+
+- name: Install additional development libraries/tools
+  yum: pkg={{item}} state=installed update_cache=true
+  with_items:
+      - bind-utils
+      - python-pip
+      - libnet
+      - libpcap-devel
+      - libnet-devel
+      - pcre-devel
+      - libnet-devel
+      - libyaml-devel
+      - zlib-devel
+      - file-devel
+      - libcap-devel
+      - libcap-ng-devel
+

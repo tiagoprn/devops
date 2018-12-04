@@ -1,0 +1,6 @@
+- name: Copy auditd configuration rules
+  copy: src=files/auditd.rules dest=/etc/audit/rules.d owner=root group=root mode=0644
+
+- name: Restart auditd
+  command: service auditd restart  # it has to be this way on this specific package
+

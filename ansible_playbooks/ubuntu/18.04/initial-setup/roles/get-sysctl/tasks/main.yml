@@ -1,0 +1,8 @@
+- name: Get sysctl configuration
+  command: sysctl -a
+  register: sysctl
+  changed_when: False  # this make this task always run
+
+- name: Print sysctl configuration
+  debug: var=sysctl.stdout
+

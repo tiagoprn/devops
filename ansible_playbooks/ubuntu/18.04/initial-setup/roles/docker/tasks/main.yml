@@ -1,0 +1,96 @@
+- name: Install docker pkg requirements
+  yum: pkg={{item}} state=installed update_cache=true
+  with_items:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+
+- name: Download docker-ce repository
+  get_url:
+      url: https://download.docker.com/linux/centos/docker-ce.repo 
+      dest: /etc/yum.repos.d/docker-ce.repo
+
+- name: Install docker
+  yum: pkg=docker-ce state=installed update_cache=true
+
+- name: Start docker
+  service: name=docker state=started
+
+- name: Add docker config (logging driver and log format)
+  copy: src=files/docker-daemon.json dest=/etc/docker/daemon.json owner=root group=root
+
+- name: Restart docker
+  service: name=docker state=restarted
+
+- name: Run docker version
+  command: docker version
+  register: dockerversion
+  changed_when: False  # this make this task always run
+
+- name: Print docker version
+  debug: var=dockerversion.stdout
+
+- name: Run docker info
+  command: docker info
+  register: dockerinfo
+  changed_when: False  # this make this task always run
+
+- name: Print docker info
+  debug: var=dockerinfo.stdout
+
+- name: Install docker-compose
+  pip: name=docker-compose    
+
+- name: Create the folder to hold portainer compose file and start/stop scripts
+  file:
+    path: /opt/containers/portainer
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Add portainer start script
+  copy: src=files/start.sh dest=/opt/containers/portainer owner=root group=root mode=0777
+
+- name: Add portainer stop script
+  copy: src=files/stop.sh dest=/opt/containers/portainer owner=root group=root mode=0777
+
+- name: Download the script to generate the tls certificates
+  get_url:
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/certificates/create-csr-and-private-key.sh
+    dest: /opt
+    mode: 0744     
+
+- name: Generate the TLS certificates
+  command: bash /opt/create-csr-and-private-key.sh -o /certificates/portainer
+
+- name: download the script to generate a random password
+  get_url:
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh 
+    dest: /opt
+    mode: 0744     
+
+- name: Generate a random password for portainer admin user
+  command: bash /opt/random_password.sh
+  register: portainer_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+- name: Print portainer admin user passwd
+  debug: var=portainer_password.stdout  # prints the value of the "password" variable
+
+- name: Copy the portainer admin password to a file
+  copy: content="{{ portainer_password.stdout }}" dest="/opt/containers/portainer/admin.passwd"
+
+- name: Create the docker-compose file for portainer
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/containers/portainer/docker-compose.yml
+    owner: root
+    group: root
+    mode: 0700
+    backup: yes
+
+- name: Start portainer
+  command: bash /opt/containers/portainer/start.sh
+

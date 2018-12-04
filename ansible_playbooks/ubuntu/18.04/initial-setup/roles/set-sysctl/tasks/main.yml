@@ -1,0 +1,3 @@
+- name: sysctl configuration (fs, kernel and net configuration for hardening)
+  copy: src=files/hardening.conf dest=/etc/sysctl.d owner=root group=root
+

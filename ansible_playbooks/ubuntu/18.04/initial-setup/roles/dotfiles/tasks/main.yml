@@ -1,0 +1,13 @@
+- name: Clone dot_files
+  become_user: dev
+  git:
+      repo: 'https://github.com/tiagoprn/dot_files.git'
+      dest: /home/dev/dot_files
+
+- name: link bashrc
+  become_user: dev
+  command: "{{item}}" 
+  with_items:
+      - mv .bashrc .bashrc.OLD
+      - ln -s /home/dev/dot_files/.bashrc /home/dev/.bashrc
+

@@ -1,0 +1,9 @@
+- name: Build and first start of the redash container
+  become: yes
+  shell: "{{ item }} 2>&1"
+  args:
+    executable: /bin/bash      
+    chdir: /opt/containers/redash
+  with_items:
+    - make run
+    - make restore_redash_collectd_metrics  

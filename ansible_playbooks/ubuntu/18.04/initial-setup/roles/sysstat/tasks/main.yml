@@ -1,0 +1,3 @@
+- name: Override sysstat cronjob configuration
+  copy: src=files/sysstat dest=/etc/cron.d/sysstat owner=root group=root mode=0600
+

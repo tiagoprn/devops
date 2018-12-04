@@ -3,7 +3,7 @@
   roles:
     - upgrade
     - prepare
-    # - auditd  # Failing
+    - auditd  # Failing
     - utilities
     - rclone
     - suricata
