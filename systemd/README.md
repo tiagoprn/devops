@@ -24,3 +24,9 @@ according to your service configuration. E.g.:
 
 	$ journalctl --user -f -u cycle-wallpaper -n 50  # this is to see the timer logs interactively
 
+# How to delete a timer:
+
+    $ systemctl --user stop cycle-wallpaper.timer
+    $ systemctl --user disable cycle-wallpaper.timer
+    $ systemctl --daemon-reload
+
