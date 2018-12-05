@@ -5,6 +5,7 @@ so your user-defined units in `~/.config/systemd/user` will be picked up and pro
 according to your service configuration. E.g.:
 
     $ loginctl enable-linger tiago
+    $ loginctl show-user -p Linger $USER
 
 - The unit/timer files must be at: `~/.config/systemd/user` (the script `setup-user-systemd.sh` already did that to you)
 
