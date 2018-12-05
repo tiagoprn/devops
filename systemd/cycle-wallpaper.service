@@ -6,5 +6,6 @@ Type=oneshot
 WorkingDirectory=/storage/src/pyshots/pyshots
 ExecStart=%h/.pyenv/versions/pyshots/bin/python download_wallpaper.py
 
-[Install]
-WantedBy=default.target
+# BELOW IS COMMENTED BECAUSE IT WILL BE INSTALLED BY THE TIMER UNIT
+# [Install]
+# WantedBy=default.target

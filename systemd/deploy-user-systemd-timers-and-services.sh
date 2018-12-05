@@ -7,7 +7,11 @@ SYSTEMD_SCRIPTS=$SYSTEMD_USER/bin
 mkdir -p $SYSTEMD_SCRIPTS
 
 cp -farv *.service *.timer $SYSTEMD_USER;
-cp bin/* $SYSTEMD_SCRIPTS
+
+if [ -d "bin" ]
+then
+    cp bin/* $SYSTEMD_SCRIPTS;
+fi
 
 printf '\nHere are the instructions to set the systemd timers and scripts:\n\n'
 cat README.md
