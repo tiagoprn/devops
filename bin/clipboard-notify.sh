@@ -16,9 +16,9 @@ do
 
       current_value=$new_value
    else
-      echo "Polliing..."
+      echo "Polling the clipboard..."
    fi
 
-   sleep 1.5
+   sleep 1
 done
 
