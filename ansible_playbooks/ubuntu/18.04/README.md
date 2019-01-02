@@ -15,3 +15,7 @@ ansible hosts file according to that. E.g.:
 ansible_python_interpreter=/usr/bin/python3
 ```
 
+# References
+
+https://ansible-tips-and-tricks.readthedocs.io/en/latest/os-dependent-tasks/installing_packages/
+
