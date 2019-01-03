@@ -1,10 +1,10 @@
-- name: Install additional utilities 
-  yum: pkg={{item}} state=installed update_cache=true
+- name: Install additional utilities
+  action: >
+      {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
   with_items:
       - vim
       - ncdu
       - bash-completion
-      - bash-completion-extras  
       - tree
       - sysstat
       - iotop
@@ -20,6 +20,7 @@
       - git
       - rsync
       - ioping
-      - man
-      - unzip  
+      - man-db
+      - manpages
+      - unzip
       - stress-ng
