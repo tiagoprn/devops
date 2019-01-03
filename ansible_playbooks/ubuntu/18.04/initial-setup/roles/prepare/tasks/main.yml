@@ -3,16 +3,20 @@
       {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
   with_items:
       - build-essential
-        # - bind-utils
-        #- python-pip
-        # - libnet
-        # - libpcap-devel
-        # - libnet-devel
-        # - pcre-devel
-        # - libnet-devel
-        # - libyaml-devel
-        # - zlib-devel
-        # - file-devel
-        # - libcap-devel
-        # - libcap-ng-devel
+      - dnsutils
+      - python3-pip
+      - libnet1
+      - libnet1-dev
+      - libcap2
+      - libcap-dev
+      - libpcre2-dev
+      - libnet1
+      - libnet1-dev
+      - libyaml-0-2
+      - libyaml-dev
+      - zlib1g
+      - zlib1g-dev
+      - file
+      - libcap-ng0
+      - libcap-ng-dev
 
