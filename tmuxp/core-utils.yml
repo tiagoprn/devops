@@ -1,0 +1,13 @@
+session_name: CORE-UTILS (PYENV)
+windows:
+  - window_name: main
+    layout: even-vertical
+    start_directory: /storage/src
+    shell_command_before:
+      - pyenv activate core-utils
+      - clear
+    panes:
+      - clear
+      - clear
+      - cd ~ && clear
+
