@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# Below is for te virtualenv management through this shell script to work
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 echo 'Upgrading pip...';
 pip install --upgrade pip
 echo 'Checking for updates...'
