@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# reference: https://keramida.wordpress.com/2013/03/28/controlling-the-keyboard-backlight-from-cli/
+
 # backlight_get
 #       Print current keyboard brightness from UPower to stdout.
 backlight_get()
