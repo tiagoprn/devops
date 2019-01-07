@@ -1,1 +1,2 @@
 - Create a role to install and configure s3fs and borgbackup (form environment variables)
+- role suricata: Put suricata-update as a systemd crontab unit (run as the suri user on systemd).
