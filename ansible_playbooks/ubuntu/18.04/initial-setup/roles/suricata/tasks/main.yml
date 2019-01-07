@@ -1,5 +1,5 @@
 - name: Copy suricata installation script
-  template:     
+  template:
     src: install.sh.j2
     dest: /tmp/install.sh
     mode: 0777
@@ -10,10 +10,10 @@
 - name: Copy suricata configuration file
   copy: src=files/suricata.yaml dest=/etc/suricata backup=yes owner=suri group=suri mode=0600
 
-- name: Copy systemd service unit file 
+- name: Copy systemd service unit file
   copy: src=files/suricata.service dest=/etc/systemd/system mode=0600
 
-- name: Copy logrotate file 
+- name: Copy logrotate file
   copy: src=files/suricata.logrotate dest=/etc/logrotate.d/suricata mode=0644
 
 - name: Install suricata-update
