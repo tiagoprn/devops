@@ -19,6 +19,6 @@
       - file
       - libcap-ng0
       - libcap-ng-dev
-      - pkgconfig
+      - pkg-config
       - libpcre3-dev
       - libpcap0.8-dev
