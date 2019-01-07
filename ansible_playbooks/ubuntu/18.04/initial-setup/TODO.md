@@ -1,0 +1,1 @@
+- Create a role to install and configure s3fs and borgbackup (form environment variables)

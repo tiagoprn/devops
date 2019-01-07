@@ -1,3 +1,1 @@
-- Test if the systemd unit file starts and stops suricata correctly.
-- Install suricata-update: https://suricata-update.readthedocs.io/en/latest/quickstart.html#install-suricata-update
-- Put suricata-update as a systemd crontab unit.
+Put suricata-update as a systemd crontab unit.

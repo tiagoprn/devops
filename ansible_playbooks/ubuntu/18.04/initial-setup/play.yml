@@ -4,8 +4,7 @@
     - upgrade
     - prepare
     - utilities
-     # - rclone
-     # - suricata
+    - suricata
      #- sysstat
      # - set-sysctl
      # - reboot
@@ -18,8 +17,6 @@
      #- ntp
      #- host_metrics
      #- dotfiles
-     #- conftmux
-     #- confvim
      #- services
      #- firewalld
      #- cleanup
