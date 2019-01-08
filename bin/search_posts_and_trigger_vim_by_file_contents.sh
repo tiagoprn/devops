@@ -12,7 +12,7 @@ vim-fzf-search() {
       )
     local file=$(echo "$match" | cut -d':' -f1)
     if [ -n "$file" ]; then
-        $EDITOR $file +$(echo "$match" | cut -d':' -f2)
+        vim $file +$(echo "$match" | cut -d':' -f2)
     fi
 }
 
