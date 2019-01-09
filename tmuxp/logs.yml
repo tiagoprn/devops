@@ -9,5 +9,6 @@ windows:
       - jlogs
       - dmesg -wH
       - i3-dump-log -f
-      - journalctl -u cronie --since today -f
+      - journalctl _UID=1000 --since today -f | grep borg
       - journalctl --user --since today -f
+
