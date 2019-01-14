@@ -19,3 +19,7 @@
 - name: Install suricata-update
   pip: name=suricata-update
 
+- name: Copy systemd timer to autorun suricata-update daily
+  copy: src={{ item }} dest=/etc/systemd/system mode=0600
+  with_fileglob:
+      - files/*

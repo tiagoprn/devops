@@ -1,10 +1,12 @@
-- name: Enable and start all services 
+- name: Enable and start all services
   systemd: name={{item}} daemon-reload=yes state=started enabled=yes
   with_items:
-    - docker 
-    - fail2ban
-    - sshd
-    - ntpd
-    - auditd  
-    - collectd
-    - influxdb
+    - suricata
+    - suricata-update.timer
+    #    - docker
+    #    - fail2ban
+    #    - sshd
+    #    - ntpd
+    #    - auditd
+    #    - collectd
+    #    - influxdb

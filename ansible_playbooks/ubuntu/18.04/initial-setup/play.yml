@@ -5,20 +5,20 @@
     - prepare
     - utilities
     - suricata
-     #- sysstat
-     # - set-sysctl
-     # - reboot
-     # - get-sysctl
-     #- docker
-     #- fail2ban
-     #- auth
-     #- tmux
-     #- timezone
-     #- ntp
-     #- host_metrics
-     #- dotfiles
-     #- services
-     #- firewalld
-     #- cleanup
-     #- reboot
-     #- start_containers
+    #- sysstat
+    # - set-sysctl
+    # - reboot
+    # - get-sysctl
+    #- docker
+    #- fail2ban
+    #- auth
+    #- tmux
+    #- timezone
+    #- ntp
+    #- host_metrics
+    #- dotfiles
+    - services
+    #- firewalld
+    #- cleanup
+    #- reboot
+    #- start_containers
