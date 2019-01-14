@@ -5,7 +5,7 @@
     - prepare
     - utilities
     - suricata
-    #- sysstat
+    - sysstat
     # - set-sysctl
     # - reboot
     # - get-sysctl

@@ -1,0 +1,9 @@
+[Unit]
+Description=sar (sysstat) daily report
+
+[Service]
+Type=oneshot
+ExecStart=/var/log/sysstat/sar-report-daily.sh
+
+[Install]
+WantedBy=default.target

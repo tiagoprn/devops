@@ -1,3 +1,7 @@
-- name: Override sysstat cronjob configuration
-  copy: src=files/sysstat dest=/etc/cron.d/sysstat owner=root group=root mode=0600
+- name: Copy script to run daily report
+  copy: src=files/sar-report-daily.sh dest=/var/log/sysstat mode=0644
 
+- name: Copy systemd timer to autorun daily-report
+  copy: src={{ item }} dest=/etc/systemd/system mode=0644
+  with_fileglob:
+      - files/systemd/*
