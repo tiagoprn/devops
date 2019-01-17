@@ -1,5 +1,5 @@
 - name: Copy script to run daily report
-  copy: src=files/sar-report-daily.sh dest=/var/log/sysstat mode=0644
+  copy: src=files/sar-report-daily.sh dest=/var/log/sysstat mode=0744
 
 - name: Copy systemd timer to autorun daily-report
   copy: src={{ item }} dest=/etc/systemd/system mode=0644

@@ -1,8 +1,10 @@
 - name: Copy suricata installation script
   template:
-    src: install.sh.j2
-    dest: /tmp/install.sh
+      src: install_suricata.sh.j2
+    dest: /tmp/install_suricata.sh
     mode: 0777
+    args:
+      removes: /tmp/install_suricata.sh
 
 - name: Run installation script
   command: /tmp/install.sh

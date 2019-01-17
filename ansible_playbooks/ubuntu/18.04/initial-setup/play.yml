@@ -4,8 +4,8 @@
     - upgrade
     - prepare
     - utilities
-    - suricata
-    - sysstat
+    - {role: suricata, when: ">>> ansible fact here <<< == false" }
+    # - sysstat
     # - set-sysctl
     # - reboot
     # - get-sysctl
@@ -17,7 +17,7 @@
     #- ntp
     #- host_metrics
     #- dotfiles
-    - services
+    #- services
     #- firewalld
     #- cleanup
     #- reboot
