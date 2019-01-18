@@ -1,0 +1,14 @@
+- name: Create custom fact directory to allow storing custom facts to be read by any playbook
+  file:
+    path: /etc/ansible/facts.d
+    state: directory
+
+- name: Insert fact file to be read as hostvars.host.ansible_local.has_suricata_installed
+  copy:
+    src: files/has_suricata_installed.fact
+    dest: /etc/ansible/facts.d/has_suricata_installed.fact
+    mode: 0755
+
+- name: Re-run setup to use the suricata fact
+  setup: ~
+
