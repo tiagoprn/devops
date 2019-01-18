@@ -9,6 +9,6 @@
     dest: /etc/ansible/facts.d/has_suricata_installed.fact
     mode: 0755
 
-- name: Re-run setup to use the suricata fact
+- name: Re-running setup to use the suricata fact
   setup: ~
 
