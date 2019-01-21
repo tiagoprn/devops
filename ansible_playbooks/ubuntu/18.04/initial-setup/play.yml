@@ -18,7 +18,7 @@
     #- ntp
     #- host_metrics
     #- dotfiles
-    #- services
+    - services
     #- firewalld
     #- cleanup
     #- reboot

@@ -3,8 +3,6 @@
   with_items:
     - suricata
     - suricata-update.timer
-    - sar-report-daily
-    - sar-report-daily.timer
     #    - docker
     #    - fail2ban
     #    - sshd
