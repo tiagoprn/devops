@@ -3,12 +3,16 @@
     path: /etc/ansible/facts.d
     state: directory
 
-- name: Insert fact file to be read as hostvars.host.ansible_local.has_suricata_installed
+- name: Insert fact file
   copy:
-    src: files/has_suricata_installed.fact
-    dest: /etc/ansible/facts.d/has_suricata_installed.fact
+    src: files/suricata_facts.fact
+    dest: /etc/ansible/facts.d/suricata_facts.fact
     mode: 0755
 
-- name: Re-running setup to use the suricata fact
-  setup: ~
+- name: Reload ansible local vars, to have the installed fact available to use
+  setup: filter=ansible_local
 
+- name: show ansible_local dict values
+  debug:
+    var: ansible_local
+    verbosity: 1
