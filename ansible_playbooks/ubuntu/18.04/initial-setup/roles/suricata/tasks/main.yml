@@ -3,11 +3,9 @@
     src: install_suricata.sh.j2
     dest: /tmp/install_suricata.sh
     mode: 0777
-    args:
-      removes: /tmp/install_suricata.sh
 
 - name: Run installation script
-  command: /tmp/install.sh
+  command: /tmp/install_suricata.sh
 
 - name: Copy suricata configuration file
   copy: src=files/suricata.yaml dest=/etc/suricata backup=yes owner=suri group=suri mode=0600
