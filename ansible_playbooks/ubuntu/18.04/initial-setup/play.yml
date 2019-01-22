@@ -6,7 +6,7 @@
     - prepare
     - utilities
     - {role: suricata, when: "ansible_local['suricata_facts']['has_suricata_installed'] == false" }
-    # - sysstat
+    - sysstat
     # - set-sysctl
     # - reboot
     # - get-sysctl
