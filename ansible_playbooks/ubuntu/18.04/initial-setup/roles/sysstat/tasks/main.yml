@@ -1,3 +1,6 @@
+- name: Copy configuration to enable sysstat data collecting
+  copy: src=files/sysstat dest=/etc/default/sysstat mode=0644
+
 - name: Copy script to run daily report
   copy: src=files/sar-report-daily.sh dest=/var/log/sysstat mode=0744
 
