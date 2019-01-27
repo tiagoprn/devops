@@ -22,3 +22,7 @@
       - pkg-config
       - libpcre3-dev
       - libpcap0.8-dev
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
