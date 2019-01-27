@@ -4,6 +4,8 @@
   with_items:
       - build-essential
       - dnsutils
+      - python
+      - python-pip
       - python3-pip
       - libnet1
       - libnet1-dev

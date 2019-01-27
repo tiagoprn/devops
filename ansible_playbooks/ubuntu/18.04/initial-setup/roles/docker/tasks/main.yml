@@ -1,17 +1,14 @@
-- name: Install docker pkg requirements
-  yum: pkg={{item}} state=installed update_cache=true
-  with_items:
-      - yum-utils
-      - device-mapper-persistent-data
-      - lvm2
+- name: Add docker repository apt signing key
+  apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
 
-- name: Download docker-ce repository
-  get_url:
-      url: https://download.docker.com/linux/centos/docker-ce.repo 
-      dest: /etc/yum.repos.d/docker-ce.repo
+- name: Add docker repository
+  apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' state=present
 
 - name: Install docker
-  yum: pkg=docker-ce state=installed update_cache=true
+  action: >
+      {{ ansible_pkg_mgr }} name=docker-ce state=present update_cache=yes
 
 - name: Start docker
   service: name=docker state=started
@@ -39,7 +36,7 @@
   debug: var=dockerinfo.stdout
 
 - name: Install docker-compose
-  pip: name=docker-compose    
+  pip: name=docker-compose
 
 - name: Create the folder to hold portainer compose file and start/stop scripts
   file:
@@ -60,16 +57,16 @@
   get_url:
     url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/certificates/create-csr-and-private-key.sh
     dest: /opt
-    mode: 0744     
+    mode: 0744
 
 - name: Generate the TLS certificates
   command: bash /opt/create-csr-and-private-key.sh -o /certificates/portainer
 
 - name: download the script to generate a random password
   get_url:
-    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh 
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh
     dest: /opt
-    mode: 0744     
+    mode: 0744
 
 - name: Generate a random password for portainer admin user
   command: bash /opt/random_password.sh
