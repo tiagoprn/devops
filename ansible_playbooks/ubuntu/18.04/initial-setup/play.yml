@@ -7,9 +7,9 @@
     - utilities
     - {role: suricata, when: "ansible_local['suricata_facts']['has_suricata_installed'] == false" }
     - sysstat
-    # - set-sysctl
-    # - reboot
-    # - get-sysctl
+    - set-sysctl
+    - reboot
+    - get-sysctl
     #- docker
     #- fail2ban
     #- auth
