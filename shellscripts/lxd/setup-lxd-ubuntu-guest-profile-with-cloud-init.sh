@@ -2,12 +2,9 @@
 
 # reference: https://gist.github.com/bloodearnest/ebf044476e70c4baee59c5000a10f4c8
 
-# To launch a container using this profile:
-#   $ lxc launch ubuntu: -p default -p $PROFILE_NAME
-
 set -eu
 
-PROFILE_NAME="centos.cloud-init.config"
+PROFILE_NAME="ubuntu.cloud-init.config"
 
 PUBKEY=${HOME}/.ssh/id_rsa.pub
 if [ ! -f "${PUBKEY}" ]
@@ -32,6 +29,10 @@ cat << EOF | lxc profile edit $PROFILE_NAME
 name: $PROFILE_NAME
 description: setup cloud-init for a centos 7 container
 config:
+  linux.kernel_modules: bridge,br_netfilter,ip_tables,ip6_tables,ip_vs,netlink_diag,nf_nat,overlay,xt_conntrack
+  raw.lxc: "lxc.apparmor.profile = unconfined\nlxc.cgroup.devices.allow = a\nlxc.mount.auto=proc:rw sys:rw\nlxc.cap.drop = "
+  security.nesting: "true"
+  security.privileged: "true"
   # note: user.user-data is still available
   user.user-data: |
     #cloud-config
@@ -66,7 +67,7 @@ config:
     ssh_genkeytypes: ['ed25519', 'rsa']
 
     # Install my public ssh key to the first user-defined user configured
-    # in cloud.cfg in the template (which is centos for CentOS cloud images)
+    # in cloud.cfg in the template (which is ubuntu for ubuntu cloud images)
     ssh_authorized_keys:
         - ${KEY}
 
