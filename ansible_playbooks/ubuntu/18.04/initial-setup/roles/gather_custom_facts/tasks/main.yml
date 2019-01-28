@@ -3,10 +3,16 @@
     path: /etc/ansible/facts.d
     state: directory
 
-- name: Insert fact file
+- name: Insert suricata fact file
   copy:
     src: files/suricata_facts.fact
     dest: /etc/ansible/facts.d/suricata_facts.fact
+    mode: 0755
+
+- name: Insert docker fact file
+  copy:
+    src: files/docker_facts.fact
+    dest: /etc/ansible/facts.d/docker_facts.fact
     mode: 0755
 
 - name: Reload ansible local vars, to have the installed fact available to use

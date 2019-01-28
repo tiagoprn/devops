@@ -10,8 +10,8 @@
     - set-sysctl
     - reboot
     - get-sysctl
-    - docker
-    #- fail2ban
+    - {role: docker, when: "ansible_local['docker_facts']['has_docker_installed'] == false" }
+    - fail2ban
     #- auth
     #- tmux
     #- timezone
