@@ -16,6 +16,12 @@
 - name: Add docker config (logging driver and log format)
   copy: src=files/docker-daemon.json dest=/etc/docker/daemon.json owner=root group=root
 
+- name: Add ubuntu user to the docker group for it to not require sudo
+  user:
+    name: ubuntu
+    groups: docker
+    append: yes
+
 - name: Restart docker
   service: name=docker state=restarted
 
