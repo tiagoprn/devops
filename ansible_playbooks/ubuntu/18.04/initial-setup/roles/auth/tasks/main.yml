@@ -1,15 +1,15 @@
-- name: Authorize the ssh key from this ansible host to the root user.
+- name: Authorized my ansible controller ssh public key to login on the host controlled by ansible - for root user there
   authorized_key:
       user: root
       state: present
-      key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+      key: "{{ lookup('file', '/home/tiago/.ssh/id_rsa.pub') }}"
 
 - name: Create user
-  user: name=dev 
-        shell=/bin/bash 
-        home=/home/dev 
-        groups=docker,users,input 
-        generate_ssh_key=yes 
+  user: name=dev
+        shell=/bin/bash
+        home=/home/dev
+        groups=docker,users,input
+        generate_ssh_key=yes
         ssh_key_bits=2048
 
 - name: Get ssh public key
@@ -20,11 +20,11 @@
 - name: Print ssh public key
   debug: var=cat.stdout
 
-- name: Authorize the ssh key from this ansible host to the dev user.
+- name: Authorized my ansible controller ssh public key to login on the host controlled by ansible - for dev user there
   authorized_key:
       user: dev
       state: present
-      key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+      key: "{{ lookup('file', '/home/tiago/.ssh/id_rsa.pub') }}"
 
 - name: Set user sudo without password
   copy: src=files/sudoers dest=/etc owner=root group=root mode=0440
