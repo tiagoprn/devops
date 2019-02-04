@@ -7,7 +7,7 @@
 # exit on error
 set -e
 
-TMUX_VERSION=2.5
+TMUX_VERSION=2.8
 
 # create our directories
 mkdir -p $HOME/local $HOME/tmux_tmp
