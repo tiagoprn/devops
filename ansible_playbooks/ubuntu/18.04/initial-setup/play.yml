@@ -14,8 +14,8 @@
     - fail2ban
     - auth
     - tmux
-    #- timezone
-    #- ntp
+    - timezone
+    - ntp
     #- host_metrics
     #- dotfiles
     - services

@@ -5,10 +5,10 @@
     - suricata-update.timer
     - sar-report-daily
     - sar-report-daily.timer
-    #    - docker
-    #    - fail2ban
-    #    - sshd
-    #    - ntpd
+    - docker
+    - fail2ban
+    - sshd
+    - ntp
     #    - auditd
     #    - collectd
     #    - influxdb

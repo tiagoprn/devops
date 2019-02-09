@@ -1,12 +1,10 @@
 - name: Install ntp
-  yum: pkg={{item}} state=installed update_cache=true
+  action: >
+      {{ ansible_pkg_mgr }} name={{item}} state=present update_cache=yes
   with_items:
       - ntp
       - ntpdate
 
 - name: Copy ntp configuration
   copy: src=files/ntp.conf dest=/etc owner=root group=root mode=0644
-
-- name: Start ntp
-  service: name=ntpd state=started
 
