@@ -13,10 +13,10 @@
     - {role: docker, when: "ansible_local['docker_facts']['has_docker_installed'] == false" }
     - fail2ban
     - auth
-    - tmux
+    - {role: tmux, when: "ansible_local['tmux_facts']['has_tmux_installed'] == false" }
     - timezone
     - ntp
-    #- host_metrics
+    - host_metrics
     #- dotfiles
     - services
     #- firewalld

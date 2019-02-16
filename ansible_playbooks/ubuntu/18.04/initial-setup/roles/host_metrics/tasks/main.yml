@@ -1,8 +1,14 @@
-- name: Copy influxdb repository file 
-  copy: src=files/influxdb.repo dest=/etc/yum.repos.d owner=root group=root mode=0644
+- name: Add influx repository apt signing key
+  apt_key:
+      url: https://repos.influxdata.com/influxdb.key
+      state: present
 
-- name: Install collectd and influxdb 
-  yum: pkg={{item}} state=installed update_cache=true
+- name: Add influxdb repository
+  apt_repository: repo='deb [arch=amd64] https://repos.influxdata.com/ubuntu bionic stable' state=present
+
+- name: Install collectd and influxdb
+  action: >
+      {{ ansible_pkg_mgr }} name={{item}} state=present update_cache=yes
   with_items:
       - collectd
       - influxdb
@@ -15,13 +21,13 @@
 
 - name: download the script to generate a random password
   get_url:
-    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh 
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh
     dest: /opt
-    mode: 0744     
+    mode: 0744
 
 - name: Start influxdb service, to be able to create an admin user
   systemd: name=influxdb daemon-reload=yes state=started enabled=yes
- 
+
 - name: Generate a random password for an influxdb admin user
   command: bash /opt/random_password.sh
   register: influx_password  # record the command stdout to the "password" variable
@@ -37,7 +43,7 @@
   command: influx -execute "CREATE USER admin WITH PASSWORD '{{ influx_password.stdout }}' WITH ALL PRIVILEGES"
 
 - name: Validate the influxdb user was created on influxdb
-  command: influx -username admin -password {{ influx_password.stdout }} -execute "SHOW USERS"  
+  command: influx -username admin -password {{ influx_password.stdout }} -execute "SHOW USERS"
 
 - name: Create folder to hold the collectd vmstat plugin
   file:
@@ -51,19 +57,13 @@
   get_url:
     url: https://raw.githubusercontent.com/signalfx/vmstat-collectd/master/vmstat_collectd.py
     dest: /usr/share/collectd/vmstat-collectd/
-    mode: 0744     
+    mode: 0744
 
 - name: download collectd vmstat plugin default configuration
   get_url:
-    url: https://raw.githubusercontent.com/signalfx/integrations/master/collectd-vmstat/10-vmstat.conf 
+    url: https://raw.githubusercontent.com/signalfx/integrations/master/collectd-vmstat/10-vmstat.conf
     dest: /etc/collectd.d/
     mode: 0755
-
-- name: Copy SElinux policy to allow the collectd python plugin to work
-  copy: src=files/cgp.pp dest=/etc owner=root group=root mode=0640
-
-- name: Enable the SELinux policy for the collectd python plugin to work  
-  command: semodule -i /etc/cgp.pp
 
 - name: Create the folder to hold redash certificates
   file:
