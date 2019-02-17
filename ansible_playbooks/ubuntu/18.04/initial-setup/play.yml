@@ -4,7 +4,7 @@
     - gather_custom_facts
     - upgrade
     - {role: prepare, when: "ansible_local['prepare_facts']['has_prepare_passed'] == false" }
-    - utilities
+    - {role: utilities, when: "ansible_local['utilities_facts']['has_utilities_passed'] == false" }
     - {role: suricata, when: "ansible_local['suricata_facts']['has_suricata_installed'] == false" }
     - sysstat
     - set-sysctl

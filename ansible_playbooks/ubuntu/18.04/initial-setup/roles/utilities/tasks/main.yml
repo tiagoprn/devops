@@ -24,3 +24,6 @@
       - manpages
       - unzip
       - stress-ng
+
+- name: Copy file to verify it passed through this role
+  copy: src=files/passed.txt, dest=/var/log/utilities_passed.txt mode=0644
