@@ -3,7 +3,7 @@
   roles:
     - gather_custom_facts
     - upgrade
-    - prepare
+    - {role: prepare, when: "ansible_local['prepare_facts']['has_prepare_passed'] == false" }
     - utilities
     - {role: suricata, when: "ansible_local['suricata_facts']['has_suricata_installed'] == false" }
     - sysstat
@@ -16,7 +16,7 @@
     - {role: tmux, when: "ansible_local['tmux_facts']['has_tmux_installed'] == false" }
     - timezone
     - ntp
-    - host_metrics
+    #- host_metrics
     #- dotfiles
     - services
     #- firewalld

@@ -3,6 +3,12 @@
     path: /etc/ansible/facts.d
     state: directory
 
+- name: Insert prepare role fact file
+  copy:
+    src: files/prepare_facts.fact
+    dest: /etc/ansible/facts.d/prepare_facts.fact
+    mode: 0755
+
 - name: Insert suricata fact file
   copy:
     src: files/suricata_facts.fact
