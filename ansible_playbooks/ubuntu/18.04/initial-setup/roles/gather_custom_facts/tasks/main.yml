@@ -39,6 +39,12 @@
     dest: /etc/ansible/facts.d/timezone_facts.fact
     mode: 0755
 
+- name: Insert ntp role fact file
+  copy:
+    src: files/ntp_facts.fact
+    dest: /etc/ansible/facts.d/ntp_facts.fact
+    mode: 0755
+
 - name: Insert fail2ban fact file
   copy:
     src: files/fail2ban_facts.fact
