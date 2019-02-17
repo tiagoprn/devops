@@ -14,7 +14,7 @@
     - {role: fail2ban, when: "ansible_local['fail2ban_facts']['has_fail2ban_installed'] == false" }
     - {role: auth, when: "ansible_local['auth_facts']['has_ops_user'] == false" }
     - {role: tmux, when: "ansible_local['tmux_facts']['has_tmux_installed'] == false" }
-    - timezone
+    - {role: timezone, when: "ansible_local['timezone_facts']['has_timezone_passed'] == false" }
     - ntp
     #- host_metrics
     #- dotfiles

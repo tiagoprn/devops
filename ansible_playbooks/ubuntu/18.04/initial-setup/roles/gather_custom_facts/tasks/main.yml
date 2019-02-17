@@ -33,6 +33,12 @@
     dest: /etc/ansible/facts.d/get-sysctl_facts.fact
     mode: 0755
 
+- name: Insert timezone role fact file
+  copy:
+    src: files/timezone_facts.fact
+    dest: /etc/ansible/facts.d/timezone_facts.fact
+    mode: 0755
+
 - name: Insert fail2ban fact file
   copy:
     src: files/fail2ban_facts.fact
