@@ -6,7 +6,7 @@
     - {role: prepare, when: "ansible_local['prepare_facts']['has_prepare_passed'] == false" }
     - {role: utilities, when: "ansible_local['utilities_facts']['has_utilities_passed'] == false" }
     - {role: suricata, when: "ansible_local['suricata_facts']['has_suricata_installed'] == false" }
-    - sysstat
+    - {role: sysstat, when: "ansible_local['sysstat_facts']['has_sysstat_passed'] == false" }
     - set-sysctl
     - reboot
     - get-sysctl

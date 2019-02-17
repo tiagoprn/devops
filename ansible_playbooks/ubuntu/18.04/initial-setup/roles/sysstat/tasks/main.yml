@@ -8,3 +8,6 @@
   copy: src={{ item }} dest=/etc/systemd/system mode=0644
   with_fileglob:
       - files/systemd/*
+
+- name: Copy file to verify it passed through this role
+  copy: src=files/passed.txt, dest=/var/log/sysstat_passed.txt mode=0644
