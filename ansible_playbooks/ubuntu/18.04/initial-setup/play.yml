@@ -9,7 +9,7 @@
     - {role: sysstat, when: "ansible_local['sysstat_facts']['has_sysstat_passed'] == false" }
     - {role: set-sysctl, when: "ansible_local['set-sysctl_facts']['has_set-sysctl_passed'] == false" }
     - reboot
-    - get-sysctl
+    - {role: get-sysctl, when: "ansible_local['get-sysctl_facts']['has_get-sysctl_passed'] == false" }
     - {role: docker, when: "ansible_local['docker_facts']['has_docker_installed'] == false" }
     - fail2ban
     - auth
