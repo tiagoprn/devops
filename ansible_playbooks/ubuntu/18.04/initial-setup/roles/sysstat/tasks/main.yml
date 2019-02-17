@@ -10,4 +10,4 @@
       - files/systemd/*
 
 - name: Copy file to verify it passed through this role
-  copy: src=files/passed.txt, dest=/var/log/sysstat_passed.txt mode=0644
+  copy: src=files/passed.txt dest=/var/log/sysstat_passed.txt owner=root group=root mode=0644

@@ -7,4 +7,4 @@
     content: 'PATH=$PATH:$HOME/local/bin'
 
 - name: Copy file to verify it passed through this role
-  copy: src=files/passed.txt, dest=/var/log/set-sysctl_passed.txt mode=0644
+  copy: src=files/passed.txt dest=/var/log/set-sysctl_passed.txt owner=root group=root mode=0644
