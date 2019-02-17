@@ -21,6 +21,12 @@
     dest: /etc/ansible/facts.d/sysstat_facts.fact
     mode: 0755
 
+- name: Insert set-sysctl role fact file
+  copy:
+    src: files/set-sysctl_facts.fact
+    dest: /etc/ansible/facts.d/set-sysctl_facts.fact
+    mode: 0755
+
 - name: Insert suricata fact file
   copy:
     src: files/suricata_facts.fact

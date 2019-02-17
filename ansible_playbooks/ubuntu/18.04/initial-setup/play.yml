@@ -7,7 +7,7 @@
     - {role: utilities, when: "ansible_local['utilities_facts']['has_utilities_passed'] == false" }
     - {role: suricata, when: "ansible_local['suricata_facts']['has_suricata_installed'] == false" }
     - {role: sysstat, when: "ansible_local['sysstat_facts']['has_sysstat_passed'] == false" }
-    - set-sysctl
+    - {role: set-sysctl, when: "ansible_local['set-sysctl_facts']['has_set-sysctl_passed'] == false" }
     - reboot
     - get-sysctl
     - {role: docker, when: "ansible_local['docker_facts']['has_docker_installed'] == false" }

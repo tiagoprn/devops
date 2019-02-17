@@ -5,3 +5,6 @@
   copy:
     dest: /etc/profile.d/custom-path.sh
     content: 'PATH=$PATH:$HOME/local/bin'
+
+- name: Copy file to verify it passed through this role
+  copy: src=files/passed.txt, dest=/var/log/set-sysctl_passed.txt mode=0644
