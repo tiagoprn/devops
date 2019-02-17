@@ -11,7 +11,8 @@
     - reboot
     - {role: get-sysctl, when: "ansible_local['get-sysctl_facts']['has_get-sysctl_passed'] == false" }
     - {role: docker, when: "ansible_local['docker_facts']['has_docker_installed'] == false" }
-    - fail2ban
+    - {role: fail2ban, when: "ansible_local['fail2ban_facts']['has_fail2ban_installed'] == false" }
+
     - auth
     - {role: tmux, when: "ansible_local['tmux_facts']['has_tmux_installed'] == false" }
     - timezone

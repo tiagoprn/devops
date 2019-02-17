@@ -33,6 +33,12 @@
     dest: /etc/ansible/facts.d/get-sysctl_facts.fact
     mode: 0755
 
+- name: Insert fail2ban fact file
+  copy:
+    src: files/fail2ban_facts.fact
+    dest: /etc/ansible/facts.d/fail2ban_facts.fact
+    mode: 0755
+
 - name: Insert suricata fact file
   copy:
     src: files/suricata_facts.fact
