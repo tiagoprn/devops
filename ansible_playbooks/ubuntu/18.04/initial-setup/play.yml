@@ -22,4 +22,4 @@
     - {role: firewalld, when: "ansible_local['firewalld_facts']['has_firewalld_installed'] == false" }
     - cleanup
     - reboot
-    #- start_containers
+    - start_containers
