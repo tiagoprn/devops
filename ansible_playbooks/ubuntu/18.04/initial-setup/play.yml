@@ -17,8 +17,8 @@
     - {role: tmux, when: "ansible_local['tmux_facts']['has_tmux_installed'] == false" }
     - {role: timezone, when: "ansible_local['timezone_facts']['has_timezone_passed'] == false" }
     - {role: ntp, when: "ansible_local['ntp_facts']['has_ntp_installed'] == false" }
+    - {role: host_metrics, when: "ansible_local['collectd_facts']['has_collectd_installed'] == false" }
 
-    - host_metrics
     #- dotfiles
 
     - services
