@@ -18,7 +18,7 @@
     - {role: timezone, when: "ansible_local['timezone_facts']['has_timezone_passed'] == false" }
     - {role: ntp, when: "ansible_local['ntp_facts']['has_ntp_installed'] == false" }
 
-    #- host_metrics
+    - host_metrics
     #- dotfiles
 
     - services

@@ -9,6 +9,5 @@
     - fail2ban
     - sshd
     - ntp
-    #    - auditd
-    #    - collectd
-    #    - influxdb
+    - collectd
+    - influxdb
