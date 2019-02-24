@@ -1,3 +1,7 @@
+- name: Install firewalld
+  action: >
+      {{ ansible_pkg_mgr }} name=firewalld state=present update_cache=yes
+
 - name: Add a firewall rule to allow external connections to influxdb port
   shell:
     firewall-cmd --permanent --zone=public --add-port=8086/tcp
