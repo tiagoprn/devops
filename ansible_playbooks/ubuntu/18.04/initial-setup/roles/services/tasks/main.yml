@@ -11,3 +11,4 @@
     - ntp
     - collectd
     - influxdb
+    - firewalld
