@@ -20,6 +20,7 @@
     - {role: host_metrics, when: "ansible_local['collectd_facts']['has_collectd_installed'] == false" }
     - {role: firewalld, when: "ansible_local['firewalld_facts']['has_firewalld_installed'] == false" }
     - services
+    - reboot
     - cleanup
     - start_containers
     - reboot
