@@ -45,6 +45,9 @@
 - name: Validate the influxdb user was created on influxdb
   command: influx -username admin -password {{ influx_password.stdout }} -execute "SHOW USERS"
 
+- name: Create the collectd influxdb database to store the metrics
+  command: influx -username admin -password {{ influx_password.stdout }} -execute "CREATE DATABASE collectd"
+
 - name: Create folder to hold the collectd vmstat plugin
   file:
     path: /usr/share/collectd/vmstat-collectd/
