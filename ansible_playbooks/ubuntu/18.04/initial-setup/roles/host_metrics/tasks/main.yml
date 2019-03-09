@@ -13,6 +13,12 @@
       - collectd
       - influxdb
 
+- name: Backup original collectd package config
+  copy: src=/etc/collectd.conf dest=/etc/collectd.conf.ORIG
+
+- name: Backup original influxdb package config
+  copy: src=/etc/influxdb/influxdb.conf dest=/etc/influxdb/influxdb.conf.ORIG
+
 - name: Configure collectd
   copy: src=files/collectd.conf dest=/etc owner=root group=root mode=0644
 
