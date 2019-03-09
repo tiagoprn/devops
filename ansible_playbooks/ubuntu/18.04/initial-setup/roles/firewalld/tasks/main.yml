@@ -8,6 +8,12 @@
   tags:
       - firewall
 
+- name: Add a firewall rule to allow locally sending the metrics to influxdb
+  shell:
+    firewall-cmd --permanent --zone=internal --add-port=8096/tcp --add-port=8096/udp
+  tags:
+      - firewall
+
 - name: Reload firewalld to apply the new configuration
   shell:
     firewall-cmd --reload
