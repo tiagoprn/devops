@@ -22,5 +22,5 @@
     - services
     - reboot
     - cleanup
-    # - start_containers
-    # - reboot
+    - start_containers
+    - reboot
