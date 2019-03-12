@@ -1,5 +1,5 @@
-- [ ] Update to version 5.8 or 5.9 (ubuntu installed 5.7, which has some processes plugin e.g. metrics renamed
-                                    from 5.8 which is what I used on CentOS).
+- [ ] Update collectd role to install version 5.8 or 5.9 (ubuntu installed 5.7, which has some processes plugin e.g. metrics renamed
+                                                          from 5.8 which is what I used on CentOS).
         (https://collectd.org/wiki/index.php/Version_5.8)
         Processes plugin: The I/O operations reported for selected processes has been fixed. The metric ps_disk_octets has been renamed to io_octets because it actually contains the number of I/O operation by the process, not just disk related I/O. Same for io_ops (previously ps_disk_ops). The new metric disk_octets has been added and is reporting disk I/O only. Add option to collect the count of active memory maps for Linux processes. The CollectFileDescriptor and CollectContextSwitch options have been added. Thanks to Pavel Rochnyack and to Wilfried Goesgens. #2232, #2454, #1989
 
