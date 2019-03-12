@@ -71,7 +71,7 @@
 - name: download collectd vmstat plugin default configuration
   get_url:
     url: https://raw.githubusercontent.com/signalfx/integrations/master/collectd-vmstat/10-vmstat.conf
-    dest: /etc/collectd/managed_config
+    dest: /etc/collectd/collectd.conf.d/10-python-vmstat.conf
     mode: 0755
 
 - name: Create the folder to hold redash certificates
