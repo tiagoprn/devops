@@ -6,12 +6,26 @@
 - name: Add influxdb repository
   apt_repository: repo='deb [arch=amd64] https://repos.influxdata.com/ubuntu bionic stable' state=present
 
-- name: Install collectd and influxdb
+- name: Install influxdb
   action: >
-      {{ ansible_pkg_mgr }} name={{item}} state=present update_cache=yes
+      {{ ansible_pkg_mgr }} name=influxdb state=present update_cache=yes
+
+- name: download updated collectd packages
+  get_url:
+    url: "{{item}}"
+    dest: /tmp
+    mode: 0744
   with_items:
-      - collectd
-      - influxdb
+      - http://mirrors.kernel.org/ubuntu/pool/universe/c/collectd/collectd-core_5.8.0-5.2_amd64.deb
+      - http://mirrors.kernel.org/ubuntu/pool/universe/c/collectd/collectd_5.8.0-5.2_amd64.deb
+
+- name: install downloaded collectd packages
+  apt:
+    deb: "{{item}}"
+    state: installed
+  with_items:
+    - /tmp/collectd-core_5.8.0-5.2_amd64.deb
+    - /tmp/collectd_5.8.0-5.2_amd64.deb
 
 - name: Backup original collectd package config
   copy: src=/etc/collectd/collectd.conf dest=/etc/collectd/collectd.conf.ORIG remote_src=yes
