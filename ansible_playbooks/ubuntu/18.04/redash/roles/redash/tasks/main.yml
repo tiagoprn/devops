@@ -1,0 +1,34 @@
+- name: Create the folder to hold redash certificates
+  file:
+    path: /certificates/redash
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Generate redash TLS certificates
+  command: bash /opt/create-csr-and-private-key.sh -o /certificates/redash
+
+- name: Copy redash container files
+  copy: src=files/redash dest=/opt/containers owner=root group=root mode=0755
+
+- name: Copy datasources.sql from template
+  template:
+    src: 04.data_sources.sql.j2
+    dest: /opt/containers/redash/shared/database_queries_and_dashboards/04.data_sources.sql
+    mode: 0777
+
+- name: Build and first start of the redash container
+  become: yes
+  shell: "make run 2>&1"
+  args:
+    executable: /bin/bash
+    chdir: /opt/containers/redash
+
+- name: Restore redash container metrics
+  become: yes
+  shell: "make restore_redash_collectd_metrics 2>&1"
+  args:
+    executable: /bin/bash
+    chdir: /opt/containers/redash

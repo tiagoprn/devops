@@ -5,7 +5,6 @@
     - upgrade
     - {role: prepare, when: "ansible_local['prepare_facts']['has_prepare_passed'] == false" }
     - {role: utilities, when: "ansible_local['utilities_facts']['has_utilities_passed'] == false" }
-
     - {role: suricata, when: "ansible_local['suricata_facts']['has_suricata_installed'] == false" }
     - {role: sysstat, when: "ansible_local['sysstat_facts']['has_sysstat_passed'] == false" }
     - {role: set-sysctl, when: "ansible_local['set-sysctl_facts']['has_set-sysctl_passed'] == false" }
@@ -22,5 +21,3 @@
     - services
     - reboot
     - cleanup
-    - start_containers
-    - reboot
