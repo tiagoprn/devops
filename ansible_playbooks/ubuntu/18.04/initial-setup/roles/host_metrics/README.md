@@ -1,7 +1,8 @@
 ## About
 
-This installs collectd (with a plugin to collect information from vmstat) and
-influxdb to store the metrics.
+This installs collectd (with a plugin to collect information from vmstat) and influxdb to store the metrics.
+
+influxdb is the one configured to automatically poll the metrics from collectd, on its [[collectd]] section on influxdb.conf.
 
 ## On collectd
 
