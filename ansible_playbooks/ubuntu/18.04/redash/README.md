@@ -8,8 +8,7 @@ As a prerequisite, you must have run before the playbook `initial-setup` from th
 - Specially due to the fact that this scripts installs a local
 postgres database for redash, it it recommended that it runs on machines/VMs with
 2GB+ of RAM for it to finish successfully. I had errors running it on a 1GB RAM
-VM with exit code 137 on the setup_redash_container task, probably due to that
-fact.
+VM with exit code 137 on the setup_redash_container task, due to that fact.
 
 - All content related to the containers (especially the docker-compose files) is located at `/opt/containers`.
 
