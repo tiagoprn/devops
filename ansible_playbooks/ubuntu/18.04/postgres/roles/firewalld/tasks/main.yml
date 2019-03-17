@@ -1,0 +1,8 @@
+- name: Add a firewall rule to allow external connections to native postgresql port
+  shell:
+    firewall-cmd --permanent --zone=public --add-port=5999/tcp
+
+- name: Reload firewalld to apply the new configuration
+  shell:
+    firewall-cmd --reload
+

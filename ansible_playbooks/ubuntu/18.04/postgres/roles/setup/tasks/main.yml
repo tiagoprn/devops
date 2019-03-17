@@ -1,0 +1,56 @@
+- name: Install postgresql packages
+  action: >
+      {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+      - postgresql-10
+      - postgresql-client-10
+      - postgresql-doc-10
+      - postgresql-server-dev-10
+      - libpq-dev
+
+- name: download the script to generate a random password
+  get_url:
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh
+    dest: /opt
+    mode: 0744
+
+- name: Generate a random password for postgresql test user
+  command: bash /opt/random_password.sh
+  register: postgresql_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+- name: Print postgresql test user passwd
+  debug: var=postgresql_password.stdout  # prints the value of the "password" variable
+
+- name: Copy the postgresql test user password to a file
+  copy: content="{{ postgresql_password.stdout }}" dest="/root/postgresql.admin.passwd"
+
+- name: Create custom fact directory to allow storing postgresql password to be read by any playbook
+  file:
+    path: /etc/ansible/facts.d
+    state: directory
+
+- name: Insert fact file containing the postgresql password to be read as hostvars.host.ansible_local.postgres_password
+  copy:
+    src: files/postgres_password.fact
+    dest: /etc/ansible/facts.d/postgres_password.fact
+    mode: 0755
+
+- name: Re-run setup to use postgres_password fact
+  setup: ~
+
+- name: Enable and start postgresql service
+  systemd: name={{item}} daemon-reload=yes state=started enabled=yes
+  with_items:
+    - postgresql
+
+- name: create a new user named test
+  command: sudo -u postgres psql -c "CREATE USER test WITH PASSWORD '{{ postgresql_password.stdout }}';"
+
+- name: create a new database for the user test
+  command: 'PGPASSWORD={{ postgresql_password.stdout }} psql -h {{ ansible_default_ipv4.address }} -U test -c "CREATE DATABASE test_db;"'
+
+- debug:
+    msg:
+      - 'Finished! You can connect to your new postgresql instance using psql:'
+      - 'PGPASSWORD="{{ postgresql_password.stdout }}" psql -h {{ ansible_default_ipv4.address }} -U test -c "\l"; '
