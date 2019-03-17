@@ -1,4 +1,3 @@
-- [ ] Check if it runs correctly since I dismembered the host_metrics redash funcionality into another playbook.
 - [ ] Configure mitogen to run faster commands on playbooks according to (document on tiagopr.nl also): https://mitogen.readthedocs.io/en/latest/ansible.html
 - [ ] Create a role to install and configure s3fs and borgbackup (from environment variables).
 - [ ] On each role, add a README.md briefly explaining what it does.
