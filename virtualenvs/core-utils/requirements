@@ -7,4 +7,5 @@ cookiecutter==1.6.0
 s3cmd==2.0.2
 speedtest-cli==2.0.2
 jinja2==2.10
-ansible==2.7.0
+ansible==2.7.9
+mitogen==0.2.6
