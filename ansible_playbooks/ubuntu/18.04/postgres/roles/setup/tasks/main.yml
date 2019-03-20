@@ -8,6 +8,12 @@
       - postgresql-server-dev-10
       - libpq-dev
 
+- name: Backup postgresql configuration - pg_hba.conf
+  copy: src=/etc/postgresql/10/main/pg_hba.conf  dest=/etc/postgresql/10/main/pg_hba.conf.ORIG remote_src=yes
+
+- name: Copy postgresql configuration - pg_hba.conf
+  copy: src=files/pg_hba.conf.ubuntu dest=/etc/postgresql/10/main/pg_hba.conf owner=postgres group=postgres mode=0600
+
 - name: download the script to generate a random password
   get_url:
     url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/random_password.sh
