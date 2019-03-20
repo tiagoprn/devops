@@ -8,11 +8,20 @@
       - postgresql-server-dev-10
       - libpq-dev
 
+- name: Backup postgresql configuration - postgresql.conf
+  copy: src=/etc/postgresql/10/main/postgresql.conf  dest=/etc/postgresql/10/main/postgresql.conf.ORIG remote_src=yes
+
+- name: Copy postgresql configuration - postgresql.conf
+  copy: src=files/postgresql.conf.ubuntu dest=/etc/postgresql/10/main/postgresql.conf owner=postgres group=postgres mode=0600
+
 - name: Backup postgresql configuration - pg_hba.conf
   copy: src=/etc/postgresql/10/main/pg_hba.conf  dest=/etc/postgresql/10/main/pg_hba.conf.ORIG remote_src=yes
 
 - name: Copy postgresql configuration - pg_hba.conf
   copy: src=files/pg_hba.conf.ubuntu dest=/etc/postgresql/10/main/pg_hba.conf owner=postgres group=postgres mode=0600
+
+- name: Restart postgresql service to apply the new configuration
+  service: name=postgresql state=restarted
 
 - name: download the script to generate a random password
   get_url:
@@ -51,12 +60,15 @@
     - postgresql
 
 - name: create a new user named test
-  command: sudo -u postgres psql -c "CREATE USER test WITH PASSWORD '{{ postgresql_password.stdout }}';"
+  command: sudo -u postgres psql -c "CREATE USER test WITH ENCRYPTED PASSWORD '{{ postgresql_password.stdout }}';"
 
 - name: create a new database for the user test
-  command: 'PGPASSWORD={{ postgresql_password.stdout }} psql -h {{ ansible_default_ipv4.address }} -U test -c "CREATE DATABASE test_db;"'
+  command: sudo -u postgres psql -c "CREATE DATABASE test_db;"
+
+- name: change permissions to the test user for the database test_db
+  command: sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE test_db TO test;"
 
 - debug:
     msg:
       - 'Finished! You can connect to your new postgresql instance using psql:'
-      - 'PGPASSWORD="{{ postgresql_password.stdout }}" psql -h {{ ansible_default_ipv4.address }} -U test -c "\l"; '
+      - 'PGPASSWORD="{{ postgresql_password.stdout }}" psql -h {{ ansible_default_ipv4.address }} -U test -d test_db; '
