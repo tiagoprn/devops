@@ -9,4 +9,4 @@ windows:
     panes:
       - cd ~ && clear
       - cd ~/.config/systemd/user && clear
-      - cd dot_files && clear
+      - cd /storage/docs/notes && clear
