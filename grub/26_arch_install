@@ -1,0 +1,14 @@
+#!/bin/sh
+exec tail -n +3 $0
+
+menuentry "Arch Linux install (from local ISO)" {
+    set isofile="/boot/archlinux.iso"
+    loopback loop $isofile
+    set drive_label="ROOT"
+    set arch_iso_label="ARCH_201903"
+    linux (loop)/arch/boot/x86_64/vmlinuz earlymodules=loop lang=en locale=en_US.UTF-8 ramdisk_size=75% img_dev=/dev/disk/by-label/$drive_label img_loop=$isofile archisolabel=$arch_iso_label
+    # initrd (loop)/arch/boot/x86_64/archiso.img
+    initrd (loop)/arch/boot/intel_ucode.img (loop)/arch/boot/amd_ucode.img (loop)/arch/boot/x86_64/archiso.img
+}
+
+

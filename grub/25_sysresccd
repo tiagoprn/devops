@@ -1,0 +1,16 @@
+#!/bin/sh
+exec tail -n +3 $0
+
+menuentry "SystemRescueCd (isoloop)" {
+    load_video
+    insmod gzio
+    insmod part_gpt
+    insmod part_msdos
+    insmod ext2
+    search --no-floppy --label ROOT --set=root
+    loopback loop /boot/systemrescuecd.iso
+    echo   'Loading kernel ...'
+    linux  (loop)/sysresccd/boot/x86_64/vmlinuz img_label=ROOT img_loop=/boot/systemrescuecd.iso archisobasedir=sysresccd copytoram setkmap=us
+    echo   'Loading initramfs ...'
+    initrd (loop)/sysresccd/boot/x86_64/sysresccd.img
+}
