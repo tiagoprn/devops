@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+
+"""
+On Arch Linux, which defaults to python3, you must, as root (not sudo), install the package `python-pip`
+and then:
+
+    $ pip install dmenu
+
+"""
+
 import os
 import subprocess
 import sys
@@ -12,8 +21,6 @@ BROWSERS = {
 }
 
 
-# To use, install as root:
-# sudo pip3 install dmenu
 
 def get_bookmarks_list():
     # output = subprocess.check_output(['/bin/bash', '/storage/src/devops/bin/bookmarks_list.sh'])
@@ -33,19 +40,25 @@ if __name__ == "__main__":
             urls[title] = url
 
     chosen_title = dmenu.show(urls.keys(), prompt='Choose a bookmark', lines=20)
-    if chosen_title:
-        chosen_url = urls[chosen_title]
-        print(f'chosen_url={chosen_url}')
+    if not chosen_title:
+        print('No title chosen, quitting now.')
+        sys.exit(0)
+
+    chosen_url = urls[chosen_title]
+    print(f'chosen_url={chosen_url}')
 
     browser = dmenu.show(BROWSERS.keys(), prompt='Choose the browser:')
 
-    if browser:
-        command = f'notify-send --urgency low "Opening {browser} with bookmark {chosen_title}"...'
-        os.system(command)
+    if not browser:
+        print('No browser chosen, quitting now.')
+        sys.exit(0)
 
-        if 'firefox' in browser.lower():
-            command = f"{BROWSERS[browser]} --new-tab {chosen_url} &"
-        else:
-            command = f"{BROWSERS[browser]} {chosen_url} &"
-        os.system(command)
+    command = f'notify-send --urgency low "Opening {browser} with bookmark {chosen_title}"...'
+    os.system(command)
+
+    if 'firefox' in browser.lower():
+        command = f"{BROWSERS[browser]} --new-tab {chosen_url} &"
+    else:
+        command = f"{BROWSERS[browser]} {chosen_url} &"
+    os.system(command)
 
