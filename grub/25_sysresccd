@@ -1,0 +1,19 @@
+#!/bin/sh
+exec tail -n +3 $0
+
+menuentry "SystemRescueCd (isoloop)" {
+    set partition_label="ROOT"
+    # isofile must be set to the iso full path on the partition label defined above
+    set isofile="/boot/systemrescuecd.iso"
+    load_video
+    insmod gzio
+    insmod part_gpt
+    insmod part_msdos
+    insmod ext2
+    search --no-floppy --label $partition_label --set=root
+    loopback loop $isofile 
+    echo   'Loading kernel ...'
+    linux  (loop)/sysresccd/boot/x86_64/vmlinuz img_label=$partition_label img_loop=$isofile archisobasedir=sysresccd copytoram setkmap=us
+    echo   'Loading initramfs ...'
+    initrd (loop)/sysresccd/boot/x86_64/sysresccd.img
+}

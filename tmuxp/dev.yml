@@ -7,7 +7,7 @@ windows:
       - pyenv deactivate utils
       - clear
     panes:
-      - clear
-      - clear
+      - cd dot_files && clear
+      - cd devops && clear
       - clear
 

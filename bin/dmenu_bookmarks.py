@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import subprocess
 import sys
@@ -5,7 +6,11 @@ import sys
 import dmenu
 
 
-BROWSERS=['firefox', 'google-chrome-stable']
+BROWSERS = {
+    ' Firefox': 'firefox',
+    ' Chrome': 'google-chrome-stable'
+}
+
 
 # To use, install as root:
 # sudo pip3 install dmenu
@@ -24,23 +29,23 @@ if __name__ == "__main__":
 
     for line in lines:
         if line.replace('\n', ''):
-            print(line)
             title, url = line.split()
             urls[title] = url
 
-    chosen_title = dmenu.show(urls.keys(), prompt='Choose a bookmark')
+    chosen_title = dmenu.show(urls.keys(), prompt='Choose a bookmark', lines=20)
     if chosen_title:
         chosen_url = urls[chosen_title]
-        print(chosen_url)
+        print(f'chosen_url={chosen_url}')
 
-    browser = dmenu.show(BROWSERS, prompt='Choose the browser:')
+    browser = dmenu.show(BROWSERS.keys(), prompt='Choose the browser:')
 
     if browser:
-        command = f'notify-send --urgency low "opening {browser} with bookmark {chosen_title}"...'
+        command = f'notify-send --urgency low "Opening {browser} with bookmark {chosen_title}"...'
         os.system(command)
 
-        if browser == 'firefox':
-            command = f'{browser} --new-tab {chosen_url} &'
+        if 'firefox' in browser.lower():
+            command = f"{BROWSERS[browser]} --new-tab {chosen_url} &"
         else:
-            command = f'{browser} {chosen_url} &'
+            command = f"{BROWSERS[browser]} {chosen_url} &"
         os.system(command)
+
