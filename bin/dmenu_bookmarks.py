@@ -16,7 +16,7 @@ import dmenu
 
 
 BROWSERS = {
-    ' Firefox': 'firefox',
+    ' Firefox': 'firefox-beta',
     ' Chrome': 'google-chrome-stable'
 }
 
