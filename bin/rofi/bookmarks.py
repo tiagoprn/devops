@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# TODO: migrate to python-rofi
+# TODO: migrate to python-rofi: https://github.com/bcbnz/python-rofi
 
 import os
 import subprocess
