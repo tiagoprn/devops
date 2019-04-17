@@ -1,40 +1,32 @@
 #!/usr/bin/env python3
 
 # TODO: migrate to python-rofi: https://github.com/bcbnz/python-rofi
-
+import glob
 import os
 import subprocess
 import sys
 
 import dmenu
-import rofi
-
+from rofi import Rofi
 
 BROWSERS = {
     ' Firefox': 'firefox-beta',
     ' Chrome': 'google-chrome-stable'
 }
 
+BOOKMARKS_ROOT = '/storage/docs/notes'
 
 
-def get_bookmarks_list():
-    # output = subprocess.check_output(['/bin/bash', '/storage/src/devops/bin/bookmarks_list.sh'])
-    output = subprocess.run(['/bin/bash', '/storage/src/devops/bin/bookmarks_list.sh'], stdout=subprocess.PIPE).stdout.decode('utf-8')
-    return output
+def get_bookmark_files():
+    return [filename for filename in \
+            glob.iglob(f'{BOOKMARKS_ROOT}/**/.BrowserBookmarks',
+                       recursive=True)]
 
 
-if __name__ == "__main__":
-    bookmarks_list = get_bookmarks_list()
-    lines = bookmarks_list.split('\n')
-
-    urls = {}
-
-    for line in lines:
-        if line.replace('\n', ''):
-            title, url = line.split()
-            urls[title] = url
-
-    chosen_title = dmenu.show(urls.keys(), prompt='Choose a bookmark', lines=20)
+def main():
+    chosen_title = dmenu.show(urls.keys(),
+                              prompt='Choose a bookmark',
+                              lines=20)
     if not chosen_title:
         print('No title chosen, quitting now.')
         sys.exit(0)
@@ -48,7 +40,8 @@ if __name__ == "__main__":
         print('No browser chosen, quitting now.')
         sys.exit(0)
 
-    command = f'notify-send --urgency low "Opening {browser} with bookmark {chosen_title}"...'
+    command = f'notify-send --urgency low "Opening {browser} ' \
+              f'with bookmark {chosen_title}"...'
     os.system(command)
 
     if 'firefox' in browser.lower():
@@ -57,3 +50,40 @@ if __name__ == "__main__":
         command = f"{BROWSERS[browser]} {chosen_url} &"
     os.system(command)
 
+
+def get_bookmarks():
+    global bookmarks_list, file_context, tag, url
+    bookmarks_list = []
+    bookmarks_urls = {}
+    files = get_bookmark_files()
+    for file in files:
+        file_context = file.split('/')[-2]
+        with open(file, 'r') as input_file:
+            lines = input_file.readlines()
+        for line in lines:
+            if line.replace('\n', ''):
+                tag, url = line.split()
+                key = f'{file_context}_{tag}'
+                value = url
+                bookmarks_list.append(key)
+                bookmarks_urls[key] = url
+    return sorted(bookmarks_list), bookmarks_urls
+
+
+if __name__ == "__main__":
+    # main()
+    bookmarks_list, bookmarks_urls = get_bookmarks()
+
+    rofi_client = Rofi()
+    selected, keyboard_key = rofi_client.select('What bookmark you want to open?',
+                                                bookmarks_list)
+    print(f'keyboard_key pressed={keyboard_key}')
+
+    if keyboard_key == -1:
+        print('cancelled')
+        sys.exit(0)
+
+    print('Moving on...')
+    url = bookmarks_urls[bookmarks_list[selected]]
+
+    rofi_client.status(f'Opening url: {url}')
