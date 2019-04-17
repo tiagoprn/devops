@@ -86,4 +86,4 @@ if __name__ == "__main__":
     print('Moving on...')
     url = bookmarks_urls[bookmarks_list[selected]]
 
-    rofi_client.status(f'Opening url: {url}')
+    print(f'Opening url: {url}')
