@@ -1,11 +1,23 @@
 #!/usr/bin/env python3
 
-# TODO: migrate to python-rofi: https://github.com/bcbnz/python-rofi
 import glob
+import logging
 import os
 import sys
 
 from rofi import Rofi
+
+CURRENT_SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
+LOG_FORMAT = ('[%(asctime)s PID %(process)s '
+              '%(filename)s:%(lineno)s - %(funcName)s()] '
+              '%(levelname)s -> \n'
+              '%(message)s\n')
+# Configure the logging to console. Works from python 3.3+
+logging.basicConfig(
+    format=LOG_FORMAT,
+    level=logging.INFO,
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
 
 BROWSERS = {
     ' Firefox': 'firefox-beta',
@@ -45,18 +57,19 @@ if __name__ == "__main__":
     bookmarks_list, bookmarks_urls = get_bookmarks()
 
     rofi_client = Rofi()
-    selected, keyboard_key = rofi_client.select('What bookmark you want to open?',
-                                                bookmarks_list)
-    print(f'keyboard_key pressed={keyboard_key}')
+    selected, keyboard_key = rofi_client.select(
+        'What bookmark you want to open?',
+        bookmarks_list)
+    logging.info(f'keyboard_key pressed={keyboard_key}')
 
     if keyboard_key == -1:
-        print('cancelled')
+        logging.info('cancelled')
         sys.exit(0)
 
     selected_bookmark = bookmarks_list[selected]
-    print(f'selected_bookmark={selected_bookmark}')
+    logging.info(f'selected_bookmark={selected_bookmark}')
     chosen_url = bookmarks_urls[selected_bookmark]
-    print(f'chosen_url={chosen_url}')
+    logging.info(f'chosen_url={chosen_url}')
 
     browsers = BROWSERS.keys()
     browsers_keys = []
@@ -65,16 +78,16 @@ if __name__ == "__main__":
 
     selected, keyboard_key = rofi_client.select('Open on what browser?',
                                                 browsers)
-    print(f'keyboard_key pressed={keyboard_key}')
+    logging.info(f'keyboard_key pressed={keyboard_key}')
 
     if keyboard_key == -1:
-        print('No browser chosen, quitting now.')
+        logging.info('No browser chosen, quitting now.')
         sys.exit(0)
 
-    print(f'selected={selected}')
+    logging.info(f'selected={selected}')
 
     selected_browser = BROWSERS[browsers_keys[selected]]
-    print(f'selected_browser={selected_browser}')
+    logging.info(f'selected_browser={selected_browser}')
     command = f'notify-send --urgency low "Opening {selected_browser} ' \
               f'with url {selected_bookmark}"...'
     os.system(command)
