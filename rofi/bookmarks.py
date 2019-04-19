@@ -53,12 +53,11 @@ def get_bookmarks():
 
 
 if __name__ == "__main__":
-    # main()
     bookmarks_list, bookmarks_urls = get_bookmarks()
 
     rofi_client = Rofi()
     selected, keyboard_key = rofi_client.select(
-        'What bookmark you want to open?',
+        'Choose a bookmark to open',
         bookmarks_list)
     logging.info(f'keyboard_key pressed={keyboard_key}')
 
@@ -76,7 +75,7 @@ if __name__ == "__main__":
     for index in BROWSERS:
         browsers_keys.append(index)
 
-    selected, keyboard_key = rofi_client.select('Open on what browser?',
+    selected, keyboard_key = rofi_client.select('Choose a browser',
                                                 browsers)
     logging.info(f'keyboard_key pressed={keyboard_key}')
 
