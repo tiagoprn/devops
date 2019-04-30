@@ -20,10 +20,10 @@ logging.basicConfig(
 )
 
 ACTIONS = [
-    ('Switch User', 'dm-tool swith-to-greeter',),
-    ('Logoff', 'i3-msg exit',),
-    ('Shutdown', 'sudo /sbin/shutdown -h now',),
-    ('Restart', 'sudo /sbin/shutdown -r now',)
+    ('switch user', 'dm-tool swith-to-greeter',),
+    ('logoff', 'i3-msg exit',),
+    ('shutdown', 'sudo /sbin/shutdown -h now',),
+    ('restart', 'sudo /sbin/shutdown -r now',)
 ]
 
 
@@ -33,8 +33,7 @@ if __name__ == "__main__":
     rofi_client = Rofi()
     selected, keyboard_key = rofi_client.select(
         'Choose your destiny',
-        actions_list,
-        rofi_args=['-i']  # case insensitive
+        actions_list
     )
     logging.info(f'keyboard_key pressed={keyboard_key}')
 
@@ -47,4 +46,4 @@ if __name__ == "__main__":
     command = ACTIONS[selected][1]
 
     logging.info(f'Running command: {command}')
-    # os.system(command)
+    os.system(command)
