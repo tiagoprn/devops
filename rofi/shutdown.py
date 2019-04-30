@@ -20,7 +20,7 @@ logging.basicConfig(
 )
 
 ACTIONS = [
-    ('switch user', 'dm-tool swith-to-greeter',),
+    ('switch user', 'dm-tool switch-to-greeter',),
     ('logoff', 'i3-msg exit',),
     ('shutdown', 'sudo /sbin/shutdown -h now',),
     ('restart', 'sudo /sbin/shutdown -r now',)
