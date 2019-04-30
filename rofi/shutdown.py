@@ -33,12 +33,14 @@ if __name__ == "__main__":
     rofi_client = Rofi()
     selected, keyboard_key = rofi_client.select(
         'Choose your destiny',
-        actions_list)
+        actions_list,
+        rofi_args=['-i']  # case insensitive
+    )
     logging.info(f'keyboard_key pressed={keyboard_key}')
 
     if keyboard_key == -1:
         logging.info('cancelled')
-        sys.exit(0)
+        rofi_client.exit_with_error('Cancelled, nothing to be done.')
 
     logging.info(f'selected={selected}')
 

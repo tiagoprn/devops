@@ -58,7 +58,7 @@ if __name__ == "__main__":
     rofi_client = Rofi()
     selected, keyboard_key = rofi_client.select(
         'Choose a bookmark to open',
-        bookmarks_list)
+        bookmarks_list, fullscreen=True)
     logging.info(f'keyboard_key pressed={keyboard_key}')
 
     if keyboard_key == -1:
