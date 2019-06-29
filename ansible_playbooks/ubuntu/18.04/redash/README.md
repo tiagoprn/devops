@@ -16,7 +16,7 @@ VM with exit code 137 on the setup_redash_container task, due to that fact.
 
 - To access the redash web UI to see the system metrics:
 
-    URL: https://your-centos-host-ip-or-name
+    URL: https://your-ubuntu-host-ip-or-name
     email: devops@localhost.localdomain
     password: admin12345678 (change it as soon as possible)
 
