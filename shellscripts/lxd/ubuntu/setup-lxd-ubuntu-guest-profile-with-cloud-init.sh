@@ -39,7 +39,7 @@ config:
 
     # Users
     users:
-        - name: centos
+        - name: ubuntu
           groups: ['${SUDOGROUP}']
           shell: /bin/bash
           sudo: ALL=(ALL) NOPASSWD:ALL
