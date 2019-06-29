@@ -63,12 +63,6 @@
     dest: /etc/ansible/facts.d/suricata_facts.fact
     mode: 0755
 
-- name: Insert docker fact file
-  copy:
-    src: files/docker_facts.fact
-    dest: /etc/ansible/facts.d/docker_facts.fact
-    mode: 0755
-
 - name: Insert tmux fact file
   copy:
     src: files/tmux_facts.fact

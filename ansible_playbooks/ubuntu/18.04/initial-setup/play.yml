@@ -10,7 +10,6 @@
     - {role: set-sysctl, when: "ansible_local['set-sysctl_facts']['has_set-sysctl_passed'] == false" }
     - {role: reboot, when: "ansible_local['set-sysctl_facts']['has_set-sysctl_passed'] == false" }
     - {role: get-sysctl, when: "ansible_local['get-sysctl_facts']['has_get-sysctl_passed'] == false" }
-    - {role: docker, when: "ansible_local['docker_facts']['has_docker_installed'] == false" }
     - {role: fail2ban, when: "ansible_local['fail2ban_facts']['has_fail2ban_installed'] == false" }
     - {role: auth, when: "ansible_local['auth_facts']['has_ops_user'] == false" }
     - {role: tmux, when: "ansible_local['tmux_facts']['has_tmux_installed'] == false" }
