@@ -59,6 +59,9 @@
 - name: Copy the influxdb password to a file
   copy: content="{{ influx_password.stdout }}" dest="/root/influxdb.admin.passwd"
 
+- name: Pause for 60 seconds to ensure it can connect to influxdb
+  command: sleep 60
+
 - name: Create the admin user on influxdb
   command: influx -execute "CREATE USER admin WITH PASSWORD '{{ influx_password.stdout }}' WITH ALL PRIVILEGES"
 
