@@ -15,4 +15,11 @@ COMIC_PATH=$(find $COMIC_PATH -name '*.jpg' | sort -r | head -n 1);
 
 notify-send --urgency critical "Screen will be locked in $LOCK_DELAY seconds with comic $COMIC_PATH ...";
 
-sleep $LOCK_DELAY && i3lock -e -f -n -k --datesize=30 --timesize=150 -k "${PARAM[@]}" -i $COMIC_PATH --datestr="%A, %d %b %Y" --datepos="1700:1000" --timepos="1550:950";
+DATE_HORIZONTAL_POS=1700
+DATE_VERTICAL_POS=1000
+TIME_HORIZONTAL_POS=1550
+TIME_VERTICAL_POS=950
+
+sleep $LOCK_DELAY && i3lock -e -f -n -k --datesize=30 --timesize=150 -k "${PARAM[@]}" -i
+$COMIC_PATH --datestr="%A, %d %b %Y" --datepos="$DATE_HORIZONTAL_POS:$DATE_VERTICAL_POS"
+--timepos="$TIME_HORIZONTAL_POS:$TIME_VERTICAL_POS";
