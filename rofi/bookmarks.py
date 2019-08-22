@@ -20,7 +20,7 @@ logging.basicConfig(
 )
 
 BROWSERS = {
-    ' Firefox': 'firefox-beta',
+    ' Firefox': 'firefox',
     ' Chrome': 'google-chrome-stable'
 }
 
