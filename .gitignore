@@ -11,3 +11,6 @@ data/**
 *.retry
 .idea/
 .ropeproject/
+__pycache__/
+*.pyc
+
