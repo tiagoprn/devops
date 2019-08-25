@@ -10,3 +10,4 @@ data/**
 *.wants/
 *.retry
 .idea/
+.ropeproject/
