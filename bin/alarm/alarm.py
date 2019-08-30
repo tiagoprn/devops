@@ -40,36 +40,39 @@ def get_file_lines(file):
         return input_file.readlines()
 
 
-def process_line(line):
+def get_trigger_alarm_now(line):
     current_timestamp = _get_current_timestamp()
     current_time = current_timestamp.split()[1]
     logging.info(f'current_time={current_time}')
     logging.info(f'current_timestamp={current_timestamp}')
 
-    line_elements = line.split()
+    line_elements = line.strip().split()
     time_elements = []
     event_description_end_index = -1
     for index, element in enumerate(line_elements):
-        if element.startswith('@'):
+        if element.startswith('@') or element[0].isdigit():
             if event_description_end_index == -1:
                 event_description_end_index = index-1
             time_elements.append(element)
+
     len_time_elements = len(time_elements)
-    if len_time_elements == 3:
-        trigger_time = time_elements[0][1:]
-        frequency = time_elements[1][1:]
-        alarm_at = time_elements[2][1:]
+    if len_time_elements == 4:
+        trigger_time = time_elements[1]
+        frequency = time_elements[2][1:]
+        alarm_at = time_elements[3][1:]
         logging.info(f'trigger_time={trigger_time}, '
                         f'frequency={frequency}, '
                         f'alarm_at={alarm_at}')
         if frequency == 'daily' and trigger_time == current_time:
-            import ipdb; ipdb.set_trace()
-            logging.info('Calendar event ')
+            logging.info('Time to trigger alarm.')
+            return True
 
+    logging.info('Now is not time to trigger the alarm.')
+    return False
 
 def process_file(file):
     for line in get_file_lines(file):
-        process_line(line)
+        get_trigger_alarm_now(line)
 
 
 def process_files():
