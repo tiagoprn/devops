@@ -4,6 +4,6 @@ from alarm import process_line
 
 class TestProcessLine(TestCase):
 
-    def test_correct():
+    def test_correct(self):
         pass
 
