@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from .alarm import process_line
+from alarm import process_line
 
 class TestProcessLine(TestCase):
 
