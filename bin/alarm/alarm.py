@@ -65,14 +65,22 @@ def get_trigger_alarm_now(line):
                         f'alarm_at={alarm_at}')
         if frequency == 'daily' and trigger_time == current_time:
             logging.info('Time to trigger alarm.')
-            return True
+            event_name_elements = line_elements[:event_description_end_index+1]
+            return ' '.join(event_name_elements[1:])
 
     logging.info('Now is not time to trigger the alarm.')
-    return False
+    return ''
+
+def trigger_notification(event):
+    logging.info(f'event={event}')
+    # TODO: implement
+
 
 def process_file(file):
     for line in get_file_lines(file):
-        get_trigger_alarm_now(line)
+        event = get_trigger_alarm_now(line)
+        if event:
+            trigger_notification(event)
 
 
 def process_files():
