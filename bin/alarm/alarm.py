@@ -3,6 +3,7 @@
 import glob
 import logging
 import os
+import subprocess
 import sys
 from datetime import datetime
 from time import sleep
@@ -71,10 +72,15 @@ def get_trigger_alarm_now(line):
     logging.info('Now is not time to trigger the alarm.')
     return ''
 
+def _run_command(event):
+    command = f'notify-send --urgency critical "{event}"'
+    result = subprocess.run(command.split(), stdout=subprocess.PIPE)
+    return result.stdout.decode()
+
 def trigger_notification(event):
     logging.info(f'event={event}')
-    # TODO: implement
-
+    result = _run_command(event)
+    logging.info(f'Execution result={result.stdout.decode()}')
 
 def process_file(file):
     for line in get_file_lines(file):
