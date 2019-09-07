@@ -22,7 +22,7 @@ logging.basicConfig(
 )
 
 CALENDARS_ROOT = '/storage/docs/notes'
-
+WAKE_UP_INTERVAL_IN_SECONDS=15
 
 def _get_current_timestamp():
     return datetime.now().strftime('%Y-%m-%d %H:%M')
@@ -72,15 +72,16 @@ def get_trigger_alarm_now(line):
     logging.info('Now is not time to trigger the alarm.')
     return ''
 
-def _run_command(event):
-    command = f'notify-send --urgency critical "{event}"'
+def run_command(event):
+    command = f'notify-send --urgency critical "ALARM: {event}"'
+    logging.info(f'command={command}')
     result = subprocess.run(command.split(), stdout=subprocess.PIPE)
     return result.stdout.decode()
 
 def trigger_notification(event):
     logging.info(f'event={event}')
-    result = _run_command(event)
-    logging.info(f'Execution result={result.stdout.decode()}')
+    stdout = run_command(event)
+    logging.info(f'Execution result={stdout}')
 
 def process_file(file):
     for line in get_file_lines(file):
@@ -96,6 +97,6 @@ def process_files():
 
 if __name__ == "__main__":
     while True:
-        sleep(60)
+        sleep(WAKE_UP_INTERVAL_IN_SECONDS)
         process_files()
 
