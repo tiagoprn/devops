@@ -1,0 +1,10 @@
+#!/bin/sh
+exec tail -n +3 $0
+
+menuentry "Ubuntu 18.04 Desktop - 64bit" {
+    search --no-floppy --label STORAGE --set root
+    set isofile="/grub_isos/ubuntu-18.04.3-desktop-amd64.iso"
+    loopback loop $isofile
+    linux (loop)/casper/vmlinuz boot=casper iso-scan/filename=$isofile noprompt noeject
+    initrd (loop)/casper/initrd
+}
