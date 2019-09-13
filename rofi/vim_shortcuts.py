@@ -28,7 +28,8 @@ def get_shortcuts():
         if line.replace('\n', '') and ('| "' in line):
             shortcut, description = line.split('| "')
             if shortcut and description:
-                shortcuts_list.append(f'{description.strip()} => {shortcut.strip()}')
+                _shortcut = shortcut[1:].strip() if shortcut.startswith('"') else shortcut.strip()
+                shortcuts_list.append(f'{description.strip()} => {_shortcut}')
     return sorted(shortcuts_list)
 
 
