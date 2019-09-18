@@ -10,9 +10,7 @@ RUN apt-get update \
  build-essential apt-utils libssl-dev zlib1g-dev libbz2-dev \
  libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
  libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl \
- python3-dev libpq-dev virtualenv
-
-RUN pip install --upgrade pip
+ libpq-dev sudo tree -y
 
 # Although ADD and COPY are functionally similar, COPY is preferred.
 # It’s more transparent than ADD.
@@ -29,13 +27,21 @@ COPY requirements.txt /tmp/
 
 RUN pip install -r /tmp/requirements.txt
 
+# ARG variables are available only when building a container.
+ARG UID
+ARG GID
+
+RUN echo "Container UID: $UID"
+RUN echo "Container GID: $GID"
+
 # You must user the same UID and GID here as the ones from
 # the host user that will run this container, so that
 # the container has the same permissions as the host user,
 # avoiding security problems.
 # -u: the user uid (that must match the host user uid)
 # -g: group name (that must match the host user group)
-RUN useradd --create-home -u 1000 -g 1000 appuser
+# -l: for docker to not use all disk space due to a bug
+RUN groupadd -r -g $GID appuser; useradd -l --create-home -u $UID -g $GID appuser
 WORKDIR /home/appuser
 USER appuser
 
@@ -43,4 +49,6 @@ COPY . /home/appuser
 
 EXPOSE 5000
 
-CMD [ "make", "runserver" ]
+RUN make init-env
+
+ENTRYPOINT [ "make", "runserver" ]

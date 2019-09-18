@@ -9,7 +9,7 @@ following the instructions of [my minimal flask app cookiecutter](https://github
 To build the image:
 
 ```
-$ docker build -t tiagoprn/my_flask_app_name:1.0 --pull --no-cache .
+$ docker build -t tiagoprn/my_flask_app_name:1.0 --pull --no-cache --build-arg UID=$(id -u) --build-arg GID=$(id -g) .
 ```
 
 To check if the image was created:
@@ -21,7 +21,7 @@ $ docker images
 To run a container from this image:
 
 ```
-$ docker run tiagoprn/my_flask_app_name:1.0 --rm -d
+$ docker run -p '5000:5000' --name validation_container --rm -d tiagoprn/my_flask_app_name:1.0
 ```
 
 To check the container is running:
