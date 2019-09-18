@@ -12,9 +12,21 @@ To build the image:
 $ docker build -t tiagoprn/my_flask_app_name:1.0 --pull --no-cache .
 ```
 
+To check if the image was created:
+
+```
+$ docker images
+```
+
 To run a container from this image:
 
 ```
 $ docker run tiagoprn/my_flask_app_name:1.0 --rm -d
+```
+
+To check the container is running:
+
+```
+$ sudo docker ps
 ```
 
