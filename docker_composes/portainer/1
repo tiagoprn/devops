@@ -19,11 +19,7 @@ $ mv admin.passwd.new admin.passwd
 Then, you can login with these credentials:
 
 [Local container url](http://localhost:9000/)
-
-Credentials:
-
-```
 username: admin
 password: the one from the file provided
-```
+
 
