@@ -1,6 +1,3 @@
-# To create a sample flask app to test this Dockerfile,
-# you can generate a ready to run flask project with my cookiecutter
-# https://github.com/tiagoprn/minimal_flask_app_cookiecutter
 
 # IMPORTANT: Once a week, or every night, rebuild your Docker image
 #            from scratch using `docker build --pull --no-cache`
