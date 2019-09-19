@@ -9,7 +9,7 @@ following the instructions of [my minimal flask app cookiecutter](https://github
 To build the image:
 
 ```
-$ docker build -t tiagoprn/my_flask_app_name:1.0 --pull --no-cache --build-arg UID=$(id -u) --build-arg GID=$(id -g) .
+$ docker build -t tiagoprn/my_flask_app_name:1.0:latest --pull --no-cache --build-arg UID=$(id -u) --build-arg GID=$(id -g) .
 ```
 
 To check if the image was created:
