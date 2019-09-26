@@ -1,9 +1,15 @@
-rabbitmq:
-  image: tutum/rabbitmq
-  volumes:
-    - "./shared:/shared"    
-  ports:
-    - "15672:15672"
-    - "5672:5672"
-  environment:
-    RABBITMQ_PASS: password
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.7-management
+    container_name: rabbitmq-borg_enhancements
+    restart: unless-stopped
+    ports:
+      - 15672:15672
+      - 15671:15671
+      - 5672:5672
+      - 5671:5671
+    volumes:
+      - "./shared:/shared"
+    env_file:
+      - rabbitmq.env
