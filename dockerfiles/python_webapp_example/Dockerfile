@@ -45,7 +45,7 @@ RUN groupadd -r -g $GID appuser; useradd -l --create-home -u $UID -g $GID appuse
 WORKDIR /home/appuser
 USER appuser
 
-COPY . /home/appuser
+COPY --chown=$UID:$GID . /home/appuser
 
 EXPOSE 5000
 
