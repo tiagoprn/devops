@@ -7,6 +7,6 @@ windows:
       - pyenv deactivate utils
       - clear
     panes:
-      - cd ~ && clear
+      - cd /storage/src/devops/shellscripts/utils && clear && pwd && ls *xkb*
       - cd ~/.config/systemd/user && clear
       - cd /storage/docs/notes && clear
