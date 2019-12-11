@@ -2,7 +2,7 @@ version: '3'
 services:
   rabbitmq:
     image: rabbitmq:3.7-management
-    container_name: rabbitmq-borg_enhancements
+    container_name: rabbitmq
     restart: unless-stopped
     ports:
       - 15672:15672
