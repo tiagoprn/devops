@@ -19,11 +19,11 @@ logging.basicConfig(
     handlers=[logging.StreamHandler(sys.stdout)]
 )
 
+SCRIPTS_PATH = '/storage/src/devops/shellscripts/utils'
+
 ACTIONS = [
-    ('switch user', 'dm-tool switch-to-greeter',),
-    ('logoff', 'i3-msg exit',),
-    ('shutdown', 'sudo /sbin/shutdown -h now',),
-    ('restart', 'sudo /sbin/shutdown -r now',)
+    ('br-abnt2', f'{SCRIPTS_PATH}/setxkbmap_brasil_abnt2.sh',),
+    ('us-international', f'{SCRIPTS_PATH}/setxkbmap_us_with_dead_keys.sh',),
 ]
 
 
@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     rofi_client = Rofi()
     selected, keyboard_key = rofi_client.select(
-        'Choose your destiny',
+        'Choose a keyboard layout',
         actions_list
     )
     logging.info(f'keyboard_key pressed={keyboard_key}')
