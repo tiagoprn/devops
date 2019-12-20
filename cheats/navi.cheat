@@ -1,0 +1,4 @@
+% navi
+
+# Start navi specifying the cheat directory (separate paths with a ":")
+navi --path <CHEATS_FOLDER>
