@@ -8,5 +8,6 @@ windows:
       - clear
     panes:
       - cd /storage/src/devops/shellscripts/utils && clear && pwd && ls *xkb*
+      - cd /storage/src/devops/cheats && clear
       - cd ~/.config/systemd/user && clear
       - cd /storage/docs/notes && clear
