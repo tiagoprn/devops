@@ -4,6 +4,7 @@ windows:
     layout: even-vertical
     start_directory: /storage/src
     shell_command_before:
+      - source "$(navi widget bash)"
       - pyenv deactivate utils
       - clear
     panes:
