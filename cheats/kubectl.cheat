@@ -1,5 +1,8 @@
 % kubectl, k8s
 
+# Select pod name and copy to the clipboard
+kubectl get pods -n <NAMESPACE> | grep -v NAME | awk '{print $1}' | fzf | cb
+
 # Get pods on namespace
 kubectl get pods -n <NAMESPACE>
 
