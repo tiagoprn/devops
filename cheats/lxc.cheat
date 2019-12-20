@@ -1,0 +1,50 @@
+% lxc
+
+# List remotes
+lxc remote list
+
+# List remote available images:
+lxc image list <remote-name>
+
+# List profiles:
+lxc profile list
+
+# List storage pools:
+$ lxc storage list
+
+# Attach a network to an existing container:
+lxc network attach <my-container> default <network-interface>
+
+# List all containers:
+lxc list
+
+# Stop a container:
+lxc stop <my-container>
+
+# Delete a container:
+lxc delete <my-container>
+
+# Open an interactive session inside a container:
+lxc exec <my-container> /bin/bash
+
+# Autostart container (1-autostart, 0-do not autostart):
+lxc config set <my-container> boot.autostart 1
+
+# Set a delay in seconds after starting a container, before starting the next:
+lxc config set <my-container> boot.autostart.delay <seconds>
+
+# Set which containers are started first (higher numbers are started first):
+$ lxc config set <my-container> boot.autostart.order <order-number>
+
+# Create a snapshot (if you can, stop it before doing that):
+lxc snapshot <my-container> <snapshot-name>
+
+# Restore a snapshot:
+lxc restore <my-container> <snapshot-name>
+
+# See info on the snapshots:
+lxc info <my-container>
+
+# Delete a snapshot:
+lxc delete <snapshot-name> -i
+
