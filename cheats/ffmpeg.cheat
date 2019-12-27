@@ -1,0 +1,8 @@
+% ffmpeg container
+
+# Download container
+docker pull jrottenberg/ffmpeg
+
+# Convert from input file to output file (it does automatically by extension)
+docker run --rm --user $(id -u):$(id -g) -v $PWD:/temp jrottenberg/ffmpeg -stats -i /temp/<input_file> /temp/<output_file>
+
