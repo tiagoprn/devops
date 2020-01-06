@@ -1,0 +1,4 @@
+% pyenv, python
+
+# Select pyenv version
+pyenv install -l | grep -v "Available" | fzf --exact
