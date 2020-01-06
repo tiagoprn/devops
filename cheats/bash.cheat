@@ -1,0 +1,4 @@
+% bash
+
+# Source bash configuration
+source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases && source ~/.bashrc
