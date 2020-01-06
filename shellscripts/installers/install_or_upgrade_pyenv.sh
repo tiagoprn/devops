@@ -7,9 +7,10 @@ if [ -f $PYENV_BIN ];
 then
     echo "UPGRADING pyenv..."
     echo "Retrieving available tags:"
-    cd $PYENV_ROOT && git fetch && git tag | grep "v[1-9]\."
-    echo "Now, you must do a "git checkout" on the last tag."
-    # git checkout $(git tag)
+    cd $PYENV_ROOT && git fetch
+    echo "Choose the desired tag with the pyenv version:"
+    TAG=$(git tag | grep "v[1-9]\." | fzf)
+    git checkout $TAG
     echo "FINISHED."
 else
     echo "INSTALLING pyenv..."
