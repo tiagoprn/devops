@@ -6,8 +6,9 @@ PYENV_BIN=$PYENV_ROOT/bin/pyenv
 if [ -f $PYENV_BIN ];
 then
     echo "UPGRADING pyenv..."
-    cd $PYENV_ROOT && git fetch
-    echo "Now, you must do a `git checkout` on the last tag."
+    echo "Retrieving available tags:"
+    cd $PYENV_ROOT && git fetch && git tag | grep "v[1-9]\."
+    echo "Now, you must do a "git checkout" on the last tag."
     # git checkout $(git tag)
     echo "FINISHED."
 else
