@@ -1,0 +1,13 @@
+% docker
+
+# run container
+SHARED_FOLDER=/tmp/shared-docker-$(shell date +%Y%m%d_%H%M%S) && \
+echo "You can exchange files with this containers on the directory $(SHARED_FOLDER) on the host and /shared on the container." && \
+mkdir -p $(SHARED_FOLDER) && \
+@docker run --rm -d --network bridge --mount type=bind,source=$(SHARED_FOLDER),target=/shared <container-name>
+
+# get container id
+docker ps | fzf | awk '{print $1}' | xclip -i -selection clipboard
+
+# kill and remove container
+docker kill <container-id> && docker rm <container-id>
