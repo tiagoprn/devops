@@ -7,6 +7,7 @@ windows:
       - source "$(navi widget bash)"
       - pyenv activate core-utils
       - clear
+      - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
     panes:
       - clear
       - clear

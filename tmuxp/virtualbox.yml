@@ -5,6 +5,7 @@ windows:
     shell_command_before:
       - pyenv deactivate utils
       - clear
+      - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
     panes:
       - cd ~/distros/images && vboxmanage list vms
       - cd ~/bin/bin_public/virtualbox
