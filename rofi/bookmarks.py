@@ -44,6 +44,7 @@ def get_bookmarks():
             lines = input_file.readlines()
         for line in lines:
             if line.replace('\n', ''):
+                print(f'line={line}')
                 tag, url = line.split()
                 key = f'{file_context}_{tag}'
                 value = url
