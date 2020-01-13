@@ -9,8 +9,8 @@ windows:
       - clear
       - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
     panes:
-      - cd /storage/src/dot_files && clear
-      - cd /storage/src/devops/shellscripts/utils && clear && pwd && ls *xkb*
-      - cd /storage/src/devops/cheats && clear
-      - cd ~/.config/systemd/user && clear
       - cd /storage/docs/notes && clear
+      - cd /storage/src/devops/cheats && clear
+      - cd /storage/src/devops && clear
+      - cd /storage/src/dot_files && clear
+      - cd ~/.config/systemd/user && clear
