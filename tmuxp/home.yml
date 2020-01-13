@@ -9,7 +9,7 @@ windows:
       - clear
       - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
     panes:
-      - cd /storage/docs/notes && clear
+      - cd /storage/docs/notes && clear && # git add . && gc -m 'updated' && gps && glg
       - cd /storage/src/devops/cheats && clear
       - cd /storage/src/devops && clear
       - cd /storage/src/dot_files && clear
