@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: vm
   # strategy: debug  ## interactive debug console when a task fails.
   roles:
     - gather_custom_facts
