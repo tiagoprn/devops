@@ -1,4 +1,4 @@
-# TODO: adapt here to the traefik 2.0 installation tutorial
+# TODO: adapt here to intructions from: https://github.com/SushiFu/traefik-local
 - name: Add docker repository apt signing key
   apt_key:
       url: https://download.docker.com/linux/ubuntu/gpg
