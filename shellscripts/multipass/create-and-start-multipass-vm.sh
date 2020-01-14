@@ -1,5 +1,5 @@
 #!/bin/bash
-IMAGE_NAME=ubuntu-lts-$(date +%Y%m%d_%H%M%S)
+IMAGE_NAME=ubuntu-lts-$(date +%Y%m%d-%H%M%S)
 ./generate-cloud-config.sh
 multipass launch -n $IMAGE_NAME --cloud-init cloud-config.yaml && \
 multipass list && \
