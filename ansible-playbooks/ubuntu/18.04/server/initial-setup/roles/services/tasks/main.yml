@@ -1,13 +1,13 @@
 - name: Enable and start all services
   systemd: name={{item}} daemon-reload=yes state=started enabled=yes
   with_items:
-    - suricata
-    - suricata-update.timer
+    # - suricata
+    # - suricata-update.timer
     - sar-report-daily
     - sar-report-daily.timer
     - fail2ban
     - sshd
     - ntp
-    - collectd
-    - influxdb
+    # - collectd
+    # - influxdb
     - firewalld

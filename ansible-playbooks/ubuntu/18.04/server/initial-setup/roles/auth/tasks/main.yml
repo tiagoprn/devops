@@ -1,8 +1,8 @@
-- name: Authorized my ansible controller ssh public key to login on the host controlled by ansible - for root user there
+- name: Authorize my ansible controller ssh public key to login on the host controlled by ansible - for root user there
   authorized_key:
       user: root
       state: present
-      key: "{{ lookup('file', '/home/tiago/.ssh/id_rsa.pub') }}"
+      key: "{{ lookup('file', '{{ controller_home_directory }}/.ssh/id_rsa.pub') }}"
 
 - name: Create user
   user: name=ops
@@ -25,7 +25,7 @@
   authorized_key:
       user: ops
       state: present
-      key: "{{ lookup('file', '/home/tiago/.ssh/id_rsa.pub') }}"
+      key: "{{ lookup('file', '{{ controller_home_directory }}/.ssh/id_rsa.pub') }}"
 
 - name: Set user sudo without password
   copy: src=files/sudoers dest=/etc owner=root group=root mode=0440

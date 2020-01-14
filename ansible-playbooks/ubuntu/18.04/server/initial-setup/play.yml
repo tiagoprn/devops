@@ -1,4 +1,6 @@
 - hosts: vm
+  vars:
+    controller_home_directory:  "{{ lookup('env','HOME') }}"
   # strategy: debug  ## interactive debug console when a task fails.
   roles:
     - gather_custom_facts

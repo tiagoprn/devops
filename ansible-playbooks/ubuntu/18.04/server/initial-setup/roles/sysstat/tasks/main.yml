@@ -9,5 +9,13 @@
   with_fileglob:
       - files/systemd/*
 
-- name: Copy file to verify it passed through this role
-  copy: src=files/passed.txt dest=/var/log/sysstat_passed.txt owner=root group=root mode=0644
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/sysstat_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+
