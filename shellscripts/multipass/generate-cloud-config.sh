@@ -20,7 +20,7 @@ TIMEZONE=America/Sao_Paulo
 
 # configure profile
 # this will rewrite the whole profile
-cat << EOF | cat
+cat << EOF | cat > cloud-config.yaml
 #cloud-config
 
 # Users

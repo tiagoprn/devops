@@ -13,4 +13,4 @@ data/**
 .ropeproject/
 __pycache__/
 *.pyc
-
+cloud-config.yaml
