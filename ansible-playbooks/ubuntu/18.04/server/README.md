@@ -19,3 +19,6 @@ ansible_python_interpreter=/usr/bin/python3
 
 https://ansible-tips-and-tricks.readthedocs.io/en/latest/os-dependent-tasks/installing_packages/
 
+# Testing
+
+Posso usar o [testinfra](https://github.com/philpep/testinfra) para fazer os testes.
