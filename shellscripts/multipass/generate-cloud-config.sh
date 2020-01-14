@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# Generate a cloud-config file, so that the current user can login into the
+# machine where cloud-init will run from.
 # reference: https://gist.github.com/bloodearnest/ebf044476e70c4baee59c5000a10f4c8
 
 set -eu
