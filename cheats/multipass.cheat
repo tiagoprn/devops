@@ -1,0 +1,19 @@
+% multipass
+
+# Get vm ip
+multipass list | fzf | awk '{print $3}' | xclip -i -selection clipboard
+
+# List:
+multipass list
+
+# Stop:
+multipass stop <vm>
+
+# Start:
+multipass start <vm>
+
+# Delete:
+multipass delete <vm>
+
+# Purge deleted: :
+multipass purge
