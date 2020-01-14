@@ -27,16 +27,16 @@ cat << EOF | cat > cloud-config.yaml
 # Users
 users:
     - name: ubuntu
-        groups: ['${SUDOGROUP}']
-        shell: /bin/bash
-        sudo: ALL=(ALL) NOPASSWD:ALL
-        ssh_authorized_keys:
+      groups: ${SUDOGROUP}
+      shell: /bin/bash
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      ssh_authorized_keys:
         - ${KEY}
     - name: ops
-        groups: ['${SUDOGROUP}']
-        shell: /bin/bash
-        sudo: ALL=(ALL) NOPASSWD:ALL
-        ssh_authorized_keys:
+      groups: ${SUDOGROUP}
+      shell: /bin/bash
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      ssh_authorized_keys:
         - ${KEY}
 
 bootcmd:
