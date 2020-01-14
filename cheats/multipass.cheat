@@ -1,5 +1,8 @@
 % multipass
 
+# Get vm name
+multipass list | fzf | awk '{print $1}' | xclip -i -selection clipboard
+
 # Get vm ip
 multipass list | fzf | awk '{print $3}' | xclip -i -selection clipboard
 
