@@ -3,6 +3,9 @@
 # Create vm
 cd /storage/src/devops/shellscripts/multipass && ./create-and-start-multipass-vm.sh && cd -
 
+# Destroy vm
+multipass stop <vm> && multipass delete <vm> && multipass purge && echo -e "\n---\nVM successfully deleted and purged."
+
 # Select vm name
 multipass list | fzf | awk '{print $1}' | xclip -i -selection clipboard
 
