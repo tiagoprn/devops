@@ -1,0 +1,17 @@
+% linux
+
+# add user to a group:
+sudo usermod -aG <groups> ${USER}
+
+# list current user groups:
+id -nG
+
+# get user id
+id -u
+
+# get user group id
+id -g
+
+# figlet
+echo "$(hostname)" | figlet -cptk
+

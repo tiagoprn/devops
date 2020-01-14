@@ -1,0 +1,5 @@
+% apt debian ubuntu
+
+# list installed package contents:
+sudo dpkg -L <package-name>
+
