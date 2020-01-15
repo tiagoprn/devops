@@ -44,3 +44,10 @@ All services can talk to each other, but just the ones you add the label
 
 - Container com serviços de rede: `image: praqma/network-multitool:alpine`
 
+- htpasswd generator (para uso com o traefik):
+www.htaccesstools.com/htpasswd-generator
+ou usar o comando htpasswd: `htpasswd -n -B admin`www.htaccesstools.com/htpasswd-generator
+
+
+
+
