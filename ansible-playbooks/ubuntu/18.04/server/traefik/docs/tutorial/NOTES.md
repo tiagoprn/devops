@@ -28,9 +28,8 @@ $ ./traefik --configFile=traefik.toml
   host` for each container that is mapped there. E.g.:
 
 ```
-127.0.0.1 nginx.example1 traefik.example1 tomcat.example1 mysql.example1 etc...
-172.17.0.1 nginx.example1 traefik.example1 tomcat.example1 mysql.example1 etc...
-[your-network-ip] nginx.example1 traefik.example1 tomcat.example1 mysql.example1 etc...
+127.0.0.1 nginx.example.com traefik.example.com tomcat.example.com mysql.example.com
+1.1.1.1 nginx.example.com traefik.example.com tomcat.example.com mysql.example.com
 ```
 
 - traefik is only http, NOT a tcp proxy (check or version 2. MySQL is tcp, not http)
