@@ -22,8 +22,8 @@ logLevel = "INFO"
   address = ":443"
     [entryPoints.https.tls]
       [[entryPoints.https.tls.certificates]]
-      certFile = "/certs/tls.crt"
-      keyFile = "/certs/tls.key"
+      certFile = "/certs/certificate.crt"
+      keyFile = "/certs/private.key"
 
 
   [entryPoints.dashboard]
