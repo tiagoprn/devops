@@ -8,7 +8,7 @@ Run the script to configure your local dns:
 
 ## Generate the SSL certificates:
 
-`./generate-certs.sh`
+`./generate-self-signed-certs.sh`
 
 ## Run the docker-compose:
 
