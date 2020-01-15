@@ -4,8 +4,6 @@ windows:
     layout: even-vertical
     start_directory: /storage/src/devops/ansible_playbooks
     shell_command_before:
-      - pyenv deactivate utils
-      - clear
       - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
     panes:
       - git status -s
@@ -15,9 +13,8 @@ windows:
     layout: even-vertical
     start_directory: /storage/src/private-playbooks
     shell_command_before:
-      - pyenv deactivate utils
-      - clear
+      - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
     panes:
-      - clear
+      - git status -s
       - clear
       - clear
