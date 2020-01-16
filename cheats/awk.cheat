@@ -1,0 +1,8 @@
+% awk
+
+# Get the nth field (works only with spaces as delimiters):
+awk '{print $<field_number>}'
+
+# Get the last field (works only with spaces as delimiters):
+awk '{print $NF}'
+
