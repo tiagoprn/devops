@@ -3,7 +3,7 @@
   roles:
     - gather_custom_facts
     - upgrade
-    - {role: docker, when: "ansible_local['docker_facts']['has_docker_installed'] == false" }
+    - {role: traefik, when: "ansible_local['traefik_facts']['has_traefik_installed'] == false" }
     - services
     - reboot
     - cleanup
