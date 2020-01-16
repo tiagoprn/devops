@@ -1,6 +1,13 @@
 # TODO: adapt here to intructions from:
 # - https://github.com/SushiFu/traefik-local
 # - https://www.grzegorowski.com/page/
+
+
+
+
+
+---
+
 - name: Add docker repository apt signing key
   apt_key:
       url: https://download.docker.com/linux/ubuntu/gpg
@@ -99,4 +106,16 @@
 
 - name: Start portainer
   command: bash /opt/containers/portainer/start.sh
+
+# below is already adapted to traefik
+
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/traefik_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
 

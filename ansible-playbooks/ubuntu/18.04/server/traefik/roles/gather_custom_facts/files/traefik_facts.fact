@@ -4,13 +4,13 @@
 # It may be necessary to use get_facts and set_facts like
 # on the initial-setup playbooks, using a file to check if
 # it is installed or not.
-ls /usr/bin/docker > /dev/null 2>&1
+ls /var/log/traefik_passed.txt > /dev/null 2>&1
 
-# If there is an error on the previous bash command, docker is not installed
+# If there is an error on the previous bash command, traefik is not installed
 # below must result in a json formatted dict, so ansible can use it
 if [ $? -ne 0 ] ; then
-    echo "{\"has_docker_installed\": false}"
+    echo "{\"has_traefik_installed\": false}"
 else
-    echo "{\"has_docker_installed\": true}"
+    echo "{\"has_traefik_installed\": true}"
 fi
 
