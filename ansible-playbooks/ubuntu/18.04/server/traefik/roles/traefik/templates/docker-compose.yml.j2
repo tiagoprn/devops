@@ -1,20 +1,36 @@
-version: '2'
+version: "3"
 services:
-  portainer:
-    image: portainer/portainer
-    container_name: portainer
-    privileged: true
-    restart: unless-stopped
-    command: --admin-password-file /tmp/admin.passwd --ssl --sslcert /certs/portainer.crt --sslkey /certs/portainer.key --host=unix:///var/run/docker.sock
-    ports:
-      - 9000:9000
+  traefik:
+    image: traefik:1.7-alpine
+    labels:
+      - traefik.frontend.rule=Host:traefik.example.com
+      - traefik.port=8080
+      - traefik.enable=true
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "/etc/localtime:/etc/localtime"
-      - "/certificates/portainer/certificate.crt:/certs/portainer.crt"
-      - "/certificates/portainer/private.key:/certs/portainer.key"
-      - "/opt/containers/portainer/admin.passwd:/tmp/admin.passwd"
-      - PORTAINER_DATA:/data
-volumes:
-  PORTAINER_DATA:
-    driver: local
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/etc/traefik/traefik.toml
+      - ./certs:/certs
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+  nginx:
+    image: nginx:alpine
+    labels:
+      - traefik.frontend.rule=Host:nginx.example.com,www.example.com,example.com
+      - traefik.port=80
+      - traefik.enable=true
+    volumes:
+      - ./example.com-index.html:/usr/share/nginx/html/index.html
+  tomcat:
+    image: tomcat:alpine
+    labels:
+      - traefik.frontend.rule=Host:tomcat.example.com
+      - traefik.port=8080
+      - traefik.enable=true
+    volumes:
+      - ./sample.war:/usr/share/tomcat/webapps/sample.war
+  mysqldb:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD="SuperSecretPassword"

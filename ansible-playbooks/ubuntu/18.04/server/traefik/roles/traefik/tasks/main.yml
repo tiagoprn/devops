@@ -7,48 +7,48 @@
   register: dockerversion
   changed_when: False  # this make this task always run
 
-- name: Create the folder to hold portainer compose file and start/stop scripts
+- name: Create the folder to hold traefik compose file and auxiliary scripts
   file:
-    path: /opt/containers/portainer
+    path: /opt/containers/traefik
     state: directory
     owner: root
     group: root
     mode: 0775
     recurse: yes
 
-- name: Add portainer start script
-  copy: src=files/start.sh dest=/opt/containers/portainer owner=root group=root mode=0777
+- name: Copy traefik compose file, auxiliary scripts and files
+  copy: src={{ item }} dest=/opt/containers/traefik owner=root group=root mode=0777
+  with_fileglob:
+      - files/*
 
-- name: Add portainer stop script
-  copy: src=files/stop.sh dest=/opt/containers/portainer owner=root group=root mode=0777
+- name: Configure the local DNS
+  command: bash /opt/containers/traefik/local_dns.sh
 
 - name: Generate the TLS certificates
-  command: bash /opt/create-csr-and-private-key.sh -o /certificates/portainer
+  command: bash /opt/containers/traefik/generate-self-signed-certs.sh
 
-- name: Generate a random password for portainer admin user
-  command: bash /opt/random_password.sh
-  register: portainer_password  # record the command stdout to the "password" variable
-  changed_when: False  # this make this task always run
+# - name: Generate a random password for traefik admin user
+# command: bash /opt/random_password.sh
+# register: traefik_password  # record the command stdout to the "password" variable
+# changed_when: False  # this make this task always run
+#
+# - name: Print traefik admin user passwd
+# debug: var=traefik_password.stdout  # prints the value of the "password" variable
+#
+# - name: Copy the traefik admin password to a file
+# copy: content="{{ traefik_password.stdout }}" dest="/opt/containers/traefik/admin.passwd"
 
-- name: Print portainer admin user passwd
-  debug: var=portainer_password.stdout  # prints the value of the "password" variable
-
-- name: Copy the portainer admin password to a file
-  copy: content="{{ portainer_password.stdout }}" dest="/opt/containers/portainer/admin.passwd"
-
-- name: Create the docker-compose file for portainer
+- name: Create the docker-compose file for traefik
   template:
     src: docker-compose.yml.j2
-    dest: /opt/containers/portainer/docker-compose.yml
+    dest: /opt/containers/traefik/docker-compose.yml
     owner: root
     group: root
     mode: 0700
     backup: yes
 
-- name: Start portainer
-  command: bash /opt/containers/portainer/start.sh
-
-# below is already adapted to traefik
+- name: Start traefik
+  command: bash /opt/containers/traefik/start.sh
 
 - name: Generate file to verify it passed through this role
   lineinfile:

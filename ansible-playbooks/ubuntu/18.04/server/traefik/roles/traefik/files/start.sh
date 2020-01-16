@@ -1,11 +1,13 @@
 #!/bin/bash
 
-PORTAINER=$(docker ps | grep portainer | awk '{print $1}')
-if [ $PORTAINER  ]
+TRAEFIK=$(docker ps | grep traefik | awk '{print $1}')
+if [ $TRAEFIK  ]
 then
-    printf 'Portainer is already running on port 9000, nothing to be done here.'
+    printf 'traefik is already running, nothing to be done here.'
 else
-    printf 'Starting portainer in the background...\n'
-    cd /opt/containers/portainer && docker-compose up -d && printf 'Portainer started. It can be reached through port 9000.'
+    printf 'Starting traefik in the background...\n'
+    cd /opt/containers/traefik && \
+        docker-compose up -d && \
+        echo -e 'Traefik started. It can be reached through: https://traefik.example.com, with user/password=admin/12345678. '
 fi
 
