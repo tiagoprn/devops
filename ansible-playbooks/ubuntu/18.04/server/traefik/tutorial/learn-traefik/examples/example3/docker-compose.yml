@@ -9,12 +9,12 @@ services:
       - traefik.enable=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PWD}/traefik.toml:/etc/traefik/traefik.toml
-      - ${PWD}/certs:/certs 
+      - ./traefik.toml:/etc/traefik/traefik.toml
+      - ./certs:/certs
     ports:
       - 80:80
       - 443:443
-      - 8080:8080 
+      - 8080:8080
 
   nginx:
     image: nginx:alpine
@@ -23,7 +23,7 @@ services:
       - traefik.port=80
       - traefik.enable=true
     volumes:
-      - ${PWD}/example.com-index.html:/usr/share/nginx/html/index.html
+      - ./example.com-index.html:/usr/share/nginx/html/index.html
 
   tomcat:
     image: tomcat:alpine
@@ -32,7 +32,7 @@ services:
       - traefik.port=8080
       - traefik.enable=true
     volumes:
-      - ${PWD}/sample.war:/usr/share/tomcat/webapps/sample.war
+      - ./sample.war:/usr/share/tomcat/webapps/sample.war
 
   mysqldb:
     image: mysql
