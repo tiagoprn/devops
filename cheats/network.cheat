@@ -1,0 +1,10 @@
+% network, ip
+
+# Get all network interfaces with their configuration:
+ip r
+
+# List local open ports
+netstat -netlp
+
+# List remote open ports
+sudo nmap -sS <host-ip>
