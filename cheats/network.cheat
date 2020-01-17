@@ -1,7 +1,16 @@
 % network, ip
 
-# Get all network interfaces with their configuration:
+# Get all network interfaces with their configuration
 ip r
+
+# Get all network interface names
+ip r | grep -oP '(dev \w+\-*\w*)' | awk '{print $NF}'
+
+# Select network interface
+ip r | grep -oP '(dev \w+\-*\w*)' | awk '{print $NF}' | fzf --no-sort | xclip -i -selection clipboard
+
+# Get IP on network interface
+ip r | grep <interface> | grep -oP 'src (?:\d{1,3}\.){3}\d{1,3}' | awk '{print $NF}'
 
 # List local open ports
 netstat -netlp
