@@ -27,6 +27,7 @@
 - name: Generate the TLS certificates
   command: bash /opt/containers/traefik/generate-self-signed-certs.sh
 
+# TODO: enable commands below, and use htpasswd to generate the password
 # - name: Generate a random password for traefik admin user
 # command: bash /opt/random_password.sh
 # register: traefik_password  # record the command stdout to the "password" variable

@@ -4,6 +4,4 @@
     - gather_custom_facts
     - upgrade
     - {role: traefik, when: "ansible_local['traefik_facts']['has_traefik_installed'] == false" }
-    - services
-    - reboot
     - cleanup
