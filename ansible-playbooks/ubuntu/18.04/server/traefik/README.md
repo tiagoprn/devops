@@ -1,10 +1,12 @@
-# docker
+# Traefik
 
 Setup traefik - a simple reverse proxy supporting container workflows.
 
 It is recommended you run first the `initial-setup` playbook to provisionate
 the server.
 
+The folder `sample-stack` here has traefik configurations. One of them has the
+option to use letsencrypt certificates.
 
 # ABOUT
 
