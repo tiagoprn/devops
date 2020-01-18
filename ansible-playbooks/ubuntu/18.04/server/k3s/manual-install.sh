@@ -6,6 +6,19 @@
 
 echo "----- This MUST be run as root user -----"
 
+# allow traffic to the Kubernetes API server
+sudo ufw allow 6443
+# The kubelet in the host network needs to be able to send packets “out” via the weave interface to communicate with pods.
+sudo ufw allow out on weave to 10.32.0.0/12
+sudo ufw allow in on weave from 10.32.0.0/12
+# For multi-node installs open up the tcp and udp ports required for Weave’s control plane and data plane traffic.
+sudo ufw allow 6783/udp
+sudo ufw allow 6784/udp
+sudo ufw allow 6783/tcp
+
+
+### PART 1
+
 echo -e "STARTING INSTALLATION..."
 mkdir /opt/k3s
 cd /opt/k3s
@@ -22,7 +35,6 @@ echo "Create a storage class for your cluster..."
 kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
 echo "Checking storage class..."
 kubectl get storageclass
-
 
 ### PART 2
 
