@@ -1,7 +1,7 @@
 % multipass
 
-# Create vm
-cd /storage/src/devops/shellscripts/multipass && ./create-and-start-multipass-vm.sh && cd -
+# Create vm (e.g. -c 1 -d 10G -m 1G)
+cd /storage/src/devops/shellscripts/multipass && ./create-and-start-multipass-vm.sh -c <cpus> -d <disk> -m <memory>  && cd -
 
 # Destroy vm
 multipass stop <vm> && multipass delete <vm> && multipass purge && echo -e "\n---\nVM successfully deleted and purged."
