@@ -2,11 +2,12 @@
 
 Setup traefik - a simple reverse proxy supporting container workflows.
 
-It is recommended you run first the `initial-setup` playbook to provisionate
-the server.
+It is recommended you run first the `initial-setup` and `docker` playbooks to
+provisionate the server.
 
-The folder `sample-stack` here has traefik configurations. One of them has the
-option to use letsencrypt certificates.
+The folder `sample-stack` here has sample traefik configurations, that were
+used a base to build this solution. One of them has the option to use
+letsencrypt certificates.
 
 # ABOUT
 
@@ -46,10 +47,11 @@ Run the script to configure your local dns:
 
 ## The traefik dashboard
 
-URL: https://traefik.example.com
-user/password: `admin / 12345678`
+URL: https://traefik.example.com user/password: `admin / 12345678`
 
-This user/password combination is configured on `traefik.toml`, at `entryPoints.dashboard.auth.basic`. To generate the string containing the password, you must use `htpasswd`, e.g.:
+This user/password combination is configured on `traefik.toml`, at
+`entryPoints.dashboard.auth.basic`. To generate the string containing the
+password, you must use `htpasswd`, e.g.:
 
 `$ htpasswd -n -B admin`
 
