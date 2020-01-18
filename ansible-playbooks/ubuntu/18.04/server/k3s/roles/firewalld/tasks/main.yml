@@ -1,0 +1,8 @@
+- name: Add a firewall rule to allow external connections to helm tiller
+  shell:
+    firewall-cmd --permanent --zone=public --add-port=8080/tcp
+
+- name: Reload firewalld to apply the new configuration
+  shell:
+    firewall-cmd --reload
+

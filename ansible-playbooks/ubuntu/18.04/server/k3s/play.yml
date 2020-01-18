@@ -1,0 +1,8 @@
+- hosts: all
+  # strategy: debug  ## interactive debug console when a task fails.
+  roles:
+    - gather_custom_facts
+    - upgrade
+    - firewalld
+    - {role: k3s, when: "ansible_local['k3s_facts']['has_k3s_installed'] == false" }
+    - cleanup
