@@ -11,3 +11,4 @@ provisionate the server.
 - https://www.freshbrewed.science/ubuntu-multipass-better-than-docker/index.html
 - https://github.com/rancher/k3s/issues/977
 - https://help.replicated.com/community/t/managing-firewalls-with-ufw-on-kubernetes/230
+- https://github.com/rancher/k3s/issues/24#issuecomment-469759329

@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "allowing all in traffic from cni0 interface"
+sudo ufw allow in on cni0 from 10.42.0.0/16 comment "K3s rule : https://github.com/rancher/k3s/issues/24#issuecomment-469759329"
 echo "Allowing traffic to the Kubernetes API server..."
 ufw allow 6443
 echo 'The kubelet in the host network needs to be able to send packets "out" via the
