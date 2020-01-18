@@ -76,10 +76,10 @@
     recurse: yes
 
 - name: copy kubeconfig to the ubuntu user
-  copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ubuntu/.kube/config owner=ubuntu group=ubuntu mode=0644
+  copy: remote_src=/etc/rancher/k3s/k3s.yaml dest=/home/ubuntu/.kube/config owner=ubuntu group=ubuntu mode=0644
 
 - name: copy kubeconfig to the ops user
-  copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ops/.kube/config owner=ops group=ops mode=0644
+  copy: remote_src=/etc/rancher/k3s/k3s.yaml dest=/home/ops/.kube/config owner=ops group=ops mode=0644
 
 - name: Initialize tiller
   become_user: ubuntu
