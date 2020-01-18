@@ -1,12 +1,15 @@
-- name: Add firewall rules for all pods to be operational
-  shell: |
-    # allow traffic to the Kubernetes API server
-    ufw allow 6443
-    # The kubelet in the host network needs to be able to send packets “out” via the weave interface to communicate with pods.
-    ufw allow out on weave to 10.32.0.0/12
-    ufw allow in on weave from 10.32.0.0/12
-    # For multi-node installs open up the tcp and udp ports required for Weave’s control plane and data plane traffic.
-    ufw allow 6783/udp
-    ufw allow 6784/udp
-    ufw allow 6783/tcp
+- name: Create a directory to run general purpose scripts
+  file:
+    path: /opt/containers/scripts
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: 0775
+    recurse: yes
+
+- name: copy firewall rules script
+  copy: src=k3s-firewall-rules.sh dest=/opt/containers/scripts owner=ubuntu group=ubuntu mode=0644
+
+- name: Run firewall rules for all pods to be operational
+  command: bash /opt/containers/scripts/k3s-firewall-rules.sh
 

@@ -3,15 +3,19 @@
 # REFERENCES:
 # https://medium.com/@marcovillarreal_40011/cheap-and-local-kubernetes-playground-with-k3s-helm-5a0e2a110de9
 # https://www.freshbrewed.science/ubuntu-multipass-better-than-docker/index.html
+# https://github.com/rancher/k3s/issues/977
+# https://help.replicated.com/community/t/managing-firewalls-with-ufw-on-kubernetes/230
 
 echo "----- This MUST be run as root user -----"
 
+### FIREWALL RULES:
+
 # allow traffic to the Kubernetes API server
 sudo ufw allow 6443
-# The kubelet in the host network needs to be able to send packets “out” via the weave interface to communicate with pods.
+# The kubelet in the host network needs to be able to send packets "out" via the weave interface to communicate with pods.
 sudo ufw allow out on weave to 10.32.0.0/12
 sudo ufw allow in on weave from 10.32.0.0/12
-# For multi-node installs open up the tcp and udp ports required for Weave’s control plane and data plane traffic.
+# For multi-node installs open up the tcp and udp ports required for Weave's control plane and data plane traffic.
 sudo ufw allow 6783/udp
 sudo ufw allow 6784/udp
 sudo ufw allow 6783/tcp
