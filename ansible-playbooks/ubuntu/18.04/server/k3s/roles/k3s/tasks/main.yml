@@ -56,7 +56,33 @@
 
 - name: Link helm with tiller -  Create cluster role binding for tiller
   command: kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+
+- name: Create the ubuntu user folder to keep kubeconfig
+  file:
+    path: /home/ubuntu/.kube
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: 0775
+    recurse: yes
+
+- name: Create the ops user folder to keep kubeconfig
+  file:
+    path: /home/ops/.kube
+    state: directory
+    owner: ops
+    group: ops
+    mode: 0775
+    recurse: yes
+
+- name: copy kubeconfig to the ubuntu user
+  copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ubuntu/.kube/config owner=ubuntu group=ubuntu mode=0644
+
+- name: copy kubeconfig to the ops user
+  copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ops/.kube/config owner=ops group=ops mode=0644
+
 - name: Initialize tiller
+  become_user: ubuntu
   command: helm init --service-account tiller
 
 - name: Generate file to verify it passed through this role

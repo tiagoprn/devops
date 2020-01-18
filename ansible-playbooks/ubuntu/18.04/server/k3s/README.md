@@ -6,3 +6,6 @@ It is recommended you run first the `initial-setup` and `docker` playbooks to
 provisionate the server.
 
 
+# REFERENCES
+- https://medium.com/@marcovillarreal_40011/cheap-and-local-kubernetes-playground-with-k3s-helm-5a0e2a110de9
+- https://www.freshbrewed.science/ubuntu-multipass-better-than-docker/index.html

@@ -26,15 +26,22 @@ kubectl get storageclass
 
 ### PART 2
 
-# # Install helm
-# cd /opt/k3s
-# curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > install-helm.sh
-# chmod u+x install-helm.sh && ./install-helm.sh
-# # Link helm with tiller
-# ## Create tiller service account
-# kubectl -n kube-system create serviceaccount tiller
-# ## Create cluster role binding for tiller
-# kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
-# ## Initialize tiller
+# Install helm
+cd /opt/k3s
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > install-helm.sh
+chmod u+x install-helm.sh && ./install-helm.sh
+# Link helm with tiller
+## Create tiller service account
+kubectl -n kube-system create serviceaccount tiller
+## Create cluster role binding for tiller
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+## Copy kubeconfig
+mkdir -p /home/ubuntu/.kube/ && chown -R ubuntu.ubuntu /home/ubuntu/.kube/
+mkdir -p /home/ops/.kube/ && chown -R ops.ops /home/ops/.kube/
+cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config && chmod 644 /home/ubuntu/.kube/config
+cp /etc/rancher/k3s/k3s.yaml /home/ops/.kube/config && chmod 644 /home/ops/.kube/config
+## Initialize tiller
+# (important: must be done as a normal user)
+# su - ubuntu
 # helm init --service-account tiller
-# echo -e "FINISHED!"
+echo -e "FINISHED!"
