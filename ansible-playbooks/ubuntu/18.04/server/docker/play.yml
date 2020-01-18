@@ -5,5 +5,4 @@
     - upgrade
     - {role: docker, when: "ansible_local['docker_facts']['has_docker_installed'] == false" }
     - services
-    - reboot
     - cleanup
