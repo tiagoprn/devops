@@ -12,6 +12,9 @@ kubectl describe pod <POD> -n <NAMESPACE>
 # See logs from all containers in a pod
 kubectl logs <POD> -n <NAMESPACE> --all-containers -f
 
+# See logs from specific container in a pod
+kubectl logs <POD> -n <NAMESPACE> -c <CONTAINER_NAME> -f
+
 # Get name of containers inside a pod
 kubectl get pod <POD> -n <NAMESPACE> -o jsonpath='{.spec.containers[*].name}'
 
