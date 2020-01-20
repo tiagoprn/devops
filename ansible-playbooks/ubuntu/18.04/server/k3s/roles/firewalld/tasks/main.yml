@@ -8,8 +8,16 @@
     recurse: yes
 
 - name: copy firewall rules script
-  copy: src=k3s-firewall-rules.sh dest=/opt/containers/scripts owner=ubuntu group=ubuntu mode=0644
+  copy: src=k3s-firewall-rules.sh dest=/opt/containers/scripts owner=ubuntu group=ubuntu mode=0755
 
 - name: Run firewall rules for all pods to be operational
   command: bash /opt/containers/scripts/k3s-firewall-rules.sh
+
+- name: Reload firewalld to apply the new configuration
+  shell:
+    firewall-cmd --reload
+
+- name: Print firewalld configuration
+  shell:
+    firewall-cmd --zone=public --list-all
 
