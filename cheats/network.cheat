@@ -1,5 +1,8 @@
 % network, ip
 
+# Get all routes (gateways, networks and interfaces)
+route
+
 # Get all network interfaces with their configuration
 ip r
 
