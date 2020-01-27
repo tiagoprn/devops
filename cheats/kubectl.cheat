@@ -9,6 +9,9 @@ kubectl get pods -n <NAMESPACE>
 # See resources being used by all nodes
 kubectl top nodes
 
+# See resources being used by all pods in all namespaces
+kubectl top pods --all-namespaces
+
 # Describe pod on namespace
 kubectl describe pod <POD> -n <NAMESPACE>
 
