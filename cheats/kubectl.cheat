@@ -2,12 +2,14 @@
 
 # Select pod name and copy to the clipboard
 kubectl get pods -n <NAMESPACE> | fzf --no-sort | awk '{print $1}' | xclip -i -selection clipboard
-
 # Get pods on namespace
 kubectl get pods -n <NAMESPACE>
 
 # Describe pod on namespace
 kubectl describe pod <POD> -n <NAMESPACE>
+
+# See resources being used by a pod
+kubectl top pod <POD> -n <NAMESPACE>
 
 # See logs from all containers in a pod
 kubectl logs <POD> -n <NAMESPACE> --all-containers -f
