@@ -18,6 +18,9 @@ kubectl describe pod <POD> -n <NAMESPACE>
 # See resources being used by a pod
 kubectl top pod <POD> -n <NAMESPACE>
 
+# See resources being used by a pod, by container
+kubectl top pod <POD> -n <NAMESPACE> --containers
+
 # See logs from all containers in a pod
 kubectl logs <POD> -n <NAMESPACE> --all-containers -f
 
