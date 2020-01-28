@@ -33,3 +33,5 @@ kubectl get pod <POD> -n <NAMESPACE> -o jsonpath='{.spec.containers[*].name}'
 # Enter a shell inside a pod
 kubectl exec -it <POD> --container <CONTAINER> -n <NAMESPACE> -- /bin/bash
 
+# Delete a pod (useful for testing the resilience)
+kubectl delete pods <POD> -n <NAMESPACE>
