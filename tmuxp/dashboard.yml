@@ -13,10 +13,10 @@ windows:
         - htop
         focus: true
       - shell_command:
-        - watch -n 1 wttr-summary-emojis
-      - shell_command:
         - watch -n 1 docker ps
       - shell_command:
         - curl cht.sh
+      - shell_command:
+        - watch -n 1 wttr-summary-emojis
       - shell_command:
         - links https://www.vim.org/news/news.php
