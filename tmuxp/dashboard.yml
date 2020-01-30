@@ -1,0 +1,25 @@
+session_name: DASHBOARD
+windows:
+  - window_name: main
+    layout: tile
+    shell_command_before:
+      - clear
+      - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
+    panes:
+      - shell_command:
+        - neofetch
+      - shell_command:
+        - htop
+        focus: true
+      - shell_command:
+        - watch -n 1 wttr-summary-emojis
+      - shell_command:
+        - watch -n 1 docker ps
+      - shell_command:
+        - curl cht.sh
+      - shell_command:
+        - echo 'TODO: https://opensource.com/article/20/1/open-source-reddit-client'
+      - shell_command:
+        - echo 'TODO: https://www.vim.org/news/news.php '
+      - shell_command:
+        - echo 'TODO: a·cli·calendar·-·search·on·opensource.com·for·2020·productivity·articles'
