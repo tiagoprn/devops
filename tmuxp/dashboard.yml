@@ -1,22 +1,19 @@
 session_name: DASHBOARD
 windows:
   - window_name: main
-    layout: tile
+    layout: main-horizontal
+    options:
+      main-pane-height: 15
     shell_command_before:
       - clear
       - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
       - sleep 1
+      - reset
     panes:
-      - shell_command:
-        - neofetch
-      - shell_command:
-        - htop
-        focus: true
-      - shell_command:
-        - watch -n 1 docker ps
+      - watch -n 1 docker ps
       - shell_command:
         - curl cht.sh
-      - shell_command:
-        - watch -n 1 wttr-summary-emojis
-      - shell_command:
-        - links https://www.vim.org/news/news.php
+        focus: true
+      - neofetch
+      # - watch -n 1 wttr-summary-emojis
+      # - links https://www.vim.org/news/news.php
