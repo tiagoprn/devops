@@ -5,6 +5,7 @@ windows:
     shell_command_before:
       - clear
       - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
+      - sleep 1
     panes:
       - shell_command:
         - neofetch
@@ -18,8 +19,4 @@ windows:
       - shell_command:
         - curl cht.sh
       - shell_command:
-        - echo 'TODO: https://opensource.com/article/20/1/open-source-reddit-client'
-      - shell_command:
-        - echo 'TODO: https://www.vim.org/news/news.php '
-      - shell_command:
-        - echo 'TODO: a·cli·calendar·-·search·on·opensource.com·for·2020·productivity·articles'
+        - links https://www.vim.org/news/news.php
