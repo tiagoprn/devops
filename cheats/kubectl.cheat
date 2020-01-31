@@ -35,3 +35,9 @@ kubectl exec -it <POD> --container <CONTAINER> -n <NAMESPACE> -- /bin/bash
 
 # Delete a pod (useful for testing the resilience)
 kubectl delete pods <POD> -n <NAMESPACE>
+
+# Copy files from pod/container to local machine
+kubectl cp --container=<CONTAINER> <NAMESPACE>/<POD>:<REMOTE_PATH> <LOCAL_PATH>
+
+# Copy files from local machine to pod/container
+kubectl cp  <LOCAL_PATH> --container=<CONTAINER> <NAMESPACE>/<POD>:<REMOTE_PATH>
