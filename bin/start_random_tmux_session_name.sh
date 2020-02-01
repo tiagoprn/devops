@@ -21,7 +21,7 @@ index=$(($RANDOM % $size))
 
 NAME=${array[$index]}
 
-notify-send --urgency low "Starting tmux session $NAME on urxvt terminal..."
+notify-send --urgency low "Starting tmux session $NAME on kitty terminal..."
 
 tmux -2 new -s $NAME && tmux -2 a -t $NAME
 
