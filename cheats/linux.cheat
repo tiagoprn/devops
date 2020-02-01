@@ -30,8 +30,8 @@ inxi -F -A -I -u
 # detailed system information
 sudo inxi -b -A -C -f -D -n -G -l -M -r -P -I -S -d -f -i -m -o -s -u
 
-# top 10 processes by cpu
+# top x processes by cpu
 inxi -t c<number>
 
-# top 10 processes by memory
+# top x processes by memory
 inxi -t m<number>
