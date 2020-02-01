@@ -1,15 +1,13 @@
 session_name: DASHBOARD
 windows:
   - window_name: main
-    layout: main-horizontal
-    options:
-      main-pane-height: 15
+    layout: 77f6,235x57,0,0{116x57,0,0,51,118x57,117,0[118x28,117,0,52,118x14,117,29,53,118x13,117,44,54]}
     shell_command_before:
       - clear
-      - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
-      - sleep 1
+      - sleep 2
       - reset
     panes:
-      - htop
+      - c
       - neofetch
-      - watch -n 1 docker ps
+      - wttr-summary-emojis
+      - tty-clock
