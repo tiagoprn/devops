@@ -10,4 +10,4 @@ windows:
       - c
       - neofetch
       - wttr-summary-emojis
-      - tty-clock
+      - tty-clock -b -c -s -f '%A, %d %B %Y'
