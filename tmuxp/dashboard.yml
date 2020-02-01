@@ -10,10 +10,6 @@ windows:
       - sleep 1
       - reset
     panes:
-      - watch -n 1 docker ps
-      - shell_command:
-        - curl cht.sh
-        focus: true
+      - htop
       - neofetch
-      # - watch -n 1 wttr-summary-emojis
-      # - links https://www.vim.org/news/news.php
+      - watch -n 1 docker ps
