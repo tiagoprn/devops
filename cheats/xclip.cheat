@@ -1,7 +1,7 @@
 % xclip, clipboard
 
 # Copy to clipboard
-xclip -selection clipboard
+<command> | xclip -selection clipboard
 
 # Paste from clipboard
 xclip -i -selection clipboard -o
