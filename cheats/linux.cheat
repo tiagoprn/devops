@@ -17,3 +17,6 @@ echo "$(hostname)" | figlet -cptk
 
 # do not show blank lines on output
 grep '\S'
+
+# tee: redirect command output (stdout and stderr) to file or another command.
+<command> |& tee -a <file-or-command>
