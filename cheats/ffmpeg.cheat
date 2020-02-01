@@ -6,3 +6,5 @@ docker pull jrottenberg/ffmpeg
 # Convert from input file to output file (it does automatically by extension)
 docker run --rm --user $(id -u):$(id -g) -v $PWD:/temp jrottenberg/ffmpeg -stats -i /temp/<input_file> /temp/<output_file>
 
+# Select a timespace from a file and generate a new file from it. Timestamp e.g.: 00:03:43
+docker run --rm --user $(id -u):$(id -g) -v $PWD:/temp jrottenberg/ffmpeg -i <input-file> -ss <start-timestamp > -to <finish-timestamp> -c copy <output-file>

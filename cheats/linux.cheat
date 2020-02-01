@@ -20,3 +20,18 @@ grep '\S'
 
 # tee: redirect command output (stdout and stderr) to file or another command. Better than '>' or '>>'
 <command> |& tee -a <file-or-command>
+
+# system information - list requisites
+inxi --recommends
+
+# system information summary
+inxi -F -A -I -u
+
+# detailed system information
+sudo inxi -b -A -C -f -D -n -G -l -M -r -P -I -S -d -f -i -m -o -s -u
+
+# top 10 processes by cpu
+inxi -t c<number>
+
+# top 10 processes by memory
+inxi -t m<number>
