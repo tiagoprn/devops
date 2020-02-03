@@ -40,4 +40,4 @@ inxi -t m<number>
 gpg -r <key-id> -se <file>
 
 # gpg decrypt
-gpg --decrypt <file> > <file>.decrypted
+gpg --decrypt <file> > <file>.decrypted && echo -e '\n --- \nDecrypted as "<file>.decrypted"\n'
