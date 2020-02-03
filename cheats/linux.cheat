@@ -35,3 +35,9 @@ inxi -t c<number>
 
 # top x processes by memory
 inxi -t m<number>
+
+# gpg crypt
+gpg -r <key-id> -se <file>
+
+# gpg decrypt
+gpg --decrypt <file> > <file>.decrypted
