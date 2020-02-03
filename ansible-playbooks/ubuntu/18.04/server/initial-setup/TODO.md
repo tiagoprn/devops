@@ -1,3 +1,5 @@
+- [ ] See if ssh is protected on the fail2ban task:
+  https://www.unixtutorial.org/how-to-use-fail2ban-to-protect-ssh
 - [ ] Extract suricata into a separated playbook
 - [ ] Extract host_metrics(collectd/influxdb) into a separated playbook, and change it for prometheus (see the `prometheus` tags on my pocket account).
 - [ ] Extract tmux into a separated playbook
