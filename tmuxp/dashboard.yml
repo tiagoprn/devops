@@ -7,7 +7,7 @@ windows:
       - sleep 2
       - reset
     panes:
-      - c
+      - c && wttr-summary-emojis
       - neofetch
       - watch -n 1 inxi -t m3
       - watch -n 1 inxi -t c3
