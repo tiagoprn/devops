@@ -11,4 +11,4 @@ windows:
       - neofetch
       - watch -n 1 inxi -t m3
       - watch -n 1 inxi -t c3
-      - tty-clock -b -c -s -f '%A, %d %B %Y'
+      - echo 'Waiting for the clock...' && sleep 3 && tty-clock -b -c -s -f '%A, %d %B %Y'
