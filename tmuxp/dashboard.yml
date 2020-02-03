@@ -1,7 +1,7 @@
 session_name: DASHBOARD
 windows:
   - window_name: main
-    layout: 77f6,235x57,0,0{116x57,0,0,51,118x57,117,0[118x28,117,0,52,118x14,117,29,53,118x13,117,44,54]}
+    layout: fc9c,209x54,0,0{103x54,0,0,4,105x54,104,0[105x27,104,0,5,105x6,104,28,6,105x6,104,35,60,105x12,104,42,7]}
     shell_command_before:
       - clear
       - sleep 2
@@ -9,5 +9,6 @@ windows:
     panes:
       - c
       - neofetch
-      - wttr-summary-emojis
+      - watch -n 1 inxi -t m3
+      - watch -n 1 inxi -t c3
       - tty-clock -b -c -s -f '%A, %d %B %Y'
