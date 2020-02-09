@@ -1,0 +1,17 @@
+% luks cryptsetup vault
+
+# Open vault
+sudo cryptsetup luksOpen the-vault-2020.mpg VAULT --key-file /storage/temp/sandisk-64G-20200209.masterkey && echo 'Vault open, now you can mount it.'
+
+# vault status
+sudo cryptsetup status VAULT
+
+# Mount vault
+sudo mount /dev/mapper/VAULT /tmp/VAULT && cd /tmp/VAULT && echo 'Vault mounted, umount and close when finished.'
+
+# Unmount vault
+cd /tmp && sudo umount /tmp/VAULT && echo 'Vault umounted, now you must close it.'
+
+# Close vault
+sudo cryptsetup luksClose VAULT && rm -f /storage/temp/sandisk-64G-20200209.masterkey && echo 'Vault closed and decrypted master key deleted. You must decrypt the master key again the next time.'
+
