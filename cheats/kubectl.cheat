@@ -41,3 +41,9 @@ kubectl cp --container=<CONTAINER> <NAMESPACE>/<POD>:<REMOTE_PATH> <LOCAL_PATH>
 
 # Copy files from local machine to pod/container
 kubectl cp <LOCAL_PATH> --container=<CONTAINER> <NAMESPACE>/<POD>:<REMOTE_PATH>
+
+# Change a deployment (useful e.g. to change environment variables. This will change it and trigger a new one, killing the current one)
+kubectl edit deployment -n <NAMESPACE>
+
+# Describe a deployment
+kubectl describe deployment -n <NAMESPACE>
