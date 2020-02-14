@@ -41,3 +41,6 @@ gpg -r <key-id> -se <file>
 
 # gpg decrypt
 gpg --decrypt <file> > <file>.decrypted && echo -e '\n --- \nDecrypted as "<file>.decrypted"\n'
+
+# run indefinitely/infinitely in a loop
+while :; do sleep 59; echo -n ' ' >&2; done &
