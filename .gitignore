@@ -16,3 +16,4 @@ __pycache__/
 cloud-config.yaml
 *.NEW
 *.img
+*.BKP
