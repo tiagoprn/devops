@@ -8,8 +8,6 @@ if [ -e /run/first_boot_passed ] ; then
 fi
 
 echo 'Configuring locale...[WAIT]'
-sudo su -c "cd /etc/default && mv locale locale.ORIG && wget https://raw.githubusercontent.com/tiagoprn/devops/master/raspberry/dockerpi/config/locale "
-sudo su -c "cd /etc && mv locale.gen locale.gen.ORIG && wget https://raw.githubusercontent.com/tiagoprn/devops/master/raspberry/dockerpi/config/locale.gen"
 sudo su -c "source /etc/default/locale && sudo locale-gen en_US.UTF-8 && sudo update-locale en_US.UTF-8"
 sudo su -c "Current locale is: $(echo $LC_ALL)."
 echo 'Configuring locale...[DONE]'
