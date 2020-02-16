@@ -14,7 +14,7 @@ unzip-raspbian-image:  ## Unzip raspbian image
 	@sleep 3
 	@cd $(RASPBERRY_IMAGES_PATH) && unzip $(RASPBIAN_COMPRESSED_IMAGE)
 
-modify-raspbian-image: unzip-raspbian-image  ## Modify raspbian image, mounting /boot and adding ssh file to allow ssh on startup
+modify-raspbian-image: unzip-raspbian-image  ## Modify raspbian image, mounting /boot to add ssh file to allow ssh on startup and install cloud-init and its configuration
 	@FULL_RASPBIAN_IMAGE_PATH=$(FULL_RASPBIAN_IMAGE_PATH) ./mount-raspbian-image-and-enable-ssh-boot.sh
 
 resize-raspbian-image: ## Resize raspbian image, so that it can have free space to be usable.

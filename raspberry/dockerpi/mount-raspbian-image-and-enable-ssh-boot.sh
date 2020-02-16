@@ -6,6 +6,8 @@ bootLoopDevice="$(sudo kpartx -avs $FULL_RASPBIAN_IMAGE_PATH | head -n 1 | awk '
 mkdir boot
 sudo mount -o loop "/dev/mapper/${bootLoopDevice}" boot
 sudo touch boot/ssh
+# Add cloud-config boot script and the configuration
+./generate-cloud-config-file.sh && sudo cp -farv cloud* boot/
 sudo umount boot
 sudo rm -fr boot
 # FIXME: change raspi hostname to rpi-gateway
