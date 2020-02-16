@@ -8,16 +8,11 @@ Due to qemu's current limitation, you can only emulate an ARM arquitecture with
 32-bit and 256MB of memory.
 
 The raspbian image must be downloaded separately. To enable a non-interactive
-VM with ssh enabled (so that you can use ansible e.g.), you must run the
-`mount-raspbian...` script on this folder, setting your raspbian image file as
-an environment variable. This will create a ssh file on /boot, so that the ssh
-server will be automatically started on boot.
+VM with ssh enabled (so that you can use ansible e.g.), you must run
+`make run-raspbian-ssh` on this folder.
 
-The run command on the Makefile exposes the raspbian vm on port 5022 of
-localhost, so that you can ssh into it like:
+To run an interactive vm, just run `make run-raspbian-interactive` on this folder.
 
-`$ ssh pi@localhost -p 5022`
+To ssh into the ssh VM, run `make ssh-into-raspbian`.
 
-So, if you need more VMs, just change the exposed port on the host to other
-numbers. ;)
 
