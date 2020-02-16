@@ -1,23 +1,9 @@
 # Resize the raspbian image file (.img) to 10 GB:
 
-- Ver como rodar comandos na inicialização do raspbian, principalmente os para
-  gerar a localização (estou tendo erros de LC_ALL):
-https://raspberrypi.stackexchange.com/questions/43550/unable-to-reconfigure-locale-in-raspberry-pi
-```
-$ sudo nano /etc/locale.gen (uncomment en_US.UTF-8)
-
-$ sudo vim /etc/default/locale
-LANG=en_US.UTF-8
-LC_ALL=en_US.UTF-8
-LANGUAGE=en_US.UTF-8
-
-(shutdown machine)
-
-$ sudo locale-gen en_US.UTF-8 && sudo update-locale en_US.UTF-8
-```
-
-- Adicionar login via ssh key e password para o user `pi` (devo precisar montar
-  o filesystem /) para fazer isso, provavelmente, assim como fiz com o /boot.
+- Adicionar login via ssh key e password para o user `pi` (usar o script
+  `mount-raspbian...` e nele rodar um comando para copiar a chave ssh do meu
+user para o authorized_keys do usuário `pi` no `root/home/pi` que vai estar
+montado. Depois ver como habilitar login por password e por ssh key.)
 
 - Usar a abordagem de montar um loop device como [nesse
   link](https://superuser.com/questions/297299/resize-a-partition-image-with-gparted),
