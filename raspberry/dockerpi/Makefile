@@ -36,5 +36,7 @@ run-raspbian-ssh: run-dockerized-raspbian-ssh  ## Run the raspbian docker image 
 	@docker logs -f $$(docker ps -f name=raspbian | cut -d ' ' -f 1 | grep -v CONTAINER)
 
 ssh-into-raspbian:  ## ssh into the raspbian docker container
+	@echo 'Removing old ssh record'
+	@ssh-keygen -f "/home/tiago/.ssh/known_hosts" -R "[localhost]:5022" || true
 	@echo 'Enter password: "raspberry" when prompted for it.'
 	@ssh pi@localhost -p 5022
