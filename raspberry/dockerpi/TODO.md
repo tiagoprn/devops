@@ -5,7 +5,7 @@ $ qemu-img resize -f raw 2020-02-13-raspbian-buster-lite.img +10G
 $ sudo udisksctl loop-setup -f disk.img
 Mapped file disk.img as /dev/loop0.
 $ lsblk
-$ resize2fs -p '/dev/loop0p2'  # resize the 2nd partition, the one with the filesystem.
+$ resize2fs -p '/dev/loop0p2'  # resize the 2nd partition, the one with the filesystem. (learned that with gparted)
 $ sudo udisksctl loop-delete -b /dev/loop0
 ```
 
