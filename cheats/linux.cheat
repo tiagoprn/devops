@@ -44,3 +44,7 @@ gpg --decrypt <file> > <file>.decrypted && echo -e '\n --- \nDecrypted as "<file
 
 # run indefinitely/infinitely in a loop
 while :; do sleep 59; echo -n ' ' >&2; done &
+
+# list partitions mountpoint status
+lsblk
+

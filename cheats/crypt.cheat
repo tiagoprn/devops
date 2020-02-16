@@ -1,17 +1,20 @@
 % luks cryptsetup vault
 
-# Open vault
+# Step 0 - Mount vault usb stick partition
+sudo mkdir -p /mnt/microsd_64gb && sudo chown -R $(id -u):$(id -g) /mnt/microsd_64gb && sudo mount /dev/<device> /mnt/microsd_64gb
+
+# Step 1 - Open vault
 sudo cryptsetup luksOpen the-vault-2020.mpg VAULT --key-file /storage/temp/sandisk-64G-20200209.masterkey && echo 'Vault open, now you can mount it.'
 
 # vault status
 sudo cryptsetup status VAULT
 
-# Mount vault
+# Step 2 - Mount vault
 sudo mount /dev/mapper/VAULT /tmp/VAULT && cd /tmp/VAULT && echo 'Vault mounted, umount and close when finished.'
 
-# Unmount vault
+# Step 3 - Unmount vault
 cd /tmp && sudo umount /tmp/VAULT && echo 'Vault umounted, now you must close it.'
 
-# Close vault
+# Step 4 - Close vault
 sudo cryptsetup luksClose VAULT && rm -f /storage/temp/sandisk-64G-20200209.masterkey && echo 'Vault closed and decrypted master key deleted. You must decrypt the master key again the next time.'
 
