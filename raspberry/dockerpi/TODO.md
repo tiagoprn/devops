@@ -1,7 +1,8 @@
 # Resize the raspbian image file (.img) to 10 GB:
 
 - Ver como rodar comandos na inicialização do raspbian, principalmente os para
-  gerar a localização (estou tendo erros de LC_ALL)
+  gerar a localização (estou tendo erros de LC_ALL):
+https://raspberrypi.stackexchange.com/questions/43550/unable-to-reconfigure-locale-in-raspberry-pi
 
 - Adicionar suporte ao cloud-init na imagem do raspberry, para poder fazer
   bootstrapping mais fácil através do qemu:
