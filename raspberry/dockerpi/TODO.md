@@ -1,6 +1,8 @@
 # Resize the raspbian image file (.img) to 10 GB:
 
-- Solve the TODO mark on `resize-raspbian-img.sh` to allow the process to be totally automated.
+- Adicionar suporte ao cloud-init na imagem do raspberry, para poder fazer
+  bootstrapping mais fácil através do qemu:
+[reference-1](https://gist.github.com/RichardBronosky/fa7d4db13bab3fbb8d9e0fff7ea88aa2)
 
 - Usar a abordagem de montar um loop device como [nesse
   link](https://superuser.com/questions/297299/resize-a-partition-image-with-gparted),
@@ -11,3 +13,9 @@ restaurar em um novo arquivo de imagem montado como loopback device.
 
 - Bootar a imagem do hypriotos através do dockerpi:
 `docker run -d -p 127.0.0.1:5022:5022 -v /myCustomImageWithSshFile.img:/sdcard/filesystem.img lukechilds/dockerpi`
+
+- Solve the TODO mark on `resize-raspbian-img.sh` to allow the process to be totally automated.
+
+Referências adicionais:
+https://blog.hypriot.com/post/cloud-init-cloud-on-hypriot-x64/
+
