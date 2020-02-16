@@ -18,10 +18,18 @@ modify-raspbian-image: unzip-raspbian-image  ## Modify raspbian image, mounting 
 run-raspbian-interactive: unzip-raspbian-image  ## Run the raspbian docker image locally
 	echo "You can exchange files with this containers on the directory $(SHARED_FOLDER) on the host and /shared on the container."
 	mkdir -p $(SHARED_FOLDER)
-	@docker run -it --env-file .env --network bridge --mount type=bind,source=$(SHARED_FOLDER),target=/shared --mount type=bind,source=$(FULL_RASPBIAN_IMAGE_PATH),target=/sdcard/filesystem.img lukechilds/dockerpi:vm
+	@docker run -it --network bridge --mount type=bind,source=$(SHARED_FOLDER),target=/shared --mount type=bind,source=$(FULL_RASPBIAN_IMAGE_PATH),target=/sdcard/filesystem.img lukechilds/dockerpi:vm
 
-run-raspbian-ssh: modify-raspbian-image  ## Run the raspbian docker image locally with ssh server
+run-dockerized-raspbian-ssh: modify-raspbian-image  ## Run the raspbian docker image locally with ssh server
 	echo "You can exchange files with this containers on the directory $(SHARED_FOLDER) on the host and /shared on the container."
 	mkdir -p $(SHARED_FOLDER)
-	@docker run -d -p 127.0.0.1:5022:5022 --env-file .env --network bridge --mount type=bind,source=$(SHARED_FOLDER),target=/shared --mount type=bind,source=$(FULL_RASPBIAN_IMAGE_PATH),target=/sdcard/filesystem.img lukechilds/dockerpi:vm
+	@docker run -d --name raspbian-$$(date '+%Y%m%d.%H%M.%S') -p 127.0.0.1:5022:5022 --network bridge --mount type=bind,source=$(SHARED_FOLDER),target=/shared --mount type=bind,source=$(FULL_RASPBIAN_IMAGE_PATH),target=/sdcard/filesystem.img lukechilds/dockerpi:vm
 
+run-raspbian-ssh: run-dockerized-raspbian-ssh  ## Run the raspbian docker image locally with ssh server, tailing its logs
+	@echo -e '>>> After seeing on the logs below the openssh server is started, you can ssh to it'
+	@sleep 10
+	@docker logs -f $$(docker ps -f name=raspbian | cut -d ' ' -f 1 | grep -v CONTAINER)
+
+ssh-into-raspbian:  ## ssh into the raspbian docker container
+	@echo 'Enter password: "raspberry" when prompted for it.'
+	@ssh pi@localhost -p 5022
