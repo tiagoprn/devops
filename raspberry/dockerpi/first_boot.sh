@@ -2,6 +2,11 @@
 
 echo 'Running first login script...[WAIT]'
 
+if [ -e /run/first_boot_passed ] ; then
+    echo 'First boot already passed, nothing to do on first login. [DONE]'
+    exit 0;
+fi
+
 echo 'Configuring locale...[WAIT]'
 sudo su -c "cd /etc/default && mv locale locale.ORIG && wget https://raw.githubusercontent.com/tiagoprn/devops/master/raspberry/dockerpi/config/locale "
 sudo su -c "cd /etc && mv locale.gen locale.gen.ORIG && wget https://raw.githubusercontent.com/tiagoprn/devops/master/raspberry/dockerpi/config/locale.gen"
@@ -12,4 +17,7 @@ echo 'Configuring locale...[DONE]'
 # TODO: authorize ssh key for the pi user
 # TODO: add ssh key login besides the password login
 
+touch /run/first_boot_passed
+
 echo 'Running first login script...[DONE]'
+
