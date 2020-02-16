@@ -18,8 +18,8 @@ sudo touch boot/ssh
 # add first_boot.sh script with commands to run on first_boot
 sudo cp first_boot.sh root/opt/first_boot.sh
 # copying configuration files
-sudo cp root/etc/rc.local root/etc/rc.local.ORIG
-sudo cp config/rc.local root/etc
+# sudo cp root/etc/rc.local root/etc/rc.local.ORIG
+# sudo cp config/rc.local root/etc
 sudo cp root/etc/default/locale root/etc/default/locale.ORIG
 sudo cp config/locale root/etc/default/locale
 sudo cp root/etc/locale.gen root/etc/locale.gen.ORIG
