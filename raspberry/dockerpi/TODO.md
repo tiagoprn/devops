@@ -16,18 +16,15 @@ LANGUAGE=en_US.UTF-8
 $ sudo locale-gen en_US.UTF-8 && sudo update-locale en_US.UTF-8
 ```
 
-
-
-- Adicionar suporte ao cloud-init na imagem do raspberry, para poder fazer
-  bootstrapping mais fácil através do qemu:
-[reference-1](https://gist.github.com/RichardBronosky/fa7d4db13bab3fbb8d9e0fff7ea88aa2)
+- Adicionar login via ssh key e password para o user `pi` (devo precisar montar
+  o filesystem /) para fazer isso, provavelmente, assim como fiz com o /boot.
 
 - Usar a abordagem de montar um loop device como [nesse
   link](https://superuser.com/questions/297299/resize-a-partition-image-with-gparted),
 ou como nos comandos do `resize-raspbian-img.sh` e usar o fsarchiver com savefs e restfs para
 restaurar em um novo arquivo de imagem montado como loopback device.
 
-- [Gerar uma imagem do hypriotos através do cloud-init](https://medium.com/@rvprasad/setting-up-a-raspberry-pi-cluster-2c40cd8e09d6) para bootar através do dockerpi, como alternativa ao raspbian (o hypriotos já vem com um Docker instalado e funcional para o raspberry).
+- [Gerar uma imagem do hypriotos através do cloud-init](https://medium.com/@rvprasad/setting-up-a-raspberry-pi-cluster-2c40cd8e09d6) para bootar através do dockerpi, como alternativa ao raspbian (o hypriotos já vem com um Docker instalado e funcional para o raspberry). Tenho um script aqui para gerar um cloud-init.
 
 - Bootar a imagem do hypriotos através do dockerpi:
 `docker run -d -p 127.0.0.1:5022:5022 -v /myCustomImageWithSshFile.img:/sdcard/filesystem.img lukechilds/dockerpi`
