@@ -6,6 +6,8 @@ bootLoopDevice="$(sudo kpartx -avs $FULL_RASPBIAN_IMAGE_PATH | head -n 1 | awk '
 mkdir boot
 sudo mount -o loop "/dev/mapper/${bootLoopDevice}" boot
 sudo touch boot/ssh
+# add first_boot.sh script with commands to run on first_boot
+sudo cp first_boot.sh boot/
 sudo umount boot
 sudo rm -fr boot
 # FIXME: change raspi hostname to rpi-gateway
