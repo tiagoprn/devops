@@ -12,6 +12,7 @@ echo "Image setup as loopback mount at $LOOPBACK_MOUNT"
 echo 'Listing block devices...'
 lsblk
 
+# TODO: To automate below, I could also use `resize2fs /dev/loopxxx SIZE`, using information from /dev/loop on lsblk.
 # echo 'Preparing to resize the 2nd partition on the image loopback device...'
 # sudo e2fsck -y -f "$LOOPBACK_MOUNT"p2
 # echo 'Resize the 2nd partition, the one with the filesystem...'
