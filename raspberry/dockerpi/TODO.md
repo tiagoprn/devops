@@ -1,20 +1,13 @@
 # Resize the raspbian image file (.img) to 10 GB:
 
-```
-$ qemu-img resize -f raw 2020-02-13-raspbian-buster-lite.img +10G
-$ sudo udisksctl loop-setup -f disk.img
-Mapped file disk.img as /dev/loop0.
-$ lsblk
-$ resize2fs -p '/dev/loop0p2'  # resize the 2nd partition, the one with the filesystem. (learned that with gparted)
-$ sudo udisksctl loop-delete -b /dev/loop0
-```
+- Solve the TODO mark on `resize-raspbian-img.sh` to allow the process to be totally automated.
 
 - Usar a abordagem de montar um loop device como [nesse
   link](https://superuser.com/questions/297299/resize-a-partition-image-with-gparted),
-ou como nos comandos acima e usar o fsarchiver com savefs e restfs para
+ou como nos comandos do `resize-raspbian-img.sh` e usar o fsarchiver com savefs e restfs para
 restaurar em um novo arquivo de imagem montado como loopback device.
 
-- Gerar uma imagem do hypriotos através do cloud-init para bootar através do dockerpi
+- [Gerar uma imagem do hypriotos através do cloud-init](https://medium.com/@rvprasad/setting-up-a-raspberry-pi-cluster-2c40cd8e09d6) para bootar através do dockerpi, como alternativa ao raspbian (o hypriotos já vem com um Docker instalado e funcional para o raspberry).
 
 - Bootar a imagem do hypriotos através do dockerpi:
 `docker run -d -p 127.0.0.1:5022:5022 -v /myCustomImageWithSshFile.img:/sdcard/filesystem.img lukechilds/dockerpi`
