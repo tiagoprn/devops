@@ -16,7 +16,7 @@ else
     KEY=$(<${PUBKEY})
 fi
 
-SUDOGROUP="wheel"
+SUDOGROUP="pi, adm, dialout, cdrom, sudo, audio, video, plugdev, games, users, input, netdev, spi, i2c, gpio"
 TIMEZONE=America/Sao_Paulo
 
 # configure profile
