@@ -1,5 +1,8 @@
 # Resize the raspbian image file (.img) to 10 GB:
 
+- Ver como rodar comandos na inicialização do raspbian, principalmente os para
+  gerar a localização (estou tendo erros de LC_ALL)
+
 - Adicionar suporte ao cloud-init na imagem do raspberry, para poder fazer
   bootstrapping mais fácil através do qemu:
 [reference-1](https://gist.github.com/RichardBronosky/fa7d4db13bab3fbb8d9e0fff7ea88aa2)
