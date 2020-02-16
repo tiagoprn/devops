@@ -1,6 +1,8 @@
 # Raspbian VM powered by Docker
 
-This uses docker to bootstrap qemu and start a raspbian VM.
+This uses docker to bootstrap qemu and start a VM.
+
+## raspbian
 
 Due to qemu's current limitation, you can only emulate an ARM arquitecture with
 32-bit and 256MB of memory.
