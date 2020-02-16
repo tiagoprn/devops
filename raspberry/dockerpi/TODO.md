@@ -3,6 +3,20 @@
 - Ver como rodar comandos na inicialização do raspbian, principalmente os para
   gerar a localização (estou tendo erros de LC_ALL):
 https://raspberrypi.stackexchange.com/questions/43550/unable-to-reconfigure-locale-in-raspberry-pi
+```
+$ sudo nano /etc/locale.gen (uncomment en_US.UTF-8)
+
+$ sudo vim /etc/default/locale
+LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+LANGUAGE=en_US.UTF-8
+
+(shutdown machine)
+
+$ sudo locale-gen en_US.UTF-8 && sudo update-locale en_US.UTF-8
+```
+
+
 
 - Adicionar suporte ao cloud-init na imagem do raspberry, para poder fazer
   bootstrapping mais fácil através do qemu:
