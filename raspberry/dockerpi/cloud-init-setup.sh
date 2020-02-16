@@ -89,7 +89,7 @@ instance-id: iid-raspberrypi-nocloud
 YAML
 
 # Create user-data
-sudo tee /boot/user-data $(cat /boot/cloud-config.yaml)
+sudo cp /boot/cloud-config.yaml /boot/user-data
 
 # Initialize cloud-init
 sudo cloud-init init --local
