@@ -17,3 +17,5 @@ cloud-config.yaml
 *.NEW
 *.img
 *.BKP
+root/
+boot/
