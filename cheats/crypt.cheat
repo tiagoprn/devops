@@ -10,7 +10,7 @@ sudo cryptsetup luksOpen the-vault-2020.mpg VAULT --key-file /storage/temp/sandi
 sudo cryptsetup status VAULT
 
 # Step 2 - Mount vault
-sudo mount /dev/mapper/VAULT /tmp/VAULT && cd /tmp/VAULT && echo 'Vault mounted, umount and close when finished.'
+sudo mkdir -p /tmp/VAULT && sudo chown -R $(id -u):$(id -g) /tmp/VAULT && sudo mount /dev/mapper/VAULT /tmp/VAULT && cd /tmp/VAULT && echo 'Vault mounted, umount and close when finished.'
 
 # Step 3 - Unmount vault
 cd /tmp && sudo umount /tmp/VAULT && echo 'Vault umounted, now you must close it.'
