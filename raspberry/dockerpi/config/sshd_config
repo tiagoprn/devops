@@ -1,7 +1,8 @@
 # Below was cleaned up with just the active options on the file
 # of the original raspbian image.
 # I have added bits from this stackoverflow answer to allow login
-# or through ssh key or through password.
+# or through ssh key or through password:
+# https://security.stackexchange.com/questions/17931/possible-to-use-both-private-key-and-password-authentication-for-ssh-login
 
 PubkeyAuthentication yes
 # You should ADD a comma between auth methods below if you want those methods
