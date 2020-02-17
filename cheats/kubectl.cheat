@@ -50,3 +50,6 @@ kubectl describe deployment -n <NAMESPACE>
 
 # Get current kubectl context
 kubectl config current-context
+
+# Change current kubectl context
+kubectl config set-context <context>
