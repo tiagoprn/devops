@@ -35,11 +35,7 @@ sudo cp config/sshd_config root/etc/ssh/sshd_config
 
 echo "Generating and copying ssh authorized_keys file..."
 cat $HOME/.ssh/id_rsa.pub > config/authorized_keys
-sudo su -c "mkdir -p root/home/pi/.ssh"
-sudo su -c "cp config/authorized_keys root/home/pi/.ssh/authorized_keys"
-sudo su -c "chown -R 1000:1000 root/home/pi/.ssh"
-sudo su -c "chmod 700 root/home/pi/.ssh"
-sudo su -c "chmod 644 root/home/pi/.ssh/authorized_keys"
+sudo cp config/authorized_keys root/home/pi/authorized_keys
 
 echo "Umounting and removing raspbian boot filesystem mapping..."
 sudo umount boot

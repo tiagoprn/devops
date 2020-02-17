@@ -12,8 +12,14 @@ sudo su -c "source /etc/default/locale && sudo locale-gen en_US.UTF-8 && sudo up
 sudo su -c "Current locale is: $(echo $LC_ALL)."
 echo 'Configuring locale...[DONE]'
 
-# TODO: authorize ssh key for the pi user
-# TODO: add ssh key login besides the password login
+echo "Authorize ssh key for the pi user...[WAIT]"
+sudo su -c "mkdir -p /home/pi/.ssh"
+sudo su -c "chown -R 1000:1000 /home/pi/.ssh"
+sudo su -c "chmod 700 /home/pi/.ssh"
+sudo su -c "mv /home/pi/authorized_keys /home/pi/.ssh"
+sudo su -c "chmod 644 /home/pi/.ssh/authorized_keys"
+sudo su -c "chown 1000:1000 /home/pi/.ssh/authorized_keys"
+echo "Authorize ssh key for the pi user...[DONE]"
 
 touch /run/first_boot_passed
 
