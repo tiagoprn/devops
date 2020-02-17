@@ -4,7 +4,7 @@
 sudo mkdir -p /mnt/microsd_64gb && sudo chown -R $(id -u):$(id -g) /mnt/microsd_64gb && sudo mount /dev/<device> /mnt/microsd_64gb
 
 # Step 1 - Open vault
-sudo cryptsetup luksOpen the-vault-2020.mpg VAULT --key-file /storage/temp/sandisk-64G-20200209.masterkey && echo 'Vault open, now you can mount it.'
+cp -farv /mnt/microsd_64gb/sandisk-64G-20200209.masterkey.gpg /storage/temp && cd /storage/temp && echo 'Enter your gnupg password to decrypt the vault master key...' && gpg --decrypt /storage/temp/sandisk-64G-20200209.masterkey.gpg > sandisk-64G-20200209.masterkey && sudo cryptsetup luksOpen /mnt/microsd_64gb/the-vault-2020.mpg VAULT --key-file /storage/temp/sandisk-64G-20200209.masterkey && echo 'Vault open, now you can mount it.'
 
 # vault status
 sudo cryptsetup status VAULT
