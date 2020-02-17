@@ -40,3 +40,10 @@ ssh-into-raspbian:  ## ssh into the raspbian docker container
 	@ssh-keygen -f "/home/tiago/.ssh/known_hosts" -R "[localhost]:5022" || true
 	@echo 'Enter password: "raspberry" when prompted for it.'
 	@ssh pi@localhost -p 5022
+
+delete-container-and-image:  ## removes the container and the raspbian image, to start clean
+	@echo 'Killing and removing docker container...'
+	@docker kill $$(docker ps -f name=raspbian | cut -d ' ' -f 1 | grep -v CONTAINER) || true
+	@echo "Removing the raspbian image file '$(FULL_RASPBIAN_IMAGE_PATH)'..."
+	@rm -f $(FULL_RASPBIAN_IMAGE_PATH) || true
+	@echo 'Finished.'
