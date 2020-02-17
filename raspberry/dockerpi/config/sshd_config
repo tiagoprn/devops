@@ -1,0 +1,22 @@
+# Below was cleaned up with just the active options on the file
+# of the original raspbian image.
+# I have added bits from this stackoverflow answer to allow login
+# or through ssh key or through password.
+
+PubkeyAuthentication yes
+# You should ADD a comma between auth methods below if you want those methods
+# to be combined, i.e. publickey AND password.
+# In the example below the behavior is different - either publickey OR password will be
+# accepted.
+AuthenticationMethods publickey password
+AuthorizedKeysFile      .ssh/authorized_keys
+PasswordAuthentication yes
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+
+UsePAM yes
+
+X11Forwarding yes
+PrintMotd no
+AcceptEnv LANG LC_*
+Subsystem	sftp	/usr/lib/openssh/sftp-server
