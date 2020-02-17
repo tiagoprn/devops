@@ -47,3 +47,6 @@ kubectl edit deployment -n <NAMESPACE>
 
 # Describe a deployment
 kubectl describe deployment -n <NAMESPACE>
+
+# Get current kubectl context
+kubectl config current-context
