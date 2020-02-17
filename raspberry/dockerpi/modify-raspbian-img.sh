@@ -39,6 +39,8 @@ CURRENT_USER_HOME=$HOME
 mkdir -p root/home/pi/.ssh || true \
     && sudo su -c "cat $CURRENT_USER_HOME/.ssh/id_rsa.pub >> root/home/pi/.ssh/authorized_keys" \
     && sudo su -c "chown -R 1000:1000 root/home/pi/.ssh" \
+    && sudo su -c "chmod 700 root/home/pi/.ssh" \
+    && sudo su -c "chmod 644 root/home/pi/.ssh/authorized_keys" \
 
 echo "Umounting and removing raspbian boot filesystem mapping..."
 sudo umount boot
