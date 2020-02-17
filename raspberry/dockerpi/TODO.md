@@ -1,7 +1,7 @@
 # Resize the raspbian image file (.img) to 10 GB:
 
 - Adicionar login via ssh key e password para o user `pi` (usar o script
-  `mount-raspbian...` e nele rodar um comando para copiar a chave ssh do meu
+  `modify-raspbian-img.sh` e nele rodar um comando para copiar a chave ssh do meu
 user para o authorized_keys do usuário `pi` no `root/home/pi` que vai estar
 montado. Depois ver como habilitar login por password e por ssh key.)
 

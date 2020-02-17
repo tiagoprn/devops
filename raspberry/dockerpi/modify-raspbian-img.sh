@@ -1,6 +1,6 @@
 #!/bin/bash
+# This script modifies the raspbian image with some customizations.
 
-# modify the raspbian image to allow auto start of the ssh daemon
 echo "Mount boot partition of raspbian image at $FULL_RASPBIAN_IMAGE_PATH..."
 bootLoopDevice="$(sudo kpartx -avs $FULL_RASPBIAN_IMAGE_PATH | head -n 1 | awk '{print $3}')"
 mkdir boot
@@ -8,26 +8,39 @@ sudo mount -o loop "/dev/mapper/${bootLoopDevice}" boot
 
 echo "Mount root partition of raspbian image at $FULL_RASPBIAN_IMAGE_PATH..."
 rootLoopDevice="$(sudo kpartx -avs $FULL_RASPBIAN_IMAGE_PATH | tail -n 1 | awk '{print $3}')"
-# add ssh file to root partition to activate ssh directly during raspbian start
+
+echo "Add ssh file to root partition to activate ssh directly during raspbian start..."
 mkdir root
 sudo mount -o loop "/dev/mapper/${rootLoopDevice}" root
 
-# add ssh file to boot partition to activate ssh directly during raspbian start
+echo "Add ssh file to boot partition to activate ssh directly during raspbian start..."
 sudo touch boot/ssh
 
-# add first_boot.sh script with commands to run on first_boot
+echo "Add first_boot.sh script with commands to run on first_boot..."
 sudo cp first_boot.sh root/opt/first_boot.sh
-# copying configuration files
+
+echo "Add rc.local to allow running the first_boot script..."
 sudo cp root/etc/rc.local root/etc/rc.local.ORIG
 sudo cp config/rc.local root/etc
+
+echo "Add locale configuration..."
 sudo cp root/etc/default/locale root/etc/default/locale.ORIG
 sudo cp config/locale root/etc/default/locale
 sudo cp root/etc/locale.gen root/etc/locale.gen.ORIG
 sudo cp config/locale.gen root/etc/locale.gen
 
+echo "Add sshd configuration..."
+sudo cp root/etc/ssh/sshd_config root/etc/ssh/sshd_config.ORIG
+sudo cp config/sshd_config root/etc/ssh/sshd_config
+
+echo "Add current user ssh pub key to the pi user ssh authorized_keys..."
+sudo cat $HOME/.ssh/id_rsa.pub >> root/home/pi/.ssh/authorized_keys
+
+echo "Umounting and removing raspbian boot filesystem mapping..."
 sudo umount boot
 sudo rm -fr boot
 
+echo "Umounting and removing raspbian root filesystem mapping..."
 sudo umount root
 sudo rm -fr root
 
