@@ -19,3 +19,4 @@ cloud-config.yaml
 *.BKP
 root/
 boot/
+authorized_keys
