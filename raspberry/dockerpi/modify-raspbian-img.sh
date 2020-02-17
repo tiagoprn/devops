@@ -34,9 +34,11 @@ sudo cp root/etc/ssh/sshd_config root/etc/ssh/sshd_config.ORIG
 sudo cp config/sshd_config root/etc/ssh/sshd_config
 
 echo "Add current user ssh pub key to the pi user ssh authorized_keys..."
-sudo mkdir root/home/pi/.ssh \
-    && cat $HOME/.ssh/id_rsa.pub >> root/home/pi/.ssh/authorized_keys \
-    && sudo chown -R 1000:1000 root/home/pi/.ssh \
+# 1000 is the pi user id on the raspberry image
+CURRENT_USER_HOME=$HOME
+mkdir -p root/home/pi/.ssh || true \
+    && sudo su -c "cat $CURRENT_USER_HOME/.ssh/id_rsa.pub >> root/home/pi/.ssh/authorized_keys" \
+    && sudo su -c "chown -R 1000:1000 root/home/pi/.ssh" \
 
 echo "Umounting and removing raspbian boot filesystem mapping..."
 sudo umount boot
