@@ -3,7 +3,13 @@
 - Login via ssh key não está funcionando o user `pi`: usei o script
   `modify-raspbian-img.sh` para nele rodar um comando para copiar a chave ssh
 do meu user para o authorized_keys do usuário `pi` no `root/home/pi/.ssh`
-montado.
+montado. Erro:
+```
+Add sshd configuration...
+Add current user ssh pub key to the pi user ssh authorized_keys...
+mkdir: cannot create directory ‘root/home/pi/.ssh’: Permission denied
+bash: root/home/pi/.ssh/authorized_keys: No such file or directory
+```
 
 - Usar a abordagem de montar um loop device como [nesse
   link](https://superuser.com/questions/297299/resize-a-partition-image-with-gparted),
