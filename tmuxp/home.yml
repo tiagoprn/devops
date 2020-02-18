@@ -11,4 +11,5 @@ windows:
     panes:
       - cd /storage/src/devops/cheats && clear
       - cd /storage/src/tiagoprnl/content/posts && clear
+      - cd /storage/src/tiagoprnl/content/mind-maps && clear && ls
       - cd /storage/src/dot_files && clear
