@@ -20,3 +20,6 @@ netstat -netlp
 
 # List remote open ports
 sudo nmap -sS <host-ip>
+
+# Traceroute a dns request (for a webserver, tcp-port can be 80 for http or 443 for https)
+tcptraceroute <tcp-domain> <tcp-port>
