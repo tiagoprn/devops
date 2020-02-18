@@ -11,3 +11,6 @@ docker ps | fzf | awk '{print $1}' | xclip -i -selection clipboard
 
 # kill and remove container
 docker kill <container-id> && docker rm <container-id>
+
+# delete images
+docker rmi $(docker images | grep <image-name> | awk '{print $3}' | uniq) -f
