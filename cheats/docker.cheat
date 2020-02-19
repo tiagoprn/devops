@@ -14,3 +14,6 @@ docker kill <container-id> && docker rm <container-id>
 
 # delete images
 docker rmi $(docker images | grep <image-name> | awk '{print $3}' | uniq) -f
+
+# get container IP:
+docker inspect <container-id> | jq '.[] | {(.Name) : [(.Config.ExposedPorts | keys),(.NetworkSettings.Networks | to_entries | map({(.key): .value.IPAddress}))]}'
