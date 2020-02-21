@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: migrate to a python script and implement the notifications.
+
 DIR=$(pwd)
 
 BAT="$(ls /sys/class/power_supply/ | grep -i BAT | head -n 1)"; BATTERY="$(cat /sys/class/power_supply/$BAT/capacity)"
@@ -26,13 +28,17 @@ function animate_wallpaper {
 }
 
 function main {
+    ORIGINAL_WALLPAPER=$HOME/.fehbg
+    cp -farv $ORIGINAL_WALLPAPER $ORIGINAL_WALLPAPER.bkp
 	## Charging Animation
     if [[ $CHARGE -eq "1" ]] && [[ $BATTERY -lt "100" ]]; then
         animate_wallpaper
     ## Stop Animation When Fully Charged
     elif [[ $CHARGE -eq "1" ]] && [[ $BATTERY -eq "100" ]]; then
-        num="5"
-        set_wallpaper_charge $num; sleep 5
+        notify-send "Battery fully charged, returning to the original wallpaper now."
+        cp -farv $ORIGINAL_WALLPAPER.bkp $ORIGINAL_WALLPAPER
+        /bin/bash $ORIGINAL_WALLPAPER
+        exit 0
     ## Change According To Battery Percentage
     else
         num=$(($BATTERY/20+"1"))
