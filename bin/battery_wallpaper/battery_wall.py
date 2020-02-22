@@ -82,7 +82,7 @@ def main():
             if  (not first_notification_timestamp) or \
                     (now - first_notification_timestamp).seconds > \
                     TIME_BETWEEN_CRITICAL_BATTERY_NOTIFICATIONS_IN_SECONDS:
-                command = (f'notify-send -u critical -t 1000 "Battery level '
+                command = (f'notify-send -u critical -t 5000 "Battery level '
                         f'critical, connect AC power as soon as possible..."')
                 logging.info(f'Running command >>> {command}...')
                 run_and_get_stdout(command)[0]
