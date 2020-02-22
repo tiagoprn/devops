@@ -16,7 +16,7 @@ import logging
 from os import getenv, path
 from pathlib import Path
 from subprocess import check_output, run
-from sys import stdout
+from sys import stdout, exit
 from time import sleep
 
 # Terminal Colors
@@ -59,69 +59,73 @@ def main():
 
     stdout_print('Executing...', YELLOW)
 
-    # outpath = Path.cwd() / 'output' / 'output.xlsx'
-
     DIR = str(Path.cwd())
 
-    # command=f"{SUDO} ls {DES} && echo 'DONE'"
-    # run(command, shell=True)
-
-    command = 'ls /sys/class/power_supply/ | grep -i BAT | head -n 1'
-    logging.info(f'Running command >>> {command}...')
-    BAT = run_and_get_stdout(command)[0]
-    stdout_print(f'BAT={BAT}')
-
-    command=f"cat /sys/class/power_supply/{BAT}/capacity"
-    logging.info(f'Running command >>> {command}...')
-    BATTERY = run_and_get_stdout(command)[0]
-    stdout_print(f'BATTERY={BATTERY}')
-
-    command="ls /sys/class/power_supply/ | grep -i AC | head -n 1"
-    logging.info(f'Running command >>> {command}...')
-    AC = run_and_get_stdout(command)[0]
-    stdout_print(f'AC={AC}')
-
-    command=f"cat /sys/class/power_supply/{AC}/online"
-    logging.info(f'Running command >>> {command}...')
-    CHARGE = run_and_get_stdout(command)[0]
-    stdout_print(f'CHARGE={CHARGE}')
-
-    command = f'cp -farv {ORIGINAL_WALLPAPER} {ORIGINAL_WALLPAPER}.bkp'
-    logging.info(f'Running command >>> {command}...')
-    COPY = run_and_get_stdout(command)[0]
-    stdout_print(f'COPY={COPY}')
-
-    if int(CHARGE) == 1 and int(BATTERY) < 100:  # animate
-        for i in range(1, 6):
-            command = f'{SETTER} {DIR}/images/charge_{i}.png'
-            logging.info(f'Running command >>> {command}...')
-            SETTER = run_and_get_stdout(command)[0]
-            stdout_print(f'SETTER={SETTER}')
-            sleep(0.8)
-    elif int(CHARGE) == 1 and int(BATTERY) == 100:  # stop animation when fully charged
-        command = (f'notify-send "Battery fully charged, '
-                   f'returnig to the original wallpaper now."')
+    while True:
+        command = 'ls /sys/class/power_supply/ | grep -i BAT | head -n 1'
         logging.info(f'Running command >>> {command}...')
-        NOTIFY = run_and_get_stdout(command)[0]
-        stdout_print(f'NOTIFY={NOTIFY}')
+        BAT = run_and_get_stdout(command)[0]
+        stdout_print(f'BAT={BAT}')
 
-        command = f'cp -farv {ORIGINAL_WALLPAPER}.bkp {ORIGINAL_WALLPAPER}'
+        command=f"cat /sys/class/power_supply/{BAT}/capacity"
+        logging.info(f'Running command >>> {command}...')
+        BATTERY = run_and_get_stdout(command)[0]
+        stdout_print(f'BATTERY={BATTERY}')
+
+        command="ls /sys/class/power_supply/ | grep -i AC | head -n 1"
+        logging.info(f'Running command >>> {command}...')
+        AC = run_and_get_stdout(command)[0]
+        stdout_print(f'AC={AC}')
+
+        command=f"cat /sys/class/power_supply/{AC}/online"
+        logging.info(f'Running command >>> {command}...')
+        CHARGE = run_and_get_stdout(command)[0]
+        stdout_print(f'CHARGE={CHARGE}')
+
+        command = f'cp -farv {ORIGINAL_WALLPAPER} {ORIGINAL_WALLPAPER}.bkp'
         logging.info(f'Running command >>> {command}...')
         COPY = run_and_get_stdout(command)[0]
         stdout_print(f'COPY={COPY}')
 
-        command = f'/bin/bash {ORIGINAL_WALLPAPER}'
-        logging.info(f'Running command >>> {command}...')
-        RESTORE = run_and_get_stdout(command)[0]
-        stdout_print(f'RESTORE={RESTORE}')
-        logging.info('Original wallpaper restored.')
-    else:  # change according to the battery percentage
-        num = BATTERY / 20
-        command = f'{SETTER} {DIR}/images/battery_{num}.png'
-        logging.info(f'Running command >>> {command}...')
-        SETTER = run_and_get_stdout(command)[0]
-        stdout_print(f'SETTER={SETTER}')
-        sleep(5)
+        if int(CHARGE) == 1 and int(BATTERY) < 100:  # animate
+            logging.info('Animating...')
+            for i in range(1, 6):
+                command = f'{SETTER} {DIR}/images/charge_{i}.png'
+                logging.info(f'Running command >>> {command}...')
+                SETTER = run_and_get_stdout(command)[0]
+                stdout_print(f'SETTER={SETTER}')
+                sleep(0.8)
+
+        elif int(CHARGE) == 1 and int(BATTERY) == 100:  # stop animation when fully charged
+            logging.info('Fully charged, finishing and wrapping up...')
+            command = (f'notify-send "Battery fully charged, '
+                    f'returnig to the original wallpaper now."')
+            logging.info(f'Running command >>> {command}...')
+            NOTIFY = run_and_get_stdout(command)[0]
+            stdout_print(f'NOTIFY={NOTIFY}')
+
+            command = f'cp -farv {ORIGINAL_WALLPAPER}.bkp {ORIGINAL_WALLPAPER}'
+            logging.info(f'Running command >>> {command}...')
+            COPY = run_and_get_stdout(command)[0]
+            stdout_print(f'COPY={COPY}')
+
+            command = f'/bin/bash {ORIGINAL_WALLPAPER}'
+            logging.info(f'Running command >>> {command}...')
+            RESTORE = run_and_get_stdout(command)[0]
+            stdout_print(f'RESTORE={RESTORE}')
+            logging.info('Original wallpaper restored.')
+
+            exit(0)
+
+        else:  # change according to the battery percentage
+            logging.info('Changing to the battery percentage...')
+            num = int(BATTERY) / 20
+            logging.info(f'num={num}')
+            command = f'{SETTER} {DIR}/images/battery_{num}.png'
+            logging.info(f'Running command >>> {command}...')
+            SETTER = run_and_get_stdout(command)[0]
+            stdout_print(f'SETTER={SETTER}')
+            sleep(5)
 
     stdout_print('Finished. :)', GREEN)
 
