@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+# This program is intended to supply a wallpaper that reflects your battery
+# charge status. It only required a python 3 installation, with no 3rd party
+# libraries, it sticks to python 3 standard library.
+
+# TODO: Extract a cookiecutter template from here for my cli programs.
+
 # ANSI escape codes (for color support:
 # http://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html)
 
@@ -41,6 +47,8 @@ def stdout_print(message: str, color: str=WHITE):
 def run_and_get_stdout(command: str) -> list:
     result = check_output(command, shell=True)
     return result.decode().split('\n')
+
+# the main script logic
 
 def main():
     stdout_print('Executing...', YELLOW)
