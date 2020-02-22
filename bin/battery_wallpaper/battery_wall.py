@@ -17,19 +17,23 @@ WHITE='\033[1;37m'
 YELLOW='\033[1;33m'
 RESET='\033[0m'
 
-stdout.write(f"{YELLOW} Executing... {RESET}\n")
+def run_and_get_stdout(command: str) -> str:
+    result = check_output(command, shell=True)
+    return result.decode()
 
-# outpath = Path.cwd() / 'output' / 'output.xlsx'
+if __name__ == '__main__':
+    stdout.write(f"{YELLOW} Executing... {RESET}\n")
 
-DIR = Path.cwd()
+    # outpath = Path.cwd() / 'output' / 'output.xlsx'
 
-# command=f"{SUDO} ls {DES} && echo 'DONE'"
-# run(command, shell=True)
+    DIR = Path.cwd()
 
-command = 'ls /sys/class/power_supply/ | grep -i BAT | head -n 1'
-result = check_output(command, shell=True)
-output = result.decode()
+    # command=f"{SUDO} ls {DES} && echo 'DONE'"
+    # run(command, shell=True)
 
-stdout.write(f'BAT={output}')
+    command = 'ls /sys/class/power_supply/ | grep -i BAT | head -n 1'
+    output = run_and_get_stdout(command)
 
-stdout.write(f"{GREEN} Finished. {RESET}\n")
+    stdout.write(f'BAT={output}')
+
+    stdout.write(f"{GREEN} Finished. {RESET}\n")
