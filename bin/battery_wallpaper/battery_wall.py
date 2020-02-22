@@ -54,7 +54,7 @@ def run_and_get_stdout(command: str) -> list:
 # the main script logic
 
 def main():
-    SETTER="feh --bg-scale"
+    SETTER="feh --bg-scale "
     ORIGINAL_WALLPAPER = str(Path.home() / '.fehbg')
 
     stdout_print('Executing...', YELLOW)
@@ -92,8 +92,8 @@ def main():
             for i in range(1, 6):
                 command = f'{SETTER} {DIR}/images/charge_{i}.png'
                 logging.info(f'Running command >>> {command}...')
-                SETTER = run_and_get_stdout(command)[0]
-                stdout_print(f'SETTER={SETTER}')
+                SETTER_COMMAND = run_and_get_stdout(command)[0]
+                stdout_print(f'SETTER_COMMAND={SETTER_COMMAND}')
                 sleep(0.8)
 
         elif int(CHARGE) == 1 and int(BATTERY) == 100:  # stop animation when fully charged
@@ -119,12 +119,12 @@ def main():
 
         else:  # change according to the battery percentage
             logging.info('Changing to the battery percentage...')
-            num = int(BATTERY) / 20
+            num = int(int(BATTERY) / 20)
             logging.info(f'num={num}')
             command = f'{SETTER} {DIR}/images/battery_{num}.png'
             logging.info(f'Running command >>> {command}...')
-            SETTER = run_and_get_stdout(command)[0]
-            stdout_print(f'SETTER={SETTER}')
+            SETTER_COMMAND = run_and_get_stdout(command)[0]
+            stdout_print(f'SETTER_COMMAND={SETTER_COMMAND}')
             sleep(5)
 
     stdout_print('Finished. :)', GREEN)
