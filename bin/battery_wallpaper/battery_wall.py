@@ -5,6 +5,8 @@
 # libraries, it sticks to python 3 standard library.
 
 # TODO: Extract a cookiecutter template from here for my cli programs.
+# TODO: put ipython, ipdb, black, pylint etc and build a container to be able
+# to test scripts like this.
 
 # ANSI escape codes (for color support:
 # http://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html)
@@ -15,6 +17,7 @@ from os import getenv, path
 from pathlib import Path
 from subprocess import check_output, run
 from sys import stdout
+from time import sleep
 
 # Terminal Colors
 RED='\033[1;31m'
@@ -51,11 +54,14 @@ def run_and_get_stdout(command: str) -> list:
 # the main script logic
 
 def main():
+    SETTER="feh --bg-scale"
+    ORIGINAL_WALLPAPER = str(Path.home() / '.fehbg')
+
     stdout_print('Executing...', YELLOW)
 
     # outpath = Path.cwd() / 'output' / 'output.xlsx'
 
-    DIR = Path.cwd()
+    DIR = str(Path.cwd())
 
     # command=f"{SUDO} ls {DES} && echo 'DONE'"
     # run(command, shell=True)
@@ -80,8 +86,44 @@ def main():
     CHARGE = run_and_get_stdout(command)[0]
     stdout_print(f'CHARGE={CHARGE}')
 
-    stdout_print('Finished. :)', GREEN)
+    command = f'cp -farv {ORIGINAL_WALLPAPER} {ORIGINAL_WALLPAPER}.bkp'
+    logging.info(f'Running command >>> {command}...')
+    COPY = run_and_get_stdout(command)[0]
+    stdout_print(f'COPY={COPY}')
 
+    if int(CHARGE) == 1 and int(BATTERY) < 100:  # animate
+        for i in range(1, 6):
+            command = f'{SETTER} {DIR}/images/charge_{i}.png'
+            logging.info(f'Running command >>> {command}...')
+            SETTER = run_and_get_stdout(command)[0]
+            stdout_print(f'SETTER={SETTER}')
+            sleep(0.8)
+    elif int(CHARGE) == 1 and int(BATTERY) == 100:  # stop animation when fully charged
+        command = (f'notify-send "Battery fully charged, '
+                   f'returnig to the original wallpaper now."')
+        logging.info(f'Running command >>> {command}...')
+        NOTIFY = run_and_get_stdout(command)[0]
+        stdout_print(f'NOTIFY={NOTIFY}')
+
+        command = f'cp -farv {ORIGINAL_WALLPAPER}.bkp {ORIGINAL_WALLPAPER}'
+        logging.info(f'Running command >>> {command}...')
+        COPY = run_and_get_stdout(command)[0]
+        stdout_print(f'COPY={COPY}')
+
+        command = f'/bin/bash {ORIGINAL_WALLPAPER}'
+        logging.info(f'Running command >>> {command}...')
+        RESTORE = run_and_get_stdout(command)[0]
+        stdout_print(f'RESTORE={RESTORE}')
+        logging.info('Original wallpaper restored.')
+    else:  # change according to the battery percentage
+        num = BATTERY / 20
+        command = f'{SETTER} {DIR}/images/battery_{num}.png'
+        logging.info(f'Running command >>> {command}...')
+        SETTER = run_and_get_stdout(command)[0]
+        stdout_print(f'SETTER={SETTER}')
+        sleep(5)
+
+    stdout_print('Finished. :)', GREEN)
 
 if __name__ == '__main__':
     main()
