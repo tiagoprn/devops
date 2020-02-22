@@ -13,6 +13,7 @@
 
 import logging
 
+from datetime import datetime
 from os import getenv, path
 from pathlib import Path
 from subprocess import check_output, run
@@ -57,10 +58,13 @@ def main():
     SETTER="feh --bg-scale "
     ORIGINAL_WALLPAPER = str(Path.home() / '.fehbg')
     CRITICAL_BATTERY_PERCENTAGE = 20
+    TIME_BETWEEN_CRITICAL_BATTERY_NOTIFICATIONS_IN_SECONDS = 60
 
     stdout_print('Executing...', YELLOW)
 
     DIR = str(Path.cwd())
+
+    first_notification_timestamp = None
 
     while True:
         command = 'ls /sys/class/power_supply/ | grep -i BAT | head -n 1'
@@ -74,10 +78,15 @@ def main():
         stdout_print(f'BATTERY={BATTERY}')
 
         if int(BATTERY) < CRITICAL_BATTERY_PERCENTAGE:
-            command = (f'notify-send -u critical -t 1000 "Battery level '
-                       f'critical, connect AC power as soon as possible..."')
-            logging.info(f'Running command >>> {command}...')
-            run_and_get_stdout(command)[0]
+            now = datetime.now()
+            if  (not first_notification_timestamp) or \
+                    (now - first_notification_timestamp).seconds > \
+                    TIME_BETWEEN_CRITICAL_BATTERY_NOTIFICATIONS_IN_SECONDS:
+                command = (f'notify-send -u critical -t 1000 "Battery level '
+                        f'critical, connect AC power as soon as possible..."')
+                logging.info(f'Running command >>> {command}...')
+                run_and_get_stdout(command)[0]
+                first_notification_timestamp = datetime.now()
 
         command="ls /sys/class/power_supply/ | grep -i AC | head -n 1"
         logging.info(f'Running command >>> {command}...')
