@@ -10,6 +10,15 @@ from pathlib import Path
 from subprocess import check_output, run
 from sys import stdout
 
+# Terminal Colors
+RED='\033[1;31m'
+BLUE='\033[1;34m'
+CYAN='\033[0;36m'
+GREEN='\033[1;32m'
+WHITE='\033[1;37m'
+YELLOW='\033[1;33m'
+RESET='\033[0m'
+
 # Logging configuration
 
 LOG_VARS='levelname asctime msecs name funcName lineno processName process message'
@@ -24,14 +33,7 @@ for index, variable in enumerate(LOG_VARS.split()):
 
 logging.basicConfig(format=LOG_FORMAT, stream=stdout, level=logging.DEBUG)
 
-# Terminal Colors
-RED='\033[1;31m'
-BLUE='\033[1;34m'
-CYAN='\033[0;36m'
-GREEN='\033[1;32m'
-WHITE='\033[1;37m'
-YELLOW='\033[1;33m'
-RESET='\033[0m'
+# stdout and command execution related wrappers
 
 def stdout_print(message: str, color: str=WHITE):
     stdout.write(f"{color}{message}{RESET}\n")
@@ -40,7 +42,7 @@ def run_and_get_stdout(command: str) -> list:
     result = check_output(command, shell=True)
     return result.decode().split('\n')
 
-if __name__ == '__main__':
+def main():
     stdout_print('Executing...', YELLOW)
 
     # outpath = Path.cwd() / 'output' / 'output.xlsx'
@@ -71,3 +73,8 @@ if __name__ == '__main__':
     stdout_print(f'CHARGE={CHARGE}')
 
     stdout_print('Finished. :)', GREEN)
+
+
+if __name__ == '__main__':
+    main()
+
