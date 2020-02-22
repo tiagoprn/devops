@@ -56,6 +56,7 @@ def run_and_get_stdout(command: str) -> list:
 def main():
     SETTER="feh --bg-scale "
     ORIGINAL_WALLPAPER = str(Path.home() / '.fehbg')
+    CRITICAL_BATTERY_PERCENTAGE = 20
 
     stdout_print('Executing...', YELLOW)
 
@@ -71,6 +72,12 @@ def main():
         logging.info(f'Running command >>> {command}...')
         BATTERY = run_and_get_stdout(command)[0]
         stdout_print(f'BATTERY={BATTERY}')
+
+        if int(BATTERY) < CRITICAL_BATTERY_PERCENTAGE:
+            command = (f'notify-send -u critical -t 1000 "Battery level '
+                       f'critical, connect AC power as soon as possible..."')
+            logging.info(f'Running command >>> {command}...')
+            run_and_get_stdout(command)[0]
 
         command="ls /sys/class/power_supply/ | grep -i AC | head -n 1"
         logging.info(f'Running command >>> {command}...')
@@ -100,8 +107,7 @@ def main():
             command = (f'notify-send "Battery fully charged, '
                     f'returnig to the original wallpaper now."')
             logging.info(f'Running command >>> {command}...')
-            NOTIFY = run_and_get_stdout(command)[0]
-            stdout_print(f'NOTIFY={NOTIFY}')
+            run_and_get_stdout(command)[0]
 
             command = f'cp -farv {ORIGINAL_WALLPAPER}.bkp {ORIGINAL_WALLPAPER}'
             logging.info(f'Running command >>> {command}...')
