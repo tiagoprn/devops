@@ -33,12 +33,15 @@ WHITE='\033[1;37m'
 YELLOW='\033[1;33m'
 RESET='\033[0m'
 
+def stdout_print(message: str, color: str=WHITE):
+    stdout.write(f"{color}{message}{RESET}\n")
+
 def run_and_get_stdout(command: str) -> list:
     result = check_output(command, shell=True)
     return result.decode().split('\n')
 
 if __name__ == '__main__':
-    stdout.write(f"{YELLOW} Executing... {RESET}\n")
+    stdout_print('Executing...', YELLOW)
 
     # outpath = Path.cwd() / 'output' / 'output.xlsx'
 
@@ -50,21 +53,21 @@ if __name__ == '__main__':
     command = 'ls /sys/class/power_supply/ | grep -i BAT | head -n 1'
     logging.info(f'Running command >>> {command}...')
     BAT = run_and_get_stdout(command)[0]
-    stdout.write(f'BAT={BAT}\n')
+    stdout_print(f'BAT={BAT}')
 
     command=f"cat /sys/class/power_supply/{BAT}/capacity"
     logging.info(f'Running command >>> {command}...')
     BATTERY = run_and_get_stdout(command)[0]
-    stdout.write(f'BATTERY={BATTERY}\n')
+    stdout_print(f'BATTERY={BATTERY}')
 
     command="ls /sys/class/power_supply/ | grep -i AC | head -n 1"
     logging.info(f'Running command >>> {command}...')
     AC = run_and_get_stdout(command)[0]
-    stdout.write(f'AC={AC}\n')
+    stdout_print(f'AC={AC}')
 
     command=f"cat /sys/class/power_supply/{AC}/online"
     logging.info(f'Running command >>> {command}...')
     CHARGE = run_and_get_stdout(command)[0]
-    stdout.write(f'CHARGE={CHARGE}\n')
+    stdout_print(f'CHARGE={CHARGE}')
 
-    stdout.write(f"{GREEN} Finished. {RESET}\n")
+    stdout_print('Finished. :)', GREEN)
