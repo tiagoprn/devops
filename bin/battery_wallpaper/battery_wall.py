@@ -92,8 +92,7 @@ def main():
             for i in range(1, 6):
                 command = f'{SETTER} {DIR}/images/charge_{i}.png'
                 logging.info(f'Running command >>> {command}...')
-                SETTER_COMMAND = run_and_get_stdout(command)[0]
-                stdout_print(f'SETTER_COMMAND={SETTER_COMMAND}')
+                run_and_get_stdout(command)[0]
                 sleep(0.8)
 
         elif int(CHARGE) == 1 and int(BATTERY) == 100:  # stop animation when fully charged
@@ -123,8 +122,7 @@ def main():
             logging.info(f'num={num}')
             command = f'{SETTER} {DIR}/images/battery_{num}.png'
             logging.info(f'Running command >>> {command}...')
-            SETTER_COMMAND = run_and_get_stdout(command)[0]
-            stdout_print(f'SETTER_COMMAND={SETTER_COMMAND}')
+            run_and_get_stdout(command)[0]
             sleep(5)
 
     stdout_print('Finished. :)', GREEN)
