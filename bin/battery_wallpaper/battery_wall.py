@@ -55,8 +55,8 @@ def run_and_get_stdout(command: str) -> list:
 # the main script logic
 
 def main():
-    SETTER="feh --bg-scale "
-    ORIGINAL_WALLPAPER = str(Path.home() / '.fehbg')
+    # Set wallpaper but do not update the fehbg file.
+    SETTER="feh --bg-scale --no-fehbg "
     CRITICAL_BATTERY_PERCENTAGE = 20
     TIME_BETWEEN_CRITICAL_BATTERY_NOTIFICATIONS_IN_SECONDS = 60
 
@@ -98,11 +98,6 @@ def main():
         CHARGE = run_and_get_stdout(command)[0]
         stdout_print(f'CHARGE={CHARGE}')
 
-        command = f'cp -farv {ORIGINAL_WALLPAPER} {ORIGINAL_WALLPAPER}.bkp'
-        logging.info(f'Running command >>> {command}...')
-        COPY = run_and_get_stdout(command)[0]
-        stdout_print(f'COPY={COPY}')
-
         if int(CHARGE) == 1 and int(BATTERY) < 100:  # animate
             logging.info('Animating...')
             for i in range(1, 6):
@@ -117,17 +112,6 @@ def main():
                     f'returnig to the original wallpaper now."')
             logging.info(f'Running command >>> {command}...')
             run_and_get_stdout(command)[0]
-
-            command = f'cp -farv {ORIGINAL_WALLPAPER}.bkp {ORIGINAL_WALLPAPER}'
-            logging.info(f'Running command >>> {command}...')
-            COPY = run_and_get_stdout(command)[0]
-            stdout_print(f'COPY={COPY}')
-
-            command = f'/bin/bash {ORIGINAL_WALLPAPER}'
-            logging.info(f'Running command >>> {command}...')
-            RESTORE = run_and_get_stdout(command)[0]
-            stdout_print(f'RESTORE={RESTORE}')
-            logging.info('Original wallpaper restored.')
 
             exit(0)
 
