@@ -56,7 +56,7 @@ def run_and_get_stdout(command: str) -> list:
 
 def main():
     # Set wallpaper but do not update the fehbg file.
-    SETTER="feh --bg-scale --no-fehbg "
+    SETTER="feh --no-fehbg --bg-scale "
     CRITICAL_BATTERY_PERCENTAGE = 20
     TIME_BETWEEN_CRITICAL_BATTERY_NOTIFICATIONS_IN_SECONDS = 60
 
