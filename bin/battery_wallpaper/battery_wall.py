@@ -59,6 +59,7 @@ def main():
     SETTER='feh --no-fehbg --bg-scale'
     CRITICAL_BATTERY_PERCENTAGE = 20
     TIME_BETWEEN_CRITICAL_BATTERY_NOTIFICATIONS_IN_SECONDS = 60
+    FULLY_CHARGED='/run/battery_fully_charged'
 
     stdout_print('Executing...', YELLOW)
 
@@ -99,6 +100,13 @@ def main():
         stdout_print(f'CHARGE={CHARGE}')
 
         if int(CHARGE) == 1 and int(BATTERY) < 100:  # animate
+            if path.exists(FULLY_CHARGED):
+                logging.info(f'Battery is not fully charged anymore, '
+                             f'so removing lock file...')
+                command = f'rm -fr {FULLY_CHARGED}'
+                logging.info(f'Running command >>> {command}...')
+                run_and_get_stdout(command)[0]
+
             logging.info('Animating...')
             for i in range(1, 6):
                 command = f'{SETTER} {DIR}/images/charge_{i}.png'
@@ -107,16 +115,32 @@ def main():
                 sleep(0.8)
 
         elif int(CHARGE) == 1 and int(BATTERY) == 100:  # stop animation when fully charged
+            if path.exists(FULLY_CHARGED):
+                sleep(60)
+                continue
+
             logging.info('Fully charged, finishing and wrapping up...')
             command = (f'notify-send "Battery fully charged, '
-                    f'returning to the original wallpaper now..."')
+                    f'returning to the original wallpaper now."')
             logging.info(f'Running command >>> {command}...')
             run_and_get_stdout(command)[0]
             command = ('/storage/src/devops/bin/i3_change_wallpaper.sh')
             logging.info(f'Running command >>> {command}...')
             run_and_get_stdout(command)[0]
 
+            logging.info(f'Creating the lock file since '
+                         f'battery is fully charged.')
+            command = f'touch {FULLY_CHARGED}'
+            logging.info(f'Running command >>> {command}...')
+            run_and_get_stdout(command)[0]
+
         else:  # change according to the battery percentage
+            if path.exists(FULLY_CHARGED):
+                logging.info(f'Battery is not fully charged anymore, '
+                             f'so removing lock file...')
+                command = f'rm -fr {FULLY_CHARGED}'
+                logging.info(f'Running command >>> {command}...')
+                run_and_get_stdout(command)[0]
             logging.info('Changing to the battery percentage...')
             num = int(int(BATTERY) / 20)
             logging.info(f'num={num}')
