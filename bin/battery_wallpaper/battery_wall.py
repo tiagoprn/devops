@@ -103,7 +103,7 @@ def main():
             if path.exists(FULLY_CHARGED):
                 logging.info(f'Battery is not fully charged anymore, '
                              f'so removing lock file...')
-                command = f'rm -fr {FULLY_CHARGED}'
+                command = f'sudo rm -fr {FULLY_CHARGED}'
                 logging.info(f'Running command >>> {command}...')
                 run_and_get_stdout(command)[0]
 
@@ -130,7 +130,7 @@ def main():
 
             logging.info(f'Creating the lock file since '
                          f'battery is fully charged.')
-            command = f'touch {FULLY_CHARGED}'
+            command = f'sudo touch {FULLY_CHARGED}'
             logging.info(f'Running command >>> {command}...')
             run_and_get_stdout(command)[0]
 
@@ -138,7 +138,7 @@ def main():
             if path.exists(FULLY_CHARGED):
                 logging.info(f'Battery is not fully charged anymore, '
                              f'so removing lock file...')
-                command = f'rm -fr {FULLY_CHARGED}'
+                command = f'sudo rm -fr {FULLY_CHARGED}'
                 logging.info(f'Running command >>> {command}...')
                 run_and_get_stdout(command)[0]
             logging.info('Changing to the battery percentage...')
