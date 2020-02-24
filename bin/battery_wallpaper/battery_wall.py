@@ -56,7 +56,7 @@ def run_and_get_stdout(command: str) -> list:
 
 def main():
     # Set wallpaper but do not update the fehbg file.
-    SETTER="feh --no-fehbg --bg-scale "
+    SETTER='feh --no-fehbg --bg-scale'
     CRITICAL_BATTERY_PERCENTAGE = 20
     TIME_BETWEEN_CRITICAL_BATTERY_NOTIFICATIONS_IN_SECONDS = 60
 
@@ -109,11 +109,12 @@ def main():
         elif int(CHARGE) == 1 and int(BATTERY) == 100:  # stop animation when fully charged
             logging.info('Fully charged, finishing and wrapping up...')
             command = (f'notify-send "Battery fully charged, '
-                    f'returnig to the original wallpaper now."')
+                    f'returning to the original wallpaper now..."')
             logging.info(f'Running command >>> {command}...')
             run_and_get_stdout(command)[0]
-
-            exit(0)
+            command = ('/storage/src/devops/bin/i3_change_wallpaper.sh')
+            logging.info(f'Running command >>> {command}...')
+            run_and_get_stdout(command)[0]
 
         else:  # change according to the battery percentage
             logging.info('Changing to the battery percentage...')
