@@ -1,3 +1,3 @@
 #!/bin/bash
-echo "$(curl ifconfig.me/ip)"
+echo "$(curl -s ifconfig.me/ip)"
 
