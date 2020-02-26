@@ -14,4 +14,4 @@ windows:
         - sleep 5 && tmux resize-pane -D 10
         - clear
         - echo "run 'update-notes' bash alias to manually push notes to bitbucket repo."
-        - gss
+        - gs
