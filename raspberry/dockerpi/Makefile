@@ -37,7 +37,7 @@ run-raspbian-ssh: run-dockerized-raspbian-ssh  ## Run the raspbian docker image 
 
 ssh-into-raspbian:  ## ssh into the raspbian docker container
 	@echo 'Enter password: "raspberry" when prompted for it.'
-	@ssh pi@localhost -p 5022
+	@ssh pi@localhost -p 5022 -o StrictHostKeyChecking=no
 
 delete-container-and-image:  ## removes the container and the raspbian image, to start clean
 	@echo 'Killing and removing docker container...'
