@@ -48,3 +48,8 @@ while :; do sleep 59; echo -n ' ' >&2; done &
 # list partitions mountpoint status
 lsblk
 
+# base64 encode
+echo -n "<text>" | base64 -w 0
+
+# base64 decode
+echo -n "<encoded-text>" | base64 -d -w 0
