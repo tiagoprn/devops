@@ -1,0 +1,4 @@
+% k8s, k9s
+
+# Explore a namespace
+k9s -n <NAMESPACE> --readonly
