@@ -1,0 +1,11 @@
+session_name: pyenv_python_project
+windows:
+  - window_name: main
+    layout: even-vertical
+    start_directory: /storage/src
+    shell_command_before:
+      - clear
+      - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
+    panes:
+      - pa
+
