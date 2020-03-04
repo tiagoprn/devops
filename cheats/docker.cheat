@@ -17,3 +17,6 @@ docker rmi $(docker images | grep <image-name> | awk '{print $3}' | uniq) -f
 
 # get container ip address
 export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker inspect $CONTAINER_ID | jq '.[] | {(.Name) : [(.Config.ExposedPorts | keys),(.NetworkSettings.Networks | to_entries | map({(.key): .value.IPAddress}))]}'
+
+# watch container logs
+export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker logs -f $CONTAINER_ID
