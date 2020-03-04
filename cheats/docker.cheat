@@ -6,7 +6,7 @@ echo "You can exchange files with this containers on the directory $(SHARED_FOLD
 mkdir -p $(SHARED_FOLDER) && \
 @docker run --rm -d --network bridge --mount type=bind,source=$(SHARED_FOLDER),target=/shared <container-name>
 
-# get container id
+# copy container.id to the clipboard
 docker ps | fzf | awk '{print $1}' | xclip -i -selection clipboard
 
 # kill and remove container
@@ -15,5 +15,5 @@ export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker kill $CONTAI
 # delete images
 docker rmi $(docker images | grep <image-name> | awk '{print $3}' | uniq) -f
 
-# get container IP:
+# get container ip address
 export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker inspect $CONTAINER_ID | jq '.[] | {(.Name) : [(.Config.ExposedPorts | keys),(.NetworkSettings.Networks | to_entries | map({(.key): .value.IPAddress}))]}'
