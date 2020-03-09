@@ -8,3 +8,9 @@ echo <message> | systemd-cat -t <app-name> -p warning
 
 # log EMERG message on systemd journald
 echo <message> | systemd-cat -t <app-name> -p emerg
+
+# tail systemd/journald logs from specific service/app
+sudo journalctl -o short-iso -f -t <service-name>
+
+# tail all systemd/journald logs
+sudo journalctl -o short-iso -f --all
