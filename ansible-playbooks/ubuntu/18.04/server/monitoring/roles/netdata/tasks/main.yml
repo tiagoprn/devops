@@ -1,0 +1,104 @@
+
+
+
+
+
+#---
+
+- name: Run docker version
+  command: docker version
+  register: dockerversion
+  changed_when: False  # this make this task always run
+
+- name: Create the folder to download k3 installation script to
+  file:
+    path: /opt/k3s
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: Download k3s installation script
+  get_url:
+    url: https://get.k3s.io
+    dest: /opt/k3s/install.sh
+    mode: 0744
+
+- name: Run the installation script
+  command: bash /opt/k3s/install.sh
+
+- name: Enable a normal user to use k3s
+  lineinfile:
+    dest: /etc/systemd/system/k3s.service.env
+    line: "K3S_KUBECONFIG_MODE=\"644\""
+    state: present
+    create: no
+
+- name: Restart k3s
+  service:
+    name: k3s
+    state: restarted
+
+- name: Check k3s is operational
+  shell: |
+    kubectl get nodes
+    kubectl get po -n kube-system
+
+- name: Create a storage class for the cluster
+  command: kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+
+- name: Check storage class is working
+  command: kubectl get storageclass
+
+- name: Install helm
+  shell: |
+    cd /opt/k3s
+    curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > install-helm.sh
+    chmod u+x install-helm.sh
+    ./install-helm.sh
+
+- name: Link helm with tiller - Create tiller service account
+  command: kubectl -n kube-system create serviceaccount tiller
+
+- name: Link helm with tiller -  Create cluster role binding for tiller
+  command: kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+
+- name: Create the ubuntu user folder to keep kubeconfig
+  file:
+    path: /home/ubuntu/.kube
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: 0775
+    recurse: yes
+
+- name: Create the ops user folder to keep kubeconfig
+  file:
+    path: /home/ops/.kube
+    state: directory
+    owner: ops
+    group: ops
+    mode: 0775
+    recurse: yes
+
+- name: copy kubeconfig to the ubuntu user
+  copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ubuntu/.kube/config owner=ubuntu group=ubuntu mode=0644 remote_src=yes
+
+- name: copy kubeconfig to the ops user
+  copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ops/.kube/config owner=ops group=ops mode=0644 remote_src=yes
+
+- name: Initialize tiller
+  become_user: ubuntu
+  command: helm init --service-account tiller
+
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/k3s_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+
