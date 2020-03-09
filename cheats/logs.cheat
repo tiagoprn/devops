@@ -1,10 +1,10 @@
 % systemd, journald, logs
 
-# INFO message on systemd journald
+# log INFO message on systemd journald
 echo <message> | systemd-cat -t <app-name> -p info
 
-# WARNING message on systemd journald
+# log WARNING message on systemd journald
 echo <message> | systemd-cat -t <app-name> -p warning
 
-# EMERG message on systemd journald
+# log EMERG message on systemd journald
 echo <message> | systemd-cat -t <app-name> -p emerg
