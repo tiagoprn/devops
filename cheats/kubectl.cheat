@@ -48,6 +48,9 @@ kubectl edit deployment -n <NAMESPACE>
 # Describe a deployment
 kubectl describe deployment -n <NAMESPACE>
 
+# See all environment variables on pod
+kubectl set env pods <POD> --list -n <NAMESPACE>
+
 # Get current kubectl context
 kubectl config current-context
 
