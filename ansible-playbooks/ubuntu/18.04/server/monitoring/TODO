@@ -1,4 +1,6 @@
 - Finish creating the playbooks according to those instructions.
 - Test on multipass and install on my ubuntu machines and raspberry.
 - netdata: add authentication to the dashboard (port 19999)
+- promtail + loki to redirect systemd-journald and syslog logs to be viewed in
+  kibana: https://github.com/grafana/loki/tree/master/docs/clients/promtail
 
