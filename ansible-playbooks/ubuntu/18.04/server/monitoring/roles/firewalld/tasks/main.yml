@@ -1,6 +1,6 @@
 - name: Create a directory to run general purpose scripts
   file:
-    path: /opt/containers/scripts
+    path: /opt/scripts
     state: directory
     owner: ubuntu
     group: ubuntu
@@ -8,10 +8,10 @@
     recurse: yes
 
 - name: copy firewall rules script
-  copy: src=k3s-firewall-rules.sh dest=/opt/containers/scripts owner=ubuntu group=ubuntu mode=0755
+  copy: src=firewall-rules.sh dest=/opt/scripts owner=ubuntu group=ubuntu mode=0755
 
-- name: Run firewall rules for all pods to be operational
-  command: bash /opt/containers/scripts/k3s-firewall-rules.sh
+- name: Run firewall rules
+  command: bash /opt/scripts/firewall-rules.sh
 
 - name: Reload firewalld to apply the new configuration
   shell:
