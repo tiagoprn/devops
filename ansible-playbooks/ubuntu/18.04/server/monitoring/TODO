@@ -3,4 +3,17 @@
 - netdata: add authentication to the dashboard (port 19999)
 - promtail + loki to redirect systemd-journald and syslog logs to be viewed in
   kibana: https://github.com/grafana/loki/tree/master/docs/clients/promtail
+- Colocar a configuração abaixo no playbook do docker:
+```
+{
+  "default-address-pools" : [
+    {
+      "base" : "1.1.1.0/16",
+      "size" : 24
+    }
+  ],
+  "mtu": 1500,
+  "log-driver": "journald"
+}
+```
 
