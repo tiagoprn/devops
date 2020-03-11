@@ -14,3 +14,6 @@ sudo journalctl -o short-iso -f -t <service-name>
 
 # tail all systemd/journald logs
 sudo journalctl -o short-iso -f --all
+
+# see logs from specific service/app from today
+sudo journalctl -fu <app-name> --since=today
