@@ -1,3 +1,4 @@
+- [ ] Add a role to configure zram (check also my pocket for more configuration): https://www.techrepublic.com/article/how-to-enable-the-zram-module-for-faster-swapping-on-linux/
 - [ ] See if ssh is protected on the fail2ban task:
   https://www.unixtutorial.org/how-to-use-fail2ban-to-protect-ssh
 - [ ] Extract suricata into a separated playbook
