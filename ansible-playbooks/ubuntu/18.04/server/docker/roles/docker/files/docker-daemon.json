@@ -4,6 +4,6 @@
   "mtu": 1500,
   "log-driver": "journald" ,
   "log-opts": {
-    "tag":"CONTAINER(IMAGE {{.ImageName}} NAME {{.Name}} ID {{.ID}})"
+    "tag":"id={{.ID}},name={{.Name}},image={{.ImageName}}"
   }
 }
