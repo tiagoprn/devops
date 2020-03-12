@@ -17,3 +17,12 @@ sudo journalctl -o short-iso -f --all
 
 # see logs from specific service/app from today
 sudo journalctl -fu <app-name> --since=today
+
+# see kernel logs
+sudo journalctl -k
+
+# see all boot logs available
+sudo journalctl --list-boots
+
+# see logs from a specific boot
+sudo journalctl -b $(sudo journalctl --list-boots | fzf | awk '{print $2}')
