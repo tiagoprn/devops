@@ -1,6 +1,9 @@
 - Finish the prometheus role (the multipass backups are at:
   `/storage/multipass/backups/monitoring-playbook`. If I need to restore one,
 after stopping the VM copy the backup file and run `sudo snap restart multipass`)
+Use this tutorial:
+https://www.howtoforge.com/tutorial/how-to-install-prometheus-and-node-exporter-on-centos-8/#step-configure-prometheus-as-a-systemd-service, and then move on with the instructions on the `README.md` to enable the netdata integration.
+
 - Finish creating the other roles according to those instructions.
 - Test on multipass and install on my ubuntu machines and raspberry.
 - netdata: add authentication to the dashboard (port 19999)
