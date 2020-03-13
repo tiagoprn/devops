@@ -81,6 +81,24 @@
 - name: Enable and start prometheus service
   systemd: name=prometheus daemon-reload=yes state=started enabled=yes
 
+
+
+
+
+- name: Download node_exporter
+  get_url:
+    url: https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz
+    dest: /opt/node_exporter-installer/node_exporter-0.18.1.linux-amd64.tar.gz
+    mode: 0744
+
+- name: Extract the downloaded release
+  unarchive:
+    src: /opt/node_exporter-installer/node_exporter-0.18.1.linux-amd64.tar.gz
+    dest: /opt/node_exporter-installer
+    remote_src: yes
+
+# TODO: continue from here: https://www.howtoforge.com/tutorial/how-to-install-prometheus-and-node-exporter-on-centos-8 (step 4)
+
 - name: Generate file to verify it passed through this role
   lineinfile:
     dest: /var/log/prometheus_passed.txt
