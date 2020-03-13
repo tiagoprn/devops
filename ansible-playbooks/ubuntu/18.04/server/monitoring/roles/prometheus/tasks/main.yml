@@ -1,0 +1,92 @@
+# https://www.youtube.com/watch?v=OnzIUGHl9no&t=979s
+
+- name: Create prometheus user
+  user: name=prometheus
+        state=present
+        shell=/bin/false
+        create_home=no
+
+- name: Create node_exporter user
+  user: name=node_exporter
+        state=present
+        shell=/bin/false
+        create_home=no
+
+- name: Create configuration folder
+  file:
+    path: /etc/prometheus
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: 0775
+    recurse: yes
+
+- name: Create support folder
+  file:
+    path: /var/lib/prometheus
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: 0775
+    recurse: yes
+
+- name: Create download folder
+  file:
+    path: /opt/prometheus-installer
+    state: directory
+    owner: root
+    group: root
+    mode: 0777
+    recurse: yes
+
+- name: Download prometheus release
+  get_url:
+    url: https://github.com/prometheus/prometheus/releases/download/v2.16.0/prometheus-2.16.0.linux-amd64.tar.gz
+    dest: /opt/prometheus-installer/prometheus-2.16.0.linux-amd64.tar.gz
+    mode: 0744
+
+- name: Extract the downloaded release
+  unarchive:
+    src: /opt/prometheus-installer/prometheus-2.16.0.linux-amd64.tar.gz
+    dest: /opt/prometheus-installer
+    remote_src: yes
+
+- name: copy prometheus binary to system binaries
+  copy: src=/opt/prometheus-installer/prometheus-2.16.0.linux-amd64/prometheus dest=/usr/local/bin/prometheus owner=prometheus group=prometheus remote_src=yes
+
+- name: copy promtool binary to system binaries
+  copy: src=/opt/prometheus-installer/prometheus-2.16.0.linux-amd64/promtool dest=/usr/local/bin/promtool owner=prometheus group=prometheus remote_src=yes
+
+- name: copy tsdb binary to system binaries
+  copy: src=/opt/prometheus-installer/prometheus-2.16.0.linux-amd64/tsdb dest=/usr/local/bin/tsdb owner=prometheus group=prometheus remote_src=yes
+
+- name: copy consoles to prometheus configuration folder
+  shell: cp -farv /opt/prometheus-installer/prometheus-2.16.0.linux-amd64/consoles /etc/prometheus
+
+- name: copy console_libraries to prometheus configuration folder
+  shell: cp -farv /opt/prometheus-installer/prometheus-2.16.0.linux-amd64/console_libraries /etc/prometheus
+
+- name: fix permissions on consoles* for the prometheus configuration folder
+  shell: chown -R prometheus:prometheus /etc/prometheus/console*
+
+- name: copy alert rules to prometheus configuration folder
+  copy: src=files/alert.rules  dest=/etc/prometheus/alert.rules owner=prometheus group=prometheus
+
+- name: copy prometheus configuration to its' configuration folder
+  copy: src=files/prometheus.yml dest=/etc/prometheus/prometheus.yml owner=prometheus group=prometheus
+
+- name: copy prometheus service to systemd unit files path
+  copy: src=files/prometheus.service dest=/etc/systemd/system/prometheus.service owner=root group=root
+
+- name: Enable and start prometheus service
+  systemd: name=prometheus daemon-reload=yes state=started enabled=yes
+
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/prometheus_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644

@@ -2,7 +2,8 @@
   # strategy: debug  ## interactive debug console when a task fails.
   roles:
     - gather_custom_facts
-    - upgrade
-    - firewalld
-    - {role: netdata, when: "ansible_local['netdata_facts']['has_netdata_installed'] == false" }
-    - cleanup
+    # - upgrade
+    # - firewalld
+    # - {role: netdata, when: "ansible_local['netdata_facts']['has_netdata_installed'] == false" }
+    - {role: prometheus, when: "ansible_local['prometheus_facts']['has_prometheus_installed'] == false" }
+    # - cleanup

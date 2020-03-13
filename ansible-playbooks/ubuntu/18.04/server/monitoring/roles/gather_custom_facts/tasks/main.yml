@@ -9,6 +9,12 @@
     dest: /etc/ansible/facts.d/netdata_facts.fact
     mode: 0755
 
+- name: Insert prometheus fact file
+  copy:
+    src: files/prometheus_facts.fact
+    dest: /etc/ansible/facts.d/prometheus_facts.fact
+    mode: 0755
+
 - name: Reload ansible local vars, to have the installed fact available to use
   setup: filter=ansible_local
 
