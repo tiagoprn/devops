@@ -32,3 +32,6 @@ multipass purge
 
 # Go to the VMs (instances) storage
 cd /var/snap/multipass/common/data/multipassd/vault/instances
+
+# Restart multipass daemon
+sudo snap restart multipass
