@@ -5,5 +5,6 @@
     # - upgrade
     # - firewalld
     # - {role: netdata, when: "ansible_local['netdata_facts']['has_netdata_installed'] == false" }
-    - {role: prometheus, when: "ansible_local['prometheus_facts']['has_prometheus_installed'] == false" }
+    # - {role: prometheus, when: "ansible_local['prometheus_facts']['has_prometheus_installed'] == false" }
+    - {role: node_exporter, when: "ansible_local['node_exporter_facts']['has_node_exporter_installed'] == false" }
     # - cleanup
