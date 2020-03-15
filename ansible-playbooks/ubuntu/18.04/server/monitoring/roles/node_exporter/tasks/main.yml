@@ -1,5 +1,14 @@
 # https://www.youtube.com/watch?v=OnzIUGHl9no&t=979s
 
+- name: Create download folder
+  file:
+    path: /opt/node_exporter-installer
+    state: directory
+    owner: root
+    group: root
+    mode: 0777
+    recurse: yes
+
 - name: Download node_exporter
   get_url:
     url: https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz
@@ -12,7 +21,20 @@
     dest: /opt/node_exporter-installer
     remote_src: yes
 
-# TODO: continue from here: https://www.howtoforge.com/tutorial/how-to-install-prometheus-and-node-exporter-on-centos-8 (step 4)
+- name: copy node_exporter binary to system binaries
+  copy: src=/opt/node_exporter-installer/node_exporter-0.18.1.linux-amd64/node_exporter dest=/usr/local/bin/node_exporter owner=prometheus group=prometheus mode=0744 remote_src=yes
+
+- name: copy node_exporter service to systemd unit files path
+  copy: src=files/node_exporter.service dest=/etc/systemd/system/node_exporter.service owner=root group=root
+
+- name: Enable and start node_exporter service
+  systemd: name=node_exporter daemon-reload=yes state=started enabled=yes
+
+- name: update prometheus configuration on its' configuration folder
+  copy: src=files/prometheus.yml dest=/etc/prometheus/prometheus.yml owner=prometheus group=prometheus
+
+- name: Enable and (re)start prometheus service
+  systemd: name=prometheus daemon-reload=yes state=started enabled=yes
 
 - name: Generate file to verify it passed through this role
   lineinfile:
