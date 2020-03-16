@@ -2,7 +2,7 @@
 
 - name: Create download folder
   file:
-    path: /opt/node_exporter-installer
+    path: /opt/node_exporter-installer/conf
     state: directory
     owner: root
     group: root
@@ -30,10 +30,16 @@
 - name: Enable and start node_exporter service
   systemd: name=node_exporter daemon-reload=yes state=started enabled=yes
 
-- name: update prometheus configuration on its' configuration folder
-  copy: src=files/prometheus.yml dest=/etc/prometheus/prometheus.yml owner=prometheus group=prometheus
+- name: copy node_exporter prometheus configuration to be merged to it later
+  copy: src=files/prometheus-node_exporter.scrapper.yml dest=/opt/node_exporter-installer/conf/prometheus-node_exporter.scrapper.yml owner=root group=root
 
-- name: Enable and (re)start prometheus service
+- name: update prometheus configuration with node-exporter configuration
+  shell: cat /opt/node_exporter-installer/conf/prometheus-node_exporter.scrapper.yml >> /etc/prometheus/prometheus.yml
+
+- name: Stop prometheus service to apply the new configuration
+  systemd: name=prometheus daemon-reload=yes state=stopped enabled=yes
+
+- name: (Re)start prometheus service to apply the new configuration
   systemd: name=prometheus daemon-reload=yes state=started enabled=yes
 
 - name: Generate file to verify it passed through this role
