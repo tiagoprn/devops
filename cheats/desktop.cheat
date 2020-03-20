@@ -1,0 +1,4 @@
+% gnome, gdm
+
+# Change ubuntu gnome gdm wallpaper
+sudo vim /usr/share/gnome-shell/theme/ubuntu.css
