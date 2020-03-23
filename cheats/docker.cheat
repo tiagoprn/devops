@@ -9,11 +9,14 @@ mkdir -p $(SHARED_FOLDER) && \
 # copy container.id to the clipboard
 docker ps | fzf | awk '{print $1}' | xclip -i -selection clipboard
 
+# copy image_id to the clipboard
+docker images | fzf | awk '{print $3}' | xclip -i -selection clipboard
+
 # kill and remove container
 export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker kill $CONTAINER_ID && docker rm $CONTAINER_ID
 
 # delete images
-docker rmi $(docker images | grep <image-name> | awk '{print $3}' | uniq) -f
+docker rmi $(docker images | fzf | awk '{print $3}') -f
 
 # get container ip address
 export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker inspect $CONTAINER_ID | jq '.[] | {(.Name) : [(.Config.ExposedPorts | keys),(.NetworkSettings.Networks | to_entries | map({(.key): .value.IPAddress}))]}'
