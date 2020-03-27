@@ -2,17 +2,17 @@
   action: >
       {{ ansible_pkg_mgr }} name=firewalld state=present update_cache=yes
 
-- name: Add a firewall rule to allow external connections to influxdb port
-  shell:
-    firewall-cmd --permanent --zone=public --add-port=8086/tcp
-  tags:
-      - firewall
+# - name: Add a firewall rule to allow external connections to influxdb port
+#   shell:
+#     firewall-cmd --permanent --zone=public --add-port=8086/tcp
+#   tags:
+#       - firewall
 
-- name: Add a firewall rule to allow locally sending the metrics to influxdb
-  shell:
-    firewall-cmd --permanent --zone=internal --add-port=8096/tcp --add-port=8096/udp
-  tags:
-      - firewall
+# - name: Add a firewall rule to allow locally sending the metrics to influxdb
+#   shell:
+#     firewall-cmd --permanent --zone=internal --add-port=8096/tcp --add-port=8096/udp
+#   tags:
+#       - firewall
 
 - name: Reload firewalld to apply the new configuration
   shell:
