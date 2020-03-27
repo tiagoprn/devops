@@ -8,6 +8,4 @@
     - fail2ban
     - sshd
     - ntp
-    # - collectd
-    # - influxdb
     - firewalld
