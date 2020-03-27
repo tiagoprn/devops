@@ -7,4 +7,3 @@ Solution components:
 - prometheus
 - alertmanager
 - grafana
-- loki (to collect logs to be visualized on grafana)
