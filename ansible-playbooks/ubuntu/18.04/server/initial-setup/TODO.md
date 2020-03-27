@@ -1,5 +1,3 @@
-- [ ] Extract tmux into a separated playbook
-
 - [ ] See if ssh is protected on the fail2ban task:
   https://www.unixtutorial.org/how-to-use-fail2ban-to-protect-ssh
 
@@ -13,6 +11,8 @@ https://mitogen.readthedocs.io/en/latest/ansible.html
 
 - [ ] Create a role to install and configure s3fs and rclone/nnn (use ansible
         vars: https://gist.github.com/tristanfisher/e5a306144a637dc739e7 )
+
+- [x] Remove tmux from this playbook.
 
 - [x] Remove sysstat (obsolete by the separate host-metrics playbook)
 

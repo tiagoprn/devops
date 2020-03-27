@@ -13,7 +13,6 @@
     - {role: get-sysctl, when: "ansible_local['get-sysctl_facts']['has_get-sysctl_passed'] == false" }
     - {role: fail2ban, when: "ansible_local['fail2ban_facts']['has_fail2ban_installed'] == false" }
     - {role: auth, when: "ansible_local['auth_facts']['has_ops_user'] == false" }
-    # - {role: tmux, when: "ansible_local['tmux_facts']['has_tmux_installed'] == false" }
     - {role: timezone, when: "ansible_local['timezone_facts']['has_timezone_passed'] == false" }
     - {role: ntp, when: "ansible_local['ntp_facts']['has_ntp_installed'] == false" }
     - {role: firewalld, when: "ansible_local['firewalld_facts']['has_firewalld_installed'] == false" }

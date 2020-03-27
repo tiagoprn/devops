@@ -9,7 +9,6 @@ This setup does its best to provide security (although I'm by no means an expert
 - sysctl configuration for tuning kernel parameters
 - fail2ban: scans log files and ban IPs that show malicious activity
 - auth: create a sudo user with access to the docker daemon and also sets the ssh keys for it.
-- tmux: the tmux multiplexer
 - timezone/ntp configured for America/Sao_Paulo.
 - services: starts all daemons from the playbook
 - cleanup: do some final cleaning up (remove caches, etc...)
