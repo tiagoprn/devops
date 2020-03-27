@@ -6,7 +6,6 @@
       - ncdu
       - bash-completion
       - tree
-      - sysstat
       - iotop
       - siege
       - curl

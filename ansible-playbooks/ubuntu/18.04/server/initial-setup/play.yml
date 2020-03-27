@@ -7,8 +7,7 @@
     - upgrade
     - {role: prepare, when: "ansible_local['prepare_facts']['has_prepare_passed'] == false" }
     - {role: utilities, when: "ansible_local['utilities_facts']['has_utilities_passed'] == false" }
-    # - {role: suricata, when: "ansible_local['suricata_facts']['has_suricata_installed'] == false" }
-    - {role: sysstat, when: "ansible_local['sysstat_facts']['has_sysstat_passed'] == false" }
+    - {role: suricata, when: "ansible_local['suricata_facts']['has_suricata_installed'] == false" }
     - {role: set-sysctl, when: "ansible_local['set-sysctl_facts']['has_set-sysctl_passed'] == false" }
     - {role: reboot, when: "ansible_local['set-sysctl_facts']['has_set-sysctl_passed'] == false" }
     - {role: get-sysctl, when: "ansible_local['get-sysctl_facts']['has_get-sysctl_passed'] == false" }

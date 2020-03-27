@@ -15,12 +15,6 @@
     dest: /etc/ansible/facts.d/utilities_facts.fact
     mode: 0755
 
-- name: Insert sysstat role fact file
-  copy:
-    src: files/sysstat_facts.fact
-    dest: /etc/ansible/facts.d/sysstat_facts.fact
-    mode: 0755
-
 - name: Insert set-sysctl role fact file
   copy:
     src: files/set-sysctl_facts.fact
