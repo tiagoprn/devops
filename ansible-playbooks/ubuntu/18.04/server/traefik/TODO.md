@@ -4,3 +4,5 @@ $ wget https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/uti
 $ ./htpasswd.sh -u admin -p <ramdomly_generated_password>
 $ cat /tmp/htpasswd | grep '\S'
 - https://aperogeek.fr/prometheus-monitor-docker-services-with-grafana/
+- Adapt to use traefik 2.x (see links on my pocket)
+

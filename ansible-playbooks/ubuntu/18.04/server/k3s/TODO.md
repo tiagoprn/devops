@@ -1,0 +1,2 @@
+- Maybe change to use k3sup? (the link is on my pocket)
+- Install k9s
