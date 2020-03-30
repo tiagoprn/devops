@@ -16,16 +16,16 @@ multipass list | fzf | awk '{print $3}' | xclip -i -selection clipboard
 multipass list
 
 # Info:
-multipass info <vm>
+multipass info $(multipass list | fzf | awk '{print $1}')
 
 # Stop:
-multipass stop <vm>
+multipass stop $(multipass list | fzf | awk '{print $1}')
 
 # Start:
-multipass start <vm>
+multipass start $(multipass list | fzf | awk '{print $1}')
 
 # Delete:
-multipass delete <vm>
+multipass delete $(multipass list | fzf | awk '{print $1}')
 
 # Purge deleted:
 multipass purge
