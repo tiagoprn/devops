@@ -1,15 +1,18 @@
 - Finish creating the following roles:
+    - [DOING] AlertManager with prometheus:
+        https://www.youtube.com/watch?v=BWPOLLC1TE8&list=PLf-O3X2-mxDls9uH8gyCQTnyXNMe10iml&index=5
+        - [NEXT] Configure alertmanager to send alerts to email (notifications@tiagoprnl.me on `files/config.yml`) and test alertmanager setup (port 9093)
     - [x] Node exporter and prometheus with Netdata:
     https://www.youtube.com/watch?v=uN6BtGXnnzs&list=PLf-O3X2-mxDls9uH8gyCQTnyXNMe10iml&index=4
-    - [NEXT] Installing and integrating Grafana:
+    - [] Installing and integrating Grafana (put on a separated playbook, since
+      grafana delivers value apart from this setup):
     https://www.youtube.com/watch?v=3K_FkcMwzAk&list=PLf-O3X2-mxDls9uH8gyCQTnyXNMe10iml&index=7
-    - [] AlertManager with prometheus:
-    https://www.youtube.com/watch?v=BWPOLLC1TE8&list=PLf-O3X2-mxDls9uH8gyCQTnyXNMe10iml&index=5
 - Secure the following urls:
     IMPORTANT: Use this url and test with netdata, then try to secure all other
 monitoring services the same way:
 https://www.linuxbabe.com/monitoring/linux-server-performance-monitoring-with-netdata
     - [ ] netdata: add tls and authentication to the dashboard (port :19999/).
     - [ ] prometheus: add tls and authentication to the dashboard (port :9090/graph )
+    - [ ] alertmanager: add tls and authentication to the dashboard (port :9093 )
     - [ ] node_exporter: allow only access to the endpoint on localhost (port :9100/metrics)
     - [ ] grafana: add tls and authentication to the dashboard

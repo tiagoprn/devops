@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# TODO: change here to the traefix verification.
+# It may be necessary to use get_facts and set_facts like
+# on the initial-setup playbooks, using a file to check if
+# it is installed or not.
+ls /var/log/alertmanager_passed.txt > /dev/null 2>&1
+
+# If there is an error on the previous bash command, alertmanager is not installed
+# below must result in a json formatted dict, so ansible can use it
+if [ $? -ne 0 ] ; then
+    echo "{\"has_alertmanager_installed\": false}"
+else
+    echo "{\"has_alertmanager_installed\": true}"
+fi
+

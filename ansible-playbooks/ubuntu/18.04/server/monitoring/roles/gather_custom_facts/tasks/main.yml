@@ -21,6 +21,12 @@
     dest: /etc/ansible/facts.d/node_exporter_facts.fact
     mode: 0755
 
+- name: Insert alertmanager fact file
+  copy:
+    src: files/alertmanager_facts.fact
+    dest: /etc/ansible/facts.d/alertmanager_facts.fact
+    mode: 0755
+
 - name: Reload ansible local vars, to have the installed fact available to use
   setup: filter=ansible_local
 

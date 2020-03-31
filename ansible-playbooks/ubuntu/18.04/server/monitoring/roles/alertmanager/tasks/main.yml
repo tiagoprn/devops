@@ -1,0 +1,65 @@
+# https://www.youtube.com/watch?v=BWPOLLC1TE8
+
+- name: Create configuration folder
+  file:
+    path: /etc/alertmanager
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: 0775
+    recurse: yes
+
+- name: Create support folder
+  file:
+    path: /var/lib/alertmanager/data
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: 0775
+    recurse: yes
+
+- name: Create download folder
+  file:
+    path: /opt/alertmanager-installer
+    state: directory
+    owner: root
+    group: root
+    mode: 0777
+    recurse: yes
+
+- name: Download alertmanager release
+  get_url:
+      url: https://github.com/prometheus/alertmanager/releases/download/v0.20.0/alertmanager-0.20.0.linux-amd64.tar.gz
+    dest: /opt/alertmanager-installer/alertmanager-0.20.0.linux-amd64.tar.gz
+    mode: 0744
+
+- name: Extract the downloaded release
+  unarchive:
+    src: /opt/alertmanager-installer/alertmanager-0.20.0.linux-amd64.tar.gz
+    dest: /opt/alertmanager-installer
+    remote_src: yes
+
+- name: copy alertmanager binary to system binaries
+  copy: src=/opt/alertmanager-installer/alertmanager-0.20.0.linux-amd64/alertmanager dest=/usr/local/bin/alertmanager owner=prometheus group=prometheus mode=0744 remote_src=yes
+
+- name: copy amtool binary to system binaries
+  copy: src=/opt/alertmanager-installer/alertmanager-0.20.0.linux-amd64/amtool dest=/usr/local/bin/amtool owner=prometheus group=prometheus mode=0744 remote_src=yes
+
+- name: copy alertmanager configuration to its' configuration folder
+  copy: src=files/config.yml dest=/etc/alertmanager/config.yml owner=prometheus group=prometheus
+
+- name: copy alertmanager service to systemd unit files path
+  copy: src=files/alertmanager.service dest=/etc/systemd/system/alertmanager.service owner=root group=root
+
+- name: Enable and start alertmanager service
+  systemd: name=alertmanager daemon-reload=yes state=started enabled=yes
+
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/alertmanager_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
