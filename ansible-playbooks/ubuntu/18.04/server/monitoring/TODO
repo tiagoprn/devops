@@ -1,8 +1,7 @@
 - Finish creating the following roles:
     - [DOING] AlertManager with prometheus:
         https://www.youtube.com/watch?v=BWPOLLC1TE8&list=PLf-O3X2-mxDls9uH8gyCQTnyXNMe10iml&index=5
-        - [ ] create an ansible template for the file `config.yml` to get the
-          smtp credentials from ansible vault.
+        - [ ] put file `alertmanager/vars/main.yml` into an ansible vault.
         - [x] Configure alertmanager to send alerts to email (notifications@tiagoprnl.me on `files/config.yml`) and test alertmanager setup (port 9093)
     - [x] Node exporter and prometheus with Netdata:
     https://www.youtube.com/watch?v=uN6BtGXnnzs&list=PLf-O3X2-mxDls9uH8gyCQTnyXNMe10iml&index=4
