@@ -51,6 +51,12 @@
 - name: copy alertmanager service to systemd unit files path
   copy: src=files/alertmanager.service dest=/etc/systemd/system/alertmanager.service owner=root group=root
 
+- name: compile the alert rule file
+  shell: promtool check rules /etc/prometheus/alert.rules
+
+- name: copy the email notification alert template to its path
+  copy: src=files/alert.tmpl dest=/etc/prometheus/alert.tmpl owner=prometheus group=prometheus
+
 - name: Enable and start alertmanager service
   systemd: name=alertmanager daemon-reload=yes state=started enabled=yes
 

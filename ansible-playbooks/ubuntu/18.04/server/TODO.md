@@ -1,7 +1,3 @@
-- Rerun the following playbooks to validate changes:
-* [ ] initial-setup
-* [ ] docker
-
 - [ ] Finish the monitoring playbook.
 
 - [ ] Update the traefik playbook (run first the `initial-setup` and `docker`
