@@ -46,7 +46,11 @@
   copy: src=/opt/alertmanager-installer/alertmanager-0.20.0.linux-amd64/amtool dest=/usr/local/bin/amtool owner=prometheus group=prometheus mode=0744 remote_src=yes
 
 - name: copy alertmanager configuration to its' configuration folder
-  copy: src=files/config.yml dest=/etc/alertmanager/config.yml owner=prometheus group=prometheus
+  template:
+    src: config.yml.j2
+    dest: /etc/alertmanager/config.yml
+    owner: prometheus
+    group: prometheus
 
 - name: copy alertmanager service to systemd unit files path
   copy: src=files/alertmanager.service dest=/etc/systemd/system/alertmanager.service owner=root group=root
