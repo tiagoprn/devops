@@ -22,12 +22,16 @@ route:
 receivers:
   - name: default
     email_configs:
-     - to: 'to@youremail.com'
+{% endraw %}
+     - to: '{{ email_recipients }}'
+{% raw %}
        html: '{{ template "email" .}}'
 
   - name: email
     email_configs:
-     - to: 'to@youremail.com'
+{% endraw %}
+     - to: '{{ email_recipients }}'
+{% raw %}
        html: '{{ template "email" .}}'
 
 templates:

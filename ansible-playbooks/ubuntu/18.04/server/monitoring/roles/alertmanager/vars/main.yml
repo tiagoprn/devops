@@ -4,4 +4,5 @@ smtp_smarthost: smtphost:25
 smtp_from: account@smtphost.org
 smtp_auth_username: account
 smtp_auth_password: secret
+email_recipients: someone@email.com
 
