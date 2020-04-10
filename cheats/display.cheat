@@ -1,0 +1,7 @@
+% display, xrandr
+
+# Select one between available video outputs and copy to clipboard
+xrandr | grep conn | fzf | awk '{print $1}' | xclip -i -selection clipboard
+
+# Manually enable specific video output
+xrandr --addmode <output> 1920x1080 && xrandr --output <output> --mode 1920x1080
