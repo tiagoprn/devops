@@ -5,3 +5,6 @@ xrandr | grep conn | fzf | awk '{print $1}' | xclip -i -selection clipboard
 
 # Manually enable specific video output
 xrandr --addmode <output> 1920x1080 && xrandr --output <output> --mode 1920x1080
+
+# Get connected displays resolutions
+xrandr | grep -w connected | sed 's/primary//g' | awk '{print $1 " " $3}' | sed 's/\+/ \+/g' | awk '{print $1 " " $2}'
