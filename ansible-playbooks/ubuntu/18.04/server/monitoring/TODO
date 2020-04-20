@@ -1,10 +1,10 @@
 - Secure the following urls:
-IMPORTANT: Use this url and test with netdata, then try to secure all other
-monitoring services the same way: https://www.linuxbabe.com/monitoring/linux-server-performance-monitoring-with-netdata
     - [x] node_exporter: allow only access to the endpoint on localhost (port :9100/metrics)
     - [ ] netdata: add tls and authentication to the dashboard (port :19999/).
     - [ ] prometheus: add tls and authentication to the dashboard (port :9090/graph )
     - [ ] alertmanager: add tls and authentication to the dashboard (port :9093 )
+
+After configuring the access above, configure the traefik playbook to expose the ports above for security reasons.
 
 - [ ] Installing and integrating Grafana (put on a separated playbook, since
     grafana delivers value apart from this setup):
