@@ -1,10 +1,15 @@
 - Secure the following urls:
     - [x] node_exporter: allow only access to the endpoint on localhost (port :9100/metrics)
-    - [ ] netdata: add tls and authentication to the dashboard (port :19999/).
-    - [ ] prometheus: add tls and authentication to the dashboard (port :9090/graph )
-    - [ ] alertmanager: add tls and authentication to the dashboard (port :9093 )
-
-After configuring the access above, configure the traefik playbook to expose the ports above for security reasons.
+    - [x] Configure the ports below on firewalld so that they can only be accessed
+      locally:
+        - [x] netdata (port :19999/).
+        - [x] prometheus (port :9090/graph )
+        - [x] alertmanager (port :9093 )
+    - [ ] Configure below on `traefik.toml` and on `local_dns.sh` (and also on my
+      machine on `/etc/hosts`:
+        - [DOING] netdata (port :19999/).
+        - [ ] prometheus (port :9090/graph )
+        - [ ] alertmanager (port :9093 )
 
 - [ ] Installing and integrating Grafana (put on a separated playbook, since
     grafana delivers value apart from this setup):
