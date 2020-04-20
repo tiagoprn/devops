@@ -8,4 +8,5 @@
     - {role: prometheus, when: "ansible_local['prometheus_facts']['has_prometheus_installed'] == false" }
     - {role: node_exporter, when: "ansible_local['node_exporter_facts']['has_node_exporter_installed'] == false" }
     - {role: alertmanager, when: "ansible_local['alertmanager_facts']['has_alertmanager_installed'] == false" }
+    - {role: traefik, when: "ansible_local['traefik_facts']['has_traefik_installed'] == false" }
     # - cleanup
