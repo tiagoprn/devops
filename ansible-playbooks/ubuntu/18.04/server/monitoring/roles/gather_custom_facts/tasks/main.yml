@@ -27,6 +27,12 @@
     dest: /etc/ansible/facts.d/alertmanager_facts.fact
     mode: 0755
 
+- name: Insert traefik fact file
+  copy:
+    src: files/traefik_facts.fact
+    dest: /etc/ansible/facts.d/traefik_facts.fact
+    mode: 0755
+
 - name: Reload ansible local vars, to have the installed fact available to use
   setup: filter=ansible_local
 
