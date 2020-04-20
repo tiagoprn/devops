@@ -23,7 +23,7 @@ firewall-cmd --permanent --zone=internal --add-port=9093/tcp
 ## alertmanager:
 # firewall-cmd --permanent --zone=public --add-port=9093/tcp
 ## traefik dashboard:
-firewall-cmd --permanent --zone=public --add-port=443/tcp
+firewall-cmd --permanent --zone=public --add-port=8080/tcp
 
 # Example to set ubuntu's ufw:
 # ufw allow 19999/tcp
