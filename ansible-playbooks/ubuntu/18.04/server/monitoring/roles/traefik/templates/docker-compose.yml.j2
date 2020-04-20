@@ -1,3 +1,4 @@
+# https://medium.com/@xavier.priour/secure-traefik-dashboard-with-https-and-password-in-docker-5b657e2aa15f
 version: "3"
 services:
   traefik:
@@ -14,6 +15,8 @@ services:
       - ./traefik.toml:/etc/traefik/traefik.toml
       - ./certs:/certs
     ports:
-      - 80:80
+      # only expose https to outside world
       - 443:443
-      - 8080:8080
+    expose:
+      # traefik dashboard port, expose locally
+      - 8080

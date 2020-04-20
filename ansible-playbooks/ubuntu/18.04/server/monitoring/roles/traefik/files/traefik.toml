@@ -1,4 +1,4 @@
-defaultEntryPoints = ["http", "https"]
+defaultEntryPoints = ["https"]
 logLevel = "INFO"
 
 [docker]
@@ -40,7 +40,7 @@ logLevel = "INFO"
 
     [backends.backend1.servers]
       [backends.backend1.servers.server0]
-        url = "http://localhost:19999"
+        url = "http://127.0.0.1:19999"
 
 # Frontends
 [frontends]
