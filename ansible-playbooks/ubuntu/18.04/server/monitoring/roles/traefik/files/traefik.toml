@@ -43,6 +43,16 @@ logLevel = "INFO"
       [backends.netdata.servers.server0]
         url = "http://1.1.1.1:19999"
         weight = 10
+  [backends.prometheus]
+    [backends.prometheus.servers]
+      [backends.prometheus.servers.server0]
+        url = "http://1.1.1.1:9090"
+        weight = 10
+  [backends.alertmanager]
+    [backends.alertmanager.servers]
+      [backends.alertmanager.servers.server0]
+        url = "http://1.1.1.1:9093"
+        weight = 10
 
 # Frontends
 [frontends]
@@ -53,4 +63,17 @@ logLevel = "INFO"
     [frontends.netdata.routes]
       [frontends.netdata.routes.route0]
         rule = "Host:netdata.example.com"
-
+  [frontends.prometheus]
+    # entryPoints = ["https"]
+    backend = "prometheus"
+    # passHostHeader = true
+    [frontends.prometheus.routes]
+      [frontends.prometheus.routes.route0]
+        rule = "Host:prometheus.example.com"
+  [frontends.alertmanager]
+    # entryPoints = ["https"]
+    backend = "alertmanager"
+    # passHostHeader = true
+    [frontends.alertmanager.routes]
+      [frontends.alertmanager.routes.route0]
+        rule = "Host:alertmanager.example.com"
