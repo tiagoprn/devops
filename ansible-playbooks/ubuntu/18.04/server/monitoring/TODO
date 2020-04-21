@@ -1,4 +1,4 @@
-- Secure the following urls:
+- [ ] Secure the following urls:
     - [x] node_exporter: allow only access to the endpoint on localhost (port :9100/metrics)
     - [x] Configure the ports below on firewalld so that they can only be accessed
       locally:
@@ -7,10 +7,14 @@
         - [x] alertmanager (port :9093 )
     - [ ] Configure below on `traefik.toml` and on `local_dns.sh` (and also on my
       machine on `/etc/hosts`:
-        - [DOING] netdata (port :19999/).
-        - [ ] prometheus (port :9090/graph )
-        - [ ] alertmanager (port :9093 )
+        - [x] netdata (port :19999/).
+        - [DOING] prometheus (port :9090/graph )
+        - [DOING] alertmanager (port :9093 )
+
+- [ ] Configure random password for the traefik dashboard and prometheus.
+
+- [ ] Move traefik configuration to a separate playbook
 
 - [ ] Installing and integrating Grafana (put on a separated playbook, since
-    grafana delivers value apart from this setup):
+    grafana delivers value apart from this setup - also add it to traefik):
 https://www.youtube.com/watch?v=3K_FkcMwzAk&list=PLf-O3X2-mxDls9uH8gyCQTnyXNMe10iml&index=7
