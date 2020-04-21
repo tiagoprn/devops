@@ -38,18 +38,19 @@ logLevel = "INFO"
 
 # rules
 [backends]
-  [backends.backend1]
-    [backends.backend1.servers]
-      [backends.backend1.servers.server0]
+  [backends.netdata]
+    [backends.netdata.servers]
+      [backends.netdata.servers.server0]
         url = "http://1.1.1.1:19999"
+        weight = 10
 
 # Frontends
 [frontends]
-  [frontends.frontend1]
-    entryPoints = ["https"]
-    backend = "backend1"
-    passHostHeader = true
-    [frontends.frontend1.routes]
-      [frontends.frontend1.routes.route0]
+  [frontends.netdata]
+    # entryPoints = ["https"]
+    backend = "netdata"
+    # passHostHeader = true
+    [frontends.netdata.routes]
+      [frontends.netdata.routes.route0]
         rule = "Host:netdata.example.com"
 

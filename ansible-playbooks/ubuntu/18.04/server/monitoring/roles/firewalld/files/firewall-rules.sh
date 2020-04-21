@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# Adding an internal zone to the firewall, mapped to localhost interface
-firewall-cmd --permanent --zone=internal --add-interface=lo
+# Adding an internal zone to the firewall, mapped to localhost and docker interfaces
+firewall-cmd --permanent --zone=internal --add-interface=lo --add-interface=docker0
 
-
-# Ports only allowed on localhost
+# Ports allowed internally (localhost and docker)
 ## node_exporter:
 firewall-cmd --permanent --zone=internal --add-port=9100/tcp
 ## netdata:
@@ -14,8 +13,7 @@ firewall-cmd --permanent --zone=internal --add-port=9090/tcp
 ## alertmanager:
 firewall-cmd --permanent --zone=internal --add-port=9093/tcp
 
-
-# Ports available on LAN/WAN
+# Ports allowed on LAN/WAN
 ## netdata:
 # firewall-cmd --permanent --zone=public --add-port=19999/tcp
 ## prometheus:
