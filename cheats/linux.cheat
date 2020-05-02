@@ -53,3 +53,6 @@ echo -n "<text>" | base64 -w 0
 
 # base64 decode
 echo -n "<encoded-text>" | base64 -d -w 0
+
+# reclame cache memory on the SO (cache clean)
+sudo -- bash -c 'sync && echo 3 > /proc/sys/vm/drop_caches'
