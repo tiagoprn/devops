@@ -56,3 +56,6 @@ kubectl config current-context
 
 # Change current kubectl context
 kubectl config set-context <context>
+
+# Get all events from a namespace
+kubectl get events -n <NAMESPACE>
