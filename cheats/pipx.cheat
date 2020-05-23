@@ -1,0 +1,10 @@
+% pipx
+
+# Install package from pypi
+pipx install <package>
+
+# Install package from github
+pipx install git+https://github.com/<username>/<repository-name>.git@<branch>
+
+# List installed packages
+pipx list
