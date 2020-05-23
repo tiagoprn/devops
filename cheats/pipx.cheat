@@ -8,3 +8,6 @@ pipx install git+https://github.com/<username>/<repository-name>.git@<branch> --
 
 # List installed packages
 pipx list
+
+# Install (inject) pip dependency into a package
+pipx inject <package-name> <pip-dependency-name>
