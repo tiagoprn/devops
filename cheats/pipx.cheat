@@ -1,10 +1,10 @@
 % pipx
 
 # Install package from pypi
-pipx install <package>
+pipx install <package> --force
 
 # Install package from github
-pipx install git+https://github.com/<username>/<repository-name>.git@<branch>
+pipx install git+https://github.com/<username>/<repository-name>.git@<branch> --force
 
 # List installed packages
 pipx list
