@@ -58,4 +58,4 @@ echo -n "<encoded-text>" | base64 -d -w 0
 sudo -- bash -c 'sync && echo 3 > /proc/sys/vm/drop_caches'
 
 # single program ps usage statistics (RSS=real physical memory, VSZ=real+virtual memory)
-ps -p $(ps aux | fzf | awk '{print $2}') -o pid,time,command,%cpu,%mem,stat,rss,vsz
+watch -n 1 ps -p $(ps aux | fzf | awk '{print $2}') -o pid,time,command,%cpu,%mem,stat,rss,vsz
