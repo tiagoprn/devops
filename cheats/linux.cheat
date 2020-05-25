@@ -56,3 +56,6 @@ echo -n "<encoded-text>" | base64 -d -w 0
 
 # reclame cache memory on the SO (cache clean)
 sudo -- bash -c 'sync && echo 3 > /proc/sys/vm/drop_caches'
+
+# single program ps usage statistics
+ps -C <command> -o pid,time,command,%cpu,%mem,stat,rss,vsz
