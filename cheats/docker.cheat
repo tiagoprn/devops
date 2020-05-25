@@ -26,3 +26,6 @@ export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker logs -f $CON
 
 # containers cleanup (prune)
 docker system prune
+
+# Remove docker volume
+export VOLUME_ID=$(docker volume ls | fzf | awk '{print $2}') && docker volume rm $VOLUME_ID
