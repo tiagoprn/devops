@@ -4,28 +4,28 @@
 kubectl get pods -n <NAMESPACE> | fzf --no-sort | awk '{print $1}' | xclip -i -selection clipboard
 
 # Get pods on namespace
-kubectl get pods -n <NAMESPACE>
+watch -n 1 kubectl get pods -n <NAMESPACE>
 
 # See resources being used by all nodes
-kubectl top nodes
+watch -n 1 kubectl top nodes
 
 # See resources being used by all pods in all namespaces
-kubectl top pods --all-namespaces
+watch -n 1 kubectl top pods --all-namespaces
 
 # Describe pod on namespace
 kubectl describe pod <POD> -n <NAMESPACE>
 
 # See resources being used by a pod
-kubectl top pod <POD> -n <NAMESPACE>
+watch -n 1 kubectl top pod <POD> -n <NAMESPACE>
 
 # See resources being used by a pod, by container
-kubectl top pod <POD> -n <NAMESPACE> --containers
+watch -n 1 kubectl top pod <POD> -n <NAMESPACE> --containers
 
 # See logs from all containers in a pod
-kubectl logs <POD> -n <NAMESPACE> --all-containers -f
+watch -n 1 kubectl logs <POD> -n <NAMESPACE> --all-containers -f
 
 # See logs from specific container in a pod
-kubectl logs <POD> -n <NAMESPACE> -c <CONTAINER_NAME> -f
+watch -n 1 kubectl logs <POD> -n <NAMESPACE> -c <CONTAINER_NAME> -f
 
 # Get name of containers inside a pod
 kubectl get pod <POD> -n <NAMESPACE> -o jsonpath='{.spec.containers[*].name}'
