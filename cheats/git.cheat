@@ -1,0 +1,16 @@
+% git
+
+# Show files changed on current branch, comparing to another one
+git diff --name-only <reference-branch>
+
+# Show files changed on each commit
+git files-changed
+
+# Show rank of most changed files on repository
+git rank
+
+# Show branches, with the most recent one on top
+git lb
+
+
+
