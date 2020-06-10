@@ -60,6 +60,8 @@ sudo -- bash -c 'sync && echo 3 > /proc/sys/vm/drop_caches'
 # single program ps usage statistics (RSS=real physical memory, VSZ=real+virtual memory)
 watch -n 1 ps -p $(ps aux | fzf | awk '{print $2}') -o pid,time,command,%cpu,%mem,stat,rss,vsz
 
-
 # strace on a process
 sudo strace -p $(ps aux | fzf | awk '{print $2}')
+
+# dmesg human readable and tailed:
+dmesg -Hw
