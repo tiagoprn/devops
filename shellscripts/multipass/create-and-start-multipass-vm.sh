@@ -29,7 +29,7 @@ fi
 
 VM_NAME=ubuntu-lts-$(date +%Y%m%d-%H%M%S)
 ./generate-cloud-config.sh
-multipass launch -n $VM_NAME -c $CPUS -d $DISK -m $MEMORY --cloud-init cloud-config.yaml && \
+cat <(cat cloud-config.yaml) | multipass launch -n $VM_NAME -c $CPUS -d $DISK -m $MEMORY --cloud-init - && \
 multipass list && \
 
 echo -e "\n---\nFINISHED. VM $VM_NAME created with CPUS=$CPUS, DISK=$DISK and MEMORY=$MEMORY. Have fun! o/".
