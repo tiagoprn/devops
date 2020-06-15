@@ -63,5 +63,8 @@ watch -n 1 ps -p $(ps aux | fzf | awk '{print $2}') -o pid,time,command,%cpu,%me
 # strace on a process
 sudo strace -p $(ps aux | fzf | awk '{print $2}')
 
+# friendly strace on a process
+sudo strace -fe trace=creat,open,openat,unlink,unlinkat -p $(ps aux | fzf | awk '{print $2}')
+
 # list active kernel modules and their description
 lsmod | perl -nE 'BEGIN{ <> }; ($m) = /(\S+)/; printf "%-20s: %s\n", $m, qx/modinfo $m/ =~ /description:\s*(.*)/' | sort
