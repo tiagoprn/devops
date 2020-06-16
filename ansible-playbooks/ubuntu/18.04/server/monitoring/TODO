@@ -3,6 +3,7 @@
       inserted by ansible on /opt/containers/traefik/traefik.toml. But if I ssh
 into the VM and create a user with `sudo bash /opt/htpassd.sh`, get the hash
 and manually add it to traefik.toml, it works. Check why.
+(to access, go to https://traefik.example.com)
 
 - [ ] Configure random password for prometheus dashboard
 
@@ -10,7 +11,8 @@ and manually add it to traefik.toml, it works. Check why.
   configure the e-mail credentials to playbook vars. (see README.md because
 probably that was already implemented, just check)
 
-- [ ] Move traefik configuration to a separate playbook
+- [ ] Move traefik configuration to a separate playbook. Upgrade to traefik
+  2.x.
 
 - [ ] Installing and integrating Grafana (put on a separated playbook, since
     grafana delivers value apart from this setup - also add it to traefik):
