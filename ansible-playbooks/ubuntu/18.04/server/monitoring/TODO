@@ -1,5 +1,6 @@
-- [ ] Configure random password for the traefik dashboard and prometheus
-  (configure templates).
+- [TESTING] Configure random htpasswd password for the traefik dashboard
+
+- [ ] Configure random password for prometheus dashboard
 
 - [ ] Convert alertmanager email configuration to a template so that I can
   configure the e-mail credentials to playbook vars. (see README.md because

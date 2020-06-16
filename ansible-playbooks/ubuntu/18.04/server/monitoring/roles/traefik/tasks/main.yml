@@ -27,17 +27,43 @@
 - name: Generate the TLS certificates
   command: bash /opt/containers/traefik/generate-self-signed-certs.sh
 
-# TODO: enable commands below, and use htpasswd to generate the password
-# - name: Generate a random password for traefik admin user
-# command: bash /opt/random_password.sh
-# register: traefik_password  # record the command stdout to the "password" variable
-# changed_when: False  # this make this task always run
-#
-# - name: Print traefik admin user passwd
-# debug: var=traefik_password.stdout  # prints the value of the "password" variable
-#
-# - name: Copy the traefik admin password to a file
-# copy: content="{{ traefik_password.stdout }}" dest="/opt/containers/traefik/admin.passwd"
+- name: Generated the traefik raw admin password
+  command: /opt/random_password.sh
+  register: traefik_raw_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+- name: Print traefik admin raw admin passwd
+  debug: var=traefik_raw_password.stdout  # prints the value of the "password" variable
+
+- name: Copy the traefik admin password to a file
+  copy: content="{{ traefik_raw_password.stdout }}" dest="/opt/containers/traefik/admin.passwd"
+
+- name: download the script to generate the corresponding htpasswd password
+  get_url:
+    url: https://raw.githubusercontent.com/tiagoprn/devops/master/shellscripts/utils/htpasswd.sh
+    dest: /opt
+    mode: 0744
+
+- name: Generate htpasswd password for traefik admin user
+  command: bash /opt/htpasswd.sh -u admin -p $(cat /opt/containers/traefik/admin.raw.passwd)
+
+- name: Read the generated htpasswd password
+  command: cat /tmp/htpasswd
+  register: traefik_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+- name: Print traefik admin user htpasswd password
+  debug: var=traefik_password.stdout  # prints the value of the "password" variable
+
+- name: Copy the traefik admin htpasswd password to a file
+  copy: content="{{ traefik_password.stdout }}" dest="/opt/containers/traefik/admin.htpasswd"
+
+- name: copy traefik configuration to its' configuration folder
+  template:
+    src: traefik.toml.j2
+    dest: /opt/containers/traefik/traefik.toml
+    owner: root
+    group: root
 
 - name: Create the docker-compose file for traefik
   template:
