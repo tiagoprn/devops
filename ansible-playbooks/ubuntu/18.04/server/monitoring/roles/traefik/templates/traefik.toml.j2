@@ -31,7 +31,7 @@ logLevel = "INFO"
 
     [entryPoints.dashboard.auth.basic]
     # admin/secret
-    users = ["admin:{{ traefik_password }}"]
+    users = ["{{ traefik_password.stdout }}"]
 
 
 [file]

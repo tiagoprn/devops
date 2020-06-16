@@ -45,7 +45,7 @@
     mode: 0744
 
 - name: Generate htpasswd password for traefik admin user
-  command: bash /opt/htpasswd.sh -u admin -p $(cat /opt/containers/traefik/admin.raw.passwd)
+  command: bash /opt/htpasswd.sh -u traefik -p $(cat /opt/containers/traefik/admin.raw.passwd)
 
 - name: Read the generated htpasswd password
   command: cat /tmp/htpasswd
