@@ -1,9 +1,13 @@
 - [TESTING] Configure random htpasswd password for the traefik dashboard
+(to access, go to https://traefik.example.com)
     * Finished configuration to set the password, but it is not working
       inserted by ansible on /opt/containers/traefik/traefik.toml. But if I ssh
 into the VM and create a user with `sudo bash /opt/htpassd.sh`, get the hash
 and manually add it to traefik.toml, it works. Check why.
-(to access, go to https://traefik.example.com)
+    * An alternative way to setup the credentials may be the docker-compose
+      file:
+https://medium.com/@xavier.priour/secure-traefik-dashboard-with-https-and-password-in-docker-5b657e2aa15f
+. But that way, when putting the value there I must scape "$" to "$$".
 
 - [ ] Configure random password for prometheus dashboard
 
