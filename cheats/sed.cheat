@@ -1,0 +1,6 @@
+% sed
+
+# Recursively replace a word on all files under current directory
+find ./ -type f -exec sed -i -e 's/<old_word>/<new_word>/g' {} \;
+
+
