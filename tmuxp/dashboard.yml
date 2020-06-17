@@ -1,6 +1,7 @@
 session_name: DASHBOARD
 windows:
   - window_name: main
+    layout: 7085,236x61,0,0{117x61,0,0,2,118x61,118,0[118x29,118,0,5,118x16,118,30,8,118x14,118,47,9]}
     shell_command_before:
       - clear
       - sleep 2
