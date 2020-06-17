@@ -68,3 +68,6 @@ sudo strace -fe trace=creat,open,openat,unlink,unlinkat -p $(ps aux | fzf | awk 
 
 # list active kernel modules and their description
 lsmod | perl -nE 'BEGIN{ <> }; ($m) = /(\S+)/; printf "%-20s: %s\n", $m, qx/modinfo $m/ =~ /description:\s*(.*)/' | sort
+
+# ttyclock
+tty-clock -b -c -s -f '%A, %d %B %Y'
