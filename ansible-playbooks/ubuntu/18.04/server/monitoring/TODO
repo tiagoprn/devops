@@ -1,4 +1,8 @@
-- [ ] Configure random password for prometheus dashboard
+- [ ] Configure random password for netdata webui (try basic authentication through configuring traefik.toml)
+
+- [ ] Configure random password for prometheus webui (try basic authentication through configuring traefik.toml)
+
+- [ ] Configure random password for alertmanager webui (try basic authentication through configuring traefik.toml)
 
 - [ ] Convert alertmanager email configuration to a template so that I can
   configure the e-mail credentials to playbook vars. (see README.md because
