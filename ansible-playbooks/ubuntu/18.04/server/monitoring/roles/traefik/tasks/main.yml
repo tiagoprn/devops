@@ -27,16 +27,16 @@
 - name: Generate the TLS certificates
   command: bash /opt/containers/traefik/generate-self-signed-certs.sh
 
-- name: Generated the traefik raw admin password
+- name: Generated the traefik raw traefik password
   command: /opt/random_password.sh
   register: traefik_raw_password  # record the command stdout to the "password" variable
   changed_when: False  # this make this task always run
 
-- name: Print traefik admin raw admin passwd
+- name: Print traefik traefik raw traefik passwd
   debug: var=traefik_raw_password.stdout  # prints the value of the "password" variable
 
-- name: Copy the traefik admin password to a file
-  copy: content="{{ traefik_raw_password.stdout }}" dest="/opt/containers/traefik/admin.passwd"
+- name: Copy the traefik traefik password to a file
+  copy: content="{{ traefik_raw_password.stdout }}" dest="/opt/containers/traefik/traefik.passwd"
 
 - name: download the script to generate the corresponding htpasswd password
   get_url:
@@ -44,19 +44,19 @@
     dest: /opt
     mode: 0744
 
-- name: Generate htpasswd password for traefik admin user
-  command: bash /opt/htpasswd.sh -u traefik -p $(cat /opt/containers/traefik/admin.raw.passwd)
+- name: Generate htpasswd password for traefik traefik user
+  command: bash /opt/htpasswd.sh -u traefik -p {{ traefik_raw_password.stdout }}
 
 - name: Read the generated htpasswd password
   command: cat /tmp/htpasswd
   register: traefik_password  # record the command stdout to the "password" variable
   changed_when: False  # this make this task always run
 
-- name: Print traefik admin user htpasswd password
+- name: Print traefik traefik user htpasswd password
   debug: var=traefik_password.stdout  # prints the value of the "password" variable
 
-- name: Copy the traefik admin htpasswd password to a file
-  copy: content="{{ traefik_password.stdout }}" dest="/opt/containers/traefik/admin.htpasswd"
+- name: Copy the traefik traefik htpasswd password to a file
+  copy: content="{{ traefik_password.stdout }}" dest="/opt/containers/traefik/traefik.htpasswd"
 
 - name: copy traefik configuration to its' configuration folder
   template:
