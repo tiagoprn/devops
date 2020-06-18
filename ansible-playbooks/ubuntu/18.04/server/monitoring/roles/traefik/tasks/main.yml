@@ -27,16 +27,40 @@
 - name: Generate the TLS certificates
   command: bash /opt/containers/traefik/generate-self-signed-certs.sh
 
-- name: Generated the traefik raw traefik password
+- name: Generate traefik raw password
   command: /opt/random_password.sh
   register: traefik_raw_password  # record the command stdout to the "password" variable
   changed_when: False  # this make this task always run
 
-- name: Print traefik traefik raw traefik passwd
-  debug: var=traefik_raw_password.stdout  # prints the value of the "password" variable
+- name: Generate netdata raw password
+  command: /opt/random_password.sh
+  register: netdata_raw_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
 
-- name: Copy the traefik traefik password to a file
+- name: Generate prometheus raw password
+  command: /opt/random_password.sh
+  register: prometheus_raw_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+- name: Generate alertmanager raw password
+  command: /opt/random_password.sh
+  register: alertmanager_raw_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+# - name: Print traefik traefik raw traefik passwd
+#   debug: var=traefik_raw_password.stdout  # prints the value of the "password" variable
+
+- name: Copy traefik password to a file
   copy: content="{{ traefik_raw_password.stdout }}" dest="/opt/containers/traefik/traefik.passwd"
+
+- name: Copy netdata password to a file
+  copy: content="{{ netdata_raw_password.stdout }}" dest="/opt/containers/traefik/netdata.passwd"
+
+- name: Copy prometheus password to a file
+  copy: content="{{ prometheus_raw_password.stdout }}" dest="/opt/containers/traefik/prometheus.passwd"
+
+- name: Copy alertmanager password to a file
+  copy: content="{{ alertmanager_raw_password.stdout }}" dest="/opt/containers/traefik/alertmanager.passwd"
 
 - name: download the script to generate the corresponding htpasswd password
   get_url:
@@ -44,19 +68,52 @@
     dest: /opt
     mode: 0744
 
-- name: Generate htpasswd password for traefik traefik user
-  command: bash /opt/htpasswd.sh -u traefik -p {{ traefik_raw_password.stdout }}
+- name: Generate htpasswd password for traefik user
+  command: bash -c "rm -f /tmp/htpasswd; /opt/htpasswd.sh -u traefik -p {{ traefik_raw_password.stdout }}"
 
 - name: Read the generated htpasswd password
   command: cat /tmp/htpasswd
   register: traefik_password  # record the command stdout to the "password" variable
   changed_when: False  # this make this task always run
 
-- name: Print traefik traefik user htpasswd password
-  debug: var=traefik_password.stdout  # prints the value of the "password" variable
+- name: Generate htpasswd password for netdata user
+  command: bash -c "rm -f /tmp/htpasswd; /opt/htpasswd.sh -u netdata -p {{ netdata_raw_password.stdout }}"
 
-- name: Copy the traefik traefik htpasswd password to a file
+- name: Read the generated htpasswd password
+  command: cat /tmp/htpasswd
+  register: netdata_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+- name: Generate htpasswd password for prometheus user
+  command: bash -c "rm -f /tmp/htpasswd; /opt/htpasswd.sh -u prometheus -p {{ prometheus_raw_password.stdout }}"
+
+- name: Read the generated htpasswd password
+  command: cat /tmp/htpasswd
+  register: prometheus_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+- name: Generate htpasswd password for alertmanager user
+  command: bash -c "rm -f /tmp/htpasswd; /opt/htpasswd.sh -u alertmanager -p {{ alertmanager_raw_password.stdout }}"
+
+- name: Read the generated htpasswd password
+  command: cat /tmp/htpasswd
+  register: alertmanager_password  # record the command stdout to the "password" variable
+  changed_when: False  # this make this task always run
+
+# - name: Print traefik traefik user htpasswd password
+#   debug: var=traefik_password.stdout  # prints the value of the "password" variable
+
+- name: Copy the traefik htpasswd password to a file
   copy: content="{{ traefik_password.stdout }}" dest="/opt/containers/traefik/traefik.htpasswd"
+
+- name: Copy the netdata htpasswd password to a file
+  copy: content="{{ netdata_password.stdout }}" dest="/opt/containers/traefik/netdata.htpasswd"
+
+- name: Copy the prometheus htpasswd password to a file
+  copy: content="{{ prometheus_password.stdout }}" dest="/opt/containers/traefik/prometheus.htpasswd"
+
+- name: Copy the alertmanager htpasswd password to a file
+  copy: content="{{ alertmanager_password.stdout }}" dest="/opt/containers/traefik/alertmanager.htpasswd"
 
 - name: copy traefik configuration to its' configuration folder
   template:

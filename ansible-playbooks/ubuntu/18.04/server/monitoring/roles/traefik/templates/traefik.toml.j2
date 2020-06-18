@@ -59,6 +59,7 @@ logLevel = "INFO"
   [frontends.netdata]
     # entryPoints = ["https"]
     backend = "netdata"
+    basicAuth = ["{{ netdata_password.stdout }}"]
     # passHostHeader = true
     [frontends.netdata.routes]
       [frontends.netdata.routes.route0]
@@ -66,6 +67,7 @@ logLevel = "INFO"
   [frontends.prometheus]
     # entryPoints = ["https"]
     backend = "prometheus"
+    basicAuth = ["{{ prometheus_password.stdout }}"]
     # passHostHeader = true
     [frontends.prometheus.routes]
       [frontends.prometheus.routes.route0]
@@ -73,6 +75,7 @@ logLevel = "INFO"
   [frontends.alertmanager]
     # entryPoints = ["https"]
     backend = "alertmanager"
+    basicAuth = ["{{ alertmanager_password.stdout }}"]
     # passHostHeader = true
     [frontends.alertmanager.routes]
       [frontends.alertmanager.routes.route0]
