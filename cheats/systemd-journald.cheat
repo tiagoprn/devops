@@ -32,3 +32,6 @@ sudo systemctl list-unit-files --type=service
 
 # list all services dependencies
 sudo systemctl list-dependencies graphical.target
+
+# list all systemd timers
+sudo sudo systemctl list-timers -all
