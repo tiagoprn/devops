@@ -26,3 +26,9 @@ sudo journalctl --list-boots
 
 # see logs from a specific boot
 sudo journalctl -b $(sudo journalctl --list-boots | fzf | awk '{print $2}') | ccze
+
+# list all services available
+sudo systemctl list-unit-files --type=service
+
+# list all services dependencies
+sudo systemctl list-dependencies graphical.target
