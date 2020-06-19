@@ -7,12 +7,10 @@ running this playbook.**
 This playbook provides a monitoring solution for a ubuntu installation,
 providing:
 
-- netdata: collect metrics and provides a dashboard to view them.
-- alertmanager: emits alerts when metrics reach a certain threshold.
-- prometheus: used as a database (TSDB) to store collected metrics. Also
-  provides some basic dashboarding functionality.
-- traefik: to expose netdata, alertmanager and prometheus dashboards to the
-  outside world through https.
+- **netdata:** collect metrics and provides a dashboard to view them.
+- **alertmanager:** emits alerts when metrics reach a certain threshold.
+- **prometheus:** used as a database (TSDB) to store collected metrics. Also provides some basic dashboarding functionality.
+- **traefik:** to expose netdata, alertmanager and prometheus dashboards to the outside world through https.
 
 
 After finishing executing this playbook, you must edit your `/etc/hosts` file
