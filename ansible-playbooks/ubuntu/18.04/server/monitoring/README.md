@@ -11,7 +11,7 @@ This playbook provides a monitoring solution for a ubuntu host, providing:
 - **prometheus:** used as a database (TSDB) to store collected metrics. Also
   provides some basic dashboarding functionality.
 - **traefik:** to expose netdata, alertmanager and prometheus dashboards to the
-  outside world through https.
+  outside world through http basic authentication (using bcrypt) through https.
 
 After finishing executing this playbook, you must edit your `/etc/hosts` file
 on the machine that is controlling the playbook execution, creating a manual dns
