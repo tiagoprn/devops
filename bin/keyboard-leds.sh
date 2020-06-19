@@ -1,6 +1,6 @@
 #!/bin/bash
 
-STATUS=$(xset -q | grep Caps | sed 's/0[0-2]://g' | sed 's/off/off,/g' | sed 's/on/on,/g' |  sed 's/.$//' | tr -s ' ' | tr '[a-z]' '[A-Z]' | sed 's/,/ | /g')
+STATUS=$(xset -q | grep Caps | sed 's/0[0-2]://g' | sed 's/off/off,/g' | sed 's/on/on,/g' |  sed 's/.$//' | tr -s ' ' | tr '[a-z]' '[A-Z]' | sed 's/,/ | /g' | sed 's/LOCK//g')
 
 if [[ "$STATUS" == *"ON"* ]]; then
     COLOR='#00FF00';
