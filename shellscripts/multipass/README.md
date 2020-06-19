@@ -20,3 +20,14 @@ $ multipass launch -n ubuntu-lts-custom --cloud-init cloud-config.yaml
 - Delete: `$ multipass delete <vm>`
 - Purge deleted: : `$ multipass purge`
 
+To aid with manual backups of the VMs, take taht into consideration:
+
+- The list of the created instances is at:
+```
+/var/snap/multipass/common/data/multipassd/multipassd-vm-instances.json
+```
+
+- The physical image files are at:
+```
+/var/snap/multipass/common/data/multipassd/vault
+```
