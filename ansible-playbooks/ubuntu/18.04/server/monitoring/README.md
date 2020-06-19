@@ -1,5 +1,9 @@
 # Monitoring playbook
 
+**IMPORTANT: To parametrize alerts to be sent from your SMTP server, you must edit the values
+on [the alertmanager role vars](roles/alertmanager/vars/main.yml) BEFORE
+running this playbook.**
+
 This playbook provides a monitoring solution for a ubuntu installation,
 providing:
 
@@ -10,8 +14,6 @@ providing:
 - traefik: to expose netdata, alertmanager and prometheus dashboards to the
   outside world through https.
 
-To parametrize alerts to be sent from your SMTP server, you must edit the values
-on [the alertmanager role vars](roles/alertmanager/vars/main.yml).
 
 After finishing executing this playbook, you must edit your `/etc/hosts` file
 on the machine that is controlling the playbook execution, creating a manual dns
