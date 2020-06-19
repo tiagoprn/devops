@@ -20,7 +20,9 @@ $ multipass launch -n ubuntu-lts-custom --cloud-init cloud-config.yaml
 - Delete: `$ multipass delete <vm>`
 - Purge deleted: : `$ multipass purge`
 
-To aid with manual backups of the VMs, take taht into consideration:
+## Notes
+
+To aid with manual backups of the VMs, take that into consideration:
 
 - The list of the created instances is at:
 ```
