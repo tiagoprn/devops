@@ -27,6 +27,11 @@ use both of them.
 - This playbook uses the ansible facts pattern to detect if it should or not run a role each time.
   Facts are a nice way to run rules in an idempotent way.
 
+- *suricata* is cpu-bound. Testing it locally on a VM created with multipass on
+  Ubuntu 18.04 with 1 CPU and 1 GB of RAM, it consistently raised the CPU to
+100% each and every 5 seconds. So the advice it to disable that service when
+you are restricted to just one CPU.
+
 ## References:
 - https://www.digitalocean.com/community/tutorials/how-to-use-ansible-roles-to-abstract-your-infrastructure-environment
 
