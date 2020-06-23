@@ -1,0 +1,5 @@
+% suckless, dmenu
+
+# Display a customized dmenu. options e.g.: "first\nsecond\nthird"
+echo -e "<options>" | dmenu -fn Terminus:size=30 -nb '#002b36' -nf '#839496' -sb '#073642' -sf '#93a1a1'
+
