@@ -15,3 +15,6 @@ git lb
 # See all changes on file (you may also pass more than one file)
 git log <files-separated-by-spaces>
 
+# Show only merge commits:
+git log --merges
+
