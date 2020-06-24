@@ -7,5 +7,7 @@ QUICKNOTES_DIR=/storage/docs/notes/quick
 TIMESTAMP="$(date "+%Y-%m-%d-%H%M%S-%3N")"
 FILENAME=$QUICKNOTES_DIR/$TIMESTAMP.md
 
+mkdir -p $QUICKNOTES_DIR
+
 vim "$FILENAME"
 
