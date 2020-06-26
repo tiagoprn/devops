@@ -18,12 +18,14 @@ pypi library named "pyperclip".
 - extract an example "daemon" script from here
 and put it on my experiments/micro repository.
 """
+import json
 import logging
 import os
 import sys
 from datetime import datetime
 from time import sleep
 
+import pyperclip
 from daemonize import Daemonize
 
 CURRENT_SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
@@ -46,16 +48,35 @@ keep_fds = [fh.stream.fileno()]
 
 PIDFILE = f'/tmp/{CURRENT_SCRIPT_NAME}.pid'
 
-DELAY = 3
+DELAY = 1
+
+CLIPBOARD_HISTORY_FILE = f"{os.environ['HOME']}/clipboard.history"
 
 
 def main():
+    try:
+        new_paste = pyperclip.waitForNewPaste(timeout=DELAY)
+        if not new_paste:
+            logger.info('No new paste found on this loop.')
+            return
+    except pyperclip.PyperclipTimeoutException:
+        logger.info('No new paste found on this loop after timeout.')
+        return
+
+    logger.info('New paste found!')
+    with open(CLIPBOARD_HISTORY_FILE, 'a') as output_file:
+        data = {'timestamp': '', 'contents': new_paste}
+        output_file.write(f'{json.dumps(data)}\n')
+        logger.info(
+            f'Paste successfully written to file' f'{CLIPBOARD_HISTORY_FILE}'
+        )
+
+
+def loop():
     while True:
         try:
-            with open('/tmp/testing.txt', 'a') as output_file:
-                message = f'NOW: {datetime.now().isoformat()} '
-                output_file.write(f'{message}\n')
-
+            logger.info('Checking for new paste on clipboard...')
+            main()
             logger.info(f'Sleeping for {DELAY} seconds...')
             sleep(DELAY)
         except Exception as e:
@@ -63,21 +84,38 @@ def main():
 
 
 daemon = Daemonize(
-    app=CURRENT_SCRIPT_NAME, pid=PIDFILE, keep_fds=keep_fds, action=main
+    app=CURRENT_SCRIPT_NAME, pid=PIDFILE, keep_fds=keep_fds, action=loop
 )
 daemon.start()
 
+# TODO:
+'''
+- The script will have 2 modes of execution: daemon and client, passed by the
+  command line as arguments. When running as daemon, must run the current
+  daemon.start function, when in client mode it must run the 2 functions
+  described below:
 
-"""
-import pyperclip as pc
+- Make a function to return a transformed list of dicts of every record found at
+  ~/clipboard.history.  If a record has more than one line, it returns only the
+  first line and the total lines of the record. E.g:
 
-text1 = "GeeksforGeeks"
+[
+    {'20200101-150000-000': 'ls -la (1/99)'},
+    {'20200101-150000-345': 'df -m (1/5)'},
+    {'20200101-150000-345': 'uname -r (1/1)'}
+]
 
-# copying text to clipboard
-pc.copy(text1)
+  This function output must be passed to rofi so that I can get a list of all
+  records available to pasting.
 
-# pasting the text from clipboard
-text2 = pc.paste()
+  After selecting a record from the rofi list, I must call another function to
+  select one element from the list by its' timestamp. When selected, it will
+  return the full contents of the record, and copy it to the clipboard through
+  pyperclip. E.g.:
 
-print(text2)
-"""
+  # copying text to clipboard
+  pc.copy(text1)
+
+  # pasting the text from clipboard
+  text2 = pc.paste()
+'''
