@@ -1,0 +1,8 @@
+% xdotool, xorg
+
+# type on current window
+xdotool getwindowfocus windowfocus --sync type <text>
+
+# send key combination to current window. combination e.g.: ctrl+shift+v
+xdotool getwindowfocus windowfocus --sync key <combination>
+
