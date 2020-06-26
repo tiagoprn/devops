@@ -34,12 +34,13 @@ LOG_FORMAT = (
     '%(levelname)s -> \n'
     '%(message)s\n'
 )
+logging.basicConfig(format=LOG_FORMAT)
 logger = logging.getLogger(__name__)
-logger.format = LOG_FORMAT
 logger.setLevel(logging.INFO)
 logger.propagate = False
 fh = logging.FileHandler(f'/tmp/{CURRENT_SCRIPT_NAME}.log', "a")
-fh.setLevel(logging.DEBUG)
+fh.setLevel(logging.INFO)
+fh.setFormatter(logging.Formatter(LOG_FORMAT))
 logger.addHandler(fh)
 keep_fds = [fh.stream.fileno()]
 
