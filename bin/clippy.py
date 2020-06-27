@@ -1,61 +1,36 @@
 """
-This is a daemon that must be run on background
-when the window manager starts.
+This script has 2 modes of execution: daemon and client.
 
-It writes the clipboard entries to a file, which
-can be fed to dmenu/rofi so that we can select
-past entries.
+The daemon runs on background (recommended when the window manager starts).
+It watches the system clipboard, and when a new one arrives it writes it to a file.
 
-The idea is to be KISS. No bloated features here.
+The client reads the file written by the daemon and opens a rofi dialog to
+select a past clipboard entry from that file.
 
-It requires a 3rd party pypi library named `daemonize`.
+To start as a daemon:
+  python3 clippy.py
 
-To interact with the keyboard, it requires the 3rd party
-pypi library named "pyperclip".
+To start as the client (the :
+  python3 clippy.py --no-daemon-mode
 
-TODO:
+The idea is to be KISS - no fancy or bloat here.
 
-- The script will have 2 modes of execution: daemon and client, passed by the
-  command line as arguments. When running as daemon, must run the current
-  daemon.start function, when in client mode it must run the functions
-  described below:
+## 3rd party pypi libraries:
+- daemonize: to abstract the daemon
+- pyperclip: to abstract the clipboard
+- typer: to easily parse the cli arguments
 
-
-- Make a function to return a transformed list of dicts of every record found at
-  ~/clipboard.history.  If a record has more than one line, it returns only the
-  first line and the total lines of the record. E.g:
-
-[
-    {'20200101-150000-000': 'ls -la (1/99)'},
-    {'20200101-150000-345': 'df -m (1/5)'},
-    {'20200101-150000-345': 'uname -r (1/1)'}
-]
-
-  This function output must be passed to rofi so that I can get a list of all
-  records available to pasting.
-
-  After selecting a record from the rofi list, I must call another function to
-  select one element from the list by its' timestamp. When selected, it will
-  return the full contents of the record, and copy it to the clipboard through
-  pyperclip. E.g.:
-
-  # copying text to clipboard
-  pc.copy(text1)
-
-  # pasting the text from clipboard
-  text2 = pc.paste()
-
-
-- remove clipmenu from my github repository.
 """
 import json
 import logging
 import os
 import sys
 from datetime import datetime
+from subprocess import run
 from time import sleep
 
 import pyperclip
+import typer
 from daemonize import Daemonize
 
 CURRENT_SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
@@ -93,6 +68,8 @@ def watch_clipboard():
         return
 
     logger.info('New paste found!')
+    command = 'notify-send --urgency=low "A new paste has been captured."'
+    run(command, shell=True)
     with open(CLIPBOARD_HISTORY_FILE, 'a') as output_file:
         data = {'timestamp': '', 'contents': new_paste}
         output_file.write(f'{json.dumps(data)}\n')
@@ -130,13 +107,46 @@ def start_daemon():
     daemon.start()
 
 
-def main():
-    start_daemon()
+def client():
+    """
+    #TODO: - Make a function to return a transformed list of dicts of every record found at
+    ~/clipboard.history.  If a record has more than one line, it returns only the
+    first line and the total lines of the record. E.g:
+
+    [
+        {'20200101-150000-000': 'ls -la (1/99)'},
+        {'20200101-150000-345': 'df -m (1/5)'},
+        {'20200101-150000-345': 'uname -r (1/1)'}
+    ]
+
+    This function output must be passed to rofi so that I can get a list of all
+    records available to pasting.
+
+    After selecting a record from the rofi list, I must call another function to
+    select one element from the list by its' timestamp. When selected, it will
+    return the full contents of the record, and copy it to the clipboard through
+    pyperclip. E.g.:
+
+    # copying text to clipboard
+    pc.copy(text1)
+
+    # pasting the text from clipboard
+    text2 = pc.paste()
+
+    #TODO: - remove clipmenu from my github repository.
+    """
+    logger.info('Running client...')
+    print('Showing keyboard selections...')
+    logger.info('Finished running client.')
+
+
+def main(daemon_mode: bool = True):
+    start_daemon() if daemon_mode else client()
 
 
 if __name__ == '__main__':
     try:
-        main()
+        typer.run(main)
     except Exception as e:
         message = f'An exception was triggered: {e} '
         print(message)
