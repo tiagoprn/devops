@@ -83,10 +83,19 @@ def loop():
             logger.exception('An exception has occurred: {e}')
 
 
-daemon = Daemonize(
-    app=CURRENT_SCRIPT_NAME, pid=PIDFILE, keep_fds=keep_fds, action=loop
-)
-daemon.start()
+def start_daemon():
+    daemon = Daemonize(
+        app=CURRENT_SCRIPT_NAME, pid=PIDFILE, keep_fds=keep_fds, action=loop
+    )
+    daemon.start()
+
+
+def main():
+    start_daemon()
+
+
+if __name__ == '__main__':
+    main()
 
 # TODO:
 '''
