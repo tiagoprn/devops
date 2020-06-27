@@ -107,8 +107,8 @@ def loop():
         try:
             logger.info('Checking for new paste on clipboard...')
             watch_clipboard()
-            logger.info(f'Sleeping for {DELAY} seconds...')
-            sleep(DELAY)
+            # logger.info(f'Sleeping for {DELAY} seconds...')
+            # sleep(DELAY)
         except Exception as e:
             logger.exception('An exception has occurred: {e}')
 
