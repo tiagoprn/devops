@@ -29,6 +29,9 @@ import pyperclip
 from daemonize import Daemonize
 
 CURRENT_SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
+LOG_FILE = f'/tmp/{CURRENT_SCRIPT_NAME}.log'
+PIDFILE = f'/tmp/{CURRENT_SCRIPT_NAME}.pid'
+CLIPBOARD_HISTORY_FILE = f"{os.environ['HOME']}/clipboard.history"
 
 LOG_FORMAT = (
     '[%(asctime)s PID %(process)s '
@@ -40,17 +43,13 @@ logging.basicConfig(format=LOG_FORMAT)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 logger.propagate = False
-fh = logging.FileHandler(f'/tmp/{CURRENT_SCRIPT_NAME}.log', "a")
+fh = logging.FileHandler(LOG_FILE, "a")
 fh.setLevel(logging.INFO)
 fh.setFormatter(logging.Formatter(LOG_FORMAT))
 logger.addHandler(fh)
 keep_fds = [fh.stream.fileno()]
 
-PIDFILE = f'/tmp/{CURRENT_SCRIPT_NAME}.pid'
-
 DELAY = 1
-
-CLIPBOARD_HISTORY_FILE = f"{os.environ['HOME']}/clipboard.history"
 
 
 def main():
@@ -84,6 +83,11 @@ def loop():
 
 
 def start_daemon():
+    logger.info(
+        f'Starting daemon with pidfile="{PIDFILE}". '
+        f'The log file is at "{LOG_FILE}", '
+        f'and the clipboard history file at "{CLIPBOARD_HISTORY_FILE}".'
+    )
     daemon = Daemonize(
         app=CURRENT_SCRIPT_NAME, pid=PIDFILE, keep_fds=keep_fds, action=loop
     )
