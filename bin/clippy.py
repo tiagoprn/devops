@@ -180,12 +180,17 @@ def client():
         logger.info('cancelled')
         sys.exit(0)
 
-    # selected_bookmark = bookmarks_list[selected]
-    # logger.info(f'selected_bookmark={selected_bookmark}')
+    selected_paste = rofi_records[selected]
+    logger.info(f'selected_paste={selected_paste}')
 
     # chosen_url = bookmarks_urls[selected_bookmark]
     # logger.info(f'chosen_url={chosen_url}')
 
+    command = (
+        f'notify-send --urgency=low "Paste '
+        f'{selected_paste} copied to clipboard" '
+    )
+    run(command, shell=True)
     logger.info('Finished running client.')
 
 
