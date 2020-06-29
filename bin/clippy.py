@@ -1,26 +1,33 @@
+#!/usr/bin/env python3
+
 """
 This script has 2 modes of execution: daemon and client.
 
 The daemon runs on background (recommended when the window manager starts).
-It watches the system clipboard, and when a new one arrives it writes it to a file.
+It watches the system clipboard, and when a new one arrives it writes it
+to a file.
 
 The client reads the file written by the daemon and opens a rofi dialog to
-select a past clipboard entry from that file.
+select a past clipboard entry from that file, so that you can put it back on
+your clipboard.
 
 To start as a daemon:
   python3 clippy.py
 
-To start as the client (the :
+To start as the client:
   python3 clippy.py --no-daemon-mode
 
 The idea is to be KISS - no fancy or bloat here.
 
-## 3rd party pypi libraries:
+## 3rd party pypi libraries required to run successfully:
 - daemonize: to abstract the daemon
 - pyperclip: to abstract the clipboard
 - typer: to easily parse the cli arguments
+To install the libraries globally on your distro, run:
+$ sudo pip3 install daemonize pyperclip typer
 
 """
+
 import json
 import logging
 import os
@@ -149,33 +156,6 @@ def get_paste_contents_from_timestamp(timestamp: str):
 
 
 def client():
-    """
-    #TODO: - Make a function to return a transformed list of dicts of every record found at
-    ~/clipboard.history.  If a record has more than one line, it returns only the
-    first line and the total lines of the record. E.g:
-
-    [
-        {'20200101-150000-000': 'ls -la (1/99)'},
-        {'20200101-150000-345': 'df -m (1/5)'},
-        {'20200101-150000-345': 'uname -r (1/1)'}
-    ]
-
-    This function output must be passed to rofi so that I can get a list of all
-    records available to pasting.
-
-    After selecting a record from the rofi list, I must call another function to
-    select one element from the list by its' timestamp. When selected, it will
-    return the full contents of the record, and copy it to the clipboard through
-    pyperclip. E.g.:
-
-    # copying text to clipboard
-    pc.copy(text1)
-
-    # pasting the text from clipboard
-    text2 = pc.paste()
-
-    #TODO: - remove clipmenu from my github repository.
-    """
     logger.info('Running client...')
     print('Showing keyboard selections...')
     rofi_records = get_rofi_records()
