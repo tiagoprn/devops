@@ -1,31 +1,31 @@
 % systemd, journald, logs
 
 # log INFO message on systemd journald
-echo <message> | systemd-cat -t <app-name> -p info | ccze
+echo <message> | systemd-cat -t <app-name> -p info | ccze -A
 
 # log WARNING message on systemd journald
-echo <message> | systemd-cat -t <app-name> -p warning | ccze
+echo <message> | systemd-cat -t <app-name> -p warning | ccze -A
 
 # log EMERG message on systemd journald
-echo <message> | systemd-cat -t <app-name> -p emerg | ccze
+echo <message> | systemd-cat -t <app-name> -p emerg | ccze -A
 
 # tail systemd/journald logs from specific service/app
-sudo journalctl -o short-iso -f -t <service-name> | ccze
+sudo journalctl -o short-iso -f -t <service-name> | ccze -A
 
 # tail all systemd/journald logs
-sudo journalctl -o short-iso -f --all | ccze
+sudo journalctl -o short-iso -f --all | ccze -A
 
 # see logs from specific service/app from today
-sudo journalctl -fu <app-name> --since=today | ccze
+sudo journalctl -fu <app-name> --since=today | ccze -A
 
 # see real-time kernel (dmesg) logs from today
-sudo journalctl -f -k --since today | ccze
+sudo journalctl -f -k --since today | ccze -A
 
 # see all boot logs available
 sudo journalctl --list-boots
 
 # see logs from a specific boot
-sudo journalctl -b $(sudo journalctl --list-boots | fzf | awk '{print $2}') | ccze
+sudo journalctl -b $(sudo journalctl --list-boots | fzf | awk '{print $2}') | ccze -A
 
 # list all services available
 sudo systemctl list-unit-files --type=service
