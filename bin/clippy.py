@@ -55,6 +55,7 @@ logger.addHandler(fh)
 keep_fds = [fh.stream.fileno()]
 
 DELAY = 1
+ROFI_RECORD_TRUNCATE_SIZE = 50
 
 
 def watch_clipboard():
@@ -71,7 +72,8 @@ def watch_clipboard():
     command = 'notify-send --urgency=low "A new paste has been captured."'
     run(command, shell=True)
     with open(CLIPBOARD_HISTORY_FILE, 'a') as output_file:
-        data = {'timestamp': '', 'contents': new_paste}
+        timestamp = datetime.now().strftime('%Y%m%d.%H:%M:%S.%f')
+        data = {'timestamp': timestamp, 'contents': new_paste}
         output_file.write(f'{json.dumps(data)}\n')
         logger.info(
             f'Paste successfully written to file' f'{CLIPBOARD_HISTORY_FILE}'
@@ -107,6 +109,31 @@ def start_daemon():
     daemon.start()
 
 
+def get_rofi_records():
+    with open(CLIPBOARD_HISTORY_FILE, 'r') as input_file:
+        file_records = input_file.readlines()
+
+    logger.info(
+        f'Found {len(file_records)} records on {CLIPBOARD_HISTORY_FILE}.'
+    )
+
+    rofi_records = []
+    for record in file_records:
+        parsed_record = json.loads(record)
+        timestamp = parsed_record['timestamp']
+        parsed_record_lines = parsed_record['contents'].split('\n')
+        first_contents_line = parsed_record_lines[0]
+        rofi_record = first_contents_line[0:ROFI_RECORD_TRUNCATE_SIZE]
+        if len(first_contents_line) > ROFI_RECORD_TRUNCATE_SIZE:
+            rofi_record += '...'
+        text = 'line' if len(parsed_record_lines) == 1 else 'lines'
+        rofi_record += f' ({len(parsed_record_lines)} {text}) '
+        rofi_record += f' [from {timestamp}]'
+        rofi_records.append(rofi_record)
+
+    return rofi_records
+
+
 def client():
     """
     #TODO: - Make a function to return a transformed list of dicts of every record found at
@@ -137,6 +164,10 @@ def client():
     """
     logger.info('Running client...')
     print('Showing keyboard selections...')
+    rofi_records = get_rofi_records()
+
+    __import__('ipdb').set_trace()
+
     logger.info('Finished running client.')
 
 
