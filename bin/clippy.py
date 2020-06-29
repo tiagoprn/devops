@@ -128,8 +128,8 @@ def get_rofi_records():
         if len(first_contents_line) > ROFI_RECORD_TRUNCATE_SIZE:
             rofi_record += '...'
         text = 'line' if len(parsed_record_lines) == 1 else 'lines'
-        rofi_record += f' ({len(parsed_record_lines)} {text}) '
-        rofi_record += f' [from {timestamp}]'
+        rofi_record += f'  --- {len(parsed_record_lines)} {text} '
+        rofi_record += f'from {timestamp}'
         rofi_records.append(rofi_record)
 
     return rofi_records
@@ -166,6 +166,7 @@ def client():
     logger.info('Running client...')
     print('Showing keyboard selections...')
     rofi_records = get_rofi_records()
+    rofi_records.reverse()
 
     rofi_client = Rofi()
     selected, keyboard_key = rofi_client.select(
