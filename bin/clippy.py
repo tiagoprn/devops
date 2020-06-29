@@ -32,6 +32,7 @@ from time import sleep
 import pyperclip
 import typer
 from daemonize import Daemonize
+from rofi import Rofi
 
 CURRENT_SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
 LOG_FILE = f'/tmp/{CURRENT_SCRIPT_NAME}.log'
@@ -166,7 +167,23 @@ def client():
     print('Showing keyboard selections...')
     rofi_records = get_rofi_records()
 
-    __import__('ipdb').set_trace()
+    rofi_client = Rofi()
+    selected, keyboard_key = rofi_client.select(
+        'Choose a previous paste from clipboard history',
+        rofi_records,
+        fullscreen=True,
+    )
+    logger.info(f'keyboard_key pressed={keyboard_key}')
+
+    if keyboard_key == -1:
+        logger.info('cancelled')
+        sys.exit(0)
+
+    # selected_bookmark = bookmarks_list[selected]
+    # logger.info(f'selected_bookmark={selected_bookmark}')
+
+    # chosen_url = bookmarks_urls[selected_bookmark]
+    # logger.info(f'chosen_url={chosen_url}')
 
     logger.info('Finished running client.')
 
