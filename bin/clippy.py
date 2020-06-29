@@ -135,6 +135,19 @@ def get_rofi_records():
     return rofi_records
 
 
+def get_paste_contents_from_timestamp(timestamp: str):
+    with open(CLIPBOARD_HISTORY_FILE, 'r') as input_file:
+        file_records = input_file.readlines()
+
+    for record in file_records:
+        parsed_record = json.loads(record)
+        record_timestamp = parsed_record['timestamp']
+        if record_timestamp == timestamp:
+            return parsed_record['contents']
+
+    raise Exception(f'No record found for timestamp="{timestamp}"')
+
+
 def client():
     """
     #TODO: - Make a function to return a transformed list of dicts of every record found at
@@ -183,8 +196,10 @@ def client():
     selected_paste = rofi_records[selected]
     logger.info(f'selected_paste={selected_paste}')
 
-    # chosen_url = bookmarks_urls[selected_bookmark]
-    # logger.info(f'chosen_url={chosen_url}')
+    selected_paste_timestamp = selected_paste[-24:]
+
+    contents = get_paste_contents_from_timestamp(selected_paste_timestamp)
+    pyperclip.copy(contents)
 
     command = (
         f'notify-send --urgency=low "Paste '
