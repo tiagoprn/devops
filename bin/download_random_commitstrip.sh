@@ -19,7 +19,7 @@ notify-send --urgency critical "$DOWNLOAD_TO width=$IMAGE_WIDTH px, height=$IMAG
 MAXIMUM_HEIGHT=700
 X_MAXIMUM_HEIGHT=x700
 
-HEIGHT_SURPASSED=$(python -c "print('1' if $IMAGE_HEIGHT > $MAXIMUM_HEIGHT else '0')")
+HEIGHT_SURPASSED=$(python3 -c "print('1' if $IMAGE_HEIGHT > $MAXIMUM_HEIGHT else '0')")
 notify-send --urgency critical "HEIGHT_SURPASSED_MAXIMUM=$HEIGHT_SURPASSED"
 
 if [ $HEIGHT_SURPASSED -eq '1' ]; then
