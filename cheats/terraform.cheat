@@ -1,13 +1,13 @@
 % terraform
 
 # init (must be run on the folder which contains the tf files)
-sudo terraform init
+terraform init
 
 # plan (shows a preview of the provisioning will be done)
-sudo terraform plan
+terraform plan
 
 # apply (execute the provisioning)
-sudo terraform apply
+terraform apply
 
 # show libvirt provider version
 ~/.terraform.d/plugins/terraform-provider-libvirt -version
