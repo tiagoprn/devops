@@ -1,7 +1,13 @@
 % kvm, libvirt
 
+# Create and enable a storage pool
+mkdir -p <path>  && virsh pool-define-as <pool-name> dir - - - - <path> && virsh pool-build <pool-name> && virsh pool-start <pool-name> && virsh pool-autostart <pool-name> && virsh pool-list --all
+
 # Show available storage pools
 virsh pool-list --all
+
+# Stop a storage pool, release its' resources, remove its' directory and definition:
+virsh pool-destroy <pool-name> && virsh pool-delete <pool-name> && virsh pool-undefine <pool-name>
 
 # Show running VMs
 virsh list --all
@@ -11,6 +17,4 @@ virsh shutdown <name> && virsh undefine <name> --snapshots-metadata
 
 # Go to my kvm shellscripts folder that contains other wrappers
 cd /storage/src/devops/shellscripts/kvm
-
-
 
