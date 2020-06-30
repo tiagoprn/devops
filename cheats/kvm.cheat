@@ -1,0 +1,10 @@
+% kvm, libvirt
+
+# Show available storage pools
+virsh pool-list --all
+
+# Show running VMs
+virsh list --all
+
+
+

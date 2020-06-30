@@ -1,0 +1,11 @@
+% terraform
+
+# init (must be run on the folder which contains the tf files)
+terraform init
+
+# plan (shows a preview of the provisioning will be done)
+terraform plan
+
+# apply (execute the provisioning)
+terraform apply
+
