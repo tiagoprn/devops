@@ -20,3 +20,4 @@ cloud-config.yaml
 root/
 boot/
 authorized_keys
+.terraform/
