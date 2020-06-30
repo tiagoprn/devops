@@ -6,5 +6,11 @@ virsh pool-list --all
 # Show running VMs
 virsh list --all
 
+# Remove VM
+virsh undefine <name> --snapshots-metadata
+
+# Go to my kvm shellscripts folder that contains other wrappers
+cd /storage/src/devops/shellscripts/kvm
+
 
 
