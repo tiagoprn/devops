@@ -9,11 +9,14 @@ virsh pool-list --all
 # Stop a storage pool, release its' resources, remove its' directory and definition:
 virsh pool-destroy <pool-name> && virsh pool-delete <pool-name> && virsh pool-undefine <pool-name>
 
-# Show running VMs
+# Get running VMs
 virsh list --all
 
 # Remove VM
 virsh shutdown <name> && virsh undefine <name> --snapshots-metadata
+
+# Get all IPs on a network (used by VMs)
+virsh net-dhcp-leases <network-name>
 
 # Go to my kvm shellscripts folder that contains other wrappers
 cd /storage/src/devops/shellscripts/kvm
