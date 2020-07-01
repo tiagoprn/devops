@@ -2,7 +2,7 @@
 
 # Take one argument from the commandline: VM name
 if ! [ $# -eq 1 ]; then
-    echo "Usage: $0 <vm-name>"
+    echo "Usage: $0 <hostname>"
     exit 1
 fi
 
@@ -55,7 +55,7 @@ bootcmd:
 
 # Remove cloud-init when finished with it
 runcmd:
-  - [ yum, -y, remove, cloud-init ]
+  - [ apt, remove, cloud-init, -y ]
 
 # Configure where output will go
 output:
@@ -76,10 +76,6 @@ ssh_authorized_keys:
 timezone: ${TIMEZONE}
 _EOF_
 
-echo "instance-id: $1; local-hostname: $1" > $META_DATA
 
-# Create CD-ROM ISO with cloud-init config
-echo "$(date -R) Generating ISO for cloud-init..."
-genisoimage -output $CI_ISO -volid cidata -joliet -r $USER_DATA $META_DATA &>> $1.log
-mv *.iso $HOME/distros/images
-rm meta-data *.log user-data
+mv user-data cloud_init.cfg
+
