@@ -1,3 +1,3 @@
 - Create a cookiecutter where I can customize the libvirt domain name, memory,
-  vcpu and distribution (it must be on a separate repository, not on this one.
-This one will be used as a reference.
+  vcpu and linux distribution (it must be on a separate repository, not on this
+one. This one will be used as a reference.
