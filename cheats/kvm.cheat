@@ -15,6 +15,9 @@ virsh list --all
 # Remove VM
 virsh shutdown <name> && virsh undefine <name> --snapshots-metadata
 
+# List all networks and their statuses
+virsh net-list --all
+
 # Get all IPs on a network (used by VMs)
 virsh net-dhcp-leases <network-name>
 
