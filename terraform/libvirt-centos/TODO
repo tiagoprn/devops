@@ -1,0 +1,3 @@
+- Edit the generate-cloud-init... script to generate another cloud-init file.
+- Use the Makefile to generate the cloud-init file and to run terraform commands
+

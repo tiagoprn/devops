@@ -26,8 +26,8 @@ resource "libvirt_cloudinit_disk" "commoninit" {
 }
 
 # Define KVM domain to create
-resource "libvirt_domain" "db1" {
-  name   = "db1"
+resource "libvirt_domain" "centos7" {
+  name   = "centos7"
   memory = "1024"
   vcpu   = 1
 
