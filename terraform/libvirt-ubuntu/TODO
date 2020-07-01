@@ -1,0 +1,3 @@
+- Edit the generate-cloud-init... script to generate a working cloud-init file.
+( https://github.com/dmacvicar/terraform-provider-libvirt/blob/master/website/docs/r/cloudinit.html.markdown )
+
