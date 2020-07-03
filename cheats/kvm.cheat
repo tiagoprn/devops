@@ -21,6 +21,33 @@ virsh net-list --all
 # Get all IPs on a network (used by VMs)
 virsh net-dhcp-leases <network-name>
 
-# Go to my kvm shellscripts folder that contains other wrappers
-cd /storage/src/devops/shellscripts/kvm
+# Show VM info
+virsh download_fileminfo <name>
+
+# Start a VM
+virsh start <name>
+
+# Stop a VM
+virsh shutdown $shutdown(VM)
+
+# Kill a VM (first it must be stopped)
+virsh destroy <name>
+
+# Pause a VM
+virsh suspend <name>
+
+# Resume a paused VM
+virsh resume <name>
+
+# Enable VM on boot
+virsh autostart <name>
+
+# Disable VM from boot
+virsh autostart <name> --disable
+
+# Show VM network configuration (MAC address etc.)
+virsh domiflist <name>
+
+# Remove a VM
+virsh undefine <name> --snapshots-metadata
 
