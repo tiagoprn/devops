@@ -77,3 +77,6 @@ grep -E -o '<regex>'
 
 # create a large file . E.g. for 1 GB: 1024000
 dd if=/dev/zero of=<path-to-file> bs=1024 count=<size-in-bytes>
+
+# interactively sudo kill a process
+sudo ps aux | fzf | awk '{print $2}' | xargs sudo kill -9
