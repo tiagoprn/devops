@@ -28,7 +28,7 @@ virsh download_fileminfo <name>
 virsh start <name>
 
 # Stop a VM
-virsh shutdown $shutdown(VM)
+virsh shutdown <name>
 
 # Kill a VM (first it must be stopped)
 virsh destroy <name>
