@@ -71,3 +71,6 @@ lsmod | perl -nE 'BEGIN{ <> }; ($m) = /(\S+)/; printf "%-20s: %s\n", $m, qx/modi
 
 # ttyclock
 tty-clock -b -c -s -f '%A, %d %B %Y'
+
+# grep by regex. E.g. regex to get ip addresses: ([0-9]{1,3}[\.]){3}[0-9]{1,3}
+grep -E -o '<regex>'
