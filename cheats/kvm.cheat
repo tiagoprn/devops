@@ -18,8 +18,14 @@ virsh undefine $(virsh list --all | fzf | awk '{print $2}') --snapshots-metadata
 # List all networks and their statuses
 virsh net-list --all
 
+# Stop a network
+virsh net-destroy $(virsh net-list --all | fzf | awk '{print $1}')
+
+# Start a network
+virsh start $(virsh net-list --all | fzf | awk '{print $1}')
+
 # Get all IPs on a network (used by VMs)
-virsh net-dhcp-leases <network-name>
+virsh net-dhcp-leases $(virsh net-list --all | fzf | awk '{print $1}')
 
 # Show VM info
 virsh download_fileminfo $(virsh list --all | fzf | awk '{print $2}')
