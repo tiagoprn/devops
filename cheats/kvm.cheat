@@ -12,8 +12,8 @@ virsh pool-destroy <pool-name> && virsh pool-delete <pool-name> && virsh pool-un
 # Get running VMs
 virsh list --all
 
-# Remove VM
-virsh shutdown <name> && virsh undefine <name> --snapshots-metadata
+# Remove VM (first you have to stop it)
+virsh undefine $(virsh list --all | fzf | awk '{print $2}') --snapshots-metadata
 
 # List all networks and their statuses
 virsh net-list --all
@@ -22,32 +22,32 @@ virsh net-list --all
 virsh net-dhcp-leases <network-name>
 
 # Show VM info
-virsh download_fileminfo <name>
+virsh download_fileminfo $(virsh list --all | fzf | awk '{print $2}')
 
 # Start a VM
-virsh start <name>
+virsh start $(virsh list --all | fzf | awk '{print $2}')
 
 # Stop a VM
-virsh shutdown <name>
+virsh shutdown $(virsh list --all | fzf | awk '{print $2}')
 
 # Kill a VM (first it must be stopped)
-virsh destroy <name>
+virsh destroy $(virsh list --all | fzf | awk '{print $2}')
 
 # Pause a VM
-virsh suspend <name>
+virsh suspend $(virsh list --all | fzf | awk '{print $2}')
 
 # Resume a paused VM
-virsh resume <name>
+virsh resume $(virsh list --all | fzf | awk '{print $2}')
 
 # Enable VM on boot
-virsh autostart <name>
+virsh autostart $(virsh list --all | fzf | awk '{print $2}')
 
 # Disable VM from boot
-virsh autostart <name> --disable
+virsh autostart $(virsh list --all | fzf | awk '{print $2}') --disable
 
 # Show VM network configuration (MAC address etc.)
-virsh domiflist <name>
+virsh domiflist $(virsh list --all | fzf | awk '{print $2}')
 
 # Remove a VM
-virsh undefine <name> --snapshots-metadata
+virsh undefine $(virsh list --all | fzf | awk '{print $2}') --snapshots-metadata
 
