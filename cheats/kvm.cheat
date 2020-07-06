@@ -1,4 +1,4 @@
-% kvm, libvirt
+% kvm, libvirt, qemu, qcow2
 
 # Create and enable a storage pool
 mkdir -p <path>  && virsh pool-define-as <pool-name> dir - - - - <path> && virsh pool-build <pool-name> && virsh pool-start <pool-name> && virsh pool-autostart <pool-name> && virsh pool-list --all
@@ -57,3 +57,8 @@ virsh domiflist $(virsh list --all | fzf | awk '{print $2}')
 # Remove a VM
 virsh undefine $(virsh list --all | fzf | awk '{print $2}') --snapshots-metadata
 
+# Info on qcow2 disk
+qemu-img info <qcow2-disk-file>
+#
+# Create qcow2 disk (size e.g. 20G)
+qemu-img create -f qcow2 <qcow2-disk-file> -o size=<size>,preallocation=metadata
