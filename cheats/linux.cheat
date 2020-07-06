@@ -1,7 +1,10 @@
 % linux
 
+# create a user
+sudo useradd -s /bin/bash -d /home/<username>/ -m -G sudo <username> && sudo passwd <username>
+
 # add user to a group:
-sudo usermod -aG <groups> ${USER}
+sudo usermod -aG <groups> <username>
 
 # list current user groups:
 id -nG
