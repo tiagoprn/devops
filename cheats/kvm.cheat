@@ -57,10 +57,10 @@ virsh domiflist $(virsh list --all | fzf | awk '{print $2}')
 # Remove a VM
 virsh undefine $(virsh list --all | fzf | awk '{print $2}') --snapshots-metadata
 
-# Info on qcow2 disk
-qemu-img info <qcow2-disk-file>
+# Info on qcow2/img disk
+qemu-img info <disk-file>
 
-# Create qcow2 disk (size e.g. 20G)
+# Create qcow2 disk (size e.g. 10G)
 qemu-img create -f qcow2 <qcow2-disk-file> -o size=<size>,preallocation=metadata
 
 # Convert image from qcow2 to img
