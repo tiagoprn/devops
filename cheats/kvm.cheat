@@ -59,6 +59,9 @@ virsh undefine $(virsh list --all | fzf | awk '{print $2}') --snapshots-metadata
 
 # Info on qcow2 disk
 qemu-img info <qcow2-disk-file>
-#
+
 # Create qcow2 disk (size e.g. 20G)
 qemu-img create -f qcow2 <qcow2-disk-file> -o size=<size>,preallocation=metadata
+
+# Convert image from qcow2 to img
+qemu-img convert <qcow2-image> <img-image>
