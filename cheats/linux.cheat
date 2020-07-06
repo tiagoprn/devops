@@ -83,3 +83,6 @@ dd if=/dev/zero of=<path-to-file> bs=1024 count=<size-in-bytes>
 
 # interactively sudo kill a process
 sudo ps aux | fzf | awk '{print $2}' | xargs sudo kill -9
+
+# restart clippy
+kill -9 $(pgrep python3 | grep clippy | awk '{print $1}') && /storage/src/devops/bin/clippy.py && tail -f /tmp/clippy.log
