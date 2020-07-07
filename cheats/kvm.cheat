@@ -54,9 +54,6 @@ virsh autostart $(virsh list --all | fzf | awk '{print $2}') --disable
 # Show VM network configuration (MAC address etc.)
 virsh domiflist $(virsh list --all | fzf | awk '{print $2}')
 
-# Remove a VM
-virsh undefine $(virsh list --all | fzf | awk '{print $2}') --snapshots-metadata
-
 # Info on qcow2/img disk
 qemu-img info <disk-file>
 
