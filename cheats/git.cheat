@@ -18,3 +18,8 @@ git log <files-separated-by-spaces>
 # Show only merge commits:
 git log --merges
 
+# See summarized changes by author:
+git shortlog --pretty=format:"%ar%n  %h - %s %n"
+
+# See summarized changes by author on file (you may also pass more than one file)
+git shortlog --pretty=format:"%ar%n  %h - %s %n" <files-separated-by-spaces>
