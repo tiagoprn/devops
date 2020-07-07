@@ -86,3 +86,6 @@ sudo ps aux | fzf | awk '{print $2}' | xargs sudo kill -9
 
 # restart clippy
 kill -9 $(pgrep python3 | grep clippy | awk '{print $1}') && /storage/src/devops/bin/clippy.py && tail -f /tmp/clippy.log
+
+# df without snaps and run
+sudo df -m | grep -v snap | grep -v run
