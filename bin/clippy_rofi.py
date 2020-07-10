@@ -50,6 +50,8 @@ ROFI_RECORD_TRUNCATE_SIZE = 50
 
 
 def get_rofi_records():
+    logger.info(f'Opening {CLIPBOARD_HISTORY_FILE} to get its records...')
+
     with open(CLIPBOARD_HISTORY_FILE, 'r') as input_file:
         file_records = input_file.readlines()
 
@@ -58,10 +60,14 @@ def get_rofi_records():
     )
 
     rofi_records = []
-    for record in file_records:
+    for line_number, record in enumerate(file_records, start=1):
+        logger.info(f'Parsing line number {line_number}...')
         parsed_record = json.loads(record)
         timestamp = parsed_record['timestamp']
-        parsed_record_lines = parsed_record['contents'].split('\n')
+        contents = parsed_record['contents']
+        if not contents:
+            continue
+        parsed_record_lines = contents.split('\n')
         first_contents_line = parsed_record_lines[0]
         rofi_record = first_contents_line[0:ROFI_RECORD_TRUNCATE_SIZE]
         if len(first_contents_line) > ROFI_RECORD_TRUNCATE_SIZE:
