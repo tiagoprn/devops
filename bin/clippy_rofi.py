@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 
 """
-This script runs on the gtk loop (recommended to be set when the window manager starts).
-It watches the system clipboard, and when a new one arrives it writes it
-to a file.
+This script reads the file written by the clippy daemon and opens a rofi dialog to
+select a past clipboard entry from that file, so that you can put it back on
+your clipboard.
 
 The idea is to be KISS - no fancy or bloat here.
 
-## Ubuntu packages that must be installed to run successfully:
+## 3rd party pypi libraries required to run successfully:
+- pyperclip: to abstract the clipboard
 
-$ sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0 -y
+To install the libraries globally on your distro, run:
+$ sudo pip3 pyperclip
 """
 
 import json
@@ -21,16 +23,11 @@ from functools import partial
 from subprocess import run
 from time import sleep
 
-import gi
-from gi.repository import Gdk, Gtk
+import pyperclip
 from rofi import Rofi
-
-gi.require_version('Gtk', '3.0')
-
 
 CURRENT_SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
 LOG_FILE = f'/tmp/{CURRENT_SCRIPT_NAME}.log'
-PIDFILE = f'/tmp/{CURRENT_SCRIPT_NAME}.pid'
 CLIPBOARD_HISTORY_FILE = f"{os.environ['HOME']}/clipboard.history"
 
 LOG_FORMAT = (
@@ -49,7 +46,6 @@ fh.setFormatter(logging.Formatter(LOG_FORMAT))
 logger.addHandler(fh)
 keep_fds = [fh.stream.fileno()]
 
-DELAY = 1
 ROFI_RECORD_TRUNCATE_SIZE = 50
 
 
@@ -91,56 +87,43 @@ def get_paste_contents_from_timestamp(timestamp: str):
     raise Exception(f'No record found for timestamp="{timestamp}"')
 
 
-def get_last_paste():
+def client():
+    logger.info('Running client...')
+    print('Showing keyboard selections...')
     rofi_records = get_rofi_records()
     rofi_records.reverse()
 
-    selected_paste = rofi_records[-1]
+    rofi_client = Rofi()
+    selected, keyboard_key = rofi_client.select(
+        'Choose a previous paste from clipboard history',
+        rofi_records,
+        fullscreen=True,
+    )
+    logger.info(f'keyboard_key pressed={keyboard_key}')
+
+    if keyboard_key == -1:
+        logger.info('cancelled')
+        sys.exit(0)
+
+    selected_paste = rofi_records[selected]
+    logger.info(f'selected_paste={selected_paste}')
+
     selected_paste_timestamp = selected_paste[-24:]
 
-    logger.info(f'last_paste_timestamp={selected_paste_timestamp}')
+    contents = get_paste_contents_from_timestamp(selected_paste_timestamp)
+    pyperclip.copy(contents)
 
-    return get_paste_contents_from_timestamp(selected_paste_timestamp)
-
-
-def watch_clipboard(*args):
-    clip = args[0]
-
-    last_paste = get_last_paste()
-
-    new_paste = clip.wait_for_text()
-    if new_paste == last_paste:
-        return
-
-    last_paste = new_paste
-    logger.info('New paste found!')
-    command = 'notify-send --urgency=low "A new paste has been captured."'
-    run(command, shell=True)
-    with open(CLIPBOARD_HISTORY_FILE, 'a') as output_file:
-        timestamp = datetime.now().strftime('%Y%m%d.%H:%M:%S.%f')
-        data = {'timestamp': timestamp, 'contents': new_paste}
-        output_file.write(f'{json.dumps(data)}\n')
-        logger.info(
-            f'Paste successfully written to file' f'{CLIPBOARD_HISTORY_FILE}'
-        )
-
-
-def start_daemon():
-    message = (
-        f'Starting gtk execution loop. '
-        f'The log file is at "{LOG_FILE}", '
-        f'and the clipboard history file at "{CLIPBOARD_HISTORY_FILE}".'
+    command = (
+        f'notify-send --urgency=low "Paste '
+        f'{selected_paste} copied to clipboard" '
     )
-    print(message)
-    logger.info(message)
-    clip = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-    clip.connect('owner-change', watch_clipboard)
-    Gtk.main()
+    run(command, shell=True)
+    logger.info('Finished running client.')
 
 
 if __name__ == '__main__':
     try:
-        start_daemon()
+        client()
     except Exception as e:
         message = f'An exception was triggered: {e} '
         print(message)
