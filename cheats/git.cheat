@@ -1,5 +1,26 @@
 % git
 
+# Get current branch
+git branch | grep ^* | cut -d ' ' -f 2
+
+# Copy current branch to clipboard
+git branch | grep ^* | cut -d ' ' -f 2 | cb
+
+# Get git repository root
+git rev-parse --show-toplevel
+
+# Go to git repository root
+cd $(git rev-parse --show-toplevel)
+
+# Removes file/directory from the staging area (before commiting)
+git reset HEAD <file-or-directory>
+
+# Get git repository remote url
+cat $(git rev-parse --show-toplevel)/.git/config | grep url | cut -d "=" -f 2 | tr "\n" " "
+
+# Copy git repository remote url to clipboard
+cat $(git rev-parse --show-toplevel)/.git/config | grep url | cut -d "=" -f 2 | tr "\n" " " | cb
+
 # Show files changed on current branch, comparing to another one
 git diff --name-only <reference-branch>
 
@@ -12,8 +33,11 @@ git rank
 # Show branches, with the most recent one on top
 git lb
 
-# See all changes on file (you may also pass more than one file)
+# See all commits' changes on file (you may also pass more than one file)
 git log <files-separated-by-spaces>
+
+# See all commits' changes on file - detailed with diff between changes
+git log --follow -p --stat -- <file>
 
 # Show only merge commits:
 git log --merges
