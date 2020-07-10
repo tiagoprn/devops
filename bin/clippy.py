@@ -19,6 +19,10 @@ To start as the client:
 
 The idea is to be KISS - no fancy or bloat here.
 
+## Ubuntu packages that must be installed to run successfully:
+
+    $ sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0 -y
+
 ## 3rd party pypi libraries required to run successfully:
 - daemonize: to abstract the daemon
 - pyperclip: to abstract the clipboard
@@ -33,13 +37,19 @@ import logging
 import os
 import sys
 from datetime import datetime
+from functools import partial
 from subprocess import run
 from time import sleep
 
+import gi
 import pyperclip
 import typer
 from daemonize import Daemonize
+from gi.repository import Gdk, Gtk
 from rofi import Rofi
+
+gi.require_version('Gtk', '3.0')
+
 
 CURRENT_SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
 LOG_FILE = f'/tmp/{CURRENT_SCRIPT_NAME}.log'
@@ -65,17 +75,19 @@ keep_fds = [fh.stream.fileno()]
 DELAY = 1
 ROFI_RECORD_TRUNCATE_SIZE = 50
 
+last_paste = ""
 
-def watch_clipboard():
-    try:
-        new_paste = pyperclip.waitForNewPaste(timeout=DELAY)
-        if not new_paste:
-            logger.info('No new paste found on this loop.')
-            return
-    except pyperclip.PyperclipTimeoutException:
-        logger.info('No new paste found on this loop after timeout.')
+
+def watch_clipboard(*args):
+    global last_paste
+
+    clip = args[0]
+
+    new_paste = clip.wait_for_text()
+    if new_paste == last_paste:
         return
 
+    last_paste = new_paste
     logger.info('New paste found!')
     command = 'notify-send --urgency=low "A new paste has been captured."'
     run(command, shell=True)
@@ -88,33 +100,17 @@ def watch_clipboard():
         )
 
 
-def loop():
-    logger.info('Entering execution loop...')
-    while True:
-        try:
-            logger.info('Checking for new paste on clipboard...')
-            watch_clipboard()
-            # Below was disabled because it would miss some clipboard
-            # pastes if otherwise enabled.
-            # logger.info(f'Sleeping for {DELAY} seconds...')
-            # sleep(DELAY)
-        except Exception as e:
-            logger.exception('An exception has occurred: {e}')
-
-
 def start_daemon():
     message = (
-        f'Starting daemon with pidfile="{PIDFILE}". '
+        f'Starting gtk execution loop. '
         f'The log file is at "{LOG_FILE}", '
         f'and the clipboard history file at "{CLIPBOARD_HISTORY_FILE}".'
     )
     print(message)
     logger.info(message)
-
-    daemon = Daemonize(
-        app=CURRENT_SCRIPT_NAME, pid=PIDFILE, keep_fds=keep_fds, action=loop,
-    )
-    daemon.start()
+    clip = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+    clip.connect('owner-change', watch_clipboard)
+    Gtk.main()
 
 
 def get_rofi_records():
