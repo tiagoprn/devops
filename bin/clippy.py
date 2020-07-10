@@ -10,6 +10,11 @@ The idea is to be KISS - no fancy or bloat here.
 ## Ubuntu packages that must be installed to run successfully:
 
 $ sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0 -y
+
+## Gtk clipboard documentation link:
+
+https://developer.gnome.org/pygtk/stable/class-gtkclipboard.html#signal-gtkclipboard--owner-change
+
 """
 
 import json
@@ -93,7 +98,7 @@ def get_paste_contents_from_timestamp(timestamp: str):
 
 def get_last_paste():
     rofi_records = get_rofi_records()
-    rofi_records.reverse()
+    # rofi_records.reverse()
 
     selected_paste = rofi_records[-1]
     selected_paste_timestamp = selected_paste[-24:]
@@ -110,7 +115,11 @@ def watch_clipboard(*args):
 
     new_paste = clip.wait_for_text()
     if new_paste == last_paste:
+        logger.info(f'The new paste is already on {CLIPBOARD_HISTORY_FILE}.')
         return
+
+    # TODO: If new_paste contents is already on CLIPBOARD_HISTORY_FILE, is
+    #       must also be ignored.
 
     last_paste = new_paste
     logger.info('New paste found!')
