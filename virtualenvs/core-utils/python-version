@@ -1,1 +1,0 @@
-Install on 3.6 due to ansible with mitogen for speedup (which is configured as stragegy configuration on /storage/src/dot_files/ansible/conf/ansible.cfg
