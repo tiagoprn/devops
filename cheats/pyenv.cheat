@@ -1,4 +1,25 @@
 % pyenv, python
 
-# Select pyenv version
+# Select python versions available on pyenv
 pyenv install -l | grep -v "Available" | fzf --exact
+
+# Install a python version on pyenv
+pyenv install $(pyenv install -l | grep -v "Available" | fzf --exact)
+
+# Create virtualenv
+pyenv virtualenv $(pyenv install -l | grep -v "Available" | fzf --exact) <virtualenv-name> && echo -e '---\nActivate your virtualenv now and install vim requirements (use navi again and search for pyenv IDE).\n---'
+
+# Install requirements to use vim as the IDE on the current virtualenv:
+pip install -r /storage/src/devops/python/requirements.vim
+
+# Activate a virtualenv
+pyenv activate $(pyenv virtualenvs | grep -v "^\s*[0-9]" | cut -d " " -f 3 | fzf)
+
+# Deactivate a virtualenv
+pyenv deactivate
+
+# Uninstall/Delete a virtualenv
+pyenv uninstall $(pyenv virtualenvs | grep -v "^\s*[0-9]" | cut -d " " -f 3 | fzf)
+
+# Install or upgrade pyenv
+/storage/src/devops/shellscripts/installers/install_or_upgrade_pyenv.sh
