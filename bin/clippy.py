@@ -70,7 +70,10 @@ def get_rofi_records():
     for record in file_records:
         parsed_record = json.loads(record)
         timestamp = parsed_record['timestamp']
-        parsed_record_lines = parsed_record['contents'].split('\n')
+        parsed_record_lines = parsed_record['contents']
+        if not parsed_record_lines:
+            continue
+        parsed_record_lines = parsed_record_lines.split('\n')
         first_contents_line = parsed_record_lines[0]
         rofi_record = first_contents_line[0:ROFI_RECORD_TRUNCATE_SIZE]
         if len(first_contents_line) > ROFI_RECORD_TRUNCATE_SIZE:
