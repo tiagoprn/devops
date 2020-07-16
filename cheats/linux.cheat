@@ -92,3 +92,6 @@ sudo df -m | grep -v snap | grep -v run
 
 # command cheatsheet (cht.sh)
 curl cht.sh/<command>
+
+# show process tree
+ps -aux --forest
