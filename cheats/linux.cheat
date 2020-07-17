@@ -95,3 +95,6 @@ curl cht.sh/<command>
 
 # show process tree
 ps -aux --forest
+
+# prettify json
+<command-that-outputs-json> | python3 -m json.tool | pygmentize -l json
