@@ -98,3 +98,6 @@ ps -aux --forest
 
 # prettify json
 <command-that-outputs-json> | python3 -m json.tool | pygmentize -l json
+
+# speedtest
+ ~/.pyenv/versions/core-utils/bin/speedtest-cli --json | python3 -m json.tool | pygmentize -l json
