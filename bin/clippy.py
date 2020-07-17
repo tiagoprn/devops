@@ -99,6 +99,19 @@ def get_paste_contents_from_timestamp(timestamp: str):
     raise Exception(f'No record found for timestamp="{timestamp}"')
 
 
+def get_paste_contents_already_exists_in_history(timestamp: str):
+    with open(CLIPBOARD_HISTORY_FILE, 'r') as input_file:
+        file_records = input_file.readlines()
+
+    for record in file_records:
+        parsed_record = json.loads(record)
+        record_timestamp = parsed_record['timestamp']
+        if record_timestamp == timestamp:
+            return parsed_record['contents']
+
+    raise Exception(f'No record found for timestamp="{timestamp}"')
+
+
 def get_last_paste():
     rofi_records = get_rofi_records()
     # rofi_records.reverse()
@@ -120,9 +133,6 @@ def watch_clipboard(*args):
     if new_paste == last_paste:
         logger.info(f'The new paste is already on {CLIPBOARD_HISTORY_FILE}.')
         return
-
-    # TODO: If new_paste contents is already on CLIPBOARD_HISTORY_FILE, is
-    #       must also be ignored.
 
     last_paste = new_paste
     logger.info('New paste found!')
