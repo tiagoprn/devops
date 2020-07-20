@@ -101,3 +101,6 @@ ps -aux --forest
 
 # speedtest
  ~/.pyenv/versions/core-utils/bin/speedtest-cli --json | python3 -m json.tool | pygmentize -l json
+
+# show files opened by a process (lsof)
+sudo lsof -p $(ps aux | fzf | awk '{print $2}')
