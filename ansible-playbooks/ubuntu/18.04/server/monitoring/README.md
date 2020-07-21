@@ -36,3 +36,12 @@ execution, and a copy of its' contents can also be found at
 `/opt/containers/traefik/[service].htpasswd`.
 
 Based on [this youtube playlist](https://www.youtube.com/playlist?list=PLf-O3X2-mxDls9uH8gyCQTnyXNMe10iml).
+
+This playbook can also be used as a base for a custom solution where you need
+to deploy your custom services/apps to a server, since you can take advantage
+from traefix as a reverse proxy to your custom services/apps. But you will have
+to figure out on yourself how to do it. If you want to use kubernetes, use the
+[k3s
+playbook](https://github.com/tiagoprn/devops/tree/master/ansible-playbooks/ubuntu/18.04/server/k3s)
+instead.
+
