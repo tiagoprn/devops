@@ -1,4 +1,4 @@
-- [ ] Extract suricate into a separate playbook from initial-setup, since it
+- [ ] Extract suricata into a separate playbook from initial-setup, since it
   consumes too much CPU on a single core machine.
 
 - [ ] Update the traefik playbook (run first the `initial-setup` and `docker`
