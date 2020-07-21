@@ -3,7 +3,8 @@
 Setup k3s - a production-ready lightweight k8s solution.
 
 It is recommended you run first the `initial-setup` and `docker` playbooks to
-provisionate the server.
+provisionate the server. Do not use this with the `monitoring-and-traefik/`,
+since they will conflict with each other.
 
 # How to validate k3s is working, deploying a static server:
 (see the explanation [here](https://fedoramagazine.org/kubernetes-on-fedora-iot-with-k3s/))
