@@ -1,6 +1,6 @@
 ## NEXT STEPS
 
-- Revise the current playbook with the instructions from here (there are more
+- Update this playbook with the instructions from here (there are more
   components):
 <https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a>
 
@@ -10,6 +10,8 @@
 ---
 
 ## FUTURE ENHANCEMENTS
+
+- Install openfaas
 
 - Add elasticsearch for logging:
   <https://www.digitalocean.com/community/tutorials/how-to-set-up-an-elasticsearch-fluentd-and-kibana-efk-logging-stack-on-kubernetes>
