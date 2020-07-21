@@ -1,3 +1,23 @@
+## NEXT STEPS
+
+- Revise the current playbook with the instructions from here (there are more
+  components):
+<https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a>
+
+- Prometheus and Grafana:
+  <https://kauri.io/deploy-prometheus-and-grafana-to-monitor-a-kube/186a71b189864b9ebc4ef7c8a9f0a6b5/a>
+
+---
+
+## FUTURE ENHANCEMENTS
+
+- Add elasticsearch for logging:
+  <https://www.digitalocean.com/community/tutorials/how-to-set-up-an-elasticsearch-fluentd-and-kibana-efk-logging-stack-on-kubernetes>
+
+---
+
+## OLD
+
 - Update the playbook with these instructions:
 
 Create self-signed certificates to the cluster:
