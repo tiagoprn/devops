@@ -1,0 +1,10 @@
+% wacom
+
+# list devices
+xsetwacom list devices
+
+# get resolution
+xsetwacom get "Wacom Intuos S Pen stylus" Area
+
+# map to monitor
+xsetwacom set "Wacom Intuos S Pen stylus" MapToOutput $(xrandr | grep conn | fzf | awk '{print $1}')
