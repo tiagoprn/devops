@@ -85,6 +85,14 @@
   become_user: ubuntu
   command: helm init --service-account tiller
 
+- name: Add the repository for official charts
+  become_user: ubuntu
+  command: helm repo add stable https://kubernetes-charts.storage.googleapis.com
+
+- name: Update the chart repository
+  become_user: ubuntu
+  command: helm repo update
+
 - name: Generate file to verify it passed through this role
   lineinfile:
     dest: /var/log/k3s_passed.txt
