@@ -1,4 +1,4 @@
-% kubectl, k8s
+% kubectl, k8s, k3s
 
 # Select pod name and copy to the clipboard
 kubectl get pods -o wide -n <NAMESPACE> | fzf --no-sort | awk '{print $1}' | xclip -i -selection clipboard
@@ -65,3 +65,6 @@ kubectl get events -n <NAMESPACE>
 
 # Get nodes information
 kubectl get nodes -o wide
+
+# Get k3s kubectl access token
+sudo cat /var/lib/rancher/k3s/server/node-token
