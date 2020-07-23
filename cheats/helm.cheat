@@ -1,0 +1,13 @@
+% helm, k8s, k3s
+
+# Update the chart repositories
+helm repo update
+
+# Install application
+helm install <deployment_name> <chart_name> --namespace <namespace> --set <property_value_to_change>
+
+# Uninstall application
+helm uninstall <deployment_name> --namespace <namespace>
+
+# List applications
+helm list --namespace <namespace>
