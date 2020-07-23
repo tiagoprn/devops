@@ -1,16 +1,16 @@
 % kubectl, k8s
 
 # Select pod name and copy to the clipboard
-kubectl get pods -n <NAMESPACE> | fzf --no-sort | awk '{print $1}' | xclip -i -selection clipboard
+kubectl get pods -o wide -n <NAMESPACE> | fzf --no-sort | awk '{print $1}' | xclip -i -selection clipboard
 
 # Get pods on namespace
-watch -n 1 kubectl get pods -n <NAMESPACE>
+watch -n 1 kubectl get pods -o wide -n <NAMESPACE>
 
 # See resources being used by all nodes
 watch -n 1 kubectl top nodes
 
 # See resources being used by all pods in all namespaces
-watch -n 1 kubectl top pods --all-namespaces
+watch -n 1 kubectl top pods -A
 
 # Describe pod on namespace
 kubectl describe pod <POD> -n <NAMESPACE>
@@ -62,3 +62,6 @@ kubectl config set-context <context>
 
 # Get all events from a namespace
 kubectl get events -n <NAMESPACE>
+
+# Get nodes information
+kubectl get nodes -o wide
