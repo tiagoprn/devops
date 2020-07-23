@@ -1,0 +1,4 @@
+% python, black
+
+# Remove black cache
+rm -fr ~/.cache/black/
