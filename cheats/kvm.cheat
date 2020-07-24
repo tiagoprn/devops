@@ -22,7 +22,7 @@ virsh net-list --all
 virsh net-destroy $(virsh net-list --all | fzf | awk '{print $1}')
 
 # Start a network
-virsh start $(virsh net-list --all | fzf | awk '{print $1}')
+virsh net-start $(virsh net-list --all | fzf | awk '{print $1}')
 
 # Get all IPs on a network (used by VMs)
 virsh net-dhcp-leases $(virsh net-list --all | fzf | awk '{print $1}')
