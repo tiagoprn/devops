@@ -38,7 +38,8 @@
     kubectl get nodes
     kubectl get po -n kube-system
 
-- name: Create a storage class for the cluster
+# https://github.com/rancher/local-path-provisioner/blob/master/README.md#deployment
+- name: Create a storage class for the cluster (local storage under /opt/local-path-provisioner)
   command: kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
 
 - name: Check storage class is working
