@@ -35,3 +35,12 @@ sudo systemctl list-dependencies graphical.target
 
 # list all systemd timers
 sudo sudo systemctl list-timers -all
+
+# get systemd service status
+sudo systemctl status $(sudo systemctl list-unit-files --type=service | grep enabled | awk '{print $1}' | sed 's/.service//g' | fzf)
+
+# stop systemd service
+sudo systemctl stop $(sudo systemctl list-unit-files --type=service | grep enabled | awk '{print $1}' | sed 's/.service//g' | fzf)
+
+# start systemd service
+sudo systemctl start $(sudo systemctl list-unit-files --type=service | grep enabled | awk '{print $1}' | sed 's/.service//g' | fzf)
