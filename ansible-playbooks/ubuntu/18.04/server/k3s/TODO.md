@@ -1,11 +1,22 @@
 ## NEXT STEPS
 
-- Update this playbook with the instructions from here (there are more
-  components):
-<https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a> - Install Kubernetes Dashboard - I had to comment the kubectl proxy command, it did not work. Check if I can access the k8s dashboard through KVM ip.
+### Test script to redirect a port from the VM to the KVM host:
 
-- Prometheus and Grafana:
-  <https://kauri.io/deploy-prometheus-and-grafana-to-monitor-a-kube/186a71b189864b9ebc4ef7c8a9f0a6b5/a>
+- [ ] Test `redirect-port.sh` with portainer port 9000 (after successful redirection, I
+  should be able to access it from localhost:9000.)
+
+- [ ] Put the script `redirect-port.sh` on the `terraform-kvm-cookiecutter`
+  Makefile, allowing to pass the environment variables as parameters.
+
+- [ ] Map the kubernetes dashboard port 8001 and try to access it from
+  localhost - the playbook is finished but the dashboard is not being accessible from
+  outside, the original instructions are [here](https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a). After finished, write a systemctl unit to run the command `kube proxy` after the k3s service is up.
+
+
+### Install Prometheus and Grafana on the cluster:
+
+- [ ] Through
+  [here](https://kauri.io/deploy-prometheus-and-grafana-to-monitor-a-kube/186a71b189864b9ebc4ef7c8a9f0a6b5/a)
 
 ---
 
