@@ -9,8 +9,12 @@
   Makefile, allowing to pass the environment variables as parameters.
 
 - [ ] Map the kubernetes dashboard port 8001 and try to access it from
-  localhost - the playbook is finished but the dashboard is not being accessible from
-  outside, the original instructions are [here](https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a). After finished, write a systemctl unit to run the command `kube proxy` after the k3s service is up.
+  localhost - the playbook is finished but the dashboard is not being
+accessible from outside, the original instructions are
+[here](https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a).
+After finished, write a systemctl unit to run the command `kube proxy` after
+the k3s service is up, and change the playbook to do that instead of just
+calling the command `kube proxy`.
 
 
 ### Install Prometheus and Grafana on the cluster:
