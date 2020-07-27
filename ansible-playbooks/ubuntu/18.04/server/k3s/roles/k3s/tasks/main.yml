@@ -122,9 +122,9 @@
   become_user: ubuntu
   shell: kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}') > /opt/containers/k3s/admin-user-dashboard-token.txt
 
-# - name: Create a secure channel to the cluster so to allow access to the dashboard
-#   become_user: ubuntu
-#   command: kubectl proxy
+- name: Create a secure channel to the cluster so to allow access to the dashboard
+  become_user: ubuntu
+  shell: kubectl proxy &
 
 - name: Generate file to verify it passed through this role
   lineinfile:
