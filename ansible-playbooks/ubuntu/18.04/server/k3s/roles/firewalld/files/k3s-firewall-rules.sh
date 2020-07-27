@@ -15,6 +15,9 @@ firewall-cmd --permanent --zone=public --add-source=10.42.0.0/24  # cni0 interfa
 firewall-cmd --permanent --zone=public --add-source=10.43.0.0/24  # flannel?
 firewall-cmd --permanent --zone=public --add-source=10.32.0.0/12  # kubelet in the host network needs to be able to send packets "out" via the Weave interface to communicate with pods
 
+firewall-cmd --permanent --zone=public --add-port=8001/tcp  # kubernetes dashboard
+firewall-cmd --permanent --zone=public --add-port=8001/udp  # kubernetes dashboard
+
 # echo "allowing all in traffic from cni0 interface"
 # ufw allow in on cni0 from 10.42.0.0/16 comment "K3s rule : https://github.com/rancher/k3s/issues/24#issuecomment-469759329"
 
