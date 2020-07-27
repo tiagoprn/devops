@@ -2,7 +2,7 @@
 
 - Update this playbook with the instructions from here (there are more
   components):
-<https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a> - Install Kubernetes Dashboard
+<https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a> - Install Kubernetes Dashboard - I had to comment the kubectl proxy command, it did not work. Check if I can access the k8s dashboard through KVM ip.
 
 - Prometheus and Grafana:
   <https://kauri.io/deploy-prometheus-and-grafana-to-monitor-a-kube/186a71b189864b9ebc4ef7c8a9f0a6b5/a>

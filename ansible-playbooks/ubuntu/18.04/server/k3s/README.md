@@ -49,6 +49,16 @@ $ kubectl delete -f https://raw.githubusercontent.com/rancher/local-path-provisi
 $ kubectl -n local-path-storage logs -l app=local-path-provisioner
 ```
 
+
+# How to acces the Kubernetes Dashboard (allow administering the cluster, like k8s does)
+
+Get the access token at `/opt/containers/k3s/admin-user-dashboard-token.txt`.
+
+Then, go to:
+
+<http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
+
+
 # Notes
 
 - An alternative to k3s can be k3sup.

@@ -94,6 +94,38 @@
   become_user: ubuntu
   command: helm repo update
 
+- name: Install Kubernetes Dashboard
+  become_user: ubuntu
+  command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
+
+- name: Check kubernetes-dashboard pods
+  become_user: ubuntu
+  command: kubectl get pods -n kubernetes-dashboard
+
+- name: Create the folder to hold YAML account resource file
+  file:
+    path: /opt/containers/k3s
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: 0776
+    recurse: yes
+
+- name: Copy YAML account resource file
+  copy: src=files/account.yaml dest=/opt/containers/k3s/account.yaml mode=0666
+
+- name: Create admin user to grant admin permissions and login to Dashboard using bearer token
+  become_user: ubuntu
+  command: kubectl apply -f /opt/containers/k3s/account.yaml
+
+- name: Retrieve admin-user unique access token, so we can authenticate to dashboard
+  become_user: ubuntu
+  shell: kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}') > /opt/containers/k3s/admin-user-dashboard-token.txt
+
+# - name: Create a secure channel to the cluster so to allow access to the dashboard
+#   become_user: ubuntu
+#   command: kubectl proxy
+
 - name: Generate file to verify it passed through this role
   lineinfile:
     dest: /var/log/k3s_passed.txt
