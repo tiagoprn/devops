@@ -2,19 +2,23 @@
 
 ### Test script to redirect a port from the VM to the KVM host:
 
-- [ ] Test `redirect-port.sh` with portainer port 9000 (after successful redirection, I
-  should be able to access it from localhost:9000.)
+(original instructions are
+[here](https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a)
+)
 
-- [ ] Put the script `redirect-port.sh` on the `terraform-kvm-cookiecutter`
-  Makefile, allowing to pass the environment variables as parameters.
+- [ ] Test if redirecting portainer port 9000 to 14601 is working (after
+  successful redirection, I should be able to access it from localhost:14601.)
+- search for `kvm port` on navi to get the command that manages the
+redirections.
 
-- [ ] Map the kubernetes dashboard port 8001 and try to access it from
-  localhost - the playbook is finished but the dashboard is not being
-accessible from outside, the original instructions are
-[here](https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a).
-After finished, write a systemctl unit to run the command `kube proxy` after
-the k3s service is up, and change the playbook to do that instead of just
-calling the command `kube proxy`.
+- [ ] Write a systemctl unit to run the command `kube proxy` after the k3s
+  service is up, and change the playbook to do that instead of just calling the
+command `kube proxy`.
+
+- [ ] Test if redirecting kube proxy port 8001 to 14602 is working (after
+  successful redirection, I should be able to access it from localhost:14602.)
+- search for `kvm port` on navi to get the command that manages the
+redirections.
 
 
 ### Install Prometheus and Grafana on the cluster:
