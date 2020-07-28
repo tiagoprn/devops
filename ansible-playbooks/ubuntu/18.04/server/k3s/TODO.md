@@ -6,8 +6,16 @@
 [here](https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a)
 )
 
+
+- [ ] Add loggings to systemd on `/etc/libvirt/hooks/qemu` (after finished,
+  copy the updated script to
+`/storage/src/devops/shellscripts/utils/kvm-port-forwarder/qemu`. Apparently
+when the `ip` command runs on the script it puts my network interfaces down.
+Check why. Debug configuration on iptables - there is where the rules should be
+set.
+
 - [ ] Test if redirecting portainer port 9000 to 14601 is working (after
-  successful redirection, I should be able to access it from localhost:14601.)
+  successful redirection, I should be able to access it from `telnet localhost 14601`.)
 - search for `kvm port` on navi to get the command that manages the
 redirections.
 
@@ -16,7 +24,7 @@ redirections.
 command `kube proxy`.
 
 - [ ] Test if redirecting kube proxy port 8001 to 14602 is working (after
-  successful redirection, I should be able to access it from localhost:14602.)
+  successful redirection, I should be able to access it from `telnet localhost 14602`.)
 - search for `kvm port` on navi to get the command that manages the
 redirections.
 
