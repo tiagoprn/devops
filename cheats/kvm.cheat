@@ -62,3 +62,6 @@ qemu-img create -f qcow2 <qcow2-disk-file> -o size=<size>,preallocation=metadata
 
 # Convert image from qcow2 to img
 qemu-img convert <qcow2-image> <img-image>
+
+# Configure port forwarding:
+sudo vim /etc/libvirt/hooks/qemu
