@@ -1,0 +1,15 @@
+% aws
+
+# List all buckets
+aws s3api list-buckets
+
+# List all objects on a bucket
+aws s3api list-objects --bucket <bucket-name>
+
+# Download object
+aws s3api get-object --bucket <bucket-name> --key <object-path> <local-file-name>
+
+# Move object
+aws s3 mv s3://<bucket-name>/<object-path> s3://<new-bucket-name>/<new-object-path>
+
+
