@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Hook script for QEMU
-# 
+#
 # adds port forwards via IPtables to your VMs
 #
 # Erico Mendonca (erico.mendonca@suse.com)
@@ -14,7 +14,7 @@
 #
 
 log() {
-        logger -t addForward "$1"
+        echo "$1" | systemd-cat -t qemu-addForward
 }
 
 addForward() {
@@ -33,35 +33,36 @@ addForward() {
    IPTABLES_TEXT=""
    IP_ACTION=""
    IP_TEXT=""
-   
+
    if [ "${VM}" == "${VM_NAME}" ]; then
+	   log "ACTION = ${ACTION}"
 	   if [ "${ACTION}" == "stopped" ]; then
 		   IPTABLES_ACTION="-D"
 		   IPTABLES_TEXT="Removing forwarding rules for VM ${VM}"
 		   IP_ACTION="del"
 		   IP_TEXT="Removing IP ${HOST_IP} from ${HOST_NIC}"
 	   fi
-	
+
 	   if [ "${ACTION}" == "start" ] || [ "${ACTION}" == "reconnect" ]; then
 		   IPTABLES_ACTION="-I"
 		   IPTABLES_TEXT="Adding forwarding rules for VM ${VM}: host port ${HOST_PORT} will be redirected to ${GUEST_IP}:${GUEST_PORT} on interface ${GUEST_NIC}"
 		   IP_ACTION="add"
 		   IP_TEXT="Adding IP ${HOST_IP} to ${HOST_NIC}"
 	   fi
-	
+
 	   if [ "${IPTABLES_ACTION}" == "" ]; then
 		   log "Action ${ACTION} on domain $VM not configured, ignoring"
 		   exit 0
-	   else 
+	   else
 		   log "Action ${ACTION} on domain $VM called"
 	   fi
-	     
+
 	   log "${IPTABLES_TEXT}"
 	   $IPTABLES ${IPTABLES_ACTION} FORWARD -o ${GUEST_NIC} -d $GUEST_IP -j ACCEPT
 	   $IPTABLES -t nat ${IPTABLES_ACTION} PREROUTING -d $HOST_IP -p tcp --dport $HOST_PORT -j DNAT --to $GUEST_IP:$GUEST_PORT
-	   
+
 	   log "${IP_TEXT}"
-	   $IP address ${IP_ACTION} ${HOST_IP}/${HOST_IP_MASK} dev ${HOST_NIC} 
+	   $IP address ${IP_ACTION} ${HOST_IP}/${HOST_IP_MASK} dev ${HOST_NIC}
    fi
 }
 
@@ -74,5 +75,5 @@ ACTION=${2}
 #Port 80 forward:   addForward debian10-vm2 enp3s0f0 192.168.1.17 80 virbr0 192.168.122.2 80
 #All ports forward: addForward debian10-vm2 enp3s0f0 192.168.1.17 1:65535 virbr0 192.168.122.2 1-65535
 addForward ubuntu18-k3s wlp2s0 192.168.100.141 14601 virbr0 192.168.122.251 9000
-addForward ubuntu18-k3s wlp2s0 192.168.100.141 14602 virbr0 192.168.122.251 8001
+# addForward ubuntu18-k3s wlp2s0 192.168.100.141 14602 virbr0 192.168.122.251 8001
 
