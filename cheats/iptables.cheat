@@ -4,10 +4,10 @@
 sudo iptables -t nat -L -n -v
 
 # Save NAT Redirect Rules
-sudo iptables-save > /etc/iptables-save
+sudo iptables-save > ~/iptables-save
 
 # Restore NAT Redirect Rules
-sudo iptables-restore < /etc/iptables-save
+sudo iptables-restore < ~/iptables-save
 
 # Forward ports from guest to host
-iptables -t nat -A PREROUTING -p tcp -i <BRIDGE_INTERFACE_NAME_WHERE_THE_GUEST_IS> -d <HOST_IP> --dport <HOST_PORT> -j DNAT --to <GUEST_IP>:<GUEST_PORT>
+sudo iptables -t nat -A PREROUTING -p tcp -i <BRIDGE_INTERFACE_NAME_WHERE_THE_GUEST_IS> -d <HOST_IP> --dport <HOST_PORT> -j DNAT --to <GUEST_IP>:<GUEST_PORT>
