@@ -9,9 +9,13 @@
 #
 # https://github.com/doccaz/kvm-scripts
 #
+# reference: https://wiki.libvirt.org/page/Networking#Forwarding_Incoming_Connections
+#
 # Adapted by Branislav Siarsky
 # apr/2020
-#
+# 
+# Adapted by Tiago Paranhos Lima
+# jul/2020
 
 log() {
         echo "$1" | systemd-cat -t qemu-addForward
@@ -36,7 +40,7 @@ addForward() {
 
    if [ "${VM}" == "${VM_NAME}" ]; then
 	   log "ACTION = ${ACTION}"
-	   if [ "${ACTION}" == "stopped" ]; then
+	   if [ "${ACTION}" == "stopped" ] || [ "${ACTION}" == "reconnect" ]; then
 		   IPTABLES_ACTION="-D"
 		   IPTABLES_TEXT="Removing forwarding rules for VM ${VM}"
 		   IP_ACTION="del"
