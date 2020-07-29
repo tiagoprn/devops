@@ -58,8 +58,8 @@ addForward() {
 	   fi
 
 	   log "${IPTABLES_TEXT}"
-	   $IPTABLES ${IPTABLES_ACTION} FORWARD -o ${GUEST_NIC} -d $GUEST_IP -j ACCEPT
-	   $IPTABLES -t nat ${IPTABLES_ACTION} PREROUTING -d $HOST_IP -p tcp --dport $HOST_PORT -j DNAT --to $GUEST_IP:$GUEST_PORT
+	   $IPTABLES ${IPTABLES_ACTION} FORWARD -o ${GUEST_NIC} -p tcp -d $GUEST_IP --dport $GUEST_PORT -j ACCEPT
+	   $IPTABLES -t nat ${IPTABLES_ACTION} PREROUTING -p tcp --dport $HOST_PORT -j DNAT --to $GUEST_IP:$GUEST_PORT
 
 	   log "${IP_TEXT}"
 	   $IP address ${IP_ACTION} ${HOST_IP}/${HOST_IP_MASK} dev ${HOST_NIC}
