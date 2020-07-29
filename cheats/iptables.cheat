@@ -11,3 +11,6 @@ sudo iptables-restore < ~/iptables-save
 
 # Forward ports from guest to host
 sudo iptables -t nat -A PREROUTING -p tcp -i <BRIDGE_INTERFACE_NAME_WHERE_THE_GUEST_IS> -d <HOST_IP> --dport <HOST_PORT> -j DNAT --to <GUEST_IP>:<GUEST_PORT>
+
+# Forward KVM ports from guest to host
+sudo iptables -t nat -I PREROUTING -p tcp -d <HOST_IP> --dport <HOST_PORT> -j DNAT --to-destination <GUEST_HOST>:<GUEST_PORT> && sudo iptables -I FORWARD -m state -d <BRIDGE_MASK> --state NEW,RELATED,ESTABLISHED -j ACCEPT
