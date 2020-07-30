@@ -1,19 +1,22 @@
 #!/bin/bash
+# KVM NETWORK TYPE: nat
 
-# KVM NETWORK TYPE: Nat
-# KVM BRIDGE NIC: virbr0
-# VM NETWORK: 192.168.122.0/24
-# VM IP: 192.168.122.247
-# PORT TO FORWARD: 80
-# HOST ETHERNET DEVICE: enp7s0
+IPTABLES="sudo iptables"
+
+KVM_BRIDGE_NIC=virbr0
+VM_NETWORK=192.168.122.0/24
+VM_IP=192.168.122.251
+VM_PORT=9000
+HOST_PORT=10090
+HOST_NETWORK_DEVICE=wlp2s0
 
 # connections from outside
-iptables -I FORWARD -o virbr0 -d  192.168.122.247 -j ACCEPT
-iptables -t nat -I PREROUTING -p tcp --dport 80 -j DNAT --to 192.168.122.247:80
+$IPTABLES -I FORWARD -o $KVM_BRIDGE_NIC -d $VM_IP -j ACCEPT
+$IPTABLES -t nat -I PREROUTING -p tcp --dport $HOST_PORT -j DNAT --to $VM_IP:$VM_PORT
 
 # Masquerade local subnet
-iptables -I FORWARD -o virbr0 -d  192.168.122.247 -j ACCEPT
-iptables -t nat -A POSTROUTING -s 192.168.122.0/24 -j MASQUERADE
-iptables -A FORWARD -o virbr0 -m state --state RELATED,ESTABLISHED -j ACCEPT
-iptables -A FORWARD -i virbr0 -o enp7s0 -j ACCEPT
-iptables -A FORWARD -i virbr0 -o lo -j ACCEPT
+$IPTABLES -I FORWARD -o $KVM_BRIDGE_NIC -d $VM_IP -j ACCEPT
+$IPTABLES -t nat -A POSTROUTING -s $VM_NETWORK -j MASQUERADE
+$IPTABLES -A FORWARD -o $KVM_BRIDGE_NIC -m state --state RELATED,ESTABLISHED -j ACCEPT  # maybe add state NEW too
+$IPTABLES -A FORWARD -i $KVM_BRIDGE_NIC -o $HOST_NETWORK_DEVICE -j ACCEPT
+$IPTABLES -A FORWARD -i $KVM_BRIDGE_NIC -o lo -j ACCEPT
