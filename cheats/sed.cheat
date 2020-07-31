@@ -4,3 +4,6 @@
 find ./ -type f -not -path "./.git/*" -exec sed -i -e 's/<old_word>/<new_word>/g' {} \;
 
 
+# Recursively replace a word on files with a specific extension under current directory (e.g. extension: *.py)
+find ./ -type f -name <extension> -exec sed -i -e 's/<old_word>/<new_word>/g' {} \;
+
