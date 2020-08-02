@@ -47,3 +47,9 @@ git shortlog --pretty=format:"%ar%n  %h - %s %n"
 
 # See summarized changes by author on file (you may also pass more than one file)
 git shortlog --pretty=format:"%ar%n  %h - %s %n" <files-separated-by-spaces>
+
+# Fetch all tags
+git fetch --all --tags
+
+# Checkout tag into branch
+git checkout tags/<tag> -b <branch-name>
