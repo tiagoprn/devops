@@ -1,0 +1,9 @@
+- hosts: all
+  # strategy: debug  ## interactive debug console when a task fails.
+  roles:
+    - gather_custom_facts
+    - upgrade
+    - firewalld
+    - {role: wireguard, when: "ansible_local['wireguard_facts']['has_wireguard_installed'] == false" }
+    - services
+    - cleanup

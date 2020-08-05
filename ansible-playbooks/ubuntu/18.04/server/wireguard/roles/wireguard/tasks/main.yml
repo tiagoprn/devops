@@ -1,0 +1,38 @@
+- name: Add wireguard repository
+  command: add-apt-repository ppa:wireguard/wireguard
+
+- name: Install wireguard
+  action: >
+      {{ ansible_pkg_mgr }} name=wireguard state=present update_cache=yes
+
+- name: Generate keys
+  shell: |
+      wg genkey | sudo tee /etc/wireguard/privatekey | wg pubkey | sudo tee /etc/wireguard/publickey
+      sudo chmod 600 /etc/wireguard/privatekey
+
+- name: Get current public network interface
+  shell: ip -o -4 route show to default | awk '{print $5}'
+  register: default_iface
+  changed_when: False  # this make this task always run
+
+- name: Print default_iface
+  debug: var=default_iface.stdout
+
+- name: Create the vpn configuration
+  template:
+    src: wg0.conf.j2
+    dest: /etc/wireguard/wg0.conf
+    owner: root
+    group: root
+    mode: 0600
+    backup: yes
+
+- name: Bring wg0 interface up
+  shell: sudo wg-quick up wg0
+
+- name: Check interface state and configuration
+  shell: sudo wg show wg0
+
+- name: Enable and start wireguard interface
+  systemd: name=wg-quick@wg0 daemon-reload=yes state=started enabled=yes
+

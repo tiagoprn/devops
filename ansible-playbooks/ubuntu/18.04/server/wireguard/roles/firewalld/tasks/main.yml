@@ -1,0 +1,23 @@
+- name: Create a directory to run general purpose scripts
+  file:
+    path: /opt/scripts
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: 0775
+    recurse: yes
+
+- name: copy firewall rules script
+  copy: src=wireguard-firewall-rules.sh dest=/opt/scripts owner=ubuntu group=ubuntu mode=0755
+
+- name: Run firewall rules for all pods to be operational
+  command: bash /opt/scripts/wireguard-firewall-rules.sh
+
+- name: Reload firewalld to apply the new configuration
+  shell:
+    firewall-cmd --reload
+
+- name: Print firewalld configuration
+  shell:
+    firewall-cmd --zone=public --list-all
+
