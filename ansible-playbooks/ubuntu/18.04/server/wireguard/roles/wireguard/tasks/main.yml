@@ -39,12 +39,22 @@
 - name: Exclude NetworkManager from managing the wireguard interface
   copy: src=files/unmanaged.conf dest=/etc/NetworkManager/conf.d owner=root group=root mode=0600
 
-- name: Bring wg0 interface up
-  shell: wg-quick up wg0
+# - name: Bring wg0 interface up
+#   shell: wg-quick up wg0
+
+- name: Enable and start wireguard interface
+  systemd: name=wg-quick@wg0 daemon-reload=yes state=started enabled=yes
 
 - name: Check interface state and configuration
   shell: wg show wg0
 
-- name: Enable and start wireguard interface
-  systemd: name=wg-quick@wg0 daemon-reload=yes state=started enabled=yes
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/wireguard_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
 

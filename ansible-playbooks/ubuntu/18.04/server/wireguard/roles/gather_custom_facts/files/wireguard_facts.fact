@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ls /usr/bin/wireguard > /dev/null 2>&1
+ls /var/log/wireguard_passed.txt > /dev/null 2>&1
 
 # If there is an error on the previous bash command, wireguard is not installed
 # below must result in a json formatted dict, so ansible can use it
