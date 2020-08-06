@@ -10,7 +10,7 @@
 - name: copy firewall rules script
   copy: src=wireguard-firewall-rules.sh dest=/opt/scripts owner=ubuntu group=ubuntu mode=0755
 
-- name: Run firewall rules for all pods to be operational
+- name: Run firewall rules for wireguard to be operational
   command: bash /opt/scripts/wireguard-firewall-rules.sh
 
 - name: Reload firewalld to apply the new configuration

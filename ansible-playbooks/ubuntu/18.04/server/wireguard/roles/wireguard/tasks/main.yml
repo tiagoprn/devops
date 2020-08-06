@@ -1,5 +1,6 @@
 - name: Add wireguard repository
-  command: add-apt-repository ppa:wireguard/wireguard
+  apt_repository:
+      repo: ppa:wireguard/wireguard
 
 - name: Install wireguard
   action: >
@@ -7,8 +8,8 @@
 
 - name: Generate keys
   shell: |
-      wg genkey | sudo tee /etc/wireguard/privatekey | wg pubkey | sudo tee /etc/wireguard/publickey
-      sudo chmod 600 /etc/wireguard/privatekey
+      wg genkey | tee /etc/wireguard/privatekey | wg pubkey | tee /etc/wireguard/publickey
+      chmod 600 /etc/wireguard/privatekey
 
 - name: Get current public network interface
   shell: ip -o -4 route show to default | awk '{print $5}'
@@ -17,6 +18,14 @@
 
 - name: Print default_iface
   debug: var=default_iface.stdout
+
+- name: Get private key value
+  shell: cat /etc/wireguard/privatekey
+  register: key
+  changed_when: False  # this make this task always run
+
+- name: Print key
+  debug: var=key.stdout
 
 - name: Create the vpn configuration
   template:
@@ -27,11 +36,14 @@
     mode: 0600
     backup: yes
 
+- name: Exclude NetworkManager from managing the wireguard interface
+  copy: src=files/unmanaged.conf dest=/etc/NetworkManager/conf.d owner=root group=root mode=0600
+
 - name: Bring wg0 interface up
-  shell: sudo wg-quick up wg0
+  shell: wg-quick up wg0
 
 - name: Check interface state and configuration
-  shell: sudo wg show wg0
+  shell: wg show wg0
 
 - name: Enable and start wireguard interface
   systemd: name=wg-quick@wg0 daemon-reload=yes state=started enabled=yes

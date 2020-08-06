@@ -7,5 +7,6 @@ The keys are located at `/etc/wireguard/publickey`.
 
 # References
 - <https://linuxize.com/post/how-to-set-up-wireguard-vpn-on-ubuntu-18-04/#linux-and-macos-clients-setup>
+- <https://wiki.archlinux.org/index.php/WireGuard> (specially the "Troubleshooting" section of it)
 - <https://websiteforstudents.com/how-to-install-wireguard-vpn-server-on-ubuntu-18-04-20-04/>
 - <https://serversideup.net/generating-wireguard-qr-codes-for-fast-mobile-deployments/>
