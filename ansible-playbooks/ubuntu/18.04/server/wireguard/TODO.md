@@ -1,4 +1,4 @@
-- [ ] Test the playbook
+- [x] Test the playbook
 
 - [ ] Configure my ubuntu host machine from here on:
   <https://linuxize.com/post/how-to-set-up-wireguard-vpn-on-ubuntu-18-04/#linux-and-macos-clients-setup>
