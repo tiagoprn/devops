@@ -5,5 +5,4 @@
     - upgrade
     - firewalld
     - {role: wireguard, when: "ansible_local['wireguard_facts']['has_wireguard_installed'] == false" }
-    - services
     - cleanup
