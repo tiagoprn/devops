@@ -53,3 +53,9 @@ git fetch --all --tags
 
 # Checkout tag into branch
 git checkout tags/<tag> -b <branch-name>
+
+# See merged branches
+git branch --merged | egrep -v "(^\*|master|staging)"
+
+# Delete merged branches
+git branch --merged | egrep -v "(^\*|master|staging)" | xargs git branch -d
