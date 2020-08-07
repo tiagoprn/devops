@@ -58,4 +58,4 @@ git checkout tags/<tag> -b <branch-name>
 git branch --merged | egrep -v "(^\*|master|staging)"
 
 # Delete merged branches
-git branch --merged | egrep -v "(^\*|master|staging)" | xargs git branch -d
+git branch --merged | egrep -v "(^\*|master|main|staging)" | xargs git branch -d
