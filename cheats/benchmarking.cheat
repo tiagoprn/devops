@@ -1,0 +1,7 @@
+% benchmarking
+
+# Read I/O speed from device (e.g. /dev/sda)
+hdparm -t --direct <block-device>
+
+# CPU
+sysbench --test=cpu --cpu-max-prime=22750 --num-threads=6 run
