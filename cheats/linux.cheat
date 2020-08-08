@@ -49,7 +49,7 @@ gpg --decrypt <file> > <file>.decrypted && echo -e '\n --- \nDecrypted as "<file
 while :; do sleep 59; echo -n ' ' >&2; done &
 
 # list partitions mountpoint status
-lsblk
+lsblk | grep -v loop
 
 # base64 encode
 echo -n "<text>" | base64 -w 0
