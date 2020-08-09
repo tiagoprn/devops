@@ -1,0 +1,7 @@
+% fsarchiver
+
+# savefs
+fsarchiver savefs <archive-path> <partition>
+
+# restfs
+fsarchiver restfs <archive-path> id=0,dest=<destination-partition>,label=<destination-label>
