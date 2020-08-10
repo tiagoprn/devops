@@ -28,6 +28,7 @@
       - ca-certificates
       - curl
       - software-properties-common
+      - dialog
       - mosh
 
 - name: Add configuration so we can shutdown "physically"
