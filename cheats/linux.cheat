@@ -113,3 +113,7 @@ sudo lsof -p $(ps aux | fzf | awk '{print $2}')
 
 # detailed time command to give execution statistics (like memory: "resident set size")
 /usr/bin/time -v <command>
+
+# set/change locale
+sudo locale-gen en_US.UTF-8 && sudo update-locale LANG=en_US.UTF-8 && echo 'Now restart the system or open a new terminal.'
+
