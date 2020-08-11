@@ -1,0 +1,11 @@
+click
+colorama
+prompt-toolkit
+ipython
+tmuxp
+cookiecutter
+s3cmd
+speedtest-cli
+jinja2
+ansible
+mitogen
