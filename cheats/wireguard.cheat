@@ -9,5 +9,8 @@ sudo wg-quick down wg0
 # See interface statistics
 sudo wg-show wg0
 
-# Add guest (client) peer to the server
+# Add guest (client) peer to the host (server)
 sudo wg set wg0 peer <GUEST_PUBLIC_KEY> allowed-ips <GUEST_VPN_IP>
+
+# Remove guest(client) peer from the host (server):
+sudo wg set wg0 peer <GUEST_PUBLIC_KEY> remove
