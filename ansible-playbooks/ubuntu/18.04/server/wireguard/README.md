@@ -1,8 +1,21 @@
 # wireguard
 
-This role creates a wireguard VPN on interface `wg0`, port `51820`, on network `13.0.0.1/24`.
+This role creates a wireguard VPN on interface `wg0`. It can create a host or a
+guest. The keys are located at `/etc/wireguard`.
 
-The keys are located at `/etc/wireguard/publickey`.
+If you run this playbook to create a guest you must "register" the guest as a
+peer on the host after finishing running, so they can communicate. To do that,
+login into the host, then e.g.:
+
+```
+$ sudo wg set wg0 peer <GUEST_PUBLIC_KEY> allowed-ips <GUEST_VPN_IP>
+```
+
+Then, check if both the guest and the host are communicating:
+
+```
+$ sudo wg show wg0
+```
 
 
 # References
