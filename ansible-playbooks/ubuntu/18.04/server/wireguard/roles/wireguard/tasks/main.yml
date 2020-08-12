@@ -1,3 +1,9 @@
+- name: Print destination
+  debug: var=destination
+
+- name: Print network_ip_address
+  debug: var=network_ip_address
+
 - name: Add wireguard repository
   apt_repository:
       repo: ppa:wireguard/wireguard

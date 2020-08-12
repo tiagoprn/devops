@@ -1,5 +1,18 @@
 - hosts: all
   # strategy: debug  ## interactive debug console when a task fails.
+  vars_prompt:
+    - name: destination
+      prompt: "What will be the VPN's destination? (host/guest)"
+      private: no
+    - name: network_ip_address
+      prompt: "What will be the controlled machine network_ip_address on the VPN ? E.g. 13.0.0.1/24 (host), 13.0.0.2/24 (guest) "
+      private: no
+    - name: host_public_key
+      prompt: "What is the VPN host public key? (only if destination=guest)"
+      private: no
+    - name: host_public_ip_address
+      prompt: "What is the VPN host ip address? (only if destination=guest)"
+      private: no
   roles:
     - gather_custom_facts
     - upgrade

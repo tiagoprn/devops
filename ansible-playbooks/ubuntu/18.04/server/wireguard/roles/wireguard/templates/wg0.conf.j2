@@ -1,5 +1,7 @@
+{% if destination == 'host' %}
+
 [Interface]
-Address = 13.0.0.1/24
+Address = {{ network_ip_address }}
 MTU = 1500
 SaveConfig = true
 ListenPort = 51820
@@ -7,3 +9,15 @@ PrivateKey = {{ key.stdout }}
 PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o {{ default_iface.stdout }} -j MASQUERADE
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o {{ default_iface.stdout }} -j MASQUERADE
 
+{% else %}
+
+[Interface]
+PrivateKey = {{ key.stdout }}
+Address = {{ network_ip_address }}
+
+[Peer]
+PublicKey = {{ host_public_key }}
+Endpoint = {{ host_public_ip_address }}:51820
+AllowedIPs = 0.0.0.0/0
+
+{% endif %}
