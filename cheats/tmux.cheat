@@ -1,0 +1,6 @@
+% tmux
+
+# enter tmux session
+tmux -2 a -t $(tmux ls | fzf | awk '{print $1}')
+
+
