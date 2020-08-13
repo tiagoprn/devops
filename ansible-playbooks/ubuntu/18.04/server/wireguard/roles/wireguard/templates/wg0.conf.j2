@@ -14,6 +14,7 @@ PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -
 [Interface]
 PrivateKey = {{ key.stdout }}
 Address = {{ network_ip_address }}
+DNS = 208.67.222.222, 208.67.220.220
 
 [Peer]
 PublicKey = {{ host_public_key }}
