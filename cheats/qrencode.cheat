@@ -1,0 +1,4 @@
+% qrencode
+
+# Encode file contents to qrcode
+qrencode -t ansiutf8 < <file-name>
