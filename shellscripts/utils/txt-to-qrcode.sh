@@ -79,47 +79,36 @@ if [ ! $# -eq 0 ] ; then
             chunks=$((($total_lines + $rounded - 1) / $rounded));
             echo "$rounded QR codes will be necessary"
         fi
-
-        read -p "Proceed? (y/n) : " choice
-        case "$choice" in
-          y|Y )
-            proceed=true;;
-          * )
-            echo "Canceled."
-            exit 1;;
-        esac
     else
         echo "Error: Empty input file?"
         exit 1
     fi
 
-    if [ $proceed = true ]; then
-        qr_part=1
-        if [ $chunks -gt 0 ]; then
-            line_count=0
-            while IFS= read -r line || [ -n "$line" ]; do
-                line_count=$((line_count + 1))
-                lines="$lines"'\n'"$line"
-                if [ $line_count -eq $chunks ]; then
-                    # Make QR code.
-                    echo -n "\ncreating $pfx$qr_part.$ext..."
-                    echo -n $lines | qrencode -s $siz -d $dpi --foreground=$fgd --background=$bgd -l $lvl -v $sym -t $ext -o $pfx$qr_part.$ext
-                    lines=""
-                    line_count=0
-                    qr_part=$((qr_part + 1))
-                fi
-            done < "$param";
-            # If not empty encode the last bit
-            if ! [ -z "$lines" ]; then
+    qr_part=1
+    if [ $chunks -gt 0 ]; then
+        line_count=0
+        while IFS= read -r line || [ -n "$line" ]; do
+            line_count=$((line_count + 1))
+            lines="$lines"'\n'"$line"
+            if [ $line_count -eq $chunks ]; then
                 # Make QR code.
                 echo -n "\ncreating $pfx$qr_part.$ext..."
                 echo -n $lines | qrencode -s $siz -d $dpi --foreground=$fgd --background=$bgd -l $lvl -v $sym -t $ext -o $pfx$qr_part.$ext
-
+                lines=""
+                line_count=0
+                qr_part=$((qr_part + 1))
             fi
-        else
+        done < "$param";
+        # If not empty encode the last bit
+        if ! [ -z "$lines" ]; then
+            # Make QR code.
             echo -n "\ncreating $pfx$qr_part.$ext..."
-            cat $param | qrencode -s $siz -d $dpi --foreground=$fgd --background=$bgd -l $lvl -v $sym -t $ext -o $pfx$qr_part.$ext
+            echo -n $lines | qrencode -s $siz -d $dpi --foreground=$fgd --background=$bgd -l $lvl -v $sym -t $ext -o $pfx$qr_part.$ext
+
         fi
+    else
+        echo -n "\ncreating $pfx$qr_part.$ext..."
+        cat $param | qrencode -s $siz -d $dpi --foreground=$fgd --background=$bgd -l $lvl -v $sym -t $ext -o $pfx$qr_part.$ext
     fi
 else
     echo $usage
