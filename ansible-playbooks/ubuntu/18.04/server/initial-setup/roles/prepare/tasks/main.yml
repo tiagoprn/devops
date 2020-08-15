@@ -32,6 +32,7 @@
       - mosh
       - qrencode
       - resolvconf
+      - cookiecutter
 
 - name: Add configuration so we can shutdown "physically"
   copy: src=files/powerbtn dest=/etc/acpi/events/powerbtn owner=root group=root mode=0700
