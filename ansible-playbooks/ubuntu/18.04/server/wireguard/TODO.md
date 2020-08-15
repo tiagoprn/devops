@@ -8,11 +8,12 @@
 (rename `mobile` on it to `tiago-motorola-android-smartphone` as a variable on
 the playbook) - run it on the VM to make sure it is working OK.
 
-- [ ] Test the playbook as host generating the qrcode for an android client.
+- [x] Test `wireguard-client-cookiecutter` on the host to generate qrcodes to
+  configurate on the client (check its' `README.md`).
 
-- [ ] Delete the current linode guardian and create another with the updated
-  mobile generation keys  - run the `initial-setup` and `wireguard` playbooks
-only.
+- [ ] Use this article as a reference to check my setup:
+  <https://www.ckn.io/blog/2017/11/14/wireguard-vpn-typical-setup/`> (there is
+an ansible playbook at the end that I could use).
 
 - [ ] Test with my android wireguard app on the smartphone
 
