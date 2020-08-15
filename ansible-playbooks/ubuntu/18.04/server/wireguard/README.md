@@ -17,6 +17,8 @@ Then, check if both the guest and the host are communicating:
 $ sudo wg show wg0
 ```
 
+If you wish to create client configuration e.g. for android clients, you can
+use [my wireguard cookiecutter](https://github.com/tiagoprn/wireguard-client-cookiecutter).
 
 # References
 - <https://linuxize.com/post/how-to-set-up-wireguard-vpn-on-ubuntu-18-04/#linux-and-macos-clients-setup>
