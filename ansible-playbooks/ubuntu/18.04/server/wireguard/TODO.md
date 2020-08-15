@@ -11,11 +11,7 @@ the playbook) - run it on the VM to make sure it is working OK.
 - [x] Test `wireguard-client-cookiecutter` on the host to generate qrcodes to
   configurate on the client (check its' `README.md`).
 
-- [ ] Use this article as a reference to check my setup:
-  <https://www.ckn.io/blog/2017/11/14/wireguard-vpn-typical-setup/`> (there is
-an ansible playbook at the end that I could use).
-
-- [ ] Test with my android wireguard app on the smartphone
+- [x] Test with my android wireguard app on the smartphone
 
 - [ ] Run the playbook on the vm as guest (make sure the guest can ping the
   linode guardian host).

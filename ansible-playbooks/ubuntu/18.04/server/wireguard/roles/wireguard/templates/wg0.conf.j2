@@ -19,6 +19,6 @@ DNS = 208.67.222.222, 208.67.220.220
 [Peer]
 PublicKey = {{ host_public_key }}
 Endpoint = {{ host_public_ip_address }}:51820
-AllowedIPs = 0.0.0.0/0
+AllowedIPs = {{ network_mask }}
 
 {% endif %}

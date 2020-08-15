@@ -7,6 +7,9 @@
     - name: network_ip_address
       prompt: "What will be the controlled machine network_ip_address on the VPN ? E.g. 13.0.0.1/24 (host), 13.0.0.2/32 (guest) "
       private: no
+    - name: network_mask
+      prompt: "What will be the controlled machine network_mask to be redirected to the VPN ? 13.0.0.0/24 (guest) "
+      private: no
     - name: host_public_key
       prompt: "What is the VPN host public key? (only if destination=guest)"
       private: no

@@ -1,7 +1,9 @@
 # wireguard
 
 This role creates a wireguard VPN on interface `wg0`. It can create a host or a
-guest. The keys are located at `/etc/wireguard`.
+guest. For simplicity the VPN created here should only redirect traffic on the
+IP mask e.g. `13.0.0.0/24` - as opposed to `0.0.0.0/0` (all internet traffic).
+The keys are located at `/etc/wireguard`.
 
 If you run this playbook to create a guest you must "register" the guest as a
 peer on the host after finishing running, so they can communicate. To do that,
