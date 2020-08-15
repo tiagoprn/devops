@@ -54,6 +54,12 @@
 - name: Check interface state and configuration
   shell: wg show wg0
 
+
+- name: Create directory to generate and keep client keys (e.g. to use on mobile devices)
+  file:
+    path: /etc/wireguard/clients
+    state: directory
+
 - name: Generate file to verify it passed through this role
   lineinfile:
     dest: /var/log/wireguard_passed.txt
