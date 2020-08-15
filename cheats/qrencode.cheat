@@ -4,10 +4,10 @@
 qrencode -t ansiutf8 < <file-name>
 
 # Encode file contents to qrcode and generate a png
-qrencode -t ansiutf8 -o /tmp/qrcode.png < <file-name>
+/storage/src/devops/shellscripts/utils/txt-to-qrcode.sh <file-path>
 
 # Encode text to qrcode and show on terminal
-# qrencode -t ansiutf8 <text>
+qrencode -t ansiutf8 <text>
 
 # Encode text to qrcode and generate a png
-# qrencode -t ansiutf8 -o /tmp/qrcode.png <text>
+/storage/src/devops/shellscripts/utils/txt-to-qrcode.sh $(echo "<text>" > /tmp/qrencode.txt && ls /tmp/qrencode.txt)
