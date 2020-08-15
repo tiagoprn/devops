@@ -22,6 +22,12 @@ $ sudo wg show wg0
 If you wish to create client configuration e.g. for android clients, you can
 use [my wireguard cookiecutter](https://github.com/tiagoprn/wireguard-client-cookiecutter).
 
+
+Note: I have forked another role to do that at
+<https://github.com/tiagoprn/wireguard_ansible>. If I ever want to enable a VPN
+that redirects all traffic, I may use that as a reference.
+
+
 # References
 - <https://linuxize.com/post/how-to-set-up-wireguard-vpn-on-ubuntu-18-04/#linux-and-macos-clients-setup>
 - <https://wiki.archlinux.org/index.php/WireGuard> (specially the "Troubleshooting" section of it)
