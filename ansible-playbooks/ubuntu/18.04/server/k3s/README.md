@@ -50,6 +50,29 @@ $ kubectl -n local-path-storage logs -l app=local-path-provisioner
 ```
 
 
+# Remotely access the cluster **on your local machine** using kubectl
+
+- [Install kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+
+- Transfer the config file (kubeconfig) to your local machine using ssh:
+
+```
+$ scp ubuntu@192.168.122.251:/etc/rancher/k3s/k3s.yaml ~/.kube/config
+```
+
+- Replace localhost on the local kube config file with the node IP:
+
+```
+$ sed -i 's/127\.0\.0\.1/192\.168\.122\.251/g' ~/.kube/config
+```
+
+- Check everything is working:
+
+```
+$ kubectl get nodes -o wide
+```
+
+
 # How to access the Kubernetes Dashboard **on your local machine** (allow administering the cluster, like k8s does)
 
 - Login to the cluster using kubectl
