@@ -9,7 +9,7 @@
 
 ## FUTURE ENHANCEMENTS
 
-- Install rio
+- Install rio <https://rancher.com/blog/2019/introducing-rio/>
 
 - Install openfaas
 
