@@ -50,13 +50,21 @@ $ kubectl -n local-path-storage logs -l app=local-path-provisioner
 ```
 
 
-# How to acces the Kubernetes Dashboard (allow administering the cluster, like k8s does)
+# How to access the Kubernetes Dashboard **on your local machine** (allow administering the cluster, like k8s does)
 
-Get the access token at `/opt/containers/k3s/admin-user-dashboard-token.txt`.
+- Login to the cluster using kubectl
 
-Then, go to:
+- Get the access token at `/opt/containers/k3s/admin-user-dashboard-token.txt`.
 
-<http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
+- Create a secure channel to your cluster, using kubectl proxy:
+
+`kubectl proxy &`
+
+~~`kubectl proxy --address='0.0.0.0' --port=8001 --accept-hosts='.*'`~~
+
+- Then, open the dashboard:
+
+`xdg-open http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/`
 
 
 # Notes

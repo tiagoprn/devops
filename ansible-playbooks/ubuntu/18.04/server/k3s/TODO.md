@@ -1,33 +1,7 @@
 ## NEXT STEPS
 
-### Test script to redirect a port from the VM to the KVM host:
-
-(original instructions are
-[here](https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a)
-)
-
-
-- [ ] Add loggings to systemd on `/etc/libvirt/hooks/qemu` (after finished,
-  copy the updated script to
-`/storage/src/devops/shellscripts/utils/kvm-port-forwarder/qemu`. Apparently
-when the `ip` command runs on the script it puts my network interfaces down.
-Check why. Debug configuration on iptables - there is where the rules should be
-set.
-
-- [ ] Test if redirecting portainer port 9000 to 14601 is working (after
-  successful redirection, I should be able to access it from `telnet localhost 14601`.)
-- search for `kvm port` on navi to get the command that manages the
-redirections.
-
-- [ ] Write a systemctl unit to run the command `kube proxy` after the k3s
-  service is up, and change the playbook to do that instead of just calling the
-command `kube proxy`.
-
-- [ ] Test if redirecting kube proxy port 8001 to 14602 is working (after
-  successful redirection, I should be able to access it from `telnet localhost 14602`.)
-- search for `kvm port` on navi to get the command that manages the
-redirections.
-
+- [ ] Test connecting to the cluster with kubectl on my local machine (KVM host)
+- [ ] Test the Kubectl Dashboard on my local machine (KM host) with instructions on my README.md
 
 ### Install Prometheus and Grafana on the cluster:
 
