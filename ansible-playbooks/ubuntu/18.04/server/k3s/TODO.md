@@ -1,8 +1,5 @@
 ## NEXT STEPS
 
-- [ ] Test connecting to the cluster with kubectl on my local machine (KVM host)
-- [ ] Test the Kubectl Dashboard on my local machine (KM host) with instructions on my README.md
-
 ### Install Prometheus and Grafana on the cluster:
 
 - [ ] Through
@@ -11,6 +8,8 @@
 ---
 
 ## FUTURE ENHANCEMENTS
+
+- Install rio
 
 - Install openfaas
 
