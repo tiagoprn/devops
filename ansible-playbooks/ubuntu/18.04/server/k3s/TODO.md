@@ -1,17 +1,17 @@
 ## NEXT STEPS
 
-### Install Prometheus and Grafana on the cluster:
+- Install rio <https://rancher.com/blog/2019/introducing-rio/>
 
-- [ ] Through
-  [here](https://kauri.io/deploy-prometheus-and-grafana-to-monitor-a-kube/186a71b189864b9ebc4ef7c8a9f0a6b5/a)
 
 ---
 
 ## FUTURE ENHANCEMENTS
 
-- Install rio <https://rancher.com/blog/2019/introducing-rio/>
+- Install openfaas:
+  https://docs.openfaas.com/deployment/kubernetes/#b-deploy-with-helm-for-production-most-configurable
 
-- Install openfaas
+- [ ] Install Prometheus and Grafana on the cluster through
+  [here](https://kauri.io/deploy-prometheus-and-grafana-to-monitor-a-kube/186a71b189864b9ebc4ef7c8a9f0a6b5/a)
 
 - Add elasticsearch for logging:
   <https://www.digitalocean.com/community/tutorials/how-to-set-up-an-elasticsearch-fluentd-and-kibana-efk-logging-stack-on-kubernetes>
@@ -27,8 +27,6 @@ https://tech.paulcz.net/blog/creating-self-signed-certs-on-kubernetes/
 
 (validate with the instructions on README.md)
 
-- Install openfaas:
-  https://docs.openfaas.com/deployment/kubernetes/#b-deploy-with-helm-for-production-most-configurable
 
 - Install k9s
 
