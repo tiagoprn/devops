@@ -1,16 +1,11 @@
-## NEXT STEPS
-
-- Install rio <https://rancher.com/blog/2019/introducing-rio/>
-
-
----
-
 ## FUTURE ENHANCEMENTS
+
+- Install ArgoCD
 
 - Install openfaas:
   https://docs.openfaas.com/deployment/kubernetes/#b-deploy-with-helm-for-production-most-configurable
 
-- [ ] Install Prometheus and Grafana on the cluster through
+- Install Prometheus and Grafana on the cluster through
   [here](https://kauri.io/deploy-prometheus-and-grafana-to-monitor-a-kube/186a71b189864b9ebc4ef7c8a9f0a6b5/a)
 
 - Add elasticsearch for logging:
@@ -26,7 +21,6 @@ Create self-signed certificates to the cluster:
 https://tech.paulcz.net/blog/creating-self-signed-certs-on-kubernetes/
 
 (validate with the instructions on README.md)
-
 
 - Install k9s
 
