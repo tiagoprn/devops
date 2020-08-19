@@ -117,3 +117,5 @@ sudo lsof -p $(ps aux | fzf | awk '{print $2}')
 # set/change locale
  echo 'Enable at least en_US.UTF-8 and pt_BR.UTF-8, so that mosh can work.' && sleep 5 && sudo dpkg-reconfigure locales &&  echo 'Now restart the system or open a new terminal.'
 
+# see file/directory permissions
+stat -c '%A %a %n' <file-or-folder-path>
