@@ -13,6 +13,11 @@ the playbook) - run it on the VM to make sure it is working OK.
 
 - [x] Test with my android wireguard app on the smartphone
 
+- [ ] Update from this tutorial, it eases the setup for it to be peer-to-peer
+  and easily join new nodes:
+<https://starbeamrainbowlabs.com/blog/article.php?article=posts/410-cluster-4-wireguard-p2p-vpn.html>
+
+
 - [ ] Run the playbook on the vm as guest (make sure the guest can ping the
   linode guardian host).
 
