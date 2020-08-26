@@ -1,0 +1,5 @@
+% raspberry
+
+# get cpu temperature
+sudo /opt/vc/bin/vcgencmd measure_temp
+
