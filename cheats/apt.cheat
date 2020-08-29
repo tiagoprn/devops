@@ -1,7 +1,10 @@
-% apt debian ubuntu
+% apt debian ubuntu xargs
 
 # list installed package contents:
 sudo dpkg -L <package-name>
 
 # list all installed packages
 sudo su -c 'INSTALLED_PACKAGES_OUTPUT_FILE=/tmp/installed-apt-packages.$(hostname).$(date +%Y%m%d-%H%M%S-%N) && apt list --installed > $INSTALLED_PACKAGES_OUTPUT_FILE && echo "The list of installed packages is at: $INSTALLED_PACKAGES_OUTPUT_FILE"'
+
+# install packages from file
+xargs -a <(awk '! /^ *(#|$)/' <file-path>) -r -- sudo apt-get install -y
