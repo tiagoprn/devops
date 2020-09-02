@@ -1,0 +1,4 @@
+% entr
+
+# run command when file changes
+fd | entr <command>
