@@ -128,3 +128,6 @@ gunzip --stdout <gzipped-image-file> | sudo dd bs=4M of=<device-to-restore>
 
 # update font cache
 fc-cache -f -v
+
+# show process tree
+pstree -a -g

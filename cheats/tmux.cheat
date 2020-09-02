@@ -1,0 +1,4 @@
+% tmux
+
+# send a notification/message to all clients
+tmux list-clients -F "#{client_name}" | xargs -n1 -I{} tmux display-message -c {} "<message>"
