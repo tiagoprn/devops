@@ -1,0 +1,19 @@
+% firefox, chrome, chromium, kiosk
+
+# Firefox in Kiosk mode:
+firefox -kiosk URL
+
+# Firefox in Kiosk mode (private window):
+firefox -kiosk -private-window URL
+
+# Chrome in Kiosk mode:
+google-chrome -kiosk URL
+
+# Chrome in Kiosk mode (private window):
+google-chrome -kiosk -private-window URL
+
+# Chromium in Kiosk mode:
+chromium-browser -kiosk URL
+
+# Chromium in Kiosk mode (private window):
+chromium-browser -kiosk -private-window URL
