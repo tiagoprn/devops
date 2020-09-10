@@ -137,3 +137,6 @@ for i in *; do file "${i}"; done
 
 # pipe command output to vim
 <command> | vim -
+
+# loop run command x times
+for i in {1..<count>}; do <command>; done
