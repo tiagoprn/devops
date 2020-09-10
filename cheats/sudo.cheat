@@ -1,0 +1,7 @@
+% sudo
+
+# sudo run command preserving user environment variables
+sudo -E <command>
+
+# sudo edit a file preserving user environment variables (e.g. keeping $EDITOR)
+sudoedit <file>
