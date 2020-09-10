@@ -134,3 +134,6 @@ pstree -a -g
 
 # loop on all files of a directory (you can change the * for e.g. fd or find commands)
 for i in *; do file "${i}"; done
+
+# pipe command output to vim
+<command> | vim -
