@@ -65,3 +65,21 @@ git show <branch>:<file-path> | vim - -c 'set syntax=<file-type>'
 
 # get file contents from previous commit (e.g. file-type=python)
 git show <commit-hash>:<file-path> | vim - -c 'set syntax=<file-type>'
+
+# list local and remote branches
+git branch -a
+
+# list only remote branches
+git branch -r
+
+# Delete local branch
+git branch -D <name>
+
+# Delete remote branch
+git push origin <name> -d
+
+# Rename branch locally
+git branch -m <current-name> <new-name>
+
+# Rename remote branch
+git push origin :<current-name> <new-name>
