@@ -83,3 +83,18 @@ git branch -m <current-name> <new-name>
 
 # Rename remote branch
 git push origin :<current-name> <new-name>
+
+# Stash save
+git stash save "<message>"
+
+# Stash list
+git stash list
+
+# Stash pop
+git stash pop <stash-item-hash>
+
+# Interactively add parts (hunks) of changes
+git add -p
+
+# Use a commit from one branch on another
+git cherry-pick <commit-from-anywhere-on-your-repo>
