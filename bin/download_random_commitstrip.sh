@@ -2,6 +2,13 @@
 TIMESTAMP="$(date "+%Y%m%d.%H%M.%S")"
 DOWNLOAD_ROOT=$HOME/tmp
 
+CURRENT_SCREEN_RESOLUTION=$(xrandr | grep \* | cut -d' ' -f4 -)
+echo "resolution=$CURRENT_SCREEN_RESOLUTION"
+SCREEN_WIDTH=$(echo $CURRENT_SCREEN_RESOLUTION | cut -d 'x' -f 1)
+SCREEN_HEIGHT=$(echo $CURRENT_SCREEN_RESOLUTION | cut -d 'x' -f 2)
+echo "width=$SCREEN_WIDTH"
+echo "height=$SCREEN_HEIGHT"
+
 mkdir -p $DOWNLOAD_ROOT
 
 notify-send --urgency critical "Getting comic URL..."
@@ -16,8 +23,10 @@ IMAGE_WIDTH=$(identify -ping -format "%w" $DOWNLOAD_TO)
 IMAGE_HEIGHT=$(identify -ping -format "%h" $DOWNLOAD_TO)
 notify-send --urgency critical "$DOWNLOAD_TO width=$IMAGE_WIDTH px, height=$IMAGE_HEIGHT px"
 
-MAXIMUM_HEIGHT=700
-X_MAXIMUM_HEIGHT=x700
+MAXIMUM_HEIGHT=$SCREEN_HEIGHT
+X_MAXIMUM_HEIGHT=x$MAXIMUM_HEIGHT
+
+echo "X_MAXIMUM_HEIGHT=$X_MAXIMUM_HEIGHT"
 
 HEIGHT_SURPASSED=$(python3 -c "print('1' if $IMAGE_HEIGHT > $MAXIMUM_HEIGHT else '0')")
 notify-send --urgency critical "HEIGHT_SURPASSED_MAXIMUM=$HEIGHT_SURPASSED"
