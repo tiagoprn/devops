@@ -1,0 +1,4 @@
+% xorg
+
+# Get current screen resolution
+xrandr | grep \* | cut -d' ' -f4 -
