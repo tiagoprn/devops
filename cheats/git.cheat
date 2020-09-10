@@ -59,3 +59,9 @@ git branch --merged | egrep -v "(^\*|master|staging)"
 
 # Delete merged branches
 git branch --merged | egrep -v "(^\*|master|main|staging)" | xargs git branch -d
+
+# get file contents from other branch
+git show <branch>:<file-path> | vim - -c 'set syntax=<file-type>'
+
+# get file contents from previous commit (e.g. file-type=python)
+git show <commit-hash>:<file-path> | vim - -c 'set syntax=<file-type>'
