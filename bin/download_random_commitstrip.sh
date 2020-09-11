@@ -1,6 +1,9 @@
 #!/bin/bash
+
+MINUTES_TO_UPDATE=180
 TIMESTAMP="$(date "+%Y%m%d.%H%M.%S")"
 DOWNLOAD_ROOT=$HOME/tmp/commitstrip
+
 
 CURRENT_SCREEN_RESOLUTION=$(xrandr | grep \* | cut -d' ' -f4 -)
 echo "resolution=$CURRENT_SCREEN_RESOLUTION"
@@ -10,6 +13,15 @@ echo "width=$SCREEN_WIDTH"
 echo "height=$SCREEN_HEIGHT"
 
 mkdir -p $DOWNLOAD_ROOT
+
+
+lines=$(find $DOWNLOAD_ROOT -mmin -$MINUTES_TO_UPDATE -type f -exec ls {} + | wc -l)
+if [ $lines -eq 0 ]; then
+    echo "No file downloaded on the last $MINUTES_TO_UPDATE minutes, moving on..."
+else
+    echo "$lines file(s) downloaded on the last $MINUTES_TO_UPDATE minutes, not downloading... "
+    exit 0
+fi
 
 notify-send --urgency critical "Getting comic URL..."
 COMIC=$(wget -qO /dev/stdout http://www.commitstrip.com/?random=1 | grep uploads | grep src | grep -oE '\b(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]*[-A-Za-z0-9+&@#/%=~_|].jpg' | uniq)

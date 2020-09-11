@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# bash /storage/src/devops/bin/download_random_commitstrip.sh;
+bash /storage/src/devops/bin/download_random_commitstrip.sh;
 
 LOCK_DELAY=2
 
