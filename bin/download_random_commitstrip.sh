@@ -22,7 +22,11 @@ echo "FILENAME: $FILENAME"
 
 DOWNLOAD_TO=$DOWNLOAD_ROOT/$FILENAME
 
-# exit 1  # TODO: remove  after finishing up
+if [[ -f $DOWNLOAD_TO ]]
+then
+    echo "$DOWNLOAD_TO_ already exists, so it will not be downloaded."
+    exit 0
+fi
 
 notify-send --urgency critical "Downloading comic to $DOWNLOAD_TO ..."
 curl "$COMIC" -o $DOWNLOAD_TO

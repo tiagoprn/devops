@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 
-bash /storage/src/devops/bin/download_random_commitstrip.sh;
+# bash /storage/src/devops/bin/download_random_commitstrip.sh;
 
 LOCK_DELAY=2
 
-COMIC_PATH=$HOME/tmp;
+COMIC_FOLDER=$HOME/tmp/commitstrip;
 
 PARAM=(--insidecolor=00000000 --ringcolor=0000003e \
     --linecolor=00000000 --keyhlcolor=ffffff80 --ringvercolor=ffffff00 \
     --separatorcolor=22222260 --insidevercolor=ffffff1c \
     --ringwrongcolor=ffffff55 --insidewrongcolor=ffffff1c);
 
-COMIC_PATH=$(find $COMIC_PATH -name '*.jpg' | sort -r | head -n 1);
+# COMIC_PATH=$(find $COMIC_FOLDER -printf '%T+ %p\n' | sort -r | head -n 1 | awk '{ print $2}' | cut -d '/' -f 2);
+COMIC_PATH=$(find $COMIC_FOLDER -printf '%T+ %p\n' | sort -r | head -n 1 | awk '{ print $2}' );
+
+echo "COMIC_FOLDER: $COMIC_FOLDER"
+echo "COMIC_PATH: $COMIC_PATH"
 
 notify-send --urgency critical "Screen will be locked in $LOCK_DELAY seconds with comic $COMIC_PATH ...";
 
