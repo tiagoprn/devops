@@ -140,3 +140,6 @@ for i in *; do file "${i}"; done
 
 # loop run command x times
 for i in {1..<count>}; do <command>; done
+
+# find files created/modified on the last x minutes
+find <path> -mmin -<minutes> -type f -exec ls -lha {} +
