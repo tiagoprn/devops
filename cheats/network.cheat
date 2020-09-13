@@ -35,3 +35,9 @@ tcpdump -i <network-interface> -n -vvv -s 0 'dest <destination-ip> and tcp port 
 
 # Pretty print json output
 curl <url-returning-json> | python3 -m json.tool | pygmentize -l json
+
+# Get process that has a port open
+lsof -i :<port>
+
+# Get files opened by a process (includes port information)
+lsof -p <pid>
