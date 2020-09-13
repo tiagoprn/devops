@@ -143,3 +143,6 @@ for i in {1..<count>}; do <command>; done
 
 # find files created/modified on the last x minutes
 find <path> -mmin -<minutes> -type f -exec ls -lha {} +
+
+# get formatted date
+date +%Y%m%d-%H%M%S-%N
