@@ -149,3 +149,6 @@ date +%Y%m%d-%H%M%S-%N
 
 # get information on ssh key
 ssh-keygen -lf <ssh-key-file>
+
+# get file/directory octal permissions
+stat -c '%A %a %n' <path>
