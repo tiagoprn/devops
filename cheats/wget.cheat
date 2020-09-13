@@ -1,0 +1,4 @@
+% wget
+
+# recursive wget
+wget -k -r -p <website>

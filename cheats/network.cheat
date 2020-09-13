@@ -26,3 +26,9 @@ tcptraceroute <tcp-domain> <tcp-port>
 
 # Get your current public network interface
 ip -o -4 route show to default | awk '{print $5}'
+
+# Listen to connections coming from specific source
+tcpdump -i <network-interface> -n -vvv -s 0 'src <source-ip> and tcp port 80 and (((ip[2:2] - ((ip[0]&amp;0xf)&lt;&lt;2)) - ((tcp[12]&amp;0xf0)&gt;&gt;2)) != 0)' -w <output-file>
+
+# Listen to connections to specific destination
+tcpdump -i <network-interface> -n -vvv -s 0 'dest <destination-ip> and tcp port 80 and (((ip[2:2] - ((ip[0]&amp;0xf)&lt;&lt;2)) - ((tcp[12]&amp;0xf0)&gt;&gt;2)) != 0)' -w <output-file>
