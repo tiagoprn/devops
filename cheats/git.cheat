@@ -98,3 +98,6 @@ git add -p
 
 # Use a commit from one branch on another
 git cherry-pick <commit-from-anywhere-on-your-repo>
+
+# Apply global gitignore file
+git config --global core.excludesfile ~/.gitignore.global
