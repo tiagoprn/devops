@@ -1,0 +1,19 @@
+% mosh
+
+# Connect to a remote server
+mosh <username>@<remote-host>
+
+# Connect to a remote server with a specific identity (private key)
+mosh --ssh="ssh -i <private-key-file>" <username>@<remote-host>
+
+# Connect to a remote server using a specific port
+mosh --ssh="ssh -p <port>" <username>@<remote-host>
+
+# Run a command on a remote server
+mosh <remote-host> -- <command>
+
+# Select Mosh UDP port (useful when remote-host is behind a NAT)
+mosh -p <udp-port> <username>@<remote-host>
+
+# Usage when `mosh-server` binary is outside standard path
+mosh --server=<path-to-bin-mosh-server> <remote-host>
