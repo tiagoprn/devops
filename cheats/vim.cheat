@@ -7,10 +7,10 @@ vim --version
 vim <filename> +'normal!ggIztk'
 
 # script initialization example 02 - opens file with the current time and a line below ready for editing
-vim +'normal Go' +'r!date' <file> +'normal!o-  '"
+vim +'normal Go' +'r!date' <file> +'normal!o-  '
 
 # pipe command output to vim
-<command> | vim -'
+<command> | vim -
 
 # script initialization example 03 - run something before vimrc
 vim --cmd 'echo "This runs before .vimrc"' -c ':call UltiSnips#ListSnippets()' -c '<Esc>' -c ':q!'
