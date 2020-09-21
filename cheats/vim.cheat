@@ -18,3 +18,5 @@ vim --cmd 'echo "This runs before .vimrc"' -c ':call UltiSnips#ListSnippets()' -
 # script initialization example 04 - automate plugin install
 vim +PluginInstall +qall
 
+# generate list of mappings in a file
+vim +':redir! > <mappings-file>' +':silent verbose map' +':redir END' +':qa!'
