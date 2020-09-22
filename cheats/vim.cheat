@@ -20,3 +20,6 @@ vim +PluginInstall +qall
 
 # generate list of mappings in a file
 vim +':redir! > <mappings-file>' +':silent verbose map' +':redir END' +':qa!'
+
+# generate a file report of the vim startup time (useful to detect slow plugins on initialization)
+vim --startuptime <report-file-path>
