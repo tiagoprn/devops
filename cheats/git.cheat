@@ -101,3 +101,8 @@ git cherry-pick <commit-from-anywhere-on-your-repo>
 
 # Apply global gitignore file
 git config --global core.excludesfile ~/.gitignore.global
+
+# Revert file/directory to previous commit
+git checkout <commit-hash> -- <file-or-directory>
+
+
