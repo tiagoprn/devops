@@ -1,0 +1,20 @@
+% rclone
+
+# List buckets on remote:
+rclone lsd $(cat ~/.config/rclone/rclone.conf | grep -e '^\[' | tr '[' ' ' | tr ']' ':'  | fzf)
+
+# List files on bucket:
+export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | grep -e '^\[' | tr '[' ' ' | tr ']' ':'  | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone ls "$RCLONE_REMOTE$RCLONE_BUCKET"
+
+# Copy remote to local
+export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | grep -e '^\[' | tr '[' ' ' | tr ']' ':'  | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone copy "$RCLONE_REMOTE$RCLONE_BUCKET" <local-path>
+
+# Sync remote to local
+export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | grep -e '^\[' | tr '[' ' ' | tr ']' ':'  | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone sync "$RCLONE_REMOTE$RCLONE_BUCKET" <local-path>
+
+# Copy local to remote
+export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | grep -e '^\[' | tr '[' ' ' | tr ']' ':'  | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone copy <local-path> "$RCLONE_REMOTE$RCLONE_BUCKET"
+
+# Sync local to remote
+export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | grep -e '^\[' | tr '[' ' ' | tr ']' ':'  | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone sync <local-path> "$RCLONE_REMOTE$RCLONE_BUCKET"
+
