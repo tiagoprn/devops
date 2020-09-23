@@ -1,7 +1,7 @@
 % rclone
 
 # List buckets on remote:
-rclone lsd $(cat ~/.config/rclone/rclone.conf | grep -e '^\[' | tr '[' ' ' | tr ']' ':'  | fzf)
+rclone lsd $(cat ~/.config/rclone/rclone.conf | grep -e '^\[' | tr '[' ' ' | tr ']' ':'  | fzf ) | awk '{print $5, $2, $3}'
 
 # List files on bucket:
 export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | grep -e '^\[' | tr '[' ' ' | tr ']' ':'  | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone ls "$RCLONE_REMOTE$RCLONE_BUCKET"
