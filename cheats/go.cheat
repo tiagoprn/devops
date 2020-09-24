@@ -1,0 +1,4 @@
+% go, golang
+
+# Check current go settings
+go env
