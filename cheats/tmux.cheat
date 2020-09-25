@@ -5,3 +5,6 @@ tmux list-clients -F "#{client_name}" | xargs -n1 -I{} tmux display-message -c {
 
 # run command on popup window
 tmux popup -w 75% -h 75% -R '<command>'
+
+# create new or reattach to session
+tmux attach -t <session-name> || tmux new -s <session-name>
