@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: upgrade to tmux 3.x, test on kvm with ubuntu 18.
+
 # Script for installing tmux on systems where you don't have root access.
 # tmux will be installed in $HOME/local/bin.
 # It's assumed that wget and a C/C++ compiler are installed.
@@ -7,8 +9,11 @@
 # exit on error
 set -e
 
-TMUX_VERSION=2.9
-LIBEVENT_VERSION=2.1.8
+# install pre-requisite package
+sudo apt install -y libssl-dev
+
+TMUX_VERSION=3.1b
+LIBEVENT_VERSION=2.1.12
 NCURSES_VERSION=6.1
 
 # create our directories
