@@ -28,4 +28,4 @@ journalctl --user -f -u <name>
 systemctl --user stop <name>.timer
 
 # Disable timer:
-systemctl --user disable <name>.timer && systemctl --user daemon-reload && echo -e 'Now you must manually start the timer.'
+systemctl --user disable <name>.timer && systemctl --user daemon-reload
