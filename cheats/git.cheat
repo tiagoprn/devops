@@ -105,4 +105,8 @@ git config --global core.excludesfile ~/.gitignore.global
 # Revert file/directory to previous commit
 git checkout <commit-hash> -- <file-or-directory>
 
+# Update multiple repositories
+export REPOS='<repositories-separated-with-space>' && export UPDATE_BRANCH=<branch-name> && /storage/src/devops/bin/update_repos.sh
+
+
 
