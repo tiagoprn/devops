@@ -132,12 +132,6 @@ fc-cache -f -v
 # show process tree
 pstree -a -g
 
-# loop on all files of a directory (you can change the * for e.g. fd or find commands)
-for i in *; do file "${i}"; done
-
-# loop run command x times
-for i in {1..<count>}; do <command>; done
-
 # find files created/modified on the last x minutes
 find <path> -mmin -<minutes> -type f -exec ls -lha {} +
 

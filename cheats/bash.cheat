@@ -1,0 +1,11 @@
+% bash
+
+# loop on all files of a directory (you can change the * for e.g. fd or find commands)
+for i in *; do file "${i}"; done
+
+# loop run command x times
+for i in {1..<count>}; do <command>; done
+
+# loop on string of words
+PHRASE='<words>' && for word in $PHRASE; do echo $word; <command>; done
+
