@@ -41,3 +41,9 @@ lsof -i :<port>
 
 # Get files opened by a process (includes port information)
 lsof -p <pid>
+
+# Get hostname's IP adress
+nslookup <hostname>
+
+# Get IP address' hostname
+nslookup <ip>
