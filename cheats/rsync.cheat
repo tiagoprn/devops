@@ -1,16 +1,25 @@
 % rsync
 
-# simple (remove --dry-run to disable the preview)
-time rsync --dry-run -rchzPvi --progress --delete --delete-excluded --sparse <source> <destination>
+# sync file from local to remote host:
+time rsync --info=progress2 <local_file> <remote_user>@<remote_host>:<remote_directory>
 
-# standard (remove --dry-run to disable the preview)
-time rsync --dry-run -rchzPvi --progress --sparse <source> <destination>
+# sync file from remote host to local:
+time rsync --info=progress2 <remote_host>:<remote_file> <local_directory>
 
-# no deletion (remove --dry-run to disable the preview)
-time rsync --dry-run -ah --info=progress2 --sparse <source> <destination>
+# sync file in [a]rchive (to preserve attributes) from local to a remote, and compressed ([z]ipped) mode with [v]erbose and [h]uman-readable [p]rogress:
+time rsync --info=progress2 -azvhP <local_file> <remote_user>@<remote_host>:<remote_directory>
 
-# simple - local to remote using ssh (remove --dry-run to disable the preview)
-time rsync --dry-run -rchzPvi --progress --delete --delete-excluded --sparse --rsh='ssh' <local-path-with-trailing-slash> <remote-user>@<remote-host>:<remote-path-with-trailing-slash>
+# sync a directory and all its children from a remote to local:
+time rsync --info=progress2 -r <remote_user>@<remote_host>:<remote_directory> <local_directory>
 
-# simple - remote to local using ssh (remove --dry-run to disable the preview)
-time rsync --dry-run -rchzPvi --progress --delete --delete-excluded --sparse --rsh='ssh' <remote-user>@<remote-host>:<remote-path-with-trailing-slash> <local-path-with-trailing-slash>
+# sync directory contents (but not the directory itself) from a remote to local:
+time rsync --info=progress2 -r <remote_user>@<remote_host>:<remote_directory>/ <local_directory>
+
+# sync a directory [r]ecursively from a remote to local, in [a]rchive to preserve attributes, resolving contained soft[l]inks , and ignoring already transferred files [u]nless newer:
+time rsync --info=progress2 -rauL <remote_user>@<remote_host>:<remote_file> <local_directory>
+
+# sync file over ssh from a remote to local, and delete local files that do not exist on remote host:
+time rsync --info=progress2 -e ssh --delete <remote_user>@<remote_host>:<remote_file> <local_file>
+
+
+
