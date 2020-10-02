@@ -21,5 +21,6 @@ time rsync --info=progress2 -rauL <remote_user>@<remote_host>:<remote_file> <loc
 # sync file over ssh from a remote to local, and delete local files that do not exist on remote host:
 time rsync --info=progress2 -e ssh --delete <remote_user>@<remote_host>:<remote_file> <local_file>
 
-
+# sync directory and all its children over ssh from local to a remote:
+time rsync --info=progress2 -r -e ssh <local_directory> <remote_user>@<remote_host>:<remote_directory>/
 
