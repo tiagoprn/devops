@@ -1,0 +1,16 @@
+% rsync
+
+# simple (remove --dry-run to disable the preview)
+time rsync --dry-run -rchzPvi --progress --delete --delete-excluded --sparse <source> <destination>
+
+# standard (remove --dry-run to disable the preview)
+time rsync --dry-run -rchzPvi --progress --sparse <source> <destination>
+
+# no deletion (remove --dry-run to disable the preview)
+time rsync --dry-run -ah --info=progress2 --sparse <source> <destination>
+
+# simple - local to remote using ssh (remove --dry-run to disable the preview)
+time rsync --dry-run -rchzPvi --progress --delete --delete-excluded --sparse --rsh='ssh' <local-path-with-trailing-slash> <remote-user>@<remote-host>:<remote-path-with-trailing-slash>
+
+# simple - remote to local using ssh (remove --dry-run to disable the preview)
+time rsync --dry-run -rchzPvi --progress --delete --delete-excluded --sparse --rsh='ssh' <remote-user>@<remote-host>:<remote-path-with-trailing-slash> <local-path-with-trailing-slash>
