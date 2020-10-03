@@ -1,4 +1,7 @@
 % entr
 
 # run command when file changes
-fd | entr <command>
+echo <file> | entr -p <command>
+
+# run command when any file on current directory changes
+while true; do command ls . | entr -dcp <command>; done
