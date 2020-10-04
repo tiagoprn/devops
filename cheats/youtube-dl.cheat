@@ -13,4 +13,4 @@ docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtub
 docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -f <format> "<url>"
 
 # Download all videos from a playlist
-docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -cit  "<playlist-url>"
+docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -ci -o "%(title)s-%(id)s.%(ext)s" "<playlist-url>"
