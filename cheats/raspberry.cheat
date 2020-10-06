@@ -3,3 +3,14 @@
 # get cpu temperature
 sudo /opt/vc/bin/vcgencmd measure_temp
 
+# configuration
+raspi-config
+
+# enable ssh
+sudo touch /boot/ssh
+
+# connect to wifi network
+sudo cp -farv /storage/src/devops/raspberry/conf/wpa_supplicant.conf /boot
+
+# change wifi network
+sudoedit /etc/wpa_supplicant/wpa_supplicant.conf
