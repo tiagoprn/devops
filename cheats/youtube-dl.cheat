@@ -3,11 +3,14 @@
 # Download container
 docker pull wernight/youtube-dl
 
-# Download mp3 to current directory (supported audio formats are “best”, “aac”, “vorbis”, “mp3”, “m4a”, “opus”, or “wav”)
-docker run --rm --user $(id -u):$(id -g) -v $PWD:/downloads wernight/youtube-dl -x --audio-format <format> --embed-thumbnail "<url>"
+# Download mp3 (supported audio formats are “best”, “aac”, “vorbis”, “mp3”, “m4a”, “opus”, or “wav”)
+docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -x --audio-format <format> --embed-thumbnail "<url>"
 
 # List available format types
-docker run --rm --user $(id -u):$(id -g) -v $PWD:/downloads wernight/youtube-dl -F "<url>"
+docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -F "<url>"
 
 # Download with format type (e.g best_id, video_id+audio_id)
-docker run --rm --user $(id -u):$(id -g) -v $PWD:/downloads wernight/youtube-dl -f <format> "<url>"
+docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -f <format> "<url>"
+
+# Download all videos from a playlist
+docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -ci -o "%(title)s-%(id)s.%(ext)s" "<playlist-url>"

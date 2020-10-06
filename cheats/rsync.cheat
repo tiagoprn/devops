@@ -1,5 +1,8 @@
 % rsync
 
+# sync 2 directories locally in [a]rchive (to preserve attributes), and compressed ([z]ipped) mode with [v]erbose and [h]uman-readable [p]rogress:
+time rsync --info=progress2 -azvhP -r <source-dir>/ <destination-dir>/
+
 # sync file from local to remote host:
 time rsync --info=progress2 <local_file> <remote_user>@<remote_host>:<remote_directory>
 
