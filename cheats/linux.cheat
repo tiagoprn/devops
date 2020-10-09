@@ -48,8 +48,8 @@ gpg --decrypt <file> > <file>.decrypted && echo -e '\n --- \nDecrypted as "<file
 # run indefinitely/infinitely in a loop
 while :; do sleep 59; echo -n ' ' >&2; done &
 
-# list partitions mountpoint status
-lsblk | grep -v loop
+# show information regarding all partitions on all disks
+lsblk -f | grep -v loop
 
 # base64 encode
 echo -n "<text>" | base64 -w 0
