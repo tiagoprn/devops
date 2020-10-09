@@ -143,3 +143,12 @@ ssh-keygen -lf <ssh-key-file>
 
 # get file/directory octal permissions
 stat -c '%A %a %n' <path>
+
+# single character substitution on input
+tr '<original_character>' '<new_character>'
+
+# delete character from input
+tr -d '<character>'
+
+# columnate command stdout
+'<command>' | column -t
