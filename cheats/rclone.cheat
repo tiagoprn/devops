@@ -1,14 +1,14 @@
 % rclone
 
 # List buckets on remote:
-rclone lsd $(cat ~/.config/rclone/rclone.conf | rg '^\[' | tr -d '[' | tr ']' ':' | fzf) | awk '{print $5, $2, $3}'
+rclone lsd $(cat ~/.config/rclone/rclone.conf | rg '^\\[' | tr -d '[' | tr ']' ':' | fzf) | awk '{print $5, $2, $3}'
 
 # List files on bucket:
-export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | rg '^\[' | tr -d '[' | tr ']' ':' | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone ls "$RCLONE_REMOTE$RCLONE_BUCKET"
+export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | rg '^\\[' | tr -d '[' | tr ']' ':' | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone ls "$RCLONE_REMOTE$RCLONE_BUCKET"
 
 # Sync remote to local
-export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | rg '^\[' | tr -d '[' | tr ']' ':' | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone sync "$RCLONE_REMOTE$RCLONE_BUCKET" <local-path>
+export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | rg '^\\[' | tr -d '[' | tr ']' ':' | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone sync "$RCLONE_REMOTE$RCLONE_BUCKET" <local-path>
 
 # Sync local to remote
-export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | rg '^\[' | tr -d '[' | tr ']' ':' | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone sync <local-path> "$RCLONE_REMOTE$RCLONE_BUCKET"
+export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | rg '^\\[' | tr -d '[' | tr ']' ':' | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone sync <local-path> "$RCLONE_REMOTE$RCLONE_BUCKET"
 
