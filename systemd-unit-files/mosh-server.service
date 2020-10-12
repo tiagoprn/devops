@@ -1,0 +1,11 @@
+[Unit]
+Description=Mosh Server
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/mosh-server
+# User=someUser
+
+[Install]
+WantedBy=multi-user.target
