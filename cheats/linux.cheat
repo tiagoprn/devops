@@ -129,8 +129,11 @@ sudo dd bs=4M if=<device-to-backup> | gzip > <gzipped-image-file>
 # restore a device from a gzipped dd image:
 gunzip --stdout <gzipped-image-file> | sudo dd bs=4M of=<device-to-restore>
 
-# update font cache
+# update fonts cache
 fc-cache -f -v
+
+# list fonts
+fc-list
 
 # show process tree
 pstree -a -g
