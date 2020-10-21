@@ -158,3 +158,6 @@ tr -d '<character>'
 
 # columnate command stdout
 '<command>' | column -t
+
+# interactive cd into directory
+cd $(tree -dfl -p | fzf | awk '{print $NF}')
