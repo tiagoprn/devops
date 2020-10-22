@@ -4,7 +4,9 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
+Type=simple
 ExecStart=/usr/bin/mosh-server
+Restart=always
 # User=someUser
 
 [Install]
