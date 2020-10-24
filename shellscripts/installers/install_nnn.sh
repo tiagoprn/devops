@@ -16,7 +16,8 @@ VERSION=3.4
 
 # wget -O $INSTALLER_PATH/nnn-${VERSION}.tar.gz https://github.com/jarun/nnn/archive/v${VERSION}.tar.gz
 
-cd /opt/installers/nnn && tar xfzv nnn-${VERSION}.tar.gz
+# cd /opt/installers/nnn && tar xfzv nnn-${VERSION}.tar.gz
 
+cd /opt/installers/nnn/nnn-${VERSION} && make
 
 echo "nnn sucessfully installed at ."
