@@ -1,0 +1,4 @@
+% zettels
+
+# list zettels
+for i in <zettels-path>; do echo "${i}"; cat "${i}" | head -n 3 | grep -v 'created'; echo '---'; done
