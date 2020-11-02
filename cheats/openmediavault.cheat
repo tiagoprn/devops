@@ -1,0 +1,9 @@
+% openmediavault
+
+# cli management (change users, between others)
+sudo su && omv-firstaid
+
+# unlocked banned admin account after logi attemps
+pam_tally2 -u admin --reset
+
+
