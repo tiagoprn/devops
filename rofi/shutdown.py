@@ -8,22 +8,25 @@ import sys
 from rofi import Rofi
 
 CURRENT_SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
-LOG_FORMAT = ('[%(asctime)s PID %(process)s '
-              '%(filename)s:%(lineno)s - %(funcName)s()] '
-              '%(levelname)s -> \n'
-              '%(message)s\n')
+LOG_FORMAT = (
+    '[%(asctime)s PID %(process)s '
+    '%(filename)s:%(lineno)s - %(funcName)s()] '
+    '%(levelname)s -> \n'
+    '%(message)s\n'
+)
 # Configure the logging to console. Works from python 3.3+
 logging.basicConfig(
     format=LOG_FORMAT,
     level=logging.INFO,
-    handlers=[logging.StreamHandler(sys.stdout)]
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 
 ACTIONS = [
+    ('lock screen', '/storage/src/devops/bin/lock_with_comic.sh',),
     ('switch user', 'dm-tool switch-to-greeter',),
     ('logoff', 'i3-msg exit',),
     ('shutdown', 'sudo /sbin/shutdown -h now',),
-    ('restart', 'sudo /sbin/shutdown -r now',)
+    ('restart', 'sudo /sbin/shutdown -r now',),
 ]
 
 
@@ -32,8 +35,7 @@ if __name__ == "__main__":
 
     rofi_client = Rofi()
     selected, keyboard_key = rofi_client.select(
-        'Choose your destiny',
-        actions_list
+        'CHOOSE YOUR DESTINY', actions_list
     )
     logging.info(f'keyboard_key pressed={keyboard_key}')
 
