@@ -108,6 +108,6 @@ git checkout <commit-hash> -- <file-or-directory>
 # Update multiple repositories
 export REPOS='<repositories-separated-with-space>' && export UPDATE_BRANCH=<branch-name> && /storage/src/devops/bin/update_repos.sh
 
-# Select commit (pipe it manually to clipboard with `| cb` if you need)
+# Select commit hash (pipe it manually to clipboard with `| cb` if you need)
 git log --date=iso --pretty=format:'%Cgreen(%ad) %Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' | fzf | awk '{print $4}'
 
