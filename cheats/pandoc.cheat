@@ -1,0 +1,5 @@
+% pandoc
+
+# from markdown (output-file-path-with-extension: pdf, epub, doc, docx, ... ; embedded-code-language: javascript, python, ...)
+pandoc <markdown-file-path> -o <output-file-path-with-extension> --table-of-contents --latex-engine=xelatex --from=markdown --number-sections --indented-code-classes=<embedded-code-language> --highlight-style=monochrome -V mainfont="Ubuntu" -V documentclass=report -V papersize=A4 -V geometry:margin=1cm
+
