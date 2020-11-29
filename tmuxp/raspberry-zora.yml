@@ -5,6 +5,6 @@ windows:
     shell_command_before:
       - sleep 3
     panes:
-      - watch -n 1 -t -c "date '+%H:%M:%S' | toilet -f smblock --filter border:metal && date '+%A %Y/%m/%d'"
+      - watch -n 1 -t -c "date '+%H:%M:%S' | toilet -f future --filter border && date '+%A %Y/%m/%d'"
       - watch -n 10 -t -c 'sudo /opt/vc/bin/vcgencmd measure_temp | cut -d "=" -f 2 | figlet '
       - watch -n 300 -t -c 'echo "Internet connection test:" && ~/.local/bin/speedtest-cli --simple && echo "(finished at $(date "+%H:%M:%S"))"'
