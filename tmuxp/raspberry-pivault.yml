@@ -1,4 +1,4 @@
-session_name: raspberry-default
+session_name: raspberry-pivault-default
 windows:
   - window_name: main
     layout: even-vertical
