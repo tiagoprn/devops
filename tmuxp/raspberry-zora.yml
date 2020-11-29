@@ -6,5 +6,5 @@ windows:
       - sleep 3
     panes:
       - watch -n 300 -c 'curl -s "wttr.in/{Sao_Paulo,Osasco,Erechim}?format=4"'
-      - watch -n 1 -c 'tty-clock -b -c -s -f "%A, %d %B %Y"'
+      - watch -n 1 -c "date '+%H:%M:%S' | figlet && date '+%A %Y/%m/%d'"
       - watch -n 10 -c 'sudo /opt/vc/bin/vcgencmd measure_temp | cut -d "=" -f 2 | figlet '
