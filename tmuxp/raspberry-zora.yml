@@ -6,7 +6,7 @@ windows:
       - sleep 1
     panes:
       - watch -n 1 -t -c "date '+%H:%M:%S' | toilet -f future --filter border && date '+%A %Y/%m/%d'"
-  - window_name: main
+  - window_name: other
     layout: even-vertical
     shell_command_before:
       - sleep 1
