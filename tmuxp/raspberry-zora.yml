@@ -13,3 +13,4 @@ windows:
       - sleep 1
     panes:
       - tty-clock -C 7 -B -b -c -s -x -n -f '%A, %d %B %Y'
+    focus: True
