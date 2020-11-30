@@ -3,8 +3,13 @@ windows:
   - window_name: main
     layout: even-vertical
     shell_command_before:
-      - sleep 3
+      - sleep 1
     panes:
       - watch -n 1 -t -c "date '+%H:%M:%S' | toilet -f future --filter border && date '+%A %Y/%m/%d'"
+  - window_name: main
+    layout: even-vertical
+    shell_command_before:
+      - sleep 1
+    panes:
       - watch -n 10 -t -c 'echo "CPU Temperature:" && sudo /opt/vc/bin/vcgencmd measure_temp | cut -d "=" -f 2 | toilet -f future --filter border'
       - watch -n 300 -t -c 'echo "Internet connection test:" && ~/.local/bin/speedtest-cli --simple || true && echo "(finished at $(date "+%H:%M:%S"))"'
