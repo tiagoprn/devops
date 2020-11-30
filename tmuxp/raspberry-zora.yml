@@ -12,5 +12,4 @@ windows:
     shell_command_before:
       - sleep 1
     panes:
-      # - watch -n 1 -t -c "date '+%H:%M:%S' | toilet -f future --filter border && date '+%A %Y/%m/%d'"
       - tty-clock -C 7 -B -b -c -s -x -n -f '%A, %d %B %Y'
