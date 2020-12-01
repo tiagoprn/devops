@@ -33,8 +33,11 @@ tcpdump -i <network-interface> -n -vvv -s 0 'src <source-ip> and tcp port 80 and
 # Listen to connections to specific destination
 tcpdump -i <network-interface> -n -vvv -s 0 'dest <destination-ip> and tcp port 80 and (((ip[2:2] - ((ip[0]&amp;0xf)&lt;&lt;2)) - ((tcp[12]&amp;0xf0)&gt;&gt;2)) != 0)' -w <output-file>
 
-# Pretty print json output
+# GET Pretty print json output
 curl <url-returning-json> | python3 -m json.tool | pygmentize -l json
+
+# POST Pretty print json output
+curl -i -H "Content-Type: application/json;charset=utf-8" -X POST -d '<json_data>' <endpoint> | python3 -m json.tool | pygmentize -l json
 
 # Get process that has a port open
 lsof -i :<port>
