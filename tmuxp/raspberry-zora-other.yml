@@ -1,4 +1,4 @@
-session_name: raspberry-zora-default
+session_name: raspberry-zora-other
 windows:
   - window_name: other
     layout: even-vertical
@@ -7,10 +7,4 @@ windows:
     panes:
       - watch -n 10 -t -c 'echo "CPU Temperature:" && sudo /opt/vc/bin/vcgencmd measure_temp | cut -d "=" -f 2 | toilet -f future --filter border'
       - watch -n 300 -t -c 'echo "Internet connection test:" && ~/.local/bin/speedtest-cli --simple || true && echo "(finished at $(date "+%H:%M:%S"))"'
-  - window_name: main
-    layout: even-vertical
-    shell_command_before:
-      - sleep 1
-    panes:
-      - tty-clock -C 7 -B -b -c -s -x -n -f '%A, %d %B %Y'
     focus: True
