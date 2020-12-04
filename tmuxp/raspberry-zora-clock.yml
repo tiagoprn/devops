@@ -5,5 +5,5 @@ windows:
     shell_command_before:
       - sleep 1
     panes:
-      - tty-clock -C 7 -B -b -c -s -x -n -f '%A, %d %B %Y'
+      - tty-clock -C 7 -B -b -c -s -n -f '%A, %d %B %Y'
     focus: True
