@@ -63,7 +63,8 @@ def main():
 
     if not os.path.exists(NOTES_PATH):
         os.mkdir(NOTES_PATH)
-        display_help(head_txt='Welcome to naivecalendar')
+
+    display_help(head_txt='Welcome to naivecalendar')
 
     if shutil.which('rofi') == None:
         print('please install rofi')
