@@ -8,5 +8,6 @@ if [ -f $SNIPS/$FILE ]; then
 	DATA=$([ -x "$SNIPS/$FILE" ] && bash "$SNIPS/$FILE" || head --bytes=-1 $SNIPS/$FILE)
 	printf "$DATA" | xclip -selection clipboard
 	printf "$DATA" | xclip -selection primary
+	sleep 1
 	xdotool key shift+Insert
 fi
