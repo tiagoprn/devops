@@ -1,0 +1,12 @@
+% sxiv, images
+
+# open image viewer on directory
+sxiv -r -q -o <directory-path>
+
+# open image viewer on directory, most recent images first (right mouse click to view images on grid, m to mark an image)
+sxiv -r -q -o $(ls -t --color=never <directory-path>/*)
+
+# open image viewer on current directory and set marked image as wallpaper (right mouse click to view images on grid, m to mark an image)
+sxiv -r -q -o <directory-path> | xargs feh --bg-scale
+
+
