@@ -18,6 +18,9 @@ id -g
 # figlet
 echo "$(hostname)" | figlet -cptk
 
+# toilet (alternative to figlet)
+toilet -f mono12 -F metal "<text>"
+
 # do not show blank lines on output
 grep '\S'
 
