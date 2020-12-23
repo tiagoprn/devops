@@ -60,6 +60,20 @@ if __name__ == "__main__":
         selected_text = shortcuts_list[selected]
         logging.info(f'Selected text is: {selected_text}')
         vim_command = selected_text.split('=>')[1].strip()
+
+        try:
+            if vim_command.index(':') >= 0:
+                position = vim_command.index(':')
+                vim_command = vim_command[position + 1 :]
+                try:
+                    if vim_command.index('<') >= 0:
+                        position = vim_command.index('<')
+                        vim_command = vim_command[:position]
+                except:
+                    pass
+        except:
+            pass
+
         cmd = 'echo "' + vim_command + '" | tr -d \'\\n\''
         cmd = cmd + ' | xclip -selection clipboard'
         subprocess.check_call(cmd, shell=True)
