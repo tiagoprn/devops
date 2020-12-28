@@ -1,0 +1,19 @@
+% gocryptfs
+
+# Initialize an encrypted directory:
+gocryptfs -init <directory-path>
+
+# Mount an encrypted directory:
+gocryptfs <encrypted-directory-path> <decrypted-directory-path>
+
+# Umount a decrypted directory:
+fusermount -u <decrypted-directory-path>
+
+# Initialize an encrypted directory from a existing decrypted one (reverse - useful e.g. for backups):
+gocryptfs -reverse -init <directory-path>
+
+# Mount the encrypted directory from the existing decrypted one (reverse - useful e.g. for backups):
+gocryptfs -reverse <decrypted-directory-path> <encrypted-directory-path>
+
+# Umount an encrypted directory:
+fusermount -u <encrypted-directory-path>
