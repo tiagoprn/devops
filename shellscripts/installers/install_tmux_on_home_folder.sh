@@ -15,7 +15,7 @@ sudo apt install -y libssl-dev
 TMUX_VERSION=3.2
 # set below to a blank string if the version is not RC
 IS_RC='-rc'
-RC_VERSION='-rc2'
+RC_VERSION='-rc3'
 
 LIBEVENT_VERSION=2.1.12
 NCURSES_VERSION=6.1
