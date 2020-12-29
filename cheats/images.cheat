@@ -9,4 +9,5 @@ sxiv -r -q -o $(ls -t --color=never <directory-path>/*)
 # open image viewer on current directory and set marked image as wallpaper (right mouse click to view images on grid, m to mark an image)
 sxiv -r -q -o <directory-path> | xargs feh --bg-scale
 
-
+# convert image from webp to png (must have package "webp" installed with apt)
+dwebp <webp-file-path> -o <png-file-path>
