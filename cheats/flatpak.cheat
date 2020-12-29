@@ -1,0 +1,25 @@
+% flatpak
+
+# install
+apt install flatpak
+
+# add flathub repo
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# install qutebrowser
+flatpak install --user https://flathub.org/repo/appstream/org.qutebrowser.qutebrowser.flatpakref
+
+# run qutebrowser (allowing the flatpak to access the home filesystem - which by default it does not, because of the flatpak sandbox)
+flatpak run --filesystem=host org.qutebrowser.qutebrowser -B ~/.local/share/qutebrowser/personal
+
+# update qutebrowser
+flatpak --user update org.qutebrowser.qutebrowser
+
+# uninstall qutebrowser
+flatpak --user uninstall org.qutebrowser.qutebrowser
+
+# install flameshot
+$ flatpak install flathub org.flameshot.Flameshot
+
+# run flameshot
+$ flatpak run --filesystem=host org.flameshot.Flameshot
