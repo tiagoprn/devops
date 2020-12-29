@@ -6,6 +6,9 @@ apt install flatpak
 # add flathub repo
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
+# list installed flatpaks
+flatpak list
+
 # install qutebrowser
 flatpak install --user https://flathub.org/repo/appstream/org.qutebrowser.qutebrowser.flatpakref
 
