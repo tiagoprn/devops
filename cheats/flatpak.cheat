@@ -22,7 +22,10 @@ flatpak --user update org.qutebrowser.qutebrowser
 flatpak --user uninstall org.qutebrowser.qutebrowser
 
 # install flameshot
-$ flatpak install flathub org.flameshot.Flameshot
+flatpak install flathub org.flameshot.Flameshot
 
 # run flameshot
-$ flatpak run --filesystem=host org.flameshot.Flameshot
+flatpak run --filesystem=host org.flameshot.Flameshot
+
+# run telegram
+flatpak run --filesystem=host org.telegram.desktop
