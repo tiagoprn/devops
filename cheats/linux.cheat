@@ -171,3 +171,5 @@ cd $(tree -dfl -p | fzf | awk '{print $NF}')
 # list x biggest files on a directory
 du -h | grep -v -e '\.$' | sort -hr | head -n <number-of-files>
 
+# echoes all pressed keys on screen
+screenkey &

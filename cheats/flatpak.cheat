@@ -24,8 +24,5 @@ flatpak --user uninstall org.qutebrowser.qutebrowser
 # install flameshot
 flatpak install flathub org.flameshot.Flameshot
 
-# run flameshot
-flatpak run --filesystem=host org.flameshot.Flameshot
-
-# run telegram
-flatpak run --filesystem=host org.telegram.desktop
+# run flatpak from menu
+flatpak run --filesystem=host $(flatpak list | cut -f 2 | grep '^org' | fzf)
