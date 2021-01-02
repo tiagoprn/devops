@@ -116,8 +116,11 @@ def get_last_paste():
     rofi_records = get_rofi_records()
     # rofi_records.reverse()
 
-    selected_paste = rofi_records[-1]
-    selected_paste_timestamp = selected_paste[-24:]
+    try:
+        selected_paste = rofi_records[-1]
+        selected_paste_timestamp = selected_paste[-24:]
+    except:
+        return ''
 
     logger.info(f'last_paste_timestamp={selected_paste_timestamp}')
 
