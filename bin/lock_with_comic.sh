@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+
+OS_NAME=$(cat /etc/os-release  | grep '^ID=' | cut -d '=' -f 2)
+if [ "$OS_NAME" == "raspbian" ]; then
+    dm-tool lock
+    exit 0
+fi
+
 bash /storage/src/devops/bin/download_random_commitstrip.sh;
 
 LOCK_DELAY=2
