@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 BAT=$(upower -e | grep BAT)
 PERCENTAGE=$(upower -i $BAT | grep -i 'percentage'| cut -d ':' -f 2 | sed -e 's/^[[:space:]]*//' )
 STATE=$(upower -i $BAT | grep -i 'state'| cut -d ':' -f 2 | sed -e 's/^[[:space:]]*//' )
