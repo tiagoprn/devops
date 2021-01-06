@@ -15,3 +15,8 @@ curl cht.sh/chmod/<permission-as-text-or-number>
 # command cheatsheet (cht.sh)
 curl cht.sh/<command>
 
+# qrencode through url
+curl qrenco.de/<text>
+
+# qrencode text with pipe
+echo -n "<text>" | curl -F-=\<- qrenco.de
