@@ -56,6 +56,6 @@ close(SENSORS);
 $temperature eq -9999 and die 'Cannot find temperature';
 
 # Print short_text, full_text
-print "$temperature°C\n";
+print "🌡️ $temperature°C\n";
 
 exit 0;
