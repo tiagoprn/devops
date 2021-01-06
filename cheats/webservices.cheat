@@ -1,0 +1,10 @@
+% webservices, curl
+
+# wttr documentation
+xdg-open https://github.com/chubin/wttr.in
+
+# wttr summary
+curl -sf wttr.in/?0
+
+# wttr customized
+curl -sf wttr.in/?format=%C+%t+feels+%f+humidity+%h+precipitation+%p+sunrise+%S+sunset+%s+moonphase+%m
