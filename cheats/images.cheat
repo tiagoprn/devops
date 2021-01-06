@@ -14,3 +14,6 @@ sxiv -r -q -o <directory-path> | xargs wal -i
 
 # convert image from webp to png (must have package "webp" installed with apt)
 dwebp <webp-file-path> -o <png-file-path>
+
+# get color from a screen selection (cargo install xcolor)
+xcolor --format hex | cb
