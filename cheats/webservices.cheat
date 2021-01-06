@@ -20,3 +20,18 @@ curl qrenco.de/<text>
 
 # qrencode text with pipe
 echo -n "<text>" | curl -F-=\<- qrenco.de
+
+# get all links from domain
+curl -s "https://api.hackertarget.com/pagelinks/?q=<domain-url>" | sort | uniq
+
+# get latest tweet from twitter account
+curl -s "https://decapi.me/twitter/latest?name=<twitter-account>"
+
+# get dictionary word definition
+curl -sk 'dict.org/d:<word>'
+
+# Get last video from youtube channel
+curl https://decapi.me/youtube/latest_video?id=<channel-id>
+
+# Get last video from youtube user
+curl https://decapi.me/youtube/latest_video?user=<user-id>
