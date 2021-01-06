@@ -99,9 +99,6 @@ kill -9 $(pgrep python3 | grep clippy | awk '{print $1}') && /storage/src/devops
 # df without snaps and run
 sudo df -m | grep -v snap | grep -v run
 
-# command cheatsheet (cht.sh)
-curl cht.sh/<command>
-
 # show process tree
 ps -aux --forest
 

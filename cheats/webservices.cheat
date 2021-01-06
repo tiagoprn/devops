@@ -8,3 +8,10 @@ curl -sf wttr.in/?0
 
 # wttr customized
 curl -sf wttr.in/?format=%C+%t+feels+%f+humidity+%h+precipitation+%p+sunrise+%S+sunset+%s+moonphase+%m
+
+# cheat.sh chmod
+curl cht.sh/chmod/<permission-as-text-or-number>
+
+# command cheatsheet (cht.sh)
+curl cht.sh/<command>
+
