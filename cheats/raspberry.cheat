@@ -14,3 +14,6 @@ sudo cp -farv /storage/src/devops/raspberry/conf/wpa_supplicant.conf /boot
 
 # change wifi network
 sudoedit /etc/wpa_supplicant/wpa_supplicant.conf
+
+# logoff
+fusermount -u /storage && loginctl terminate-user pi
