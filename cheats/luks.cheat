@@ -1,4 +1,4 @@
-% luks cryptsetup vault gocryptfs
+% luks cryptsetup
 
 # [cryptsetup] Step 1 - Open vault
 cp -farv /storage/vault/sd/sandisk-64G-20200209.masterkey.gpg /storage/temp && cd /storage/temp && echo 'Enter your gnupg password to decrypt the vault master key...' && gpg --decrypt /storage/temp/sandisk-64G-20200209.masterkey.gpg > sandisk-64G-20200209.masterkey && sudo cryptsetup luksOpen /storage/vault/sd/the-vault-2020.mpg VAULT --key-file /storage/temp/sandisk-64G-20200209.masterkey && echo 'Vault open, now you can mount it.'
@@ -15,11 +15,3 @@ sudo cryptsetup luksClose VAULT && rm -f /storage/temp/sandisk-64G-20200209.mast
 # [cryptsetup] vault status
 sudo cryptsetup status VAULT
 
-# [gocryptfs] create nvme filesystem mountpoints
-sudo mkdir -p /storage/vault/nvme/{EXT4-MAIN,EXT4-MAIN-DECRYPTED,F2FS} && sudo chown -R <owner-linux-user-id>:users /storage/vault/nvme && sudo chmod -R 770 /storage/vault/nvme
-
-# [gocryptfs] mount nvme filesystem mountpoints
-sudo mount -t ext4 UUID=e4797678-ef8f-4b64-8e83-af29a89b0e1c /storage/vault/nvme/EXT4-MAIN  && sudo mount -t f2fs UUID=8469c6f2-a777-49e3-92f8-fad7f46b2305 /storage/vault/nvme/F2FS && sudo chown -R <user>:<group> /storage/vault/nvme
-
-# [gocryptfs] umount nvme filesystem mountpoints
-sudo umount /storage/vault/nvme/{EXT4-MAIN,F2FS}
