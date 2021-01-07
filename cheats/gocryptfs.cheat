@@ -4,7 +4,7 @@
 gocryptfs -init <directory-path>
 
 # Mount an encrypted directory:
-gocryptfs <encrypted-directory-path> <decrypted-directory-path> -allow_other
+gocryptfs -allow_other <encrypted-directory-path> <decrypted-directory-path>
 
 # Umount a decrypted directory:
 fusermount -u <decrypted-directory-path>
