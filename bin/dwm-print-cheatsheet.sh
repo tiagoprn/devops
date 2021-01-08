@@ -1,0 +1,2 @@
+#!/bin/bash
+cat /storage/src/dwm/config.h | grep 'description: ' | sed 's/{ //g' | sed 's/ }//g'  | sed 's/\/\* description: //g' | sed 's/\*\//=>/g' | sed 's/,//g' | sed 's/\\$//g' | sed 's/\t/ /g' | sed 's/ \+/ /g' | sed 's/MODKEY/MOD/g' | sed 's/ShiftMask/Shift/g'| sed 's/ControlMask/Ctrl/g' | sed 's/|/\+/g' | sed 's/ XK_/\+/g' | sed 's/spawn SHCMD(//g' | sed 's/)$//g' | sed 's/TAGKEYS(//g' | sed 's/STACKKEYS(//g' | sort
