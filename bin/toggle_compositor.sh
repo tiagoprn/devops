@@ -1,10 +1,20 @@
 #!/bin/bash
-pid=$(ps aux | grep [c]ompton | awk '{print $2}')  # the [c] on the beginning of the program name assures it does not include the own grep pid on the output
-if [ -z "$pid" ]
-then
-    echo 'Compton not running, will run it.';
-    compton --config ~/compton.conf &
+
+LOG_FILE=/tmp/xprofile.$(date +%Y-%m-%d).log
+
+_isRunning() {
+	## function to check if a process is alive and running:
+	ps -o args= -C "$1" 2>/dev/null | grep -x "$1" >/dev/null 2>&1
+	ps aux | grep "$1" 2>/dev/null | grep -v "grep" >/dev/null 2>&1
+}
+
+PROCESS_NAME=picom
+
+if ! _isRunning $PROCESS_NAME; then
+	notify-send -u critical "Compositor $PROCESS_NAME will be turned ON..."
+	picom --config ~/picom.conf --backend glx &
 else
-    echo 'Compton running, will kill it!'
-    kill $pid
-fi    
+	notify-send -u critical "Compositor $PROCESS_NAME will be turned OFF..."
+	pkill picom
+fi
+
