@@ -22,9 +22,9 @@ logging.basicConfig(
 )
 
 ACTIONS = [
-    ('lock screen', '/storage/src/devops/bin/lock_with_comic.sh',),
+    ('lock screen', 'lock_with_comic.sh',),
     ('switch user', 'dm-tool switch-to-greeter',),
-    ('logoff', 'i3-msg exit',),
+    ('logoff', 'logoff.sh',),
     ('shutdown', 'sudo /sbin/shutdown -h now',),
     ('restart', 'sudo /sbin/shutdown -r now',),
 ]

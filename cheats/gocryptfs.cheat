@@ -17,3 +17,6 @@ gocryptfs -reverse <decrypted-directory-path> <encrypted-directory-path>
 
 # Umount an encrypted directory:
 fusermount -u <encrypted-directory-path>
+
+# Check all mounts
+mount -t fuse.gocryptfs
