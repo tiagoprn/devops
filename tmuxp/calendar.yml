@@ -6,7 +6,7 @@ windows:
     shell_command_before:
       - pyenv activate calendar
       - clear
-      - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
+      - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
     panes:
       - shell_command:
         - watch -n 1 khal calendar

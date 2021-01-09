@@ -6,7 +6,7 @@ windows:
     shell_command_before:
       - source "$(navi widget bash)"
       - clear
-      - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
+      - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
     panes:
       - sudo htop
       - watch -n 1 -c 'sudo /opt/vc/bin/vcgencmd measure_temp'

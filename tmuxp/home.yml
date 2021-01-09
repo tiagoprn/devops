@@ -7,7 +7,7 @@ windows:
       - source "$(navi widget bash)"
       - pyenv deactivate utils
       - clear
-      - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
+      - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
     panes:
       - cd /storage/src/devops/cheats && clear
       - cd /storage/src/tiagoprnl/content/posts && clear

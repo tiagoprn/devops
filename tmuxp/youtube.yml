@@ -4,6 +4,6 @@ windows:
     layout: even-vertical
     shell_command_before:
       - clear
-      - source ~/.bash_environment && source ~/.bash_functions && source ~/.bash_aliases
+      - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
     panes:
       - youtube-player
