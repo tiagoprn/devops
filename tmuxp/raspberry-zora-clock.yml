@@ -6,7 +6,8 @@ windows:
       - sleep 1
     layout: e43c,156x29,0,0[156x16,0,0{78x16,0,0,41,77x16,79,0,42},156x4,0,17,43,156x7,0,22{78x7,0,22,44,77x7,79,22,46}]
     panes:
-      - tty-clock -C 7 -B -b -c -s -n -f '%A %d, %B'
+      # - tty-clock -C 7 -B -b -c -s -n -f '%A %d, %B'
+      - date '+%H:%M:%S' | toilet -f future &&  date '+%A %d, %B %Y'
       - watch -c -t -n 300 curl -sf wttr.in/?0
       - watch -c -t -n 300 curl -sf wttr.in/?format=%C+%t+feels+%f+humidity+%h+precipitation+%p+sunrise+%S+sunset+%s+moonphase+%m
       - watch -n 10 -t -c 'echo "CPU Temperature:" && sudo /opt/vc/bin/vcgencmd measure_temp | cut -d "=" -f 2 | toilet -f future --filter border'
