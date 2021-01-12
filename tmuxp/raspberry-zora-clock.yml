@@ -6,4 +6,8 @@ windows:
       - sleep 1
     panes:
       - tty-clock -C 7 -B -b -c -s -n -f '%A %d, %B'
+      - curl -sf wttr.in/?0
+      - curl -sf wttr.in/?format=%C+%t+feels+%f+humidity+%h+precipitation+%p+sunrise+%S+sunset+%s+moonphase+%m
+      - watch -n 10 -t -c 'echo "CPU Temperature:" && sudo /opt/vc/bin/vcgencmd measure_temp | cut -d "=" -f 2 | toilet -f future --filter border'
+      - watch -n 300 -t -c 'echo "Internet connection test:" && ~/.local/bin/speedtest-cli --simple || true && echo "(finished at $(date "+%H:%M:%S"))"'
     focus: True
