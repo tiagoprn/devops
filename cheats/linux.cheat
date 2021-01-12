@@ -147,6 +147,9 @@ find <path> -mmin -<minutes> -type f -exec ls -lha {} +
 # get formatted date
 date +%Y%m%d-%H%M%S-%N
 
+# get formatted date with weekday and month
+date '+%A %d, %B %Y'
+
 # get information on ssh key
 ssh-keygen -lf <ssh-key-file>
 
