@@ -4,10 +4,11 @@ windows:
     layout: even-vertical
     shell_command_before:
       - sleep 1
+    layout: 0ce1,156x29,0,0[156x15,0,0{78x15,0,0,34,77x15,79,0,39},156x4,0,16,36,156x4,0,21,37,156x3,0,26,38]
     panes:
       - tty-clock -C 7 -B -b -c -s -n -f '%A %d, %B'
-      - curl -sf wttr.in/?0
-      - curl -sf wttr.in/?format=%C+%t+feels+%f+humidity+%h+precipitation+%p+sunrise+%S+sunset+%s+moonphase+%m
+      - watch -c -t -n 300 curl -sf wttr.in/?0
+      - watch -c -t -n 300 curl -sf wttr.in/?format=%C+%t+feels+%f+humidity+%h+precipitation+%p+sunrise+%S+sunset+%s+moonphase+%m
       - watch -n 10 -t -c 'echo "CPU Temperature:" && sudo /opt/vc/bin/vcgencmd measure_temp | cut -d "=" -f 2 | toilet -f future --filter border'
       - watch -n 300 -t -c 'echo "Internet connection test:" && ~/.local/bin/speedtest-cli --simple || true && echo "(finished at $(date "+%H:%M:%S"))"'
     focus: True
