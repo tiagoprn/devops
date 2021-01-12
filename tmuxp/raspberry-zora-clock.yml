@@ -4,7 +4,7 @@ windows:
     layout: even-vertical
     shell_command_before:
       - sleep 1
-    layout: 0ce1,156x29,0,0[156x15,0,0{78x15,0,0,34,77x15,79,0,39},156x4,0,16,36,156x4,0,21,37,156x3,0,26,38]
+    layout: e43c,156x29,0,0[156x16,0,0{78x16,0,0,41,77x16,79,0,42},156x4,0,17,43,156x7,0,22{78x7,0,22,44,77x7,79,22,46}]
     panes:
       - tty-clock -C 7 -B -b -c -s -n -f '%A %d, %B'
       - watch -c -t -n 300 curl -sf wttr.in/?0
