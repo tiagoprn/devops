@@ -1,7 +1,16 @@
 % fsarchiver
 
+# dump partition table
+sudo sfdisk -d <device> > partition_table.dump
+
 # savefs
 sudo fsarchiver savefs <archive-path> <partition>
 
+# restore partition table
+sudo sfdisk <device> < partition_table.dump
+
 # restfs
 sudo fsarchiver restfs <archive-path> id=0,dest=<destination-partition>,label=<destination-label>
+
+# view archive info
+fsarchiver archinfo <archive-path>
