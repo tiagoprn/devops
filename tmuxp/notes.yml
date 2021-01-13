@@ -10,8 +10,3 @@ windows:
       - shell_command:
         - cd /storage/docs/notes/ && vim $(fd -H --exclude .git | fzf)
         focus: true
-      - shell_command:
-        - sleep 5 && tmux resize-pane -D 10
-        - clear
-        - echo "run 'update-notes' bash alias to manually push notes to bitbucket repo."
-        - gs
