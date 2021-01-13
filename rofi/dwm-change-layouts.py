@@ -37,7 +37,7 @@ def run(cmd: str):
 
 def get_layouts_from_dwm_config():
     cheat_sheet_command = (
-        "dwm-print-cheatsheet.sh | grep layouts | "
+        "dwm-print-cheatsheet.sh | grep 'dwm:layouts' | "
         "sed 's/MOD/Super_L/g' | awk '{print $2, $4}'"
     )
     return run(cheat_sheet_command)
