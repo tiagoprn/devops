@@ -17,3 +17,6 @@ sudoedit /etc/wpa_supplicant/wpa_supplicant.conf
 
 # logoff
 fusermount -u /storage && loginctl terminate-user pi
+
+# lxpanel (has the menu and bluetooth and wireless control applets)
+lxpanel --profile LXDE-pi
