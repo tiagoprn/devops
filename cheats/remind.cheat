@@ -1,0 +1,38 @@
+% remind, calendar
+
+# today
+remind <path-to-rem-file>
+
+# x days
+remind '*<number-of-days>'
+
+# month view
+remind -c
+
+# two months view
+remind -c2
+
+# one-month-view of date (yyyy-mm-dd or yyyy-m-d)
+remind -c <YYYY-MM-DD>
+
+# week view
+remind -c+
+
+# two weeks view
+remind -c+2
+
+# filter by tag on date (yyyy-mm-dd or yyyy-m-d)
+remind -s <YYYY-MM-DD> | awk '$3 ~ /<tag>/'
+
+# custom sorting (-g means sorting, then: first by trigger date [a]scending, then by trigger time [a]scending, and finally by priority [d]escending, while not specifying whether timed or untimed events should come first)
+remind -gaad -iCOLOR=1
+
+# simpler output, to allow paging, grepping, etc...
+remind -p12 2020-1-1 | less
+
+# daemon mode, speak the reminder loud
+remind -z5 -k'espeak %s &' <path-to-rem-file>
+
+# daemon mode, use notify-send (TODO: put on .xsession for note and pii)
+remind -z5 -k'notify-send %s &' <path-to-rem-file>
+
