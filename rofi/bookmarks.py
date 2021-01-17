@@ -71,6 +71,9 @@ if __name__ == "__main__":
     chosen_url = bookmarks_urls[selected_bookmark]
     logging.info(f'chosen_url={chosen_url}')
 
+    command = f'echo "{chosen_url}" |  xclip -selection clipboard'
+    os.system(command)
+
     browsers = BROWSERS.keys()
     browsers_keys = []
     for index in BROWSERS:
