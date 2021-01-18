@@ -17,10 +17,10 @@ $ sudo pip3 pyperclip
 import json
 import logging
 import os
+import subprocess
 import sys
 from datetime import datetime
 from functools import partial
-from subprocess import run
 from time import sleep
 
 import pyperclip
@@ -47,6 +47,18 @@ logger.addHandler(fh)
 keep_fds = [fh.stream.fileno()]
 
 ROFI_RECORD_TRUNCATE_SIZE = 50
+
+
+def run(cmd: str):
+    proc = subprocess.Popen(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        shell=True,
+        universal_newlines=True,
+    )
+    std_out, std_err = proc.communicate()
+    return proc.returncode, std_out, std_err
 
 
 def get_rofi_records():
@@ -93,6 +105,16 @@ def get_paste_contents_from_timestamp(timestamp: str):
     raise Exception(f'No record found for timestamp="{timestamp}"')
 
 
+def service():
+    return_code, std_out, std_err = run('start-clippy-service.sh')
+    if std_err:
+        notification = (
+            f'notify-send -u critical "Error '
+            f'starting clippy service: {std_err}"'
+        )
+        run(notification)
+
+
 def client():
     logger.info('Running client...')
     print('Showing keyboard selections...')
@@ -123,12 +145,13 @@ def client():
         f'notify-send --urgency=low "Paste '
         f'{selected_paste} copied to clipboard" '
     )
-    run(command, shell=True)
+    run(command)
     logger.info('Finished running client.')
 
 
 if __name__ == '__main__':
     try:
+        service()
         client()
     except Exception as e:
         message = f'An exception was triggered: {e} '
