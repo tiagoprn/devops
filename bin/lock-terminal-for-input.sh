@@ -1,6 +1,5 @@
 #!/bin/bash
-
-echo "type something to unlock. The screen will be resetted and cleared after finished."
+echo "Type <ENTER> to continue. The screen will be resetted and cleared afterwards."
 read key
 reset
 clear
