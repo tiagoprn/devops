@@ -12,6 +12,6 @@ git glog -n 3 && \
 echo -e "----------" && \
 git files-changed -n 1 && \
 echo -e "----------" && \
-echo -e "SUCCESSFULLY FINISHED! o/\n"
-echo -e "Press <ENTER> to close this window and go back to vim."
-read KEY
+echo -e "SUCCESSFULLY FINISHED! o/" && \
+echo -e "----------" && \
+lock-terminal-for-input.sh
