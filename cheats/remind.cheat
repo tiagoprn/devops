@@ -1,37 +1,34 @@
 % remind, calendar
 
-# today
+# today, just descriptions
 remind <path-to-rem-file>
 
-# x days
-remind '*<number-of-days>' <path-to-rem-file>
+# today, with tags and times
+remind -s <path-to-rem-file> | grep "$(date +%Y/%m/%d)"
+
+# simple output, to allow paging, grepping, etc...
+remind -s <path-to-rem-file> | less
 
 # month view
-remind -c <path-to-rem-file>
+remind -cu -w165 <path-to-rem-file>
 
 # two months view
-remind -c2 <path-to-rem-file>
-
-# one-month-view of date (yyyy-mm-dd or yyyy-m-d)
-remind -c <YYYY-MM-DD> <path-to-rem-file>
+remind -cu2 -w165 <path-to-rem-file>
 
 # week view
-remind -c+ <path-to-rem-file>
+remind -cu+ -w165 <path-to-rem-file>
 
 # two weeks view
-remind -c+2 <path-to-rem-file>
-
-# filter by tag on date (yyyy-mm-dd or yyyy-m-d)
-remind -s <YYYY-MM-DD> <path-to-rem-file> | awk '$3 ~ /<tag>/'
+remind -cu+2 -w165 <path-to-rem-file>
 
 # custom sorting (-g means sorting, then: first by trigger date [a]scending, then by trigger time [a]scending, and finally by priority [d]escending, while not specifying whether timed or untimed events should come first)
 remind -gaad -iCOLOR=1 <path-to-rem-file>
 
-# simpler output, to allow paging, grepping, etc...
-remind -p12 2020-1-1 <path-to-rem-file> | less
-
 # daemon mode, speak the reminder loud
-remind -z5 -k'espeak %s &' <path-to-rem-file>
+remind -z1 -k'espeak %s &' <path-to-rem-file>
 
 # daemon mode, use notify-send
-remind -z5 -k'notify-send -u critical -t 10000 REMIND: %s &' <path-to-rem-file>
+remind -z1 -k'notify-send -u critical -t 10000 REMIND: %s &' <path-to-rem-file>
+
+# daemon mode, run in background (to use e.g. on .xinitrc)
+remind -f -z1 -k'notify-send -u critical -t 10000 REMIND: %s &' <path-to-rem-file> &
