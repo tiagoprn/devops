@@ -4,31 +4,31 @@
 remind <path-to-rem-file>
 
 # x days
-remind '*<number-of-days>'
+remind '*<number-of-days>' <path-to-rem-file>
 
 # month view
-remind -c
+remind -c <path-to-rem-file>
 
 # two months view
-remind -c2
+remind -c2 <path-to-rem-file>
 
 # one-month-view of date (yyyy-mm-dd or yyyy-m-d)
-remind -c <YYYY-MM-DD>
+remind -c <YYYY-MM-DD> <path-to-rem-file>
 
 # week view
-remind -c+
+remind -c+ <path-to-rem-file>
 
 # two weeks view
-remind -c+2
+remind -c+2 <path-to-rem-file>
 
 # filter by tag on date (yyyy-mm-dd or yyyy-m-d)
-remind -s <YYYY-MM-DD> | awk '$3 ~ /<tag>/'
+remind -s <YYYY-MM-DD> <path-to-rem-file> | awk '$3 ~ /<tag>/'
 
 # custom sorting (-g means sorting, then: first by trigger date [a]scending, then by trigger time [a]scending, and finally by priority [d]escending, while not specifying whether timed or untimed events should come first)
-remind -gaad -iCOLOR=1
+remind -gaad -iCOLOR=1 <path-to-rem-file>
 
 # simpler output, to allow paging, grepping, etc...
-remind -p12 2020-1-1 | less
+remind -p12 2020-1-1 <path-to-rem-file> | less
 
 # daemon mode, speak the reminder loud
 remind -z5 -k'espeak %s &' <path-to-rem-file>
