@@ -33,6 +33,5 @@ remind -p12 2020-1-1 | less
 # daemon mode, speak the reminder loud
 remind -z5 -k'espeak %s &' <path-to-rem-file>
 
-# daemon mode, use notify-send (TODO: put on .xsession for note and pii)
-remind -z5 -k'notify-send %s &' <path-to-rem-file>
-
+# daemon mode, use notify-send
+remind -z5 -k'notify-send -u critical -t 10000 REMIND: %s &' <path-to-rem-file>
