@@ -1,0 +1,13 @@
+% gnupg, gpg
+
+# crypt
+gpg -r <key-id> -se <file>
+
+# decrypt
+gpg --decrypt <file> > <file>.decrypted && echo -e '\n --- \nDecrypted as "<file>.decrypted"\n'
+
+# export public key
+gpg --export -a <key-id>
+
+# export private key
+gpg --export-secret-key -a <key-id>
