@@ -1,0 +1,31 @@
+% pass (Android app: <https://play.google.com/store/apps/details?id=dev.msfjarvis.aps>)
+
+# Initialize repository and create local repository
+pass init "<gpg-key-id> <name>" && pass git init
+
+# List all passwords in store
+pass
+
+# Show passwords in store
+pass <category>/<name>
+
+# Copy password to clipboard
+pass -c <category>/<name>
+
+# Add existing password
+pass insert <category>/<name>
+
+# Generate password and copy to clipboard
+pass generate --no-symbols -c <category>/<name> <size>
+
+# Remove password
+pass rm <category>/<name>
+
+# Add a git remote to the local repository
+pass git remote add origin <git-remote-origin>
+
+# push passwords
+pass git push -u -all
+
+# pull passwords
+pass git pull
