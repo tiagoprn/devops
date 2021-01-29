@@ -1,0 +1,26 @@
+% telegram
+
+# Install telegram-send
+sudo pip3 install telegram-send
+
+# Edit configuration
+sudoedit /etc/telegram-send.conf
+
+# Configure to send to account
+telegram-send --configure
+
+# Configure to send to group
+telegram-send --configure-group
+
+# Configure to send to channel
+telegram-send --configure-channel
+
+# User configuration file
+vim ~/.config/telegram-send.conf
+
+# Send markdown message
+telegram-send --format markdown "<message>"
+
+# Send text message
+telegram-send "<message>"
+

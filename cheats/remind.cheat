@@ -32,3 +32,6 @@ remind -z1 -k'notify-send -u critical -t 10000 REMIND: %s &' <path-to-rem-file>
 
 # daemon mode, run in background (to use e.g. on .xinitrc)
 remind -f -z1 -k'notify-send -u critical -t 10000 REMIND: %s &' <path-to-rem-file> &
+
+# daemon mode, run in background and notify to Telegram (to use e.g. on .xinitrc)
+remind -f -z1 -k'telegram-send REMIND: %s &' <path-to-rem-file> &
