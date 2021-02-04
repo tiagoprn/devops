@@ -167,3 +167,6 @@ du -h | grep -v -e '\.$' | sort -hr | head -n <number-of-files>
 
 # echoes all pressed keys on screen
 screenkey &
+
+# redirect command stdout and stderr to file
+<command> >> <log-file> 2>&1
