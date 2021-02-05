@@ -1,0 +1,15 @@
+% letsencrypt, certbot
+
+# install certbot
+sudo yum install certbot -y
+
+# generate first certificate (to make it easier, login to the server, put down the current http server and choose the option to use the standalone one)
+sudo certbot certonly -d <domain>
+
+# non-interactively renew *all* of your certificates
+sudo certbot renew
+
+# copy generated tls keys to where the webserver expects them
+sudo cp -farv /etc/letsencrypt/archive/<domain>/* <webserver-expected-directory-path>
+
+
