@@ -1,13 +1,18 @@
 #!/bin/bash
 
-# Creates a zettelkasten file inside the current folder
-# This must work seamlessly from i3, I will add a mapping to it.
-
 QUICKNOTES_DIR=/storage/docs/notes/quick
-TIMESTAMP="$(date "+%Y-%m-%d-%H%M%S-%3N")"
-FILENAME=$QUICKNOTES_DIR/$TIMESTAMP.md
+TIMESTAMP="$(date '+%Y-%m-%d')"
+FILENAME=$QUICKNOTES_DIR/notes-$TIMESTAMP.md
 
 mkdir -p $QUICKNOTES_DIR
 
-vim "$FILENAME"
+if [ ! -f $FILENAME ] ; then
+	echo "# Notes for $TIMESTAMP" > $FILENAME
+fi
 
+vim -c "norm Go" \
+	-c "norm Go## $(date +%H:%M)" \
+	-c "norm G2o" \
+	-c "norm zz" \
+	-c "startinsert" \
+	$FILENAME
