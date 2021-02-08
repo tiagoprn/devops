@@ -3,6 +3,17 @@
 # based on: https://www.youtube.com/watch?v=zB_3FIGRWRU&feature=youtu.be
 
 FILENAME=$1
+
+if [ -z $FILENAME]; then
+	echo "No file informed, opening fzf to do so..."
+	FILENAME=$(find /storage/docs/notes/quick -type f | fzf)
+fi
+
+if [ -z $FILENAME]; then
+	echo "You must select a file, as a parameter or through fzf."
+	exit 1
+fi
+
 TARGET="/tmp/pdf"
 OUTPUT_FILE="$(basename "$FILENAME" .md).pdf"
 

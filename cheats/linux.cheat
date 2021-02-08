@@ -170,3 +170,6 @@ screenkey &
 
 # redirect command stdout and stderr to file
 <command> >> <log-file> 2>&1
+
+# fzf file selection
+find <directory> -type f | fzf
