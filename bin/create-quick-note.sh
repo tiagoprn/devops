@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# based on: https://www.youtube.com/watch?v=zB_3FIGRWRU&feature=youtu.be
+
 QUICKNOTES_DIR=/storage/docs/notes/quick
 TIMESTAMP="$(date '+%Y-%m-%d')"
 FILENAME=$QUICKNOTES_DIR/notes-$TIMESTAMP.md
