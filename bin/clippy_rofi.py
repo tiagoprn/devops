@@ -151,7 +151,7 @@ def client():
 
 if __name__ == '__main__':
     try:
-        service()
+        # service()
         client()
     except Exception as e:
         message = f'An exception was triggered: {e} '
