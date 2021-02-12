@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Edit text from current window into vim
+
 TEMP_FILE=/tmp/textfield.txt
 SLEEP_SECONDS=2
 
