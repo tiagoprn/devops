@@ -15,7 +15,7 @@ esac
 
 [ $(pamixer --get-mute) = true ] && echo 🔇 && exit
 
-vol="$(pamixer --get-volume)"
+vol="$(pamixer --get-volume-human)"
 
 if [ "$vol" -gt "70" ]; then
 	icon="🔊"
