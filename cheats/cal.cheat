@@ -1,0 +1,10 @@
+% cal, calendar
+
+# 3 months calendar (previous, current and next)
+cal -3
+
+# calendar of a given year
+cal <year>
+
+# calendar of a month / year
+cal <month> <year>
