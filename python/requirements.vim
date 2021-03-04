@@ -5,4 +5,4 @@ python-language-server
 pyls-black
 pyls-isort
 yamllint
-ansible-lint
+pudb
