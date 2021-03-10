@@ -21,6 +21,9 @@ pass -c <category>/<name>
 # Add existing password
 pass insert <category>/<name>
 
+# Edit existing password
+pass edit <category>/<name>
+
 # Generate password and copy to clipboard
 pass generate --no-symbols -c <category>/<name> <size>
 
