@@ -1,0 +1,4 @@
+% security, delete, wipe, rm
+
+# srm (provided by package secure-delete on debian and red hat)
+srm -vr <directory-or-file>
