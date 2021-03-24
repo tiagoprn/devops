@@ -6,3 +6,4 @@ pyls-black
 pyls-isort
 yamllint
 pudb
+watchpoints
