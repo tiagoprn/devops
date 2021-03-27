@@ -11,3 +11,6 @@ sed 's/\t/ /g'
 
 # Remove redundant spaces
 sed 's/ \+/ /g'
+
+# Add an empty line on every line of a file
+cat <file-path> | sed '/./G'
