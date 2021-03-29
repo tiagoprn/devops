@@ -1,5 +1,7 @@
 % suckless, dmenu
 
-# Display a customized dmenu. options e.g.: "first\nsecond\nthird"
+# Display a customized horizontal dmenu. options e.g.: "first\nsecond\nthird"
 echo -e "<options>" | dmenu -fn Terminus:size=30 -nb '#002b36' -nf '#839496' -sb '#073642' -sf '#93a1a1'
 
+# Display a customized vertical dmenu. options e.g.: "first\nsecond\nthird"
+echo -e "<options>" | dmenu -fn Terminus:size=14 -c -bw 2 -l 20 -g 4 -p 'Select an item: '
