@@ -2,7 +2,6 @@
 
 DMMENU_SCRIPTS_PATH=$HOME/apps/scripts/bin
 
-
 # An array of options
 declare -A options
 options[kill]="dmkill.sh"
