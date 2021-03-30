@@ -4,6 +4,7 @@ DMMENU_SCRIPTS_PATH=$HOME/apps/scripts/bin
 
 # An array of options
 declare -A options
+options[run]="dmrun.sh"
 options[kill]="dmkill.sh"
 options[search]="dmsearch.sh"
 options[hex_color]="dmcolors.sh"
