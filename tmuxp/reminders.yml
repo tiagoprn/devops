@@ -10,3 +10,6 @@ windows:
       - shell_command:
         - cd /storage/docs/reminders/ && vim $(fd -H --exclude .git | fzf)
         focus: true
+      - shell_command:
+        - # ga . && gc -m 'updated reminders' && gps
+        focus: false
