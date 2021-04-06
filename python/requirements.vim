@@ -7,3 +7,4 @@ pyls-isort
 yamllint
 pudb
 watchpoints
+icecream
