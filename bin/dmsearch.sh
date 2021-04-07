@@ -48,6 +48,8 @@ options[googleDevelopers]="https://developers.google.com/s/results?q="
 options[googleOpenSource]="https://opensource.google/projects/search?q="
 options[googleDataset]="https://datasetsearch.research.google.com/search?query="
 options[pypi]="https://pypi.org/search/?q="
+options[dockerhub]="https://hub.docker.com/search?q="
+options[quay]="https://quay.io/search?q="
 
 # Picking a search engine.
 # shellcheck disable=SC2154
