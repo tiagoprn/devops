@@ -1,0 +1,2 @@
+# rofi simple menu (text e.g.: one\ntwo\nthree)
+echo -e '<text-with-line-breaks>' |  rofi -dmenu -markup -markup-rows -fullscreen --no-case-sensitive -p "Filter a dwm shorcut"
