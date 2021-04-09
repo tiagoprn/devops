@@ -5,9 +5,10 @@ DMMENU_SCRIPTS_PATH=$HOME/apps/scripts/bin
 # An array of options
 declare -A options
 options[run]="dmrun.sh"
-options[kill]="dmkill.sh"
-options[search]="dmsearch.sh"
-options[hex_color]="dmcolors.sh"
+options[kill_process]="dmkill.sh"
+options[browser_search]="dmsearch.sh"
+options[browser_open]="dmqute.sh"
+options[copy_hex_color_to_clipboard]="dmcolors.sh"
 
 # Picking a script
 # shellcheck disable=SC2154
