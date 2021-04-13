@@ -66,7 +66,7 @@ echo 'Preparing the directories which will hold the kvm assets...'
 sudo mkdir -p /kvm/templates
 sudo mkdir -p /kvm/images
 sudo mkdir -p /kvm/iso
-sudo chown -R nobody.nobody /kvm && sudo chmod -R 777 /kvm/
+sudo chown -R $(id -u).$(id -g)/kvm && sudo chmod -R 777 /kvm/
 
 if [ $DISTRO_NAME = "ubuntu18" ]; then
 	cp -farv ~/distros/images/ubuntu-1804-i386.template.qcow2 /kvm/templates
