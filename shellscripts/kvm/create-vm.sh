@@ -4,7 +4,7 @@
 SYNTAX="./create-vm.sh -d [DISTRO_NAME] -n [VM_NAME] -b [BRIDGE_NAME] -r [RAM] -c [NUMBER_OF_CPUS]"
 HELP="./create-vm.sh -d ubuntu18 -n centos7-02 -b br1 -r 1024 -c 1"
 
-while getopts n:b:r:c: option
+while getopts d:n:b:r:c: option
 do
   case "${option}"
   in
