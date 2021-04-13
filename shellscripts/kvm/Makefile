@@ -63,8 +63,8 @@ net:  ## Show all network interfaces attached to a VM. E.g. make net vm=[name]
 rm: down  ## Removes a vm permanently. E.g. make rm vm=[name]
 	sudo virsh undefine $(vm) --snapshots-metadata
 
-create:  ## Create a VM (you must have a bridge available, use `make nets` to see the ones available). E.g. make create vm=[name] bridge=[brXXX] ram=712 cpus=1
-	bash ./create-vm.sh -n $(vm) -b $(bridge) -r $(ram) -c $(cpus)
+create:  ## Create a VM (you must have a bridge available, use `make nets` to see the ones available). E.g. make create distro_name=ubuntu18 vm=[name] bridge=[brXXX] ram=712 cpus=1
+	bash ./create-vm.sh -d $(distro_name) -n $(vm) -b $(bridge) -r $(ram) -c $(cpus)
 
 live-backup:  ## Makes a live backup of the VM. E.g. make live-backup vm=[name]
 	sudo ./live-backup-vm.sh -n $(vm)
