@@ -1,32 +1,18 @@
-help:
-	@echo -e "\nHELP:\n"
-	@echo -e "make status \n\t List all vms.\n"
-	@echo -e "make nets \n\t Show all networks and their statuses."
-	@echo -e "make net-create bridge-name=[brXXX] xml-file=[filename]"
-	@echo -e "make ips bridge-name=br1 \n\t List all IPs on a bridged network.\n"
-	@echo -e "make ip vm=[name] \n\t Show a VM's IP.\n"
-	@echo -e "make info vm=[name] \n\t Show metadata from a vm.\n"
-	@echo -e "make up vm=[name] \n\t START a vm.\n"
-	@echo -e "make down vm=[name] \n\t STOP a vm.\n"
-	@echo -e "make kill vm=[name] \n\t DESTROY a vm.\n"
-	@echo -e "make pause vm=[name] \n\t PAUSE a vm.\n"
-	@echo -e "make resume vm=[name] \n\t RESUME a vm.\n"
-	@echo -e "make enable vm=[name] \n\t AUTO-START a vm.\n"
-	@echo -e "make disable vm=[name] \n\t DISABLE AUTO-START on a vm.\n"
-	@echo -e "make dettach-iso vm=[name] \n\t Attach an ISO file to a VM.\n"
-	@echo -e "make net-attach vm=[name] bridge-name=[brXXX] \n\t Attach a network to a running VM (live).\n"
-	@echo -e "make net vm=[name] \n\t Show all network interfaces attached to a VM.\n"
-	@echo -e "make rm vm=[name] \n\t Removes a vm permanently.\n"
-	@echo -e "make create vm=[name] bridge=[brXXX] ram=712 cpus=1 \n\t Create a VM (you must have a bridge available, use `make nets` to see the ones available).\n"
-	@echo -e "make live-backup vm=[name] \n\t Makes a live backup of the VM.\n"
+.PHONY: help status nets
 
-status:
+SHELL := /bin/bash
+PROJECT_ROOT=$(shell pwd)
+
+help:  ## This help
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST) | sort
+
+status:  ## List all vms
 	sudo virsh list --all
 
-nets:
+nets:  ## Show all networks and their statuses
 	sudo virsh net-list --all
 
-net-create: 
+net-create:  ## Creates a virtual network. E.g.: make net-create bridge-name=[brXXX] xml-file=[filename]
 	sudo virsh net-define $(xml-file)
 	sudo virsh net-start $(bridge-name)
 	sudo virsh net-autostart $(bridge-name)
@@ -35,50 +21,50 @@ net-create:
 	@echo 'The IP assigned to the bridge is:'
 	sudo ip addr show dev $(bridge-name)
 
-ips:
+ips:  ## List all IPs on a bridged network. E.g. make ips bridge-name=br1
 	sudo virsh net-dhcp-leases $(bridge-name)
 
-ip:
+ip:  ## Show a VM's IP. E.g. make ip vm=[name]
 	@bash ./get_domain_ip.sh $(vm)
 
-info:
+info:  ## Show metadata from a vm. E.g. make info vm=[name]
 	sudo virsh dominfo $(vm)
 
-up:
+up:  ## START a vm. E.g. make up vm=[name]
 	sudo virsh start $(vm)
 
-down:
+down:  ## STOP a vm. E.g. make down vm=[name]
 	-sudo virsh shutdown $(vm)
 
-kill:
+kill:  ## DESTROY a vm. E.g. make kill vm=[name]
 	sudo virsh destroy $(vm)
 
-pause:
+pause:  ## PAUSE a vm. E.g. make pause vm=[name]
 	sudo virsh suspend $(vm)
 
-resume:
+resume:  ## RESUME a vm. E.g. make resume vm=[name]
 	sudo virsh resume $(vm)
 
-enable:
+enable:  ## AUTO-START a vm. E.g. make enable vm=[name]
 	sudo virsh autostart $(vm)
 
-disable:
+disable:  ## DISABLE AUTO-START on a vm. E.g. make disable vm=[name]
 	sudo virsh autostart $(vm) --disable
 
-dettach-iso:
+dettach-iso:  ## Attach an ISO file to a VM. E.g. make dettach-iso vm=[name]
 	sudo virsh change-media $(vm) hda --eject --config
 
-net-attach: 
+net-attach:  ## Attach a network to a running VM (live). E.g. make net-attach vm=[name] bridge-name=[brXXX]
 	sudo virsh attach-interface --domain $(vm) --type bridge --source $(bridge-name) --model virtio --config --live
 
-net:
+net:  ## Show all network interfaces attached to a VM. E.g. make net vm=[name]
 	sudo virsh domiflist $(vm)
 
-rm: down
+rm: down  ## Removes a vm permanently. E.g. make rm vm=[name]
 	sudo virsh undefine $(vm) --snapshots-metadata
 
-create:
+create:  ## Create a VM (you must have a bridge available, use `make nets` to see the ones available). E.g. make create vm=[name] bridge=[brXXX] ram=712 cpus=1
 	bash ./create-vm.sh -n $(vm) -b $(bridge) -r $(ram) -c $(cpus)
 
-live-backup:
+live-backup:  ## Makes a live backup of the VM. E.g. make live-backup vm=[name]
 	sudo ./live-backup-vm.sh -n $(vm)
