@@ -25,7 +25,7 @@ META_DATA=meta-data
 CI_ISO=$1-cloud-init-data.iso
 
 # cloud-init config: set hostname, remove cloud-init package,
-# and add ssh-key 
+# and add ssh-key
 cat > $USER_DATA << _EOF_
 #cloud-config
 
@@ -51,14 +51,14 @@ users:
 
 
 bootcmd:
-  - echo 'My ip addresses are '$(hostname --ip-address) 
+  - echo 'My ip addresses are '$(hostname --ip-address)
 
 # Remove cloud-init when finished with it
 runcmd:
   - [ yum, -y, remove, cloud-init ]
 
 # Configure where output will go
-output: 
+output:
   all: ">> /var/log/cloud-init.log"
 
 # configure interaction with ssh server

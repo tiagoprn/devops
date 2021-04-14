@@ -105,4 +105,7 @@ sudo virsh change-media $VM_NAME hda --eject
 echo 'Virtual disks attached to the VM:'
 sudo virsh domblklist $VM_NAME
 
+echo 'Removing remaining iso files...'
+rm -fr ~/distros/images/*.iso
+
 echo 'FINISHED!'
