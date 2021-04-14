@@ -54,7 +54,7 @@ disable:  ## DISABLE AUTO-START on a vm. E.g. make disable vm=[name]
 dettach-iso:  ## Attach an ISO file to a VM. E.g. make dettach-iso vm=[name]
 	sudo virsh change-media $(vm) hda --eject --config
 
-net-attach:  ## Attach a network to a running VM (live). E.g. make net-attach vm=[name] bridge-name=[brXXX]
+net-attach:  ## Attach a network to a running VM (live). E.g. make net-attach vm=[name] bridge-name=br1
 	sudo virsh attach-interface --domain $(vm) --type bridge --source $(bridge-name) --model virtio --config --live
 
 net:  ## Show all network interfaces attached to a VM. E.g. make net vm=[name]
@@ -63,7 +63,7 @@ net:  ## Show all network interfaces attached to a VM. E.g. make net vm=[name]
 rm: down  ## Removes a vm permanently. E.g. make rm vm=[name]
 	sudo virsh undefine $(vm) --snapshots-metadata
 
-create:  ## Create a VM (you must have a bridge available, use `make nets` to see the ones available). E.g. make create distro_name=ubuntu18 vm=[name] bridge=[brXXX] ram=712 cpus=1
+create:  ## Create a VM (you must have a bridge available, use `make nets` to see the ones available). E.g. make create distro_name=ubuntu18 vm=[name] bridge=br1 ram=712 cpus=1
 	bash ./create-vm.sh -d $(distro_name) -n $(vm) -b $(bridge) -r $(ram) -c $(cpus)
 
 live-backup:  ## Makes a live backup of the VM. E.g. make live-backup vm=[name]
