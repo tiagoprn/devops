@@ -12,7 +12,7 @@ status:  ## List all vms
 nets:  ## Show all networks and their statuses
 	sudo virsh net-list --all
 
-net-create:  ## Creates a virtual network. E.g.: make net-create bridge-name=[brXXX] xml-file=[filename]
+net-create:  ## Creates a virtual network. E.g.: make net-create bridge-name=br1 xml-file=conf/kvm-nat-network.xml
 	sudo virsh net-define $(xml-file)
 	sudo virsh net-start $(bridge-name)
 	sudo virsh net-autostart $(bridge-name)
