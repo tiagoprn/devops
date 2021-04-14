@@ -43,7 +43,11 @@ if [[ -z $CPUS ]]; then
     printf "Missing -c parameter. I will use $CPUS.\n";
 fi
 
-VM_IMAGE_FILE=/kvm/images/$VM_NAME.qcow2
+if [ $DISTRO_NAME = "ubuntu18" ]; then
+	VM_IMAGE_FILE=/kvm/images/$VM_NAME.img
+else
+	VM_IMAGE_FILE=/kvm/images/$VM_NAME.qcow2
+fi
 if [ -f "${VM_IMAGE_FILE}" ]
 then
     # Check for existence of a pubkey, or else exit with message
@@ -69,8 +73,8 @@ sudo mkdir -p /kvm/iso
 sudo chown -R $(id -u).$(id -g)/kvm && sudo chmod -R 777 /kvm/
 
 if [ $DISTRO_NAME = "ubuntu18" ]; then
-	cp -farv ~/distros/images/ubuntu-1804-i386.template.qcow2 /kvm/templates
-	cp -farv /kvm/templates/ubuntu-1804-i386.template.qcow2 $VM_IMAGE_FILE
+	cp -farv ~/distros/images/ubuntu-1804-amd64.template.img /kvm/templates
+	cp -farv /kvm/templates/ubuntu-1804-amd64.template.img $VM_IMAGE_FILE
 else
 	cp -farv ~/distros/images/CentOS-7-x86_64-GenericCloud.template.qcow2 /kvm/templates
 	cp -farv /kvm/templates/CentOS-7-x86_64-GenericCloud.template.qcow2 $VM_IMAGE_FILE
@@ -80,7 +84,13 @@ echo 'Creating a new VM from the image...'
 
 ./generate_cloud_init_iso.sh $VM_NAME
 cp -farv ~/distros/images/$VM_NAME-cloud-init-data.iso /kvm/iso
-sudo virt-install --import --name $VM_NAME --ram $RAM --vcpus $CPUS --cpu host --disk /kvm/images/$VM_NAME.qcow2,format=qcow2,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=rhel7 --noautoconsole
+
+
+if [ $DISTRO_NAME = "ubuntu18" ]; then
+	sudo virt-install --import --name $VM_NAME --ram $RAM --vcpus $CPUS --cpu host --disk /kvm/images/$VM_NAME.img,format=raw,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=ubuntu18.04 --noautoconsole
+else
+	sudo virt-install --import --name $VM_NAME --ram $RAM --vcpus $CPUS --cpu host --disk /kvm/images/$VM_NAME.qcow2,format=qcow2,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=rhel7 --noautoconsole
+fi
 
 echo 'Ejecting the iso created by cloud-init - first time...'
 sudo virsh change-media $VM_NAME hda --eject --config  # --config should not be removed from here, otherwise ssh into the machine will not work.

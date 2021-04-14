@@ -1,20 +1,19 @@
 #!/bin/bash
 IMAGES_DIR=$HOME/distros/images
-BASE_IMAGE_NAME=bionic-server-cloudimg-i386
+BASE_IMAGE_NAME=bionic-server-cloudimg-amd64
 DOWNLOAD_IMAGE_NAME=$BASE_IMAGE_NAME.img
-QCOW2_IMAGE_NAME=$BASE_IMAGE_NAME.qcow2
-QCOW2_TEMPLATE_NAME=ubuntu-1804-i386.template.qcow2
+
+IMAGE_NAME=$BASE_IMAGE_NAME.img
+TEMPLATE_NAME=ubuntu-1804-amd64.template.img
 mkdir -p $IMAGES_DIR
 cd $IMAGES_DIR
 
 echo 'Downloading image...'
-if [ ! -f $IMAGES_DIR/$QCOW2_TEMPLATE_NAME ]; then
+if [ ! -f $IMAGES_DIR/$TEMPLATE_NAME ]; then
     wget https://cloud-images.ubuntu.com/bionic/current/$DOWNLOAD_IMAGE_NAME;
 fi
 
-qemu-img convert -f raw -O qcow2 $DOWNLOAD_IMAGE_NAME $QCOW2_IMAGE_NAME
-
-echo 'Transforming this image into a template...'
-mv $QCOW2_IMAGE_NAME $QCOW2_TEMPLATE_NAME
+echo 'Renaming converted image into a template...'
+mv $IMAGE_NAME $TEMPLATE_NAME
 
 echo 'DONE. The image is at' $IMAGES_DIR '.'
