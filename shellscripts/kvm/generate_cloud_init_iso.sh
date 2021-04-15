@@ -10,7 +10,7 @@ PUBKEY=${HOME}/.ssh/id_rsa.pub
 if [ ! -f "${PUBKEY}" ]
 then
     # Check for existence of a pubkey, or else exit with message
-    echo "[$(date +%r)]----> [ERROR] Please generate an SSH keypair using 'ssh-keygen -t rsa'. This key will be authorized to login as the CentOS 7 centos cloud image user."
+    echo "[$(date +%r)]----> [ERROR] Please generate an SSH keypair using 'ssh-keygen -t rsa'. This key will be authorized to login as the cloud image user."
     exit 3
 else
     # Place contents of $PUBKEY into $KEY
@@ -32,7 +32,7 @@ cat > $USER_DATA << _EOF_
 # Hostname management
 preserve_hostname: False
 hostname: $1
-fqdn: $1.vbox.local
+fqdn: $1.kvm.local
 
 # Users
 users:
@@ -64,8 +64,8 @@ output:
 # configure interaction with ssh server
 ssh_genkeytypes: ['ed25519', 'rsa']
 
-# Install my public ssh key to the first user-defined user configured
-# in cloud.cfg in the template (which is centos for CentOS cloud images)
+# Install my public ssh key to the user configured
+# in cloud.cfg in the template
 ssh_authorized_keys:
   - ${KEY}
 
