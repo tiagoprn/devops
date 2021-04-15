@@ -6,6 +6,18 @@ if ! [ $# -eq 1 ]; then
     exit 1
 fi
 
+if [[ $1 == *"centos"* ]]; then
+	SUDOUSER="centos"
+	SUDOGROUP="wheel"
+elif [[ $1 == *"ubuntu"* ]]; then
+	SUDOUSER="ubuntu"
+	SUDOGROUP="sudo"
+else
+	SUDOUSER="admin"
+	SUDOGROUP="sudo"
+fi
+echo "sudouser is ==> $SUDOUSER, sudogroup is ==> $SUDOGROUP"
+
 PUBKEY=${HOME}/.ssh/id_rsa.pub
 if [ ! -f "${PUBKEY}" ]
 then
@@ -17,7 +29,6 @@ else
     KEY=$(<${PUBKEY})
 fi
 
-SUDOGROUP="wheel"
 TIMEZONE=America/Sao_Paulo
 
 USER_DATA=user-data
@@ -36,7 +47,7 @@ fqdn: $1.kvm.local
 
 # Users
 users:
-    - name: centos
+    - name: ${SUDOUSER}
       groups: ['${SUDOGROUP}']
       shell: /bin/bash
       sudo: ALL=(ALL) NOPASSWD:ALL
@@ -55,7 +66,8 @@ bootcmd:
 
 # Remove cloud-init when finished with it
 runcmd:
-  - [ yum, -y, remove, cloud-init ]
+  - [ yum, -y, remove, cloud-init, ||, true ]
+  - [ apt, remove, -y, cloud-init, ||, true ]
 
 # Configure where output will go
 output:
