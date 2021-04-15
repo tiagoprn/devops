@@ -47,9 +47,10 @@ users:
 bootcmd:
   - echo 'My ip addresses are '$(hostname --ip-address)
 
-# Remove cloud-init when finished with it
+# Stop and disable cloud-init when finished with it
 runcmd:
-  - [ yum, -y, remove, cloud-init ]
+  - [ systemctl, stop, cloud-init ]
+  - [ systemctl, disable, cloud-init ]
 
 # Configure where output will go
 output:
