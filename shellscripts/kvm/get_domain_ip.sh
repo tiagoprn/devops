@@ -21,5 +21,6 @@ do
 	fi
 done
 
-echo "$(date -R) DONE. SSH to $1 using $IP with  username 'centos'."
+echo "$(date -R) DONE"
+echo -e "\n\n\nCommand to SSH into $1 > ssh ops@$IP\n\n\n"
 

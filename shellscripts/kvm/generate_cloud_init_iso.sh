@@ -10,7 +10,7 @@ PUBKEY=${HOME}/.ssh/id_rsa.pub
 if [ ! -f "${PUBKEY}" ]
 then
     # Check for existence of a pubkey, or else exit with message
-    echo "[$(date +%r)]----> [ERROR] Please generate an SSH keypair using 'ssh-keygen -t rsa'. This key will be authorized to login as the CentOS 7 centos cloud image user."
+    echo "[$(date +%r)]----> [ERROR] Please generate an SSH keypair using 'ssh-keygen -t rsa'. This key will be authorized to login as the ops user."
     exit 3
 else
     # Place contents of $PUBKEY into $KEY
@@ -60,7 +60,7 @@ output:
 ssh_genkeytypes: ['ed25519', 'rsa']
 
 # Install my public ssh key to the first user-defined user configured
-# in cloud.cfg in the template (which is centos for CentOS cloud images)
+# in cloud.cfg in the template (which is "ops")
 ssh_authorized_keys:
   - ${KEY}
 
