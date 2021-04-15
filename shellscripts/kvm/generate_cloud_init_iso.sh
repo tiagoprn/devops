@@ -6,29 +6,18 @@ if ! [ $# -eq 1 ]; then
     exit 1
 fi
 
-if [[ $1 == *"centos"* ]]; then
-	SUDOUSER="centos"
-	SUDOGROUP="wheel"
-elif [[ $1 == *"ubuntu"* ]]; then
-	SUDOUSER="ubuntu"
-	SUDOGROUP="sudo"
-else
-	SUDOUSER="admin"
-	SUDOGROUP="sudo"
-fi
-echo "sudouser is ==> $SUDOUSER, sudogroup is ==> $SUDOGROUP"
-
 PUBKEY=${HOME}/.ssh/id_rsa.pub
 if [ ! -f "${PUBKEY}" ]
 then
     # Check for existence of a pubkey, or else exit with message
-    echo "[$(date +%r)]----> [ERROR] Please generate an SSH keypair using 'ssh-keygen -t rsa'. This key will be authorized to login as the cloud image user."
+    echo "[$(date +%r)]----> [ERROR] Please generate an SSH keypair using 'ssh-keygen -t rsa'. This key will be authorized to login as the CentOS 7 centos cloud image user."
     exit 3
 else
     # Place contents of $PUBKEY into $KEY
     KEY=$(<${PUBKEY})
 fi
 
+SUDOGROUP="wheel"
 TIMEZONE=America/Sao_Paulo
 
 USER_DATA=user-data
@@ -43,16 +32,10 @@ cat > $USER_DATA << _EOF_
 # Hostname management
 preserve_hostname: False
 hostname: $1
-fqdn: $1.kvm.local
+fqdn: $1.vbox.local
 
 # Users
 users:
-    - name: ${SUDOUSER}
-      groups: ['${SUDOGROUP}']
-      shell: /bin/bash
-      sudo: ALL=(ALL) NOPASSWD:ALL
-      ssh_authorized_keys:
-        - ${KEY}
     - name: ops
       groups: ['${SUDOGROUP}']
       shell: /bin/bash
@@ -66,8 +49,7 @@ bootcmd:
 
 # Remove cloud-init when finished with it
 runcmd:
-  - [ yum, -y, remove, cloud-init, ||, true ]
-  - [ apt, remove, -y, cloud-init, ||, true ]
+  - [ yum, -y, remove, cloud-init ]
 
 # Configure where output will go
 output:
@@ -76,8 +58,8 @@ output:
 # configure interaction with ssh server
 ssh_genkeytypes: ['ed25519', 'rsa']
 
-# Install my public ssh key to the user configured
-# in cloud.cfg in the template
+# Install my public ssh key to the first user-defined user configured
+# in cloud.cfg in the template (which is centos for CentOS cloud images)
 ssh_authorized_keys:
   - ${KEY}
 
