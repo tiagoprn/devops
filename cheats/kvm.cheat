@@ -3,6 +3,9 @@
 # Create and enable a storage pool
 mkdir -p <path>  && virsh pool-define-as <pool-name> dir - - - - <path> && virsh pool-build <pool-name> && virsh pool-start <pool-name> && virsh pool-autostart <pool-name> && virsh pool-list --all
 
+# KVM environment information
+virsh version --daemon
+
 # Show available storage pools
 virsh pool-list --all
 
