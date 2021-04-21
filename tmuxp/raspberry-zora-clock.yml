@@ -6,10 +6,9 @@ windows:
       - sleep 1
     layout: fb2e,156x29,0,0[156x12,0,0{78x12,0,0,48,77x12,79,0,49},156x5,0,13,50,156x10,0,19{78x10,0,19,51,77x10,79,19,52}]
     panes:
-      # - tty-clock -C 7 -B -b -c -s -n -f '%A %d, %B'
       - watch -n 1 -t -c "date '+%H:%M:%S' | toilet -f future &&  date '+%A %d, %B %Y'"
       - watch -n 300 -t -c curl -sf wttr.in/?0
-      - watch -n 300 -t -c -t curl -sf wttr.in/?format=%C+%t+feels+%f+humidity+%h+precipitation+%p+sunrise+%S+sunset+%s+moonphase+%m
+      - watch -n 300 -t -c -t curl -sf wttr.in/?format=%C+%t+feels+%f+humidity+%h+precipitation+%p+sunrise+%S+sunset+%s+moonphase+%m | sed s/humidity/\\nhumidity/g | sed s/sunrise/\\nsunrise/g
       - watch -n 10 -t -c 'echo "CPU Temperature:" && sudo /opt/vc/bin/vcgencmd measure_temp | cut -d "=" -f 2 | toilet -f future'
-      - watch -n 300 -t -c 'echo "Internet connection test:" && ~/.local/bin/speedtest-cli --simple || true && echo "(finished at $(date "+%H:%M:%S"))"'
+      - watch -n 300 -t -c 'echo "Internet connection test:" && speedtest-cli --simple || true && echo "(finished at $(date "+%H:%M:%S"))"'
     focus: True
