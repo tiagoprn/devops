@@ -35,3 +35,6 @@ curl https://decapi.me/youtube/latest_video?id=<channel-id>
 
 # Get last video from youtube user
 curl https://decapi.me/youtube/latest_video?user=<user-id>
+
+# Get only response with status code with timeout
+curl -I -H 'Cache-Control: no-cache' --max-time 5 -k <url>
