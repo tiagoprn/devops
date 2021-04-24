@@ -176,3 +176,7 @@ find <directory> -type f | fzf
 
 # top processes by memory consumption (ps)
 watch -n1 -e 'ps -axo rss,vsz,cmd --sort=-rss | head -6'
+
+# processes that has a file/directory open (lsof)
+lsof +f -- <file-or-directory>
+
