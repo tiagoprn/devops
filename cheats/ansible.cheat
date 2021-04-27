@@ -7,7 +7,7 @@ mkdir -p ~/ansible/conf || true && curl https://raw.githubusercontent.com/tiagop
 mkdir -p ~/ansible/conf || true && curl https://raw.githubusercontent.com/tiagoprn/dot_files/master/ansible/conf/hosts -o ~/ansible/conf/hosts
 
 # edit config
-vim ~/ansible/conf/ansible.cfg'
+vim ~/ansible/conf/ansible.cfg
 
 # edit hosts
 vim ~/ansible/conf/hosts
