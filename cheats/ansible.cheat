@@ -1,0 +1,28 @@
+% ansible
+
+# setup ansible config file
+mkdir -p ~/ansible/conf || true && curl https://raw.githubusercontent.com/tiagoprn/dot_files/master/ansible/conf/ansible.cfg -o ~/ansible/conf/ansible.cfg
+
+# setup ansible hosts file
+mkdir -p ~/ansible/conf || true && curl https://raw.githubusercontent.com/tiagoprn/dot_files/master/ansible/conf/hosts -o ~/ansible/conf/hosts
+
+# edit config
+vim ~/ansible/conf/ansible.cfg'
+
+# edit hosts
+vim ~/ansible/conf/hosts
+
+# facts
+ansible -i ~/ansible/conf/hosts all -m setup
+
+# ping hosts
+ansible -i ~/ansible/conf/hosts all -m ping
+
+# ping hosts debug
+ANSIBLE_DEBUG=1 ansible -vvvv -i ~/ansible/conf/hosts all -m ping
+
+# play
+ANSIBLE_CONFIG=~/ansible/conf/ansible.cfg ansible-playbook -i ~/ansible/conf/hosts -vv <playbook>
+
+# play debug
+ANSIBLE_DEBUG=1 ansible-playbook -i ~/ansible/conf/hosts -vvvv <playbook>
