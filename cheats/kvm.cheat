@@ -15,6 +15,9 @@ sudo virsh pool-destroy <pool-name> && sudo virsh pool-delete <pool-name> && sud
 # Get running VMs
 sudo virsh list --all
 
+# Get running VMs (watch)
+watch -n 1 sudo virsh list --all
+
 # Remove VM (first you have to stop it)
 sudo virsh undefine $(sudo virsh list --all | fzf | awk '{print $2}') --snapshots-metadata
 
