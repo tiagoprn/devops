@@ -20,3 +20,7 @@ fusermount -u /storage && loginctl terminate-user pi
 
 # lxpanel (has the menu and bluetooth and wireless control applets)
 lxpanel --profile LXDE-pi
+
+# vnc viewer
+/opt/vnc-raspberry/VNC-Viewer-6.20.529-Linux-x64
+
