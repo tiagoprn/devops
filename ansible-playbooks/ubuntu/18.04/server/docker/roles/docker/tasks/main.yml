@@ -43,7 +43,7 @@
 
 - name: Install docker-compose
   pip:
-    name: {{ item }}
+    name: "{{ item }}"
     extra_args: --upgrade  # this also upgrades pip to the latest version
   with_items:
     - pip
