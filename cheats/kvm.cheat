@@ -63,6 +63,12 @@ sudo virsh domiflist $(sudo virsh list --all | fzf | awk '{print $2}')
 # Info on qcow2/img disk
 qemu-img info <disk-file>
 
+# Info on qcow2/img disk (fdisk)
+fdisk -l <disk-file>
+
+# Resize disk. E.g.: sudo virsh blockresize /storage/kvm/storage_pools/ubuntu18/ubuntu18-qcow2 15G
+sudo virsh blockresize <domain-name> <disk-file> <size>
+
 # Create qcow2 disk (size e.g. 10G)
 qemu-img create -f qcow2 <qcow2-disk-file> -o size=<size>,preallocation=metadata
 
