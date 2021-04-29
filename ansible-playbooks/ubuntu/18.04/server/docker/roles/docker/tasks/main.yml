@@ -43,8 +43,11 @@
 
 - name: Install docker-compose
   pip:
-    name: docker-compose
+    name: {{ item }}
     extra_args: --upgrade  # this also upgrades pip to the latest version
+  with_items:
+    - pip
+    - docker-compose
 
 - name: Create the folder to hold portainer compose file and start/stop scripts
   file:
