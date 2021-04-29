@@ -42,7 +42,9 @@
   debug: var=dockerinfo.stdout
 
 - name: Install docker-compose
-  pip: name=docker-compose
+  pip:
+    name: docker-compose
+    state: latest  # this also upgrades pip to the latest version
 
 - name: Create the folder to hold portainer compose file and start/stop scripts
   file:
