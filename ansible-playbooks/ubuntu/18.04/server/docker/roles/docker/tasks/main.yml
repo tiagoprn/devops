@@ -43,11 +43,11 @@
 
 - name: Install docker-compose
   pip:
-    name: "{{ item }}"
+    name:  # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html#examples
+      - pip
+      - docker-compose
     extra_args: --upgrade  # this also upgrades pip to the latest version
-  with_items:
-    - pip
-    - docker-compose
+    state: forcereinstall
 
 - name: Create the folder to hold portainer compose file and start/stop scripts
   file:
