@@ -8,4 +8,5 @@ windows:
       - sudo htop
       - watch -n 1 sudo virsh list --all
       - cd /storage/kvm && pwd && ls
+      - cd /storage/src/devops
 
