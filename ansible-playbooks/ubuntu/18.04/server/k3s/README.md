@@ -6,6 +6,8 @@ It is recommended you run first the `initial-setup` and `docker` playbooks to
 provisionate the server. Do not use this with the `monitoring-and-traefik/`,
 since they will conflict with each other.
 
+**IMPORTANT: with k3s up, the machine resources will be around 1GB RAM. So, it is recommended a machine with 2GB+ RAM to comfortably run k3s with some applications.**
+
 
 # How to validate k3s is working, deploying a static server:
 (see the explanation [here](https://fedoramagazine.org/kubernetes-on-fedora-iot-with-k3s/))
