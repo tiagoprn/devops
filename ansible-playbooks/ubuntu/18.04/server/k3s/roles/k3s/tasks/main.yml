@@ -78,7 +78,7 @@
 
 - name: Add the repository for official charts
   become_user: ubuntu
-  command: helm repo add stable https://kubernetes-charts.storage.googleapis.com
+  command: helm repo add stable https://charts.helm.sh/stable
 
 - name: Update the chart repository
   become_user: ubuntu
