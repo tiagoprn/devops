@@ -45,18 +45,12 @@
 - name: Check storage class is working
   command: kubectl get storageclass
 
-- name: Install helm
+- name: Install helm (v3 - no more tiller)
   shell: |
     cd /opt/k3s
     curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > install-helm.sh
     chmod u+x install-helm.sh
     ./install-helm.sh
-
-- name: Link helm with tiller - Create tiller service account
-  command: kubectl -n kube-system create serviceaccount tiller
-
-- name: Link helm with tiller -  Create cluster role binding for tiller
-  command: kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
 
 - name: Create the ubuntu user folder to keep kubeconfig
   file:
@@ -82,10 +76,6 @@
 - name: copy kubeconfig to the ops user
   copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ops/.kube/config owner=ops group=ops mode=0644 remote_src=yes
 
-- name: Initialize tiller
-  become_user: ubuntu
-  command: helm init --service-account tiller
-
 - name: Add the repository for official charts
   become_user: ubuntu
   command: helm repo add stable https://kubernetes-charts.storage.googleapis.com
@@ -93,6 +83,10 @@
 - name: Update the chart repository
   become_user: ubuntu
   command: helm repo update
+
+- name: Test helm was successfully installed
+  become_user: ubuntu
+  command: helm ls
 
 - name: Install Kubernetes Dashboard
   become_user: ubuntu
