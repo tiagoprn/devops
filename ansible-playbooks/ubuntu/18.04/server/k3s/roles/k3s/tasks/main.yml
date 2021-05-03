@@ -48,7 +48,7 @@
 - name: Install helm
   shell: |
     cd /opt/k3s
-    curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > install-helm.sh
+    curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > install-helm.sh
     chmod u+x install-helm.sh
     ./install-helm.sh
 
