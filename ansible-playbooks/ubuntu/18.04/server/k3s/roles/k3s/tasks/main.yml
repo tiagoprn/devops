@@ -71,10 +71,10 @@
     recurse: yes
 
 - name: copy kubeconfig to the ubuntu user
-  copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ubuntu/.kube/config owner=ubuntu group=ubuntu mode=0644 remote_src=yes
+  copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ubuntu/.kube/config owner=ubuntu group=ubuntu mode=0600 remote_src=yes
 
 - name: copy kubeconfig to the ops user
-  copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ops/.kube/config owner=ops group=ops mode=0644 remote_src=yes
+  copy: src=/etc/rancher/k3s/k3s.yaml dest=/home/ops/.kube/config owner=ops group=ops mode=0600 remote_src=yes
 
 - name: Add the repository for official charts
   become_user: ubuntu
