@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ls /var/log/helm_passed.txt > /dev/null 2>&1
+
+# If there is an error on the previous bash command, helm is not installed
+# below must result in a json formatted dict, so ansible can use it
+if [ $? -ne 0 ] ; then
+    echo "{\"has_helm_installed\": false}"
+else
+    echo "{\"has_helm_installed\": true}"
+fi
+

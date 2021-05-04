@@ -5,4 +5,5 @@
     - upgrade
     - firewalld
     - {role: k3s, when: "ansible_local['k3s_facts']['has_k3s_installed'] == false" }
+    # - {role: helm, when: "ansible_local['helm_facts']['has_helm_installed'] == false" }
     - cleanup
