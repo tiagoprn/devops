@@ -72,9 +72,9 @@
 - name: Install helm (v3 - no more tiller)
   shell: |
     cd /opt/k3s
-    curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > install-helm.sh
-    chmod u+x install-helm.sh
-    ./install-helm.sh
+    wget https://get.helm.sh/helm-v3.5.4-linux-amd64.tar.gz
+    tar xvf helm-v3.5.4-linux-amd64.tar.gz
+    sudo cp linux-amd64/helm /usr/local/bin/
 
 - name: Test helm was successfully installed
   become_user: ubuntu
