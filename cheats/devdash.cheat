@@ -1,0 +1,7 @@
+% devdash dashboards
+
+# show dash
+devdash -c <path-to-yml-file>
+
+# show reminders dash
+cd /storage/src/devdashes && devdash -c reminders.yml
