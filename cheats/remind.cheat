@@ -40,4 +40,4 @@ remind -f -z1 -k'notify-send -u critical -t 10000 REMIND: %s &' <path-to-rem-fil
 remind -f -z1 -k'telegram-send REMIND: %s &' <path-to-rem-file> &
 
 # today's personal reminders
-clear && echo "TODAY IS: $(date '+%A %d, %B %Y')" | cowthink && echo '' &&  echo 'REMINDERS' | figlet && remind -s /storage/docs/reminders/personal.rem | grep "$(date +%Y/%m/%d)" | cut -f 6- -d ' '
+watch -n 5 -c "clear && echo "TODAY IS: $(date '+%A %d, %B %Y')" | cowthink && echo '' &&  echo 'REMINDERS' | figlet && remind -s /storage/docs/reminders/personal.rem | grep "$(date +%Y/%m/%d)" | cut -f 6- -d ' '"
