@@ -1,16 +1,11 @@
-session_name: CALENDAR (PYENV)
+session_name: CALENDAR
 windows:
   - window_name: main
     layout: even-vertical
     start_directory: /storage/src
     shell_command_before:
-      - clear
-      - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
       - sleep 3
+      - clear
     panes:
-      - shell_command:
-        - clear && echo "TODAY IS: $(date '+%A %d, %B %Y')" | cowthink && echo '' && ncal -w -3
-      - shell_command:
-        - remind -s /storage/docs/reminders/personal.rem | grep "$(date +%Y/%m/%d)" | cut -f 6- -d ' '
-        focus: true
-
+      - echo "TODAY IS: $(date '+%A %d, %B %Y')" | cowthink && echo '' && ncal -w -3
+      - remind -s /storage/docs/reminders/personal.rem | grep "$(date +%Y/%m/%d)" | cut -f 6- -d ' '
