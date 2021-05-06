@@ -185,3 +185,6 @@ sudo cat /etc/shells
 
 # change current user shell
 chsh -s <shell-path>
+
+# cut from a given column number to the end
+echo <text> | cut -f <column-number>- -d ' '

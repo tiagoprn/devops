@@ -6,6 +6,9 @@ remind <path-to-rem-file>
 # today, with tags and times
 remind -s <path-to-rem-file> | grep "$(date +%Y/%m/%d)"
 
+# today, only time and description
+remind -s <path-to-rem-file> | grep "$(date +%Y/%m/%d)" | cut -f 6- -d ' '
+
 # simple output, to allow paging, grepping, etc...
 remind -s <path-to-rem-file> | less
 
