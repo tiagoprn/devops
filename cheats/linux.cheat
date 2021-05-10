@@ -188,3 +188,9 @@ chsh -s <shell-path>
 
 # cut from a given column number to the end
 echo <text> | cut -f <column-number>- -d ' '
+
+# ssh into host pre-configured on ~/.ssh/config
+ssh $(cat ~/.ssh/config | grep 'Host ' | cut -d ' ' -f 2 | fzf)
+
+# mosh into host pre-configured on ~/.ssh/config
+mosh $(cat ~/.ssh/config | grep 'Host ' | cut -d ' ' -f 2 | fzf)
