@@ -47,6 +47,7 @@ def get_shortcuts():
         ]
 
     for filename in FILES_TO_PARSE:
+        print(f'parsing file: {filename}')
         with open(filename, 'r') as input_file:
             lines = input_file.readlines()
         for line in lines:
