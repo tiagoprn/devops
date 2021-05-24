@@ -9,7 +9,8 @@ declare -A options
 options[dwm]="$DMENU_SCRIPTS_PATH/dwm-dmenu-cheatsheet.sh"
 options[qutebrowser]="$DMENU_SCRIPTS_PATH/qutebrowser-dmenu-cheatsheet.sh"
 options[st]="$DMENU_SCRIPTS_PATH/st-dmenu-cheatsheet.sh"
-options[vim]="$ROFI_RUN_PREFIX/vim_shortcuts.py"
+options[vim]="$ROFI_RUN_PREFIX/vim_shortcuts.py -f vim"
+options[neovim]="$ROFI_RUN_PREFIX/vim_shortcuts.py -f neovim"
 
 # Picking a script
 # shellcheck disable=SC2154

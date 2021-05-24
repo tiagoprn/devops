@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import argparse
 import glob
 import logging
 import os
@@ -21,32 +21,69 @@ logging.basicConfig(
     level=logging.INFO,
     handlers=[logging.StreamHandler(sys.stdout)],
 )
+FILES_TO_PARSE = []
+VIM_FLAVOR = ''
 
 
 def get_shortcuts():
     shortcuts_list = []
-    filename = '/storage/src/dot_files/.vimrc'
-    with open(filename, 'r') as input_file:
-        lines = input_file.readlines()
-    for line in lines:
-        if line.replace('\n', '') and ('| "' in line):
-            shortcut, description = line.split('| "')
-            if shortcut and description:
-                _shortcut = (
-                    shortcut[1:].strip()
-                    if shortcut.startswith('"')
-                    else shortcut.strip()
-                )
-                shortcuts_list.append(f'{description.strip()} => {_shortcut}')
+    PREFIX = '/storage/src/dot_files'
+
+    if VIM_FLAVOR == 'vim':
+        FILES_TO_PARSE = [f'{PREFIX}/.vimrc']
+    elif VIM_FLAVOR == 'neovim':
+        FILES_TO_PARSE = [
+            f'{PREFIX}/nvim/init.vim',
+            f'{PREFIX}/nvim/abbreviations.vim',
+            f'{PREFIX}/nvim/commands.vim',
+            f'{PREFIX}/nvim/commands-plugins.vim',
+            f'{PREFIX}/nvim/mappings-core.vim',
+            f'{PREFIX}/nvim/mappings-commands.vim',
+            f'{PREFIX}/nvim/mappings-functions.vim',
+            f'{PREFIX}/nvim/mappings-plugins.vim',
+            f'{PREFIX}/nvim/mappings-shellscripts.vim',
+        ]
+
+    for filename in FILES_TO_PARSE:
+        with open(filename, 'r') as input_file:
+            lines = input_file.readlines()
+        for line in lines:
+            if line.replace('\n', '') and ('| "' in line):
+                shortcut, description = line.split('| "')
+                if shortcut and description:
+                    _shortcut = (
+                        shortcut[1:].strip()
+                        if shortcut.startswith('"')
+                        else shortcut.strip()
+                    )
+                    shortcuts_list.append(
+                        f'{description.strip()} => {_shortcut}'
+                    )
     return sorted(shortcuts_list)
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "-f",
+        "--flavor",
+        type=str,
+        choices=['vim', 'neovim'],
+        help="vim flavor: vim / neovim",
+    )
+    args = parser.parse_args()
+    VIM_FLAVOR = args.flavor
+    if VIM_FLAVOR == 'vim':
+        print('(traditional) vim.')
+    elif VIM_FLAVOR == 'neovim':
+        print('neovim detected.')
+
     shortcuts_list = get_shortcuts()
 
     rofi_client = Rofi()
     selected, keyboard_key = rofi_client.select(
-        'Filter a vim shortcut',
+        f'Filter a {VIM_FLAVOR} shortcut',
         shortcuts_list,
         fullscreen=True,
         other_args=['--no-case-sensitive'],
