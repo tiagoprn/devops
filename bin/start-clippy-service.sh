@@ -7,4 +7,4 @@ _isRunning() {
 }
 
 notify-send "Starting clippy (clipboard daemon)..."
-_isRunning clippy || /home/pi/apps/scripts/bin/clippy.py &
+_isRunning clippy || $HOME/apps/scripts/bin/clippy.py &
