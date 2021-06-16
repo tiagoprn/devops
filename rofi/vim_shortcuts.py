@@ -41,7 +41,6 @@ def get_shortcuts():
             f'{PREFIX}/nvim/mappings-commands.vim',
             f'{PREFIX}/nvim/mappings-functions.vim',
             f'{PREFIX}/nvim/mappings-plugins.vim',
-            f'{PREFIX}/nvim/mappings-shellscripts.vim',
             f'{PREFIX}/nvim/mappings-tiagoprn-functions.vim',
             f'{PREFIX}/nvim/cheatsheet-core.vim',
             f'{PREFIX}/nvim/cheatsheet-plugins.vim',
