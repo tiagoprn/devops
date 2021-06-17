@@ -4,6 +4,9 @@
 sudo dpkg -L <package-name>
 
 # list all installed packages
+sudo apt list --installed
+
+# list all installed packages and dump to file
 sudo su -c 'INSTALLED_PACKAGES_OUTPUT_FILE=/tmp/installed-apt-packages.$(hostname).$(date +%Y%m%d-%H%M%S-%N) && apt list --installed > $INSTALLED_PACKAGES_OUTPUT_FILE && echo "The list of installed packages is at: $INSTALLED_PACKAGES_OUTPUT_FILE"'
 
 # install packages from file
