@@ -118,10 +118,10 @@ echo 'Enable at least en_US.UTF-8 and pt_BR.UTF-8, so that mosh can work.' && sl
 stat -c '%A %a %n' <file-or-folder-path>
 
 # backup a device to a gzipped dd image:
-sudo dd bs=4M if=<device-to-backup> | gzip > <gzipped-image-file>
+time sudo dd bs=4M if=<device-to-backup> | gzip > <gzipped-image-file>
 
 # restore a device from a gzipped dd image:
-gunzip --stdout <gzipped-image-file> | sudo dd bs=4M of=<device-to-restore>
+time gunzip --stdout <gzipped-image-file> | sudo dd bs=4M of=<device-to-restore>
 
 # restore a device from a xz dd image
 xzcat <xz-image-file-path> | dd bs=4M of=/dev/<device-name> iflag=fullblock oflag=direct status=progress
