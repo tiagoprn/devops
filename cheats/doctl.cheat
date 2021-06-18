@@ -3,9 +3,11 @@
 # authenticate
 doctl auth init
 
-# list droplets:
+# list droplets
 doctl compute droplet list
 
-# restart (reboot) a droplet:
+# restart (reboot) a droplet
 doctl compute droplet-action power-cycle <droplet-id>
 
+# open documentation (cli reference)
+xdg-open https://docs.digitalocean.com/reference/doctl/reference/
