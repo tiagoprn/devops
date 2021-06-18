@@ -49,4 +49,7 @@ sudo systemctl start $(sudo systemctl list-unit-files --type=service | grep enab
 echo 'Stopping service <service>...' && sudo systemctl stop <service> && echo 'Starting service <service>...' && sudo systemctl start <service> && sudo systemctl status <service>
 
 # find the systemd unit corresponding to a given pid
-systemctl status <pid>
+sudo systemctl status <pid>
+
+# troubleshoot/validate syntax of a failing service file due to "bad-setting"
+sudo systemd-analyze verify <service>
