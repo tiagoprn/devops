@@ -17,16 +17,29 @@ dwebp <webp-file-path> -o <png-file-path>
 
 # get color from a screen selection (cargo install xcolor)
 xcolor --format hex | cb
+#
+# ascii image converter (snap) - keep dimensions, simple character set, black/white
+ascii-image-converter '<image-url>'
 
-# ascii image converter (snap) - keep dimensions, black/white
+# ascii image converter (snap) - custom dimensions, simple character set, black/white
+ascii-image-converter '<image-url>' -d <columns>,<lines>
+
+# ascii image converter (snap) - keep dimensions, simple character set, colored
+ascii-image-converter '<image-url>' -C
+
+# ascii image converter (snap) - custom dimensions, simple character set, colored
+ascii-image-converter '<image-url>' -C -d <columns>,<lines>
+
+# ascii image converter (snap) - keep dimensions, complex character set, black/white
 ascii-image-converter '<image-url>' -c
 
-# ascii image converter (snap) - custom dimensions, black/white
+# ascii image converter (snap) - custom dimensions, complex character set, black/white
 ascii-image-converter '<image-url>' -c -d <columns>,<lines>
 
-# ascii image converter (snap) - keep dimensions, colored
+# ascii image converter (snap) - keep dimensions, complex character set, colored
 ascii-image-converter '<image-url>' -cC
 
-# ascii image converter (snap) - custom dimensions, colored
+# ascii image converter (snap) - custom dimensions, complex character set, colored
 ascii-image-converter '<image-url>' -cC -d <columns>,<lines>
+
 
