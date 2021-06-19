@@ -19,27 +19,26 @@ dwebp <webp-file-path> -o <png-file-path>
 xcolor --format hex | cb
 #
 # ascii image converter (snap) - keep dimensions, simple character set, black/white
-ascii-image-converter '<image-url>'
+ascii-image-converter '<image-url>' | vim -
 
 # ascii image converter (snap) - custom dimensions, simple character set, black/white
-ascii-image-converter '<image-url>' -d <columns>,<lines>
+ascii-image-converter '<image-url>' -d <columns>,<lines> | vim -
 
 # ascii image converter (snap) - keep dimensions, simple character set, colored
-ascii-image-converter '<image-url>' -C
+ascii-image-converter '<image-url>' -C | vim -
 
 # ascii image converter (snap) - custom dimensions, simple character set, colored
-ascii-image-converter '<image-url>' -C -d <columns>,<lines>
+ascii-image-converter '<image-url>' -C -d <columns>,<lines> | vim -
 
 # ascii image converter (snap) - keep dimensions, complex character set, black/white
-ascii-image-converter '<image-url>' -c
+ascii-image-converter '<image-url>' -c | vim -
 
 # ascii image converter (snap) - custom dimensions, complex character set, black/white
-ascii-image-converter '<image-url>' -c -d <columns>,<lines>
+ascii-image-converter '<image-url>' -c -d <columns>,<lines> | vim -
 
 # ascii image converter (snap) - keep dimensions, complex character set, colored
-ascii-image-converter '<image-url>' -cC
+ascii-image-converter '<image-url>' -cC | vim -
 
 # ascii image converter (snap) - custom dimensions, complex character set, colored
-ascii-image-converter '<image-url>' -cC -d <columns>,<lines>
-
+ascii-image-converter '<image-url>' -cC -d <columns>,<lines> | vim -
 
