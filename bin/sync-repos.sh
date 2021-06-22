@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REPOS="/storage/src/devops /storage/src/dot_files /storage/src/bin_private /storage/docs/notes /storage/src/tiagoprnl /storage/src/gpg /storage/src/dwm /storage/src/dwmblocks /storage/src/st /storage/src/reminders /storage/src/fleeting-notes"
+REPOS="/storage/src/devops /storage/src/dot_files /storage/src/bin_private /storage/docs/notes /storage/src/tiagoprnl /storage/src/gpg /storage/src/dwm /storage/src/dwmblocks /storage/src/st /storage/src/reminders /storage/docs/fleeting-notes"
 UPDATE_BRANCH=master
 
 for repo in $REPOS; do
