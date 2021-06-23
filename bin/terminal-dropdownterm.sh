@@ -16,5 +16,5 @@ else
 
   fi
 
-  alacritty --class dropdownterm -e bash -c "$TMUXP load /storage/src/devops/tmuxp/notes-and-reminders.yml" --hold
+  alacritty --class dropdownterm --title dropdownterm -e bash -c "$TMUXP load /storage/src/devops/tmuxp/notes-and-reminders.yml" --hold
 fi
