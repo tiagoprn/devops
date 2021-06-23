@@ -10,5 +10,4 @@ windows:
   - bash
   - bash
   - bash
-  start_directory: ~
   window_name: 'window 1'
