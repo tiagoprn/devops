@@ -1,0 +1,14 @@
+session_name: 'default-widescreen'
+windows:
+- focus: 'true'
+  layout: 06c8,356x54,0,0{178x54,0,0[178x27,0,0,0,178x26,0,28,3],177x54,179,0[177x27,179,0,1,177x26,179,28,2]}
+  options:
+    synchronize-panes: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: cat /etc/os-release
+  - bash
+  - bash
+  - bash
+  start_directory: ~
+  window_name: 'window 1'
