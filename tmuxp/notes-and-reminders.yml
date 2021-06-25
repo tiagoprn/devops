@@ -10,6 +10,16 @@ windows:
       - shell_command:
         - cd /storage/docs/notes/ && vim $(fd -H --exclude .git | fzf)
         focus: true
+  - window_name: FLEETING NOTES
+    layout: even-vertical
+    start_directory: /storage/docs/fleeting-notes
+    shell_command_before:
+      - clear
+      - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
+    panes:
+      - shell_command:
+        - cd /storage/docs/fleeting-notes/ && vim $(fd -H --exclude .git | fzf)
+        focus: true
   - window_name: REMINDERS
     layout: even-vertical
     start_directory: /storage/docs/reminders
