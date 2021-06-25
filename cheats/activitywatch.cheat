@@ -1,0 +1,20 @@
+% activitywatch (use the WebUI ONLY on qutebrowser - the database and categories are per browser)
+
+# start
+nohup /opt/installers/activitywatch/aw-qt &
+
+# categories backup folder
+cd /storage/docs/notes/activitywatch
+
+# data folder
+cd ~/.local/share/activitywatch
+
+# config folder
+cd ~/.config/activitywatch
+
+# logs folder
+cd ~/.cache/activitywatch/log
+
+# cache folder
+cd ~/.cache/activitywatch
+
