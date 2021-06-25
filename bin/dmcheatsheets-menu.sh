@@ -7,6 +7,7 @@ ROFI_RUN_PREFIX="python3 $ROFI_SCRIPTS_PATH"
 # An array of options
 declare -A options
 options[dwm]="$DMENU_SCRIPTS_PATH/dwm-dmenu-cheatsheet.sh"
+options[dwm_shellcommands]="$DMENU_SCRIPTS_PATH/dmshellcommands-list.sh"
 options[qutebrowser]="$DMENU_SCRIPTS_PATH/qutebrowser-dmenu-cheatsheet.sh"
 options[st]="$DMENU_SCRIPTS_PATH/st-dmenu-cheatsheet.sh"
 options[alacritty]="$DMENU_SCRIPTS_PATH/alacritty-dmenu-cheatsheet.sh"
