@@ -9,6 +9,6 @@ awk '{print $NF}'
 # Get the nth field (works with custom separator, including multicharacters):
 awk '{FS="<separator>"} {print $<field_number>}'
 
-# See more complex awk example:
-bat /storage/src/devops/bin/tmux-dmenu-cheatsheet.sh
+# See more complex awk examples: (opens on vim)
+vim /storage/src/devops/bin/tmux-dmenu-cheatsheet.sh /storage/src/devops/bin/dmshellcommands-list.sh
 
