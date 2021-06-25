@@ -16,8 +16,8 @@ docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtub
 docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -ci -o "%(title)s-%(id)s.%(ext)s" "<playlist-url>"
 
 # Download and run on mpv
-mkdir -p ~/Downloads/yt && youtube-dl -q --restrict-filenames --format mp4 -o ~/Downloads/yt/"%(title)s---%(uploader)s---%(upload_date)s---%(playlist)s---.%(ext)s" '<video_url>' --exec 'echo {}' > /tmp/url.txt && notify-send -t 5000 "Finished downloading at $(cat /tmp/url.txt)" && mpv $(cat /tmp/url.txt)
+mkdir -p /storage/temp/yt && youtube-dl -q --restrict-filenames --format mp4 -o /storage/temp/yt/"%(title)s---%(uploader)s---%(upload_date)s---%(playlist)s---.%(ext)s" '<video_url>' --exec 'echo {}' > /tmp/url.txt && notify-send -t 5000 "Finished downloading at $(cat /tmp/url.txt)" && mpv $(cat /tmp/url.txt)
 
 # Run mpv from youtube download folder
-cd ~/Downloads/yt && mpv $(fzf)
+cd /storage/temp/yt && mpv $(fzf)
 
