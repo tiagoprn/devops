@@ -13,13 +13,4 @@ cat /storage/src/dwm-flexipatch/config.h | \
 	sort | \
 	dmenu -fn 'Jetbrains Mono:size=10' -c -bw 2 -l 20 -p 'DWM SHCMDs: ' | \
 	xclip -selection clipboard
-exit 0
 
-# Picking a command
-# shellcheck disable=SC2154
-while [ -z "$command" ]; do
-    command=$(printf '%s\n' "${!options[@]}" | sort | dmenu -fn 'Jetbrains Mono:size=14' -c -bw 2 -l 20 -p 'Dunst notifications: ') "$@" || exit
-    chosen_command="${options["${command}"]}" || exit
-done
-
-/bin/bash -c "$chosen_command"
