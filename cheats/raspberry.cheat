@@ -24,3 +24,6 @@ lxpanel --profile LXDE-pi
 # vnc viewer
 /opt/vnc-raspberry/VNC-Viewer-6.20.529-Linux-x64
 
+# autostart directory
+cd /etc/xdg/lxsession/LXDE-pi
+
