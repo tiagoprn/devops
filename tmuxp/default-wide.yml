@@ -1,7 +1,8 @@
 session_name: 'default-widescreen'
 windows:
-- focus: 'true'
+- window_name: 'WORK'
   layout: 06c8,356x54,0,0{178x54,0,0[178x27,0,0,0,178x26,0,28,3],177x54,179,0[177x27,179,0,1,177x26,179,28,2]}
+  focus: 'true'
   options:
     synchronize-panes: 'off'
   panes:
@@ -10,4 +11,13 @@ windows:
   - bash
   - bash
   - bash
-  window_name: 'window 1'
+- window_name: 'PERSONAL'
+  layout: 06c8,356x54,0,0{178x54,0,0[178x27,0,0,0,178x26,0,28,3],177x54,179,0[177x27,179,0,1,177x26,179,28,2]}
+  options:
+    synchronize-panes: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: cd
+  - cd /storage/docs
+  - cd /storage/src
+  - cd /storage/src/tiagoprnl
