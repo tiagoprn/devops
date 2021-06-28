@@ -1,7 +1,7 @@
 % activitywatch (use the WebUI ONLY on qutebrowser - the database and categories are per browser)
 
 # start
-nohup /opt/installers/activitywatch/aw-qt &
+nohup /opt/installers/activitywatch/aw-qt >> /tmp/activitywatch.log 2>&1 &
 
 # categories backup folder
 cd /storage/docs/notes/activitywatch
@@ -17,4 +17,10 @@ cd ~/.cache/activitywatch/log
 
 # cache folder
 cd ~/.cache/activitywatch
+
+# runtime log
+tail -f /tmp/activitywatch.log
+
+# kill processes
+pkill aw
 

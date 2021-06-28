@@ -1,0 +1,11 @@
+session_name: activitywatch
+windows:
+  - window_name: main
+    layout: even-vertical
+    shell_command_before:
+      - clear
+      - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
+    panes:
+      - clear
+      - tail -f /tmp/activitywatch.log
+
