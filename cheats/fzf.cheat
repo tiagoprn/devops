@@ -1,0 +1,10 @@
+% fzf
+
+# show FZF_COMPLETION_TRIGGER.
+echo $FZF_COMPLETION_TRIGGER
+
+# interactive/fuzzy cd (press <TAB> to run - ",," is the value of the environment var FZF_COMPLETION_TRIGGER)
+xdotool type "cd ,,"
+
+# interactive/fuzzy sudo kill (press <TAB> to run - ",," is the value of the environment var FZF_COMPLETION_TRIGGER)
+xdotool type "sudo kill -9 ,,"
