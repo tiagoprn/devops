@@ -23,3 +23,7 @@ vim +':redir! > <mappings-file>' +':silent verbose map' +':redir END' +':qa!'
 
 # generate a file report of the vim startup time (useful to detect slow plugins on initialization)
 vim --startuptime <report-file-path>
+
+# start vim with quickfix list populated with results from rg
+vim -q <(rg --vimgrep --ignore-case --hidden --follow '<rg-search-phase>') +copen
+

@@ -1,7 +1,10 @@
-% raspberry
+% raspberry-os, raspbian
 
-# get cpu temperature
-sudo /opt/vc/bin/vcgencmd measure_temp
+# get current cpu temperature
+awk '{print $1/1000}' /sys/class/thermal/thermal_zone0/temp
+
+# get current cpu frequency
+echo "$(( $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq)*1000 ))"
 
 # configuration
 raspi-config
