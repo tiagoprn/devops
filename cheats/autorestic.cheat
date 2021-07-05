@@ -1,0 +1,20 @@
+% restic, autorestic
+
+# Validade syntax
+autorestic -c <configuration-file.yml> check
+
+# Do backup
+autorestic -c <configuration-file.yml> backup -a
+
+# List snapshots
+restic list snapshots -r <repository-path>
+
+# List files on snapshot
+restic -r <repository-path> ls <snapshot-id>
+
+# Restore a specific backup snapshot to a target directory:
+restic -r <repository-path> restore snapshot_id path/to/target
+
+# Restore a specific path from a specific backup to a target directory:
+restic -r <repository-path> --include <snapshot-path-to-restore> --target <restore-target-path> restore <snapshot-id>
+
