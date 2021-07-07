@@ -12,3 +12,5 @@ awk '{FS="<separator>"} {print $<field_number>}'
 # See more complex awk examples: (opens on vim)
 vim /storage/src/devops/bin/tmux-dmenu-cheatsheet.sh /storage/src/devops/bin/dmshellcommands-list.sh
 
+# Print only the x first characters on a line
+awk '{print substr($0, 0, <max_characters_per_line>)}'
