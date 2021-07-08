@@ -8,10 +8,6 @@
 
 # keywords: pomodoro, timer, stopwatch, wmctrl
 
-# usage:
-# pomodoro.sh -t normal  # set a normal pomodoro
-# pomodoro.sh -t break  # set a break pomodoro
-
 set -eou pipefail
 
 usage()
