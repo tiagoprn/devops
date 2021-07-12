@@ -1,7 +1,7 @@
 jedi
 rope
 mccabe
-python-language-server
+python-language-server[all]
 pyls-black
 pyls-isort
 yamllint
