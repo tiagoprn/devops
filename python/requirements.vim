@@ -1,3 +1,5 @@
+neovim
+pynvim
 jedi
 rope
 mccabe
