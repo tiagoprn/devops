@@ -1,9 +1,9 @@
 % rclone
 
-# List buckets on remote:
+# List buckets on remote
 rclone lsd $(cat ~/.config/rclone/rclone.conf | rg '^\[' | tr -d '[' | tr ']' ':' | fzf) | awk '{print $5, $2, $3}'
 
-# List files on bucket:
+# List files on bucket
 export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | rg '^\[' | tr -d '[' | tr ']' ':' | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone ls "$RCLONE_REMOTE$RCLONE_BUCKET"
 
 # Sync remote to local
@@ -12,3 +12,5 @@ export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | rg '^\[' | tr -d '[' |
 # Sync local to remote
 export RCLONE_REMOTE=$(cat ~/.config/rclone/rclone.conf | rg '^\[' | tr -d '[' | tr ']' ':' | fzf | cut -d ' ' -f 2) && export RCLONE_BUCKET=$(rclone lsd $RCLONE_REMOTE | fzf | awk '{print $5}') && rclone -vv sync <local-path> "$RCLONE_REMOTE$RCLONE_BUCKET"
 
+# Custom config file as environment variable
+export RCLONE_CONFIG="<path-to-config>" && echo "Now run your rclone commands."
