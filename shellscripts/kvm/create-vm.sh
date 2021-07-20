@@ -2,7 +2,7 @@
 
 # e.g.
 SYNTAX="./create-vm.sh -d [DISTRO_NAME] -n [VM_NAME] -b [BRIDGE_NAME] -r [RAM] -c [NUMBER_OF_CPUS]"
-HELP="./create-vm.sh -d ubuntu18 -n centos7-02 -b br1 -r 1024 -c 1"
+HELP="./create-vm.sh -d ubuntu20 -n ubuntu20-02 -b br1 -r 1024 -c 1"
 
 while getopts d:n:b:r:c: option
 do
@@ -19,7 +19,7 @@ done
 echo 'Parsing script parameters...'
 
 if [[ -z $DISTRO_NAME ]]; then
-    DISTRO_NAME="ubuntu18"
+    DISTRO_NAME="ubuntu20"
     printf "Missing -d parameter. I will use $DISTRO_NAME.\n";
 fi
 
@@ -45,9 +45,12 @@ fi
 
 if [ $DISTRO_NAME = "ubuntu18" ]; then
 	VM_IMAGE_FILE=/kvm/images/$VM_NAME.img
-else
+elif [ $DISTRO_NAME = "ubuntu20" ]; then
+	VM_IMAGE_FILE=/kvm/images/$VM_NAME.img
+elif [ $DISTRO_NAME = "centos7" ]; then
 	VM_IMAGE_FILE=/kvm/images/$VM_NAME.qcow2
 fi
+
 if [ -f "${VM_IMAGE_FILE}" ]
 then
     # Check for existence of a pubkey, or else exit with message
@@ -58,7 +61,10 @@ fi
 if [ $DISTRO_NAME = "ubuntu18" ]; then
 	echo 'Downloading the Ubuntu 18 cloud image...';
 	bash ./download_ubuntu18_cloud_image.sh;
-else
+elif [ $DISTRO_NAME = "ubuntu20" ]; then
+	echo 'Downloading the Ubuntu 20 cloud image...';
+	bash ./download_ubuntu20_cloud_image.sh;
+elif [ $DISTRO_NAME = 'centos7' ]; then
 	echo 'Downloading the CentOS 7 cloud image...';
 	bash ./download_centos7_cloud_image.sh;
 fi
@@ -74,10 +80,13 @@ sudo chown -R $(id -u).$(id -g)/kvm && sudo chmod -R 777 /kvm/
 
 if [ $DISTRO_NAME = "ubuntu18" ]; then
 	cp -farv ~/distros/images/ubuntu-1804-amd64.template.img /kvm/templates
-	cp -farv /kvm/templates/ubuntu-1804-amd64.template.img $VM_IMAGE_FILE
-else
+	cp -farv /kvm/templates/ubuntu-1804-amd64.template.img "$VM_IMAGE_FILE"
+elif [ $DISTRO_NAME = "ubuntu20" ]; then
+	cp -farv ~/distros/images/ubuntu-2004-amd64.template.img /kvm/templates
+	cp -farv /kvm/templates/ubuntu-2004-amd64.template.img "$VM_IMAGE_FILE"
+elif [ $DISTRO_NAME = "centos7" ]; then
 	cp -farv ~/distros/images/CentOS-7-x86_64-GenericCloud.template.qcow2 /kvm/templates
-	cp -farv /kvm/templates/CentOS-7-x86_64-GenericCloud.template.qcow2 $VM_IMAGE_FILE
+	cp -farv /kvm/templates/CentOS-7-x86_64-GenericCloud.template.qcow2 "$VM_IMAGE_FILE"
 fi
 
 echo 'Creating a new VM from the image...'
@@ -88,7 +97,9 @@ cp -farv ~/distros/images/$VM_NAME-cloud-init-data.iso /kvm/iso
 
 if [ $DISTRO_NAME = "ubuntu18" ]; then
 	sudo virt-install --import --name $VM_NAME --ram $RAM --vcpus $CPUS --cpu host --disk /kvm/images/$VM_NAME.img,format=raw,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=ubuntu18.04 --noautoconsole
-else
+elif [ $DISTRO_NAME = "ubuntu20" ]; then
+	sudo virt-install --import --name $VM_NAME --ram $RAM --vcpus $CPUS --cpu host --disk /kvm/images/$VM_NAME.img,format=raw,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=ubuntu20.04 --noautoconsole
+elif [ $DISTRO_NAME = "centos7" ]; then
 	sudo virt-install --import --name $VM_NAME --ram $RAM --vcpus $CPUS --cpu host --disk /kvm/images/$VM_NAME.qcow2,format=qcow2,bus=virtio --disk /kvm/iso/$VM_NAME-cloud-init-data.iso,device=cdrom --network bridge=$BRIDGE_NAME,model=virtio --os-type=linux --os-variant=rhel7 --noautoconsole
 fi
 
