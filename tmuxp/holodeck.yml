@@ -1,6 +1,15 @@
 session_name: holodeck
 windows:
-  - window_name: main
+  - window_name: lxd
+    layout: even-vertical
+    shell_command_before:
+      - clear
+    panes:
+      - sudo htop
+      - lxc image list
+      - lxc list
+      - cd /storage/src/devops/shellscripts/lxd && clear && tree .
+  - window_name: kvm
     layout: even-vertical
     shell_command_before:
       - clear
@@ -9,4 +18,3 @@ windows:
       - watch -n 1 sudo virsh list --all
       - cd /storage/kvm && pwd && ls
       - cd /storage/src/devops/shellscripts/kvm
-
