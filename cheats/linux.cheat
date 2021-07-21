@@ -202,3 +202,5 @@ mosh $(cat ~/.ssh/config | grep 'Host ' | cut -d ' ' -f 2 | fzf)
 # stopwatch timer (time e.g. 10m, 30s, 1h 5m 30s, 2020-01-01 14:00 UTC, etc...)
 termdown -B --font $(curl -s http://www.figlet.org/examples.html | grep 'Font:' | sed 's/Font: //g' | fzf --prompt 'choose a font for presenting the timer: ') -b -q 5 -t 'TIME IS UP!' <time>
 
+# show the number of processors/cpus available
+nproc

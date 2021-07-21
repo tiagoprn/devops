@@ -22,7 +22,7 @@ lxc profile show <profile-name>
 lxc profile copy <source-profile-name> <destination-profile-name>
 
 # List storage pools:
-$ lxc storage list
+lxc storage list
 
 # launch (create) a container, with custom name and profile
 lxc launch <distro>:<version> <container-name> --profile <profile-name>
@@ -66,7 +66,7 @@ lxc config set <container-name> boot.autostart.delay <seconds>
 # Change memory limit for running container (e.g value: 512MB)
 lxc config set <container-name> limits.memory <value>
 
-# Change cpu limit for running container (e.g value: 2) - you can check it worked with `nproc` command inside container
+# Change cpu limit for running container (e.g value: 2) - you can check it worked with nproc command inside container
 lxc config set <container-name> limits.cpu <value>
 
 # Set which containers are started first (higher numbers are started first)
