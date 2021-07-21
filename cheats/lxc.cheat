@@ -25,10 +25,10 @@ lxc profile copy <source-profile-name> <destination-profile-name>
 lxc storage list
 
 # launch (create) a container, with custom name and profile
-lxc launch <distro>:<version> <container-name> --profile <profile-name>
+lxc launch <distro>:<version> <container-name> --profile <profile-name> -s <storage-pool-name>
 
 # launch (create) a container
-lxc launch <distro>:<version>
+lxc launch <distro>:<version> -s <storage-pool-name>
 
 # Start a container
 lxc start <container-name>
