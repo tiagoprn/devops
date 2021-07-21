@@ -6,8 +6,8 @@ windows:
       - clear
     panes:
       - sudo htop
-      - lxc image list
-      - lxc list
+      - watch -n 1 -c 'lxc image list'
+      - watch -n 1 -c 'lxc list'
       - cd /storage/src/devops/shellscripts/lxd && clear && tree .
   - window_name: kvm
     layout: even-vertical
