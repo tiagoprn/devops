@@ -10,7 +10,7 @@ PUBKEY=${HOME}/.ssh/id_rsa.pub
 if [ ! -f "${PUBKEY}" ]
 then
     # Check for existence of a pubkey, or else exit with message
-    echo "[$(date +%r)]----> [ERROR] Please generate an SSH keypair using 'ssh-keygen -t rsa'. This key will be authorized to login as the CentOS 7 centos cloud image user."
+    echo "[$(date +%r)]----> [ERROR] Please generate an SSH keypair using 'ssh-keygen -t rsa'. This key will be authorized to login as the ubuntu cloud image user."
     exit 3
 else
     # Place contents of $PUBKEY into $KEY
@@ -27,7 +27,7 @@ lxc profile create $PROFILE_NAME &> /dev/null || true
 # this will rewrite the whole profile
 cat << EOF | lxc profile edit $PROFILE_NAME
 name: $PROFILE_NAME
-description: setup cloud-init for a centos 7 container
+description: setup cloud-init for a ubuntu container
 config:
   linux.kernel_modules: bridge,br_netfilter,ip_tables,ip6_tables,ip_vs,netlink_diag,nf_nat,overlay,xt_conntrack
   raw.lxc: "lxc.apparmor.profile = unconfined\nlxc.cgroup.devices.allow = a\nlxc.mount.auto=proc:rw sys:rw\nlxc.cap.drop = "
@@ -57,7 +57,7 @@ config:
 
     # Remove cloud-init when finished with it
     runcmd:
-        - [ yum, -y, remove, cloud-init ]
+        - [ apt, remove, -y, cloud-init ]
 
     # Configure where output will go
     output:

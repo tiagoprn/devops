@@ -42,8 +42,8 @@ lxc copy <container-name> <another-container>
 # Renames a container
 lxc move <container-name> <new-name>
 
-# Attach a network to an existing container
-lxc network attach <container-name> default <network-interface>
+# Attach a network to an existing container (e.g. network-name: "default")
+lxc network attach <container-name> <network-name> <network-interface>
 
 # List all containers
 lxc list
@@ -99,3 +99,5 @@ lxc file push <file> <container-name>/<path>
 # Pull files from the container to host
 lxc file pull <container-name>/<path> <file>
 
+# Create another image based on existing container (enter the container, do the desired changes, and then:)
+lxc publish <name-of-container-with-customizations> --alias <new-image-name>
