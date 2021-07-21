@@ -1,50 +1,101 @@
 % lxc
 
-# List remotes
+# List remote repositories
 lxc remote list
 
-# List remote available images:
-lxc image list <remote-name>
+# List images available on repository
+lxc image list <repository-name>:
+
+# List images available on repository, filtering by a partial distro name
+lxc image list <repository-name>:<partial-distro-name>
+
+# List local downloaded images from repositories
+lxc image list
 
 # List profiles:
 lxc profile list
 
+# Show profile configuration
+lxc profile show <profile-name>
+
+# Copy default profile
+lxc profile copy <source-profile-name> <destination-profile-name>
+
 # List storage pools:
 $ lxc storage list
 
-# Attach a network to an existing container:
-lxc network attach <my-container> default <network-interface>
+# launch (create) a container, with custom name and profile
+lxc launch <distro>:<version> <container-name> --profile <profile-name>
 
-# List all containers:
+# launch (create) a container
+lxc launch <distro>:<version>
+
+# Start a container
+lxc start <container-name>
+
+# Stop a container
+lxc stop <container-name>
+
+# Create a new container from an existing one
+lxc copy <container-name> <another-container>
+
+# Renames a container
+lxc move <container-name> <new-name>
+
+# Attach a network to an existing container
+lxc network attach <container-name> default <network-interface>
+
+# List all containers
 lxc list
 
-# Stop a container:
-lxc stop <my-container>
+# Delete a container
+lxc delete <container-name>
 
-# Delete a container:
-lxc delete <my-container>
+# Open an interactive session inside a container (as root)
+lxc exec <container-name> /bin/bash
 
-# Open an interactive session inside a container:
-lxc exec <my-container> /bin/bash
+# Open an interactive session inside a container (as given user)
+lxc exec <container-name> su - <username>
 
-# Autostart container (1-autostart, 0-do not autostart):
-lxc config set <my-container> boot.autostart 1
+# Autostart container (1-autostart, 0-do not autostart)
+lxc config set <container-name> boot.autostart 1
 
-# Set a delay in seconds after starting a container, before starting the next:
-lxc config set <my-container> boot.autostart.delay <seconds>
+# Set a delay in seconds after starting a container, before starting the next
+lxc config set <container-name> boot.autostart.delay <seconds>
 
-# Set which containers are started first (higher numbers are started first):
-$ lxc config set <my-container> boot.autostart.order <order-number>
+# Change memory limit for running container (e.g value: 512MB)
+lxc config set <container-name> limits.memory <value>
 
-# Create a snapshot (if you can, stop it before doing that):
-lxc snapshot <my-container> <snapshot-name>
+# Change cpu limit for running container (e.g value: 2) - you can check it worked with `nproc` command inside container
+lxc config set <container-name> limits.cpu <value>
 
-# Restore a snapshot:
-lxc restore <my-container> <snapshot-name>
+# Set which containers are started first (higher numbers are started first)
+lxc config set <container-name> boot.autostart.order <order-number>
 
-# See info on the snapshots:
-lxc info <my-container>
+# Set the container as privileged - it has "root permissions" on the host
+lxc config set <container-name> security.privileged true
 
-# Delete a snapshot:
+# Enable nesting, so that I can have lxd on the container to create other containers inside it
+lxc config set <container-name> security.nesting true
+
+# Show container configuration (shows limits and other info)
+lxc config show <container-name>
+
+# Create a snapshot (if you can, stop it before doing that)
+lxc snapshot <container-name> <snapshot-name>
+
+# Restore a snapshot
+lxc restore <container-name> <snapshot-name>
+
+# See info on the container (including snapshots)
+lxc info <container-name>
+
+# Delete a snapshot
 lxc delete <snapshot-name> -i
+
+# Push files from host to the container
+lxc file push <file> <container-name>/<path>
+
+# Pull files from the container to host
+lxc file pull <container-name>/<path> <file>
 
