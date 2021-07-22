@@ -7,7 +7,7 @@ python version: python 2.x
 
 ## How to install:
 
-    $ pip install mock-server
+    $ pipx install mock-server
 
 ## How to raise up the mock server:
 

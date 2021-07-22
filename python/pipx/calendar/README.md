@@ -1,6 +1,6 @@
 # Installation
 
-$ pip install -r requirements.txt
+$ ./setup.sh
 
 # Setup vdirsyncer
 
