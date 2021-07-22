@@ -4,7 +4,7 @@ NAME='default'
 
 notify-send --urgency low "Starting tmux session $NAME on terminal..."
 
-TMUXP="$HOME/.pyenv/versions/core-utils/bin/tmuxp"
+TMUXP="tmuxp"
 
 if [ -z "$TMUXP" ]; then
   TMUXP='tmuxp'
