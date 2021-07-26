@@ -204,3 +204,9 @@ termdown -B --font $(curl -s http://www.figlet.org/examples.html | grep 'Font:' 
 
 # show the number of processors/cpus available
 nproc
+
+# get words count
+wc -w <file>
+
+# get characters count
+wc -m <file>
