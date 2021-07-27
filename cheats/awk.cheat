@@ -14,3 +14,6 @@ vim /storage/src/devops/bin/tmux-dmenu-cheatsheet.sh /storage/src/devops/bin/dms
 
 # Print only the x first characters on a line
 awk '{print substr($0, 0, <max_characters_per_line>)}'
+
+# Do mathematical calculations
+awk 'BEGIN {x=100/3; y=6; z=x*y; print z}'
