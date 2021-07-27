@@ -7,7 +7,7 @@ xsetwacom list devices
 xsetwacom get "Wacom Intuos S Pen stylus" Area
 
 # map to monitor
-xsetwacom set "Wacom Intuos S Pen stylus" MapToOutput $(xrandr | grep conn | fzf | awk '{print $1}')
+wacom-config.sh
 
 # open archwiki page help
 xdg-open https://wiki.archlinux.org/index.php/wacom_tablet
