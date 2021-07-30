@@ -1,6 +1,6 @@
 session_name: raspberry-pivault-default
 windows:
-  - window_name: main
+  - window_name: dashboard
     layout: even-vertical
     start_directory: /storage/src
     shell_command_before:
@@ -9,8 +9,17 @@ windows:
       - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
     panes:
       - sudo htop
+      - systemctl list-timers
       - watch -n 1 -c 'sudo /opt/vc/bin/vcgencmd measure_temp'
-      - watch -n 1 -c 'lsblk -f | grep -v loop'
       - watch -n 1 -c 'sudo df -h | grep -v snap | grep -v run | grep -v docker'
+  - window_name: work
+    layout: even-vertical
+    start_directory: /storage/src
+    shell_command_before:
+      - source "$(navi widget bash)"
+      - clear
+      - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
+    panes:
       - cd /storage/src/bin_private/home-network/raspberries && clear
+      - cd /storage/src/iac/raspberries/pivault && clear
       - cd
