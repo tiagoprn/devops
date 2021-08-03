@@ -4,20 +4,26 @@
 docker pull wernight/youtube-dl
 
 # Download mp3 (supported audio formats are “best”, “aac”, “vorbis”, “mp3”, “m4a”, “opus”, or “wav”)
-docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -x --audio-format <format> --embed-thumbnail "<url>"
+youtube-dl -x --audio-format <format> --embed-thumbnail "<url>"
 
 # List available format types
-docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -F "<url>"
+youtube-dl -F "<url>"
 
 # Download with format type (e.g best_id, video_id+audio_id)
-docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -f <format> "<url>"
+youtube-dl -f <format> "<url>"
 
 # Download all videos from a playlist
-docker run --rm --user $(id -u):$(id -g) -v <download-directory> wernight/youtube-dl -ci -o "%(title)s-%(id)s.%(ext)s" "<playlist-url>"
+youtube-dl -ci -o "%(title)s-%(id)s.%(ext)s" "<playlist-url>"
 
 # Download and run on mpv
 mkdir -p /storage/temp/yt && youtube-dl -q --restrict-filenames --format mp4 -o /storage/temp/yt/"%(title)s---%(uploader)s---%(upload_date)s---%(playlist)s---.%(ext)s" '<video_url>' --exec 'echo {}' > /tmp/url.txt && notify-send -t 5000 "Finished downloading at $(cat /tmp/url.txt)" && mpv $(cat /tmp/url.txt)
 
 # Run mpv from youtube download folder
 cd /storage/temp/yt && mpv $(fzf)
+
+# Get youtube channel id
+xdg-open https://commentpicker.com/youtube-channel-id.php
+
+# Get youtube channel rss feed
+xdg-open https://www.youtube.com/feeds/videos.xml?channel_id=<youtube-channel-id>
 
