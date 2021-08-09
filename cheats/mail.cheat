@@ -1,0 +1,7 @@
+% mail, neomutt
+
+# sync all e-mail
+mbsync -a && mw -Y && notmuch new
+
+# open mail app
+neomutt
