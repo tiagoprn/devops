@@ -17,3 +17,7 @@ awk '{print substr($0, 0, <max_characters_per_line>)}'
 
 # Do mathematical calculations
 awk 'BEGIN {x=100/3; y=6; z=x*y; print z}'
+
+# Set variable from shell, and print it together with metric from /sys divided by 1000:
+awk -v date="$(date)" '{print date, "--- TEMP:" ,$1/1000}' /sys/class/thermal/thermal_zone0/temp
+
