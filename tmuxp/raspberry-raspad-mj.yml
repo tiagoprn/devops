@@ -8,3 +8,4 @@ windows:
     panes:
       - htop
       - watch -n 1 -c ./cpu-temperature.sh
+      - watch -n 1 -c 'ip -br a'  
