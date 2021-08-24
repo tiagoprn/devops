@@ -50,7 +50,7 @@ inxi -t m<number>
 while :; do sleep 59; echo -n ' ' >&2; done &
 
 # show information regarding all partitions on all disks
-lsblk -f -o name,mountpoint,size,uuid | grep -v loop
+lsblk -f -o name,mountpoint,size,label,uuid | grep -v loop
 
 # base64 encode
 echo -n "<text>" | base64 -w 0
