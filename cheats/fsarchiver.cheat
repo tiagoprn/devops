@@ -10,7 +10,10 @@ sudo fsarchiver savefs <archive-path> <partition>
 sudo sfdisk <device> < partition_table.dump
 
 # restfs
-sudo fsarchiver restfs <archive-path> id=0,dest=<destination-partition>,label=<destination-label>
+sudo fsarchiver restfs <archive-path> id=0,dest=<destination-partition>
+
+# restfs (with custom label and partition uuid)
+sudo fsarchiver restfs <archive-path> id=0,dest=<destination-partition>,label=<destination-label>,uuid=<destination-partition-uuid>
 
 # view archive info
 fsarchiver archinfo <archive-path>
