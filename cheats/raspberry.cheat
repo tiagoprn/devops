@@ -30,3 +30,11 @@ lxpanel --profile LXDE-pi
 # autostart directory
 cd /etc/xdg/lxsession/LXDE-pi
 
+# argon fan hat - install 
+curl https://download.argon40.com/argonfanhat.sh | bash 
+
+# argon fan hat - uninstall 
+argonone-uninstall 
+
+# argon fan hat - configure speed 
+argonone-config 
