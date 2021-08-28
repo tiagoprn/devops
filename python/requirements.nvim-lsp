@@ -1,0 +1,5 @@
+neovim
+pynvim
+python-language-server[all]
+pyls-black
+pyls-isort
