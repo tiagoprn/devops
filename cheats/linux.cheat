@@ -210,3 +210,6 @@ wc -w <file>
 
 # get characters count
 wc -m <file>
+
+# ls - show most recent files, from older to newer
+ls -lArt <directory> | tail -n <number-of-recent-files>
