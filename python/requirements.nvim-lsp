@@ -1,5 +1,5 @@
 neovim
 pynvim
-python-language-server[all]
-pyls-black
+python-lsp-server[all]
+python-lsp-black
 pyls-isort
