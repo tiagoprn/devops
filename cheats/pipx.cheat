@@ -11,3 +11,6 @@ pipx list
 
 # Install (inject) pip dependency into a package
 pipx inject <package-name> <pip-dependency-name>
+
+# Upgrade all installed packages
+pipx upgrade-all
