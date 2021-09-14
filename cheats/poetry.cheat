@@ -1,0 +1,43 @@
+% poetry
+
+# show current configuration (virtualenv path, etc...):
+poetry config --list
+
+# create or enter virtualenv
+poetry shell
+
+# delete virtualenv
+poetry env remove <python-version>
+
+# install dependencies
+poetry install
+
+# update dependencies
+poetry update
+
+# add and install dependency (updates the lock file)
+poetry add <pypi-package-name>
+
+# remove dependency (updates the lock file)
+poetry remove <pypi-package-name>
+
+# Executes a script defined in the "[tool.poetry.scripts]" section of "pyproject.toml"
+poetry run <script-name>
+
+# export requirements.txt file
+poetry export -E -o requirements.txt
+
+# export requirements.txt file (without hashes)
+poetry export -E --without-hashes -o requirements.txt
+
+# export requirements.txt file (development dependencies)
+poetry export -E --dev -o requirements-dev.txt
+
+# builds the source and wheels archives (prepare to publish on the external repository - default: pypi.org)
+poetry build
+
+# publishes the output of the build command to the project's external repository (default: pypi.org)
+poetry publish
+
+# create new project
+poetry new <project-name>
