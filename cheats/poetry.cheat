@@ -18,6 +18,9 @@ poetry update
 # add and install dependency (updates the lock file)
 poetry add <pypi-package-name>
 
+# add and install development dependency (updates the lock file)
+poetry add -D <pypi-package-name>
+
 # remove dependency (updates the lock file)
 poetry remove <pypi-package-name>
 
