@@ -1,4 +1,4 @@
-% systemd, user, timers
+% systemd, user, timers, loginctl
 
 # Enable user timers to be run even when the user is not logged in:
 loginctl enable-linger $USER && loginctl show-user -p Linger $USER
@@ -19,7 +19,7 @@ systemctl --user list-timers
 systemctl --user status <name>.timer
 
 # Show service status:
-$ systemctl --user status <name>
+systemctl --user status <name>
 
 # See timer service logs:
 journalctl --user -f -u <name>
@@ -29,3 +29,7 @@ systemctl --user stop <name>.timer
 
 # Disable timer:
 systemctl --user disable <name>.timer && systemctl --user daemon-reload
+
+# logoff user session
+loginctl terminate-user $(whoami)
+
