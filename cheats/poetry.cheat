@@ -44,3 +44,7 @@ poetry publish
 
 # create new project
 poetry new <project-name>
+
+# setup poetry on an existing project
+poetry init
+
