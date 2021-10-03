@@ -33,7 +33,7 @@ def get_shortcuts():
         FILES_TO_PARSE = [f'{PREFIX}/.vimrc']
     elif VIM_FLAVOR == 'neovim':
         FILES_TO_PARSE = [
-            f'{PREFIX}/nvim/init.vim',
+            # f'{PREFIX}/nvim/init.vim',
             f'{PREFIX}/nvim/abbreviations.vim',
             f'{PREFIX}/nvim/commands.vim',
             f'{PREFIX}/nvim/commands-tiagoprn-functions.vim',
