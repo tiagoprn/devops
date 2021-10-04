@@ -1,0 +1,4 @@
+% ripgrep, rg
+
+# show only file names
+rg -l '<pattern>'
