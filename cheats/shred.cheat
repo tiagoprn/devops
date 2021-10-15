@@ -1,0 +1,14 @@
+% shred, secure-delete, security, delete
+
+# pass on a file x number of times
+shred -n <number-of-loops> -v <file-path>
+
+# pass on a file x number of times, passing the last time with zeroes
+shred -n <number-of-loops> -z -v <file-path>
+
+# pass on a file x number of times, passing the last time with zeroes, removing the file
+shred -n <number-of-loops> -z -v -u <file-path>
+
+# pass on a device (/dev/sda, /dev/sda1, etc...) x number of times, passing the last time with zeroes
+shred -n <number-of-loops> -z -v <device>
+
