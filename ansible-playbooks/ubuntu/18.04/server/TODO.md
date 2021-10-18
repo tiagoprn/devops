@@ -11,5 +11,8 @@ siege
 links
 elinks
 stress-ng
+tcpdump
+nmap
+ioping
 ```
 
