@@ -7,23 +7,17 @@
       - bash-completion
       - tree
       - iotop
-      - siege
-      - curl
-      - wget
-      - links
-      - elinks
       - htop
       - lsof
       - tcpdump
       - nmap
-      - git
       - rsync
       - ioping
       - man-db
       - manpages
       - unzip
-      - stress-ng
       - mtr
+
 - name: Generate file to verify it passed through this role
   lineinfile:
     dest: /var/log/utilities_passed.txt
