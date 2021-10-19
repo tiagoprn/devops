@@ -4,11 +4,13 @@ This is a modular ansible playbook, which can be used to setup a new Ubuntu 18.0
 
 This setup does its best to provide security (although I'm by no means an expert on it I tried my best through researching). The following is provided:
 
-- Development tools (compilers, git, python pip and other dependencies to build packages)
+- build tools (compilers, git, etc...), python pip, curl, wget, mosh, tmux etc
+- utilities (rsync, htop, unzip, vim, etc...)
 - sysctl configuration for tuning kernel parameters
-- fail2ban: scans log files and ban IPs that show malicious activity
+- fail2ban: scans log files and ban IPs that show malicious activity (configured for ssh)
 - auth: create a sudo user with access to the docker daemon and also sets the ssh keys for it.
 - timezone/ntp configured for America/Sao_Paulo.
+- firewalld configuration
 - services: starts all daemons from the playbook
 - cleanup: do some final cleaning up (remove caches, etc...)
 
