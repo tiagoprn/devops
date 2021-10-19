@@ -1,0 +1,10 @@
+[Unit]
+Description=suricata-update timer
+
+[Timer]
+Persistent=true
+OnCalendar=*-*-* 08:00:00
+Unit=suricata-update.service
+
+[Install]
+WantedBy=timers.target

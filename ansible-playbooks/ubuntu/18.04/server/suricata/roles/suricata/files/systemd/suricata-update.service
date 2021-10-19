@@ -1,0 +1,9 @@
+[Unit]
+Description=Update suricata database
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/suricata-update
+
+[Install]
+WantedBy=default.target

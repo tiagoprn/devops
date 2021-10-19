@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ls /home/ops/local/bin > /dev/null 2>&1
+
+# If there is an error on the previous bash command, ops user was not created
+# below must result in a json formatted dict, so ansible can use it
+if [ $? -ne 0 ] ; then
+    echo "{\"has_ops_user\": false}"
+else
+    echo "{\"has_ops_user\": true}"
+fi
+

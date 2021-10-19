@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ls /usr/bin/fail2ban-client > /dev/null 2>&1
+
+# below must result in a json formatted dict, so ansible can use it
+if [ $? -ne 0 ] ; then
+    echo "{\"has_fail2ban_installed\": false}"
+else
+    echo "{\"has_fail2ban_installed\": true}"
+fi
+

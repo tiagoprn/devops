@@ -1,0 +1,11 @@
+#!/bin/bash
+cd /tmp
+wget http://downloads.suricata-ids.org/suricata-{{ version }}.tar.gz
+tar xvzf suricata-{{ version }}.tar.gz
+cd suricata-{{ version }}
+./configure --prefix=/usr --sysconfdir=/etc && make && make install-full
+sudo adduser --system --group suri
+sudo mkdir -p {{ log_dir }}
+sudo chown -R suri:suri {{ log_dir }}
+sudo chown -R suri:suri /etc/suricata
+

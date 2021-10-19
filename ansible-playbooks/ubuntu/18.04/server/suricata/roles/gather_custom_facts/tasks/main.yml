@@ -1,0 +1,18 @@
+- name: Create custom fact directory to allow storing custom facts to be read by any playbook
+  file:
+    path: /etc/ansible/facts.d
+    state: directory
+
+- name: Insert suricata fact file
+  copy:
+    src: files/suricata_facts.fact
+    dest: /etc/ansible/facts.d/suricata_facts.fact
+    mode: 0755
+
+- name: Reload ansible local vars, to have the installed fact available to use
+  setup: filter=ansible_local
+
+- name: show ansible_local dict values
+  debug:
+    var: ansible_local
+    verbosity: 1

@@ -1,0 +1,10 @@
+- hosts: vm
+  vars:
+    controller_home_directory:  "{{ lookup('env','HOME') }}"
+  # strategy: debug  ## interactive debug console when a task fails.
+  roles:
+    - gather_custom_facts
+    - {role: suricata, when: "ansible_local['suricata_facts']['has_suricata_installed'] == false" }
+    - services
+    - reboot
+    - cleanup
