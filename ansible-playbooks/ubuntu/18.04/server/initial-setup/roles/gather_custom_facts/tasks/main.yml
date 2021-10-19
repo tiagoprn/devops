@@ -51,12 +51,6 @@
     dest: /etc/ansible/facts.d/auth_facts.fact
     mode: 0755
 
-- name: Insert suricata fact file
-  copy:
-    src: files/suricata_facts.fact
-    dest: /etc/ansible/facts.d/suricata_facts.fact
-    mode: 0755
-
 - name: Insert firewalld fact file
   copy:
     src: files/firewalld_facts.fact

@@ -1,8 +1,6 @@
 - name: Enable and start all services
   systemd: name={{item}} daemon-reload=yes state=started enabled=yes
   with_items:
-    - suricata
-    - suricata-update.timer
     - fail2ban
     - sshd
     - ntp
