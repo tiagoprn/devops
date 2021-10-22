@@ -151,6 +151,9 @@ date '+%A %d, %B %Y'
 # get information on ssh key
 ssh-keygen -lf <ssh-key-file>
 
+# generate more secure ssh key pair (state of the art cryptography as of 2021, as mentioned at https://linuxnatives.net/2019/how-to-create-good-ssh-keys)
+ssh-keygen -t ed25519
+
 # get file/directory octal permissions
 stat -c '%A %a %n' <path>
 
