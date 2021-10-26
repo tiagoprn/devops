@@ -4,8 +4,6 @@
   with_items:
       - build-essential
       - dnsutils
-      - python
-      - python-pip
       - python3-pip
       - libnet1
       - libnet1-dev
@@ -34,6 +32,7 @@
       - tmux
       - qrencode
       - resolvconf
+      - acpid
 
 - name: Add configuration so we can shutdown "physically"
   copy: src=files/powerbtn dest=/etc/acpi/events/powerbtn owner=root group=root mode=0700
