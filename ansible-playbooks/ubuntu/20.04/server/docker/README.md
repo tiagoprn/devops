@@ -12,6 +12,12 @@ the server.
 
 - To access the portainer Web UI to manage containers:
 
-    URL: https://your-host-ip-or-name:9000
+    URL:
+    	http://your-host-ip-or-name:9000
+	or
+	https://your-host-ip-or-name:9443
+
     user: admin
     password: (enter the one generated at `/opt/containers/portainer/admin.passwd`)
+
+	NOTE: To completely disable http, to use exclusively https: <https://docs.portainer.io/v/ce-2.9/admin/settings#force-https-only>

@@ -100,7 +100,7 @@
     dest: /opt/containers/portainer/docker-compose.yml
     owner: root
     group: root
-    mode: 0700
+    mode: 0775
     backup: yes
 
 - name: Start portainer

@@ -1,13 +1,14 @@
 version: '2'
 services:
   portainer:
-    image: portainer/portainer
+    image: portainer/portainer-ce
     container_name: portainer
     privileged: true
     restart: unless-stopped
     command: --admin-password-file /tmp/admin.passwd --ssl --sslcert /certs/portainer.crt --sslkey /certs/portainer.key --host=unix:///var/run/docker.sock
     ports:
       - 9000:9000
+      - 9443:9443
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/etc/localtime:/etc/localtime"
