@@ -1,5 +1,7 @@
 # Suricata provisioning playbook
 
+**You must copy suricata's sample role vars file `roles/suricata/vars/main.yml.sample` to `roles/suricata/vars/main.yml` BEFORE running this playbook.**
+
 This setup does provisions [suricata](https://suricata.io/) setup as a tool to enhance the security of an environment.
 
 The following roles are provided:
