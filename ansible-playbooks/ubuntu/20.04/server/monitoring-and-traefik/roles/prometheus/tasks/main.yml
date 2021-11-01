@@ -57,8 +57,8 @@
 - name: copy promtool binary to system binaries
   copy: src=/opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64/promtool dest=/usr/local/bin/promtool owner=prometheus group=prometheus mode=0744 remote_src=yes
 
-- name: copy tsdb binary to system binaries
-  copy: src=/opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64/tsdb dest=/usr/local/bin/tsdb owner=prometheus group=prometheus mode=0744 remote_src=yes
+# - name: copy tsdb binary to system binaries
+# copy: src=/opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64/tsdb dest=/usr/local/bin/tsdb owner=prometheus group=prometheus mode=0744 remote_src=yes
 
 - name: copy consoles to prometheus configuration folder
   shell: cp -farv /opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64/consoles /etc/prometheus
