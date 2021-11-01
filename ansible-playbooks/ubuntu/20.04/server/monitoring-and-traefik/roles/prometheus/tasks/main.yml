@@ -41,30 +41,30 @@
 
 - name: Download prometheus release
   get_url:
-    url: https://github.com/prometheus/prometheus/releases/download/v2.16.0/prometheus-2.16.0.linux-amd64.tar.gz
-    dest: /opt/prometheus-installer/prometheus-2.16.0.linux-amd64.tar.gz
+    url: https://github.com/prometheus/prometheus/releases/download/v{{ download_version }}/prometheus-{{ download_version }}.linux-amd64.tar.gz
+    dest: /opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64.tar.gz
     mode: 0744
 
 - name: Extract the downloaded release
   unarchive:
-    src: /opt/prometheus-installer/prometheus-2.16.0.linux-amd64.tar.gz
+    src: /opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64.tar.gz
     dest: /opt/prometheus-installer
     remote_src: yes
 
 - name: copy prometheus binary to system binaries
-  copy: src=/opt/prometheus-installer/prometheus-2.16.0.linux-amd64/prometheus dest=/usr/local/bin/prometheus owner=prometheus group=prometheus mode=0744 remote_src=yes
+  copy: src=/opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64/prometheus dest=/usr/local/bin/prometheus owner=prometheus group=prometheus mode=0744 remote_src=yes
 
 - name: copy promtool binary to system binaries
-  copy: src=/opt/prometheus-installer/prometheus-2.16.0.linux-amd64/promtool dest=/usr/local/bin/promtool owner=prometheus group=prometheus mode=0744 remote_src=yes
+  copy: src=/opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64/promtool dest=/usr/local/bin/promtool owner=prometheus group=prometheus mode=0744 remote_src=yes
 
 - name: copy tsdb binary to system binaries
-  copy: src=/opt/prometheus-installer/prometheus-2.16.0.linux-amd64/tsdb dest=/usr/local/bin/tsdb owner=prometheus group=prometheus mode=0744 remote_src=yes
+  copy: src=/opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64/tsdb dest=/usr/local/bin/tsdb owner=prometheus group=prometheus mode=0744 remote_src=yes
 
 - name: copy consoles to prometheus configuration folder
-  shell: cp -farv /opt/prometheus-installer/prometheus-2.16.0.linux-amd64/consoles /etc/prometheus
+  shell: cp -farv /opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64/consoles /etc/prometheus
 
 - name: copy console_libraries to prometheus configuration folder
-  shell: cp -farv /opt/prometheus-installer/prometheus-2.16.0.linux-amd64/console_libraries /etc/prometheus
+  shell: cp -farv /opt/prometheus-installer/prometheus-{{ download_version }}.linux-amd64/console_libraries /etc/prometheus
 
 - name: fix permissions on consoles* for the prometheus configuration folder
   shell: chown -R prometheus:prometheus /etc/prometheus/console*

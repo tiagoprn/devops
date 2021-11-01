@@ -1,5 +1,5 @@
 ---
-
+download_version: 0.20.0
 smtp_smarthost: smtphost:25
 smtp_from: account@smtphost.org
 smtp_auth_username: account

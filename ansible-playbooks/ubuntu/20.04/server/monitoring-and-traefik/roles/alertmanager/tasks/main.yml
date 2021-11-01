@@ -29,21 +29,21 @@
 
 - name: Download alertmanager release
   get_url:
-    url: https://github.com/prometheus/alertmanager/releases/download/v0.20.0/alertmanager-0.20.0.linux-amd64.tar.gz
-    dest: /opt/alertmanager-installer/alertmanager-0.20.0.linux-amd64.tar.gz
+    url: https://github.com/prometheus/alertmanager/releases/download/v{{ download_version }}/alertmanager-{{ download_version }}.linux-amd64.tar.gz
+    dest: /opt/alertmanager-installer/alertmanager-{{ download_version }}.linux-amd64.tar.gz
     mode: 0744
 
 - name: Extract the downloaded release
   unarchive:
-    src: /opt/alertmanager-installer/alertmanager-0.20.0.linux-amd64.tar.gz
+    src: /opt/alertmanager-installer/alertmanager-{{ download_version }}.linux-amd64.tar.gz
     dest: /opt/alertmanager-installer
     remote_src: yes
 
 - name: copy alertmanager binary to system binaries
-  copy: src=/opt/alertmanager-installer/alertmanager-0.20.0.linux-amd64/alertmanager dest=/usr/local/bin/alertmanager owner=prometheus group=prometheus mode=0744 remote_src=yes
+  copy: src=/opt/alertmanager-installer/alertmanager-{{ download_version }}.linux-amd64/alertmanager dest=/usr/local/bin/alertmanager owner=prometheus group=prometheus mode=0744 remote_src=yes
 
 - name: copy amtool binary to system binaries
-  copy: src=/opt/alertmanager-installer/alertmanager-0.20.0.linux-amd64/amtool dest=/usr/local/bin/amtool owner=prometheus group=prometheus mode=0744 remote_src=yes
+  copy: src=/opt/alertmanager-installer/alertmanager-{{ download_version }}.linux-amd64/amtool dest=/usr/local/bin/amtool owner=prometheus group=prometheus mode=0744 remote_src=yes
 
 - name: copy alertmanager configuration to its' configuration folder
   template:

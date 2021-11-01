@@ -11,18 +11,18 @@
 
 - name: Download node_exporter
   get_url:
-    url: https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz
-    dest: /opt/node_exporter-installer/node_exporter-0.18.1.linux-amd64.tar.gz
+    url: https://github.com/prometheus/node_exporter/releases/download/v{{ download_version }}/node_exporter-{{ download_version }}.linux-amd64.tar.gz
+    dest: /opt/node_exporter-installer/node_exporter-{{ download_version }}.linux-amd64.tar.gz
     mode: 0744
 
 - name: Extract the downloaded release
   unarchive:
-    src: /opt/node_exporter-installer/node_exporter-0.18.1.linux-amd64.tar.gz
+    src: /opt/node_exporter-installer/node_exporter-{{ download_version }}.linux-amd64.tar.gz
     dest: /opt/node_exporter-installer
     remote_src: yes
 
 - name: copy node_exporter binary to system binaries
-  copy: src=/opt/node_exporter-installer/node_exporter-0.18.1.linux-amd64/node_exporter dest=/usr/local/bin/node_exporter owner=prometheus group=prometheus mode=0744 remote_src=yes
+  copy: src=/opt/node_exporter-installer/node_exporter-{{ download_version }}.linux-amd64/node_exporter dest=/usr/local/bin/node_exporter owner=prometheus group=prometheus mode=0744 remote_src=yes
 
 - name: copy node_exporter service to systemd unit files path
   copy: src=files/node_exporter.service dest=/etc/systemd/system/node_exporter.service owner=root group=root
