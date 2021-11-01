@@ -22,3 +22,4 @@ boot/
 authorized_keys
 .terraform/
 *tfstate*
+**/vars/main.yml
