@@ -1,6 +1,6 @@
 # Monitoring playbook
 
-**IMPORTANT: To parametrize alerts to be sent from your SMTP server, you must edit the values on [the alertmanager role vars](roles/alertmanager/vars/main.yml) BEFORE running this playbook.**
+**IMPORTANT: To parametrize alerts to be sent from your SMTP server, you must copy alertmanager's sample role vars file `roles/alertmanager/vars/main.yml.sample` to `roles/alertmanager/vars/main.yml` BEFORE running this playbook.**
 
 This playbook provides a monitoring solution for a ubuntu host, providing:
 
@@ -24,5 +24,5 @@ An http basic authentication is enforced to authenticate on all of the services 
 
 Based on [this youtube playlist](https://www.youtube.com/playlist?list=PLf-O3X2-mxDls9uH8gyCQTnyXNMe10iml).
 
-This playbook can also be used as a base for a custom solution where you need to deploy your custom services/apps to a server, since you can take advantage from traefix as a reverse proxy to your custom services/apps. But you will have to figure out on yourself how to do it. If you want to use kubernetes, use the [k3s playbook](https://github.com/tiagoprn/devops/tree/master/ansible-playbooks/ubuntu/18.04/server/k3s) instead.
+This playbook can also be used as a base for a custom solution where you need to deploy your custom services/apps to a server, since you can take advantage from traefik as a reverse proxy to your custom services/apps. But you will have to figure out on yourself how to do it. If you want to use kubernetes, use the [k3s playbook](https://github.com/tiagoprn/devops/tree/master/ansible-playbooks/ubuntu/18.04/server/k3s) instead.
 
