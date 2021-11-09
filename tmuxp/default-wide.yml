@@ -1,23 +1,21 @@
 session_name: 'default-widescreen'
 windows:
 - window_name: 'WORK'
-  layout: 06c8,356x54,0,0{178x54,0,0[178x27,0,0,0,178x26,0,28,3],177x54,179,0[177x27,179,0,1,177x26,179,28,2]}
+  layout: even-horizontal
+  start_directory: /storage/docs/vim_notes/work/dafiti
   focus: 'true'
   options:
     synchronize-panes: 'off'
   panes:
   - focus: 'true'
     shell_command: cat /etc/os-release
-  - bash
-  - bash
-  - bash
+  -
 - window_name: 'PERSONAL'
-  layout: 06c8,356x54,0,0{178x54,0,0[178x27,0,0,0,178x26,0,28,3],177x54,179,0[177x27,179,0,1,177x26,179,28,2]}
+  layout: even-horizontal
+  start_directory: /storage/docs/vim_notes/personal
   options:
     synchronize-panes: 'off'
   panes:
   - focus: 'true'
-    shell_command: cd
-  - cd /storage/docs
-  - cd /storage/src
-  - cd /storage/src/tiagoprnl
+    shell_command: cat /etc/os-release
+  -
