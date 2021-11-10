@@ -19,3 +19,13 @@ windows:
   - focus: 'true'
     shell_command: cat /etc/os-release
   -
+- window_name: 'SCRATCHPAD'
+  layout: even-horizontal
+  start_directory: /storage/src
+  options:
+    synchronize-panes: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: cd dot_files
+  -
+  - cd devops
