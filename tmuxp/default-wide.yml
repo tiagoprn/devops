@@ -3,6 +3,7 @@ windows:
 - window_name: 'SCRATCHPAD'
   layout: even-horizontal
   start_directory: /storage/src
+  focus: 'true'
   options:
     synchronize-panes: 'off'
   panes:
@@ -22,7 +23,6 @@ windows:
 - window_name: 'WORK'
   layout: even-horizontal
   start_directory: /storage/docs/vim_notes/work/dafiti
-  focus: 'true'
   options:
     synchronize-panes: 'off'
   panes:
