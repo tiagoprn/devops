@@ -1,5 +1,24 @@
 session_name: 'default-widescreen'
 windows:
+- window_name: 'SCRATCHPAD'
+  layout: even-horizontal
+  start_directory: /storage/src
+  options:
+    synchronize-panes: 'off'
+  panes:
+  - cd dot_files
+  - focus: 'true'
+    shell_command: cd ~
+  - cd devops
+- window_name: 'PERSONAL'
+  layout: even-horizontal
+  start_directory: /storage/docs/vim_notes/personal
+  options:
+    synchronize-panes: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: cat /etc/os-release
+  -
 - window_name: 'WORK'
   layout: even-horizontal
   start_directory: /storage/docs/vim_notes/work/dafiti
@@ -10,22 +29,4 @@ windows:
   - focus: 'true'
     shell_command: cat /etc/os-release
   -
-- window_name: 'PERSONAL'
-  layout: even-horizontal
-  start_directory: /storage/docs/vim_notes/personal
-  options:
-    synchronize-panes: 'off'
-  panes:
-  - focus: 'true'
-    shell_command: cat /etc/os-release
-  -
-- window_name: 'SCRATCHPAD'
-  layout: even-horizontal
-  start_directory: /storage/src
-  options:
-    synchronize-panes: 'off'
-  panes:
-  - focus: 'true'
-    shell_command: cd dot_files
-  -
-  - cd devops
+
