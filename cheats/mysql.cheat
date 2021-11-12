@@ -1,0 +1,8 @@
+% mysql
+
+# run single query on cli
+mysql -u <mysql_user> -h <mysql_host> -p<mysql_password> <database_name> -e '<sql_query>'
+
+# mysqldump, only schema
+mysqldump --no-data --skip-lock-tables -u <mysql_user> -h <mysql_host> -p<mysql_password> <database_name> > <dump_file.sql>
+
