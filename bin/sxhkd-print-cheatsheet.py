@@ -2,7 +2,7 @@
 
 from sys import stdout
 
-SXHKDRC_PATH = '/storage/src/dot_files/sxhkd/sxhkdrc'
+SXHKDRC_PATH = '/storage/src/dot_files/tiling-window-managers/sxhkd/sxhkdrc'
 
 with open(SXHKDRC_PATH) as config_file:
     print_next_line = False
