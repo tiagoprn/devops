@@ -1,5 +1,7 @@
 #!/bin/bash
 
+$HOME/.screenlayout/work-notebook-at-home.just-widescreen-monitor.sh &
+
 LOG_FILE=/tmp/autostart.$(date +%Y-%m-%d).log
 
 _isRunning() {
