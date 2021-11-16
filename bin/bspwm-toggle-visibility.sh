@@ -46,6 +46,6 @@ if [ -z "${id}" ]; then
     ${executable}
 else
     while read -r instance; do
-        bspc node "${instance}" --flag hidden --to-monitor focused --focus
+        bspc node "${instance}" --flag hidden --to-monitor focused --focus -t floating
     done <<<"${id}"
 fi
