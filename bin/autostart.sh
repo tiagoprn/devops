@@ -29,6 +29,9 @@ supervisord -n -c $HOME/clippy.supervisor.conf >> $LOG_FILE 2>&1 &
 # echo "Reloading wallpaper..." >> $LOG_FILE 2>&1
 reload_wallpaper.sh >> $LOG_FILE 2>&1 &
 
+# start polybar
+polybar-launch.sh
+
 _isRunning sxhkd || sxhkd -c  /storage/src/dot_files/tiling-window-managers/sxhkd/sxhkdrc >> $LOG_FILE 2>&1 &
 
 # echo "Running dunst..." >> $LOG_FILE 2>&1
