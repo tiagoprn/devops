@@ -24,9 +24,13 @@ then
 	echo "FINISHED. If your pyenv/pyenv-virtualenv stops working, delete $PYENV_ROOT_FOLDER and run this script again."
 
 else
+	echo "Make sure you have the following packages installed on ubuntu or debian-base distros: \n"
+	echo "\t sudo apt install -y git build-essential python3-dev libssl-dev libbz2-dev libreadline-dev sqlite3 vim libsqlite3-dev"
 
 	sleep 5
+
 	echo "INSTALLING pyenv..."
+
 	git clone https://github.com/pyenv/pyenv.git $PYENV_ROOT_FOLDER
 	git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT_FOLDER/plugins/pyenv-virtualenv
 
