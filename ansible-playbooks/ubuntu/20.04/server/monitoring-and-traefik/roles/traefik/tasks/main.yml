@@ -1,7 +1,3 @@
-# TODO: adapt here to intructions from:
-# - https://github.com/SushiFu/traefik-local
-# - https://www.grzegorowski.com/page/
-
 - name: Run docker version
   command: docker version
   register: dockerversion

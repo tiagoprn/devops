@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Adding an internal zone to the firewall, mapped to localhost and docker interfaces
-firewall-cmd --permanent --zone=internal --add-interface=lo --add-interface=docker0
+# firewall-cmd --permanent --zone=internal --add-interface=lo --add-interface=docker0
 
 # Ports allowed internally (localhost and docker)
 ## node_exporter:
