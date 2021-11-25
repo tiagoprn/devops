@@ -51,3 +51,12 @@
 - name: Start portainer
   command: bash /opt/containers/portainer/start.sh
 
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/portainer_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
