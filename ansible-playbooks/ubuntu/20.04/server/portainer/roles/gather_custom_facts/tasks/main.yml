@@ -3,10 +3,10 @@
     path: /etc/ansible/facts.d
     state: directory
 
-- name: Insert docker fact file
+- name: Insert portainer fact file
   copy:
-    src: files/docker_facts.fact
-    dest: /etc/ansible/facts.d/docker_facts.fact
+    src: files/portainer_facts.fact
+    dest: /etc/ansible/facts.d/portainer_facts.fact
     mode: 0755
 
 - name: Reload ansible local vars, to have the installed fact available to use
