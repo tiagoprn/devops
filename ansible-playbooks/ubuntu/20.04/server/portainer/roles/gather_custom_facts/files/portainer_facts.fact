@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# TODO: maybe use "docker images" and "docker ps" commands to see if the role executed successfuly or not?
+ls /usr/bin/docker > /dev/null 2>&1
+
+# If there is an error on the previous bash command, portainer is not installed
+# below must result in a json formatted dict, so ansible can use it
+if [ $? -ne 0 ] ; then
+    echo "{\"has_portainer_installed\": false}"
+else
+    echo "{\"has_portainer_installed\": true}"
+fi
+

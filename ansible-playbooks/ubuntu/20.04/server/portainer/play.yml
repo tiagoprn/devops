@@ -1,0 +1,7 @@
+- hosts: all
+  # strategy: debug  ## interactive debug console when a task fails.
+  roles:
+    - gather_custom_facts
+    - upgrade
+    - {role: portainer, when: "ansible_local['portainer_facts']['has_portainer_installed'] == false" }
+    - cleanup
