@@ -1,0 +1,1 @@
+- If I need to change credentials, and then restoring a database dump I get the "access denied for user" error, run a `docker system prune` after - this will delete the old volume mysql `data` folder, because it may be being shared with the new container.
