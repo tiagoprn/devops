@@ -118,8 +118,6 @@ sudo lsof -p $(ps aux | fzf | awk '{print $2}')
 # set/change locale
 echo 'Enable at least en_US.UTF-8 and pt_BR.UTF-8, so that mosh can work.' && sleep 5 && sudo dpkg-reconfigure locales &&  echo 'Now restart the system or open a new terminal.'
 
-# see file/directory permissions
-stat -c '%A %a %n' <file-or-folder-path>
 
 # backup a device to a gzipped dd image:
 time sudo dd bs=4M if=<device-to-backup> | gzip > <gzipped-image-file>
@@ -154,8 +152,11 @@ ssh-keygen -lf <ssh-key-file>
 # generate more secure ssh key pair (state of the art cryptography as of 2021, as mentioned at https://linuxnatives.net/2019/how-to-create-good-ssh-keys)
 ssh-keygen -t ed25519
 
-# get file/directory octal permissions
-stat -c '%A %a %n' <path>
+# get file/directory octal/numeric permissions
+stat -c '%A %a %n' <file-or-folder-path>
+
+# echo file/directory available numeric permissions
+echo -e "\nNUMERIC PERMISSIONS: \n\n0=No Permission \n1=Execute \n2=Write \n4=Read\n"
 
 # single character substitution on input
 tr '<original_character>' '<new_character>'
@@ -216,3 +217,5 @@ wc -m <file>
 
 # ls - show most recent files, from older to newer
 ls -lArt <directory> | tail -n <number-of-recent-files>
+
+
