@@ -2,4 +2,5 @@ neovim
 pynvim
 python-lsp-server[all]
 python-lsp-black
+pylsp-rope
 pyls-isort
