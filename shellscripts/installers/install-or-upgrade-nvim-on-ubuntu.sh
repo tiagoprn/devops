@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# IMPORTANT: this script was originally developed for ubuntu 20.04.
+
 DOWNLOAD_PATH='/opt/nvim'
 APP_IMAGE_NAME='nvim.appimage'
 BACKUP_PATH="$DOWNLOAD_PATH/OLD/$APP_IMAGE_NAME.bkp.$(date +%Y%m%d-%H%M%S-%N)"
