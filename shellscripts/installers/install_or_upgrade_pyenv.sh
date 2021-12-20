@@ -6,6 +6,11 @@
 # IMPORTANT: if anything goes wrong, make sure to check those links above for updated instructions
 #            (specially if pyenv virtualenvs stop working - it will probably be related to ~/.profile and/or ~/.bashrc).
 
+# About pyenv and shims:
+# https://mungingdata.com/python/how-pyenv-works-shims/?utm_source=pocket_mylist
+# https://stackoverflow.com/questions/2116142/what-is-a-shim?ref=hackernoon.com
+
+
 BASH_PROFILE_PATH=$HOME/.profile
 BASH_RC_PATH=$HOME/.bashrc
 
