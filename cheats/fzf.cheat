@@ -8,3 +8,7 @@ xdotool type "cd ,,"
 
 # interactive/fuzzy sudo kill (press <TAB> to run - ",," is the value of the environment var FZF_COMPLETION_TRIGGER)
 xdotool type "sudo kill -9 ,,"
+
+# search term on current directory
+tree -afR . | fzf -e -i --layout=reverse-list --border=rounded --prompt='Enter Search Term: '
+
