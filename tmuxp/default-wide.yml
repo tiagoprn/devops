@@ -9,7 +9,7 @@ windows:
   panes:
   - cd dot_files
   - focus: 'true'
-    shell_command: cd ~
+    shell_command: cd /storage/docs/notes/zettelkasten/cards
   - cd devops
 - window_name: 'PERSONAL'
   layout: even-horizontal
