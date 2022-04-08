@@ -6,12 +6,8 @@ ROFI_RUN_PREFIX="python3 $ROFI_SCRIPTS_PATH"
 
 # An array of options
 declare -A options
-options[dwm]="$DMENU_SCRIPTS_PATH/dwm-dmenu-cheatsheet.sh"
-options[dwm_shellcommands]="$DMENU_SCRIPTS_PATH/dmshellcommands-list.sh"
 options[qutebrowser]="$DMENU_SCRIPTS_PATH/qutebrowser-dmenu-cheatsheet.sh"
-options[st]="$DMENU_SCRIPTS_PATH/st-dmenu-cheatsheet.sh"
-options[sxhkd]="$DMENU_SCRIPTS_PATH/sxhkd-print-cheatsheet.py | dmenu -fn Monospace:size=12 -c -bw 2 -l 20 -p 'Filter a sxhkd binding:'"
-options[alacritty]="$DMENU_SCRIPTS_PATH/alacritty-dmenu-cheatsheet.sh"
+options[sxhkd-bspwm]="$DMENU_SCRIPTS_PATH/sxhkd-print-cheatsheet.py | dmenu -fn Monospace:size=12 -c -bw 2 -l 20 -p 'Filter a sxhkd binding:'"
 options[tmux]="$DMENU_SCRIPTS_PATH/tmux-dmenu-cheatsheet.sh"
 options[vim]="$ROFI_RUN_PREFIX/vim_shortcuts.py -f vim"
 options[neovim]="$ROFI_RUN_PREFIX/vim_shortcuts.py -f neovim"
