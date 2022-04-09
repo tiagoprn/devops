@@ -1,0 +1,28 @@
+% pip-tools
+
+# install in a virtualenv
+pip install pip-tools
+
+# generate simple requirements.txt
+pip-compile requirements.in
+
+# generate requirements.txt with custom name
+pip-compile requirements.in --output-file <custom-requirements-txt-file-name>
+
+# generate requirements.txt with hashes
+pip-compile --generate-hashes requirements.in
+
+# update all packages
+pip-compile --upgrade
+
+# update single package
+pip-compile --upgrade-package <package-name>
+
+# install requirements.txt
+pip-sync
+
+# install custom requirements.txt file
+pip-sync <custom-requirements-txt-file>
+
+# Open official documentation site
+xdg-open https://pip-tools.readthedocs.io/en/latest/
