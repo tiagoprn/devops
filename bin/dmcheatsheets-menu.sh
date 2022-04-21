@@ -11,6 +11,7 @@ options[sxhkd-bspwm]="$DMENU_SCRIPTS_PATH/sxhkd-print-cheatsheet.py | dmenu -fn 
 options[tmux]="$DMENU_SCRIPTS_PATH/tmux-dmenu-cheatsheet.sh"
 options[vim]="$ROFI_RUN_PREFIX/vim_shortcuts.py -f vim"
 options[neovim]="$ROFI_RUN_PREFIX/vim_shortcuts.py -f neovim"
+options[ipdb]="$DMENU_SCRIPTS_PATH/ipdb-dmenu-cheatsheet.sh"
 
 # Picking a script
 # shellcheck disable=SC2154

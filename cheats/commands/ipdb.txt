@@ -1,0 +1,11 @@
+pretty pprint variable (e.g. dict) => pp [variable]
+show the call stack until now => (w)here
+up on the call stack => (u)p
+down on the call stack => (d)own
+show context around current line => l
+show current function context => ll
+open ipython shell => interact (quit or exit goes back to ipdb)
+set environment variable for breakpoint() function => PYTHONBREAKPOINT=ipdb.set_trace
+set environment variable to deactivate all breakpoints (useful if someone forgets pdb calls on an emergency) => PYTHONBREAKPOINT=0
+show local variables values => locals()
+show global variables values => globals()

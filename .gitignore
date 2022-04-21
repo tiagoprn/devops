@@ -5,7 +5,6 @@ data/**
 *.swp
 *.retry
 *.log
-*.txt
 *.env
 *.wants/
 *.retry
