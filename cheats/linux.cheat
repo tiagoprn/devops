@@ -218,4 +218,5 @@ wc -m <file>
 # ls - show most recent files, from older to newer
 ls -lArt <directory> | tail -n <number-of-recent-files>
 
-
+# run make command, supressing "Entering Directory" messages
+make -s <subcommand>
