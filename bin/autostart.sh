@@ -32,7 +32,14 @@ reload_wallpaper.sh >> $LOG_FILE 2>&1 &
 # start polybar
 polybar-launch.sh
 
-_isRunning sxhkd || sxhkd -c  /storage/src/dot_files/tiling-window-managers/sxhkd/sxhkdrc >> $LOG_FILE 2>&1 &
+
+if [[ $HOSTNAME == "mobpi" ]]; then
+	SXHKD_CONFIG=/storage/src/dot_files/tiling-window-managers/sxhkd/sxhkdrc.mobpi
+else
+	SXHKD_CONFIG=/storage/src/dot_files/tiling-window-managers/sxhkd/sxhkdrc
+fi
+echo "Configuring sxhkd: $SXHKD_CONFIG..."
+_isRunning sxhkd || sxhkd -c $SXHKD_CONFIG  >> $LOG_FILE 2>&1 &
 
 # echo "Running dunst..." >> $LOG_FILE 2>&1
 nohup start-dunst.sh >> $LOG_FILE 2>&1 &
