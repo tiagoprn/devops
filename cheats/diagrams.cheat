@@ -1,0 +1,5 @@
+% graphviz, dot
+
+# generate a class diagram from a python package/module (needs pylint as python dependency and graphviz through distro's package manager):
+pyreverse -a1 -s0 --ignore *test* -m y <package_name> && dot -Tjpg classes.dot -o <output_file_name>.jpg && xdg-open <output_file_name>.jpg
+
