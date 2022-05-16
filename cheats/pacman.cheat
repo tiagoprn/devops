@@ -1,0 +1,8 @@
+% pacman paru arch manjaro xargs
+
+# list all installed packages and dump to file
+/bin/bash -c 'INSTALLED_PACKAGES_OUTPUT_FILE=installed-packages.$(hostname).$(date +%Y%m%d-%H%M%S-%N) && paru -Q > $INSTALLED_PACKAGES_OUTPUT_FILE && echo "The list of installed packages is at: $INSTALLED_PACKAGES_OUTPUT_FILE"'
+
+# install packages from file
+xargs -a <(awk '! /^ *(#|$)/' <file-path>) -r -- paru -S --noconfirm
+

@@ -220,3 +220,16 @@ ls -lArt <directory> | tail -n <number-of-recent-files>
 
 # run make command, supressing "Entering Directory" messages
 make -s <subcommand>
+
+# show cowsay available "animals"
+cowsay -l
+
+# custom cowsay
+cowsay -b -f <animal> -W <number-of-columns> "<sentence>"
+
+# simple tux cowsay
+cowsay -b -f tux -W 80 "<sentence>"
+
+# format of a cowsay "character" file
+xdg-open https://github.com/bkendzior/cowfiles/tree/master/cowfiles
+
