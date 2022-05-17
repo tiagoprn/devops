@@ -1,0 +1,12 @@
+version: "3"
+services:
+  database:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    ports:
+      - "2080:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=teste@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=12345678
+      - PGADMIN_LISTEN_ADDRESS=0.0.0.0
+      - PGADMIN_LISTEN_PORT=80
