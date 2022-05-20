@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REPOS="/storage/src/devops /storage/src/dot_files /storage/src/bin_private /storage/docs/notes /storage/src/tiagoprnl /storage/src/gpg /storage/src/dwm /storage/src/dwmblocks /storage/src/st /storage/src/dwm-flexipatch /storage/src/reminders /storage/docs/fleeting-notes"
+REPOS="/storage/src/devops /storage/src/dot_files /storage/src/bin_private /storage/docs/notes /storage/src/tiagoprnl /storage/src/gpg /storage/src/reminders /storage/docs/fleeting-notes /storage/src/iac /storage/src/pass /storage/src/code-insights"
 
 UPDATE_BRANCH=master
 
