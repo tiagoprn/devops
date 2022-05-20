@@ -85,7 +85,7 @@ def process_flashcard_file(input_file: str) -> str:
     return fortune_file_name
 
 
-def process_contents(contents: list[str]) -> list[str]:
+def process_contents(contents):
     fortune_items = []
     current_fortune = []
     for line_number, line in enumerate(contents):
