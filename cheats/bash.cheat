@@ -1,6 +1,6 @@
-% bash
+% bash, loop, iterate
 
-# loop on all files of a directory (you can change the * for e.g. fd or find commands)
+# loop on all files of current directory (you can change the * for e.g. fd or find commands)
 for i in *; do file "${i}"; done
 
 # loop run command x times
@@ -9,3 +9,8 @@ for i in {1..<count>}; do <command>; done
 # loop on string of words
 PHRASE='<words>' && for word in $PHRASE; do echo $word; <command>; done
 
+# loop on all files of current directory, recursively
+find . -type f -print0 | while IFS= read -r -d $'\0' file; do echo "$file" ; done
+
+# loop on all files of current directory, limit subdirectories ("1" for just the current folder)
+find . -maxdepth <number-of-subdirectories> -type f -print0 | while IFS= read -r -d $'\0' file; do echo "$file" ; done

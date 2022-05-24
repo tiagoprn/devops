@@ -1,0 +1,5 @@
+% flashcards, tiagoprn
+
+# Generate fortunes from flashcards on current folder
+for i in *.md; do flashcard-to-fortune.py "${i}"; done && echo 'DONE' && cd /tmp/fortunes && ls
+
