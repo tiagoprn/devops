@@ -1,5 +1,13 @@
-% flashcards, tiagoprn
+% flashcards, fortunes
 
 # Generate fortunes from flashcards on current folder
 for i in *.md; do flashcard-to-fortune.py "${i}"; done && echo 'DONE' && cd /tmp/fortunes && ls
 
+# Show fortune from my repository
+fortune -u -e -c /storage/src/fortunes/ | tail +3
+
+# Show all files that will be searched for fortunes, with the probability of each one being shown
+fortune -u -e -c /storage/src/fortunes/ -f
+
+# Show fortune from repository, holding for a number of seconds so it can be read fully before liberating the terminal
+fortune -w -u -e -c /storage/src/fortunes/ | tail +3
