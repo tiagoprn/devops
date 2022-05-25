@@ -1,0 +1,4 @@
+% sxhkd, bspwm
+
+# restart sxhkd
+pkill sxhkd ; nohup sxhkd -c /storage/src/dot_files/tiling-window-managers/sxhkd/sxhkdrc >> /tmp/autostart.$(date +%Y-%m-%d).log 2>&1 &
