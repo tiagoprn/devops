@@ -2,6 +2,8 @@
 
 set -eou pipefail
 
+echo 'You must have i3lock-color installed for this to work...' && sleep 5
+
 ROOT_PATH="/opt/betterlockscreen"
 DOWNLOAD_PATH="$ROOT_PATH/betterlockscreen-main"
 BIN_PATH=/usr/local/bin/
