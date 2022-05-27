@@ -1,13 +1,19 @@
-% flashcards, fortunes
+% flashcards, fortunes, lorem_ipsum
 
 # Generate fortunes from flashcards on current folder
 for i in *.md; do flashcard-to-fortune.py "${i}"; done && echo 'DONE' && cd /tmp/fortunes && ls
 
 # Show fortune from my repository
-fortune -u -e -c /storage/src/fortunes/ | tail +3
+clear && fortune -u -e -c /storage/src/fortunes/ | tail +3
 
 # Show all files that will be searched for fortunes, with the probability of each one being shown
 fortune -u -e -c /storage/src/fortunes/ -f
 
 # Show fortune from repository, holding for a number of seconds so it can be read fully before liberating the terminal
-fortune -w -u -e -c /storage/src/fortunes/ | tail +3
+clear && fortune -w -u -e -c /storage/src/fortunes/ | tail +3
+
+# Show fortune from my repository, with cowsay
+clear && cowsay -b -f duck -W 80 $(fortune -u -e -c /storage/src/fortunes/ | tail +3)
+
+# lorem ipsum generator - paragraph-sizes: short, medium, long, verylong
+curl 'https://loripsum.net/api/<number-of-paragraphs>/plaintext/<paragraph-size>'

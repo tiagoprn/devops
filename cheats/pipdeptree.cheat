@@ -1,0 +1,14 @@
+% pipdeptree
+
+# install in a virtualenv
+pip install pipdeptree
+
+# Shows dependency tree
+pipdeptree
+
+# Shows dependency tree, excluding packages related to packaging
+pipdeptree --exclude pip,pipdeptree,setuptools,wheel
+
+# To find out which packages depend on a particular package(s): e.g.: itsdangerous,MarkupSafe
+pipdeptree --reverse --packages <list-of-packages-separated-by-comma>
+

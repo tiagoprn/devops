@@ -230,6 +230,9 @@ cowsay -b -f <animal> -W <number-of-columns> "<sentence>"
 # simple tux cowsay
 cowsay -b -f tux -W 80 "<sentence>"
 
+# demo all available cowsay animals
+for animal in $(cowsay -l | tail +2); do cowsay -b -f $animal "I am $animal, nice to meet you"; done
+
 # format of a cowsay "character" file
 xdg-open https://github.com/bkendzior/cowfiles/tree/master/cowfiles
 

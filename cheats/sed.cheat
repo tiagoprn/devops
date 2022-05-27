@@ -14,3 +14,6 @@ sed 's/ \+/ /g'
 
 # Add an empty line on every line of a file
 cat <file-path> | sed '/./G'
+
+# display range of lines from file
+sed -n <first_line_number>,<last_line_number>p <file-path>
