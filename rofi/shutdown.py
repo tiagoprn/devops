@@ -22,7 +22,7 @@ logging.basicConfig(
 )
 
 ACTIONS = [
-    ('lock screen', 'lock_with_comic.sh',),
+    ('lock screen', 'lock-with-betterlockscreen.sh',),
     ('standby', 'xset dpms force standby',),
     ('switch user', 'dm-tool switch-to-greeter',),
     ('logoff', 'logoff.sh',),
