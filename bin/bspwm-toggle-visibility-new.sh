@@ -13,7 +13,7 @@ id=$(wmctrl -l | grep $window_id | awk '{print $1}')
 echo "Looking for window $id ..."
 
 if [ -z "${id}" ]; then
-    ${command} && sleep 0.2
+    ${command} && sleep 0.4
 
     # If the command below does not return any window ID, I must
     # increase the value of the sleep command above.

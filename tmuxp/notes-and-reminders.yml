@@ -18,7 +18,7 @@ windows:
       - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
     panes:
       - shell_command:
-        - cd /storage/docs/fleeting-notes/ && vim $(fd -H --exclude .git | fzf)
+        - create-fleeting-note.sh
         focus: true
   - window_name: REMINDERS
     layout: even-vertical
@@ -28,5 +28,5 @@ windows:
       - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
     panes:
       - shell_command:
-        - cd /storage/docs/reminders/ && vim $(fd -H --exclude .git | fzf)
+        - nvim personal.rem
         focus: true
