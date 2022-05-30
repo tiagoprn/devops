@@ -150,3 +150,6 @@ git bisect good
 # squash commits (go to your branch first)
 git rebase <base-branch> --interactive
 
+# undo last local commit (it will undo the commit, but preserve changes done to your files)
+git reset --soft HEAD~1
+
