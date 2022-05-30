@@ -6,6 +6,9 @@ git branch | grep ^* | cut -d ' ' -f 2
 # Copy current branch to clipboard
 git branch | grep ^* | cut -d ' ' -f 2 | cb
 
+# Get current commit hash
+git rev-parse HEAD
+
 # Get git repository root
 git rev-parse --show-toplevel
 
@@ -42,11 +45,20 @@ git log --follow -p --stat -- <file>
 # Show only merge commits:
 git log --merges
 
+# Show all commits changes as a graph for each file:
+git log --stat --oneline
+
 # See summarized changes by author:
-git shortlog --pretty=format:"%ar%n  %h - %s %n"
+git shortlog --pretty=format:"%ar%n  %h - %s %n" --no-merges
 
 # See summarized changes by author on file (you may also pass more than one file)
-git shortlog --pretty=format:"%ar%n  %h - %s %n" <files-separated-by-spaces>
+git shortlog --pretty=format:"%ai%n  %h - %s %n" <files-separated-by-spaces> --no-merges
+
+# Search commits for specific message, by author:
+git shortlog --pretty=format:"%ai%n  %h - %s %n" -n --grep='^fix' --no-merges
+
+# See rank/top contributors, with respective e-mails
+git shortlog -sn --no-merges --email
 
 # Fetch all tags
 git fetch --all --tags
@@ -110,4 +122,31 @@ export REPOS='<repositories-separated-with-space>' && export UPDATE_BRANCH=<bran
 
 # Select commit hash (pipe it manually to clipboard with `| cb` if you need)
 git log --date=iso --pretty=format:'%Cgreen(%ad) %Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' | fzf | awk '{print $4}'
+
+# add note to commit
+git notes add "<note-text>"
+
+# read commit notes (git log command shows notes by default)
+git notes show
+
+# push notes (git doesn’t push/pull notes by default)
+git push <remote> refs/notes/*
+
+# fetch notes (git doesn’t push/pull notes by default)
+git fetch origin refs/notes/*:refs/notes/*
+
+# export tar/zip file from a branch, tag or commit
+git archive --output=<tar-or-zip-file-name> <branch-tag-commit-or-HEAD>
+
+# bissect (to search for problems - start on the last working commit and run the command below)
+git bisect start
+
+# bisect - mark commit as bad
+git bisect bad
+
+# bisect - mark commit as good
+git bisect good
+
+# squash commits (go to your branch first)
+git rebase <base-branch> --interactive
 
