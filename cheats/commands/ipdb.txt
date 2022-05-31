@@ -1,4 +1,5 @@
 pretty pprint variable (e.g. dict) => pp [variable]
+jump to line number x (e.g. to move outside a loop) => j [line-number]
 show the call stack until now => (w)here
 up on the call stack => (u)p
 down on the call stack => (d)own
