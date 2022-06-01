@@ -1,0 +1,17 @@
+% mermaid, diagrams, markdown
+
+# download docker image
+docker pull minlag/mermaid-cli
+
+# convert diagram file (mmd) to png - you must have 777 permissions on "full-mmd-directory-path"
+docker run --rm -it -v <full-mmd-directory-path>:/data -v /storage/src/dot_files/mermaid/config.json:/home/mermaidcli/config.tiagoprn.json minlag/mermaid-cli -c /home/mermaidcli/config.tiagoprn.json -i /data/<mmd-filename-without-extension>.mmd -o /data/<mmd-filename-without-extension>.png -b white && xdg-open <mmd-filename-without-extension>.png
+
+# convert diagram file (mmd) to svg - you must have 777 permissions on "full-mmd-directory-path"
+docker run --rm -it -v <full-mmd-directory-path>:/data -v /storage/src/dot_files/mermaid/config.json:/home/mermaidcli/config.tiagoprn.json minlag/mermaid-cli -c /home/mermaidcli/config.tiagoprn.json -i /data/<mmd-filename-without-extension>.mmd -o /data/<mmd-filename-without-extension>.svg -b white && xdg-open <mmd-filename-without-extension>.svg
+
+# open websites
+xdg-open https://mermaid-js.github.io/mermaid/#/ && xdg-open https://github.com/mermaid-js/mermaid-cli
+
+# transform markdown file with mermaid diagrams inline (https://github.com/mermaid-js/mermaid-cli#transform-a-markdown-file-with-mermaid-diagrams)
+docker run --rm -it -v <full-md-directory-path>:/data -v /storage/src/dot_files/mermaid/config.json:/home/mermaidcli/config.tiagoprn.json minlag/mermaid-cli -c /home/mermaidcli/config.tiagoprn.json -i /data/<md-filename-without-extension>.md -o /data/<md-filename-without-extension>.with-diagrams.md -b white && notify-send 'mermaid-on-docker' 'Generated file <full-md-directory-path>/<md-filename-without-extension>.with-diagrams.md'
+

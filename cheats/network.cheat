@@ -16,7 +16,10 @@ ip r | grep -oP '(dev \w+\-*\w*)' | awk '{print $NF}'
 ip r | grep -oP '(dev \w+\-*\w*)' | awk '{print $NF}' | fzf --no-sort | xclip -i -selection clipboard
 
 # Get IP on network interface
-ip r | grep <interface> | grep -oP 'src (?:\d{1,3}\.){3}\d{1,3}' | awk '{print $NF}'
+ip r | grep "$(ip r | grep -oP '(dev \w+\-*\w*)' | awk '{print $NF}' | fzf)" | grep -oP 'src (?:\d{1,3}\.){3}\d{1,3}' | awk '{print $NF}'
+
+# Get IP on current active network interface
+ip r | grep metric | grep src | awk '{print $9,"(",$3,")"}'
 
 # Get IPs on all network interfaces, and their statuses (up/down)
 ip -br a
@@ -27,7 +30,7 @@ netstat -netlp
 # List remote open ports
 sudo nmap -sS <host-ip>
 
-# Traceroute a dns request (for a webserver, tcp-port can be 80 for http or 443 for https)
+# Traceroute a DNS request (for a webserver, tcp-port can be 80 for http or 443 for https)
 tcptraceroute <tcp-domain> <tcp-port>
 
 # Get your current public network interface
