@@ -8,6 +8,7 @@ ROFI_RUN_PREFIX="python3 $ROFI_SCRIPTS_PATH"
 declare -A options
 options[qutebrowser]="$DMENU_SCRIPTS_PATH/qutebrowser-dmenu-cheatsheet.sh"
 options[sxhkd-bspwm]="$DMENU_SCRIPTS_PATH/sxhkd-print-cheatsheet.py | dmenu -fn Monospace:size=12 -c -bw 2 -l 20 -p 'Filter a sxhkd binding:'"
+options[git]="$DMENU_SCRIPTS_PATH/git-print-cheatsheet.py | dmenu -fn Monospace:size=12 -c -bw 2 -l 20 -p 'Filter a git alias:'"
 options[tmux]="$DMENU_SCRIPTS_PATH/tmux-dmenu-cheatsheet.sh"
 options[vim]="$ROFI_RUN_PREFIX/vim_shortcuts.py -f vim"
 options[neovim]="$ROFI_RUN_PREFIX/vim_shortcuts.py -f neovim"
