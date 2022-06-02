@@ -13,6 +13,7 @@ options[tmux]="$DMENU_SCRIPTS_PATH/tmux-dmenu-cheatsheet.sh"
 options[vim]="$ROFI_RUN_PREFIX/vim_shortcuts.py -f vim"
 options[neovim]="$ROFI_RUN_PREFIX/vim_shortcuts.py -f neovim"
 options[ipdb]="$DMENU_SCRIPTS_PATH/ipdb-dmenu-cheatsheet.sh"
+options[bash-functions-and-aliases]="$DMENU_SCRIPTS_PATH/bash-functions-and-aliases-cheatsheet.sh"
 
 # Picking a script
 # shellcheck disable=SC2154
