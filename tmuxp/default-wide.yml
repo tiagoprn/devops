@@ -3,30 +3,25 @@ windows:
 - window_name: 'SCRATCHPAD'
   layout: even-horizontal
   start_directory: /storage/src
-  focus: 'true'
   options:
     synchronize-panes: 'off'
   panes:
   - cd dot_files
-  - focus: 'true'
-    shell_command: cd /storage/docs/notes/zettelkasten/cards
   - cd devops
-- window_name: 'PERSONAL'
+- window_name: 'STUDY'
   layout: even-horizontal
-  start_directory: /storage/docs/vim_notes/personal
+  start_directory: /storage/src/code-insights
   options:
     synchronize-panes: 'off'
   panes:
-  - focus: 'true'
-    shell_command: cat /etc/os-release
   -
 - window_name: 'WORK'
   layout: even-horizontal
-  start_directory: /storage/docs/vim_notes/work/dafiti
+  start_directory: /storage/src/rose
+  focus: 'true'
   options:
     synchronize-panes: 'off'
   panes:
   - focus: 'true'
-    shell_command: cat /etc/os-release
-  -
+    shell_command: tmux-split-1top-3bottom.sh
 
