@@ -2,3 +2,9 @@
 
 # Change ubuntu gnome gdm wallpaper
 sudo vim /usr/share/gnome-shell/theme/ubuntu.css -c '/lockDialogGroup'
+
+# drag-and-drop file select to drop on another window. E.g. ~/screenshots
+dragon -a $(cd '<directory>' && fzf)
+
+# open dragon (drag-and-drop file select) repository to manually compile it:
+xdg-open https://github.com/mwh/dragon
