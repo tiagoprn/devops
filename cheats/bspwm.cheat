@@ -1,0 +1,10 @@
+% bspwm, wmctrl, tiling-window-managers
+
+# list active rules for windows
+bspc rule -l
+
+# list monitors resolutions
+bspc wm -d | jq '.monitors[].rectangle'
+
+# list all windows IDs (to use with bspc commands)
+wmctrl -l
