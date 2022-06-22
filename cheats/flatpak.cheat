@@ -42,3 +42,6 @@ flatpak --user uninstall $(flatpak list | cut -f 2 | fzf)
 # browse website to search for apps
 xdg-open https://flathub.org/apps
 
+# update all installed flatpaks
+flatpak --user update
+

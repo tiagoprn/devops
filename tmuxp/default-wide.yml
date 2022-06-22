@@ -10,7 +10,7 @@ windows:
   - cd devops
 - window_name: 'STUDY'
   layout: even-horizontal
-  start_directory: /storage/src/code-insights
+  start_directory: /storage/src/writeloop
   options:
     synchronize-panes: 'off'
   panes:
