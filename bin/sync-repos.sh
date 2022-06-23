@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REPOS="/storage/src/devops /storage/src/dot_files /storage/src/bin_private /storage/docs/notes /storage/src/tiagoprnl /storage/src/gpg /storage/src/reminders /storage/docs/fleeting-notes /storage/src/iac $HOME/.password-store /storage/src/code-insights /storage/src/fortunes"
+REPOS="/storage/src/devops /storage/src/dot_files /storage/src/bin_private /storage/docs/notes /storage/src/tiagoprnl /storage/src/gpg /storage/src/reminders /storage/docs/fleeting-notes /storage/src/iac $HOME/.password-store /storage/src/code-insights /storage/src/writeloop /storage/src/fortunes"
 
 
 for repo in $REPOS; do

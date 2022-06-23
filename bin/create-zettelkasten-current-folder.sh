@@ -4,5 +4,5 @@
 
 TIMESTAMP="$(date "+%Y-%m-%d-%H%M%S-%3N")"
 FILENAME=$TIMESTAMP.md
-vim "$FILENAME" +'normal!ggIztk'
+nvim "$FILENAME" +'normal!ggIztk'
 
