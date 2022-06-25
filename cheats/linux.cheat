@@ -170,6 +170,9 @@ tr -d '<character>'
 # interactive cd into directory
 cd $(tree -dfl -p | fzf | awk '{print $NF}')
 
+# Show directory tree, with just directories and in n recursion-levels
+tree -L <number-of-recursion-levels> -n <directory-path> -i -d -l -f
+
 # list x biggest files on a directory
 du -h | grep -v -e '\.$' | sort -hr | head -n <number-of-files>
 
