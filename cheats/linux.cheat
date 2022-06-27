@@ -237,5 +237,5 @@ for animal in $(cowsay -l | tail +2); do cowsay -b -f $animal "I am $animal, nic
 xdg-open https://github.com/bkendzior/cowfiles/tree/master/cowfiles
 
 # clear caches -- clear RAM and SWAP caches.
-sudo -- bash -c "sync && echo $(echo -e '1 pagecache (this is safer on production machines)\n2 dentries_and_inodes\n3 pagecache+dentries_and_inodes' | fzf | awk '{print $1}') >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && echo -e '\n\nRAM cache and swap cleared.\n'"
+sudo -- bash -c "echo -e '\nMEMORY STATS BEFORE:' && free -h && sync && echo $(echo -e '1 pagecache (this is safer on production machines)\n2 dentries_and_inodes\n3 pagecache+dentries_and_inodes' | fzf | awk '{print $1}') >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && echo -e '\n\nRAM cache and swap cleared.\n' && echo -e '\nMEMORY STATS NOW:' && free -h"
 
