@@ -58,9 +58,6 @@ echo -n "<text>" | base64 -w 0
 # base64 decode
 echo -n "<encoded-text>" | base64 -d -w 0
 
-# reclame cache memory on the SO (cache clean)
-sudo -- bash -c 'sync && echo 3 > /proc/sys/vm/drop_caches'
-
 # single program ps usage statistics (RSS=real physical memory, VSZ=real+virtual memory)
 watch -n 1 ps -p $(ps aux | fzf | awk '{print $2}') -o pid,time,command,%cpu,%mem,stat,rss,vsz
 
@@ -238,4 +235,7 @@ for animal in $(cowsay -l | tail +2); do cowsay -b -f $animal "I am $animal, nic
 
 # format of a cowsay "character" file
 xdg-open https://github.com/bkendzior/cowfiles/tree/master/cowfiles
+
+# clear caches -- clear RAM and SWAP caches.
+sudo -- bash -c "sync && echo $(echo -e '1 pagecache (this is safer on production machines)\n2 dentries_and_inodes\n3 pagecache+dentries_and_inodes' | fzf | awk '{print $1}') >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && echo -e '\n\nRAM cache and swap cleared.\n'"
 
