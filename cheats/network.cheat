@@ -60,9 +60,65 @@ nslookup <hostname>
 # Get IP address' hostname
 nslookup <ip>
 
-# restart ubuntu DNS service
+# restart ubuntu domain/DNS service
 sudo systemctl stop systemd-resolved && sudo systemctl start systemd-resolved && sudo systemctl status systemd-resolved
 
 # used to check if a port is open on a machine, so that you can connect to it (cleaner alternative to telnet)
 nc -w 4 -vz <host> <port>
 
+# resolve domain to IP address
+dig +short <domain>
+
+# Get DNS TXT record a of domain
+host -t txt <domain>
+
+# check connection to host/port (alternative to telnet)
+nc -vw5 <host-or-domain> <port>
+
+# check which ports are listening for TCP connections from the network
+sudo nmap -sT -O localhost
+
+# check open ports (locally and remote)
+sudo nmap  -p0-65535 localhost
+
+# Check if a host is up and scan for open ports, also skip host discovery.
+nmap <host-or-domain> -Pn
+
+# whois (domain information)
+whois <domain>
+
+# show domain SSL certificate
+openssl s_client -showcerts -connect <domain>:443
+
+# remove newline (CR)
+tr --delete '\n' < input.txt > output.txt
+
+# replace newline (CR)
+tr '\n' ' ' < filename
+
+# uppercase/lowercase line
+tr /a-z/ /A-Z/
+
+# remove duplicated tabs
+tr -s "/t" < filename
+
+# print first characters from file
+head -c <number-of-characters> <file-path>
+
+# details on image files
+identify <file-path>
+
+# calendar - display current month
+cal
+
+# calendar - display a month (1..12)
+cal -m <month-number>
+
+# python simple http server
+python3 -m http.server
+
+# create big file instantly. e.g. size: 10G
+fallocate -l <size> <file-path>
+
+# Press any key to continue
+read -rsp $'Press any key to continue...\n' -n1 key
