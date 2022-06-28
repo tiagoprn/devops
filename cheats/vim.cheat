@@ -28,4 +28,4 @@ nvim --startuptime <report-file-path>
 nvim -q <(rg --vimgrep --ignore-case --hidden --follow '<rg-search-phase>') +copen
 
 # interactive lsp logs
-tail -n 10 /home/tiago.lima/.local/state/nvim/lsp.log
+tail -f /home/tiago.lima/.local/state/nvim/lsp.log
