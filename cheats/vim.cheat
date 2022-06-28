@@ -1,29 +1,31 @@
-% vim
+% vim, nvim, neovim
 
 # show version
-vim --version
+nvim --version
 
 # script initialization example 01
-vim <filename> +'normal!ggIztk'
+nvim <filename> +'normal!ggIztk'
 
 # script initialization example 02 - opens file with the current time and a line below ready for editing
-vim +'normal Go' +'r!date' <file> +'normal!o-  '
+nvim +'normal Go' +'r!date' <file> +'normal!o-  '
 
-# pipe command output to vim
-<command> | vim -
+# pipe command output to nvim
+<command> | nvim -
 
 # script initialization example 03 - run something before vimrc
-vim --cmd 'echo "This runs before .vimrc"' -c ':call UltiSnips#ListSnippets()' -c '<Esc>' -c ':q!'
+nvim --cmd 'echo "This runs before .vimrc"' -c ':call UltiSnips#ListSnippets()' -c '<Esc>' -c ':q!'
 
 # script initialization example 04 - automate plugin install
-vim +PluginInstall +qall
+nvim +PluginInstall +qall
 
 # generate list of mappings in a file
-vim +':redir! > <mappings-file>' +':silent verbose map' +':redir END' +':qa!'
+nvim +':redir! > <mappings-file>' +':silent verbose map' +':redir END' +':qa!'
 
-# generate a file report of the vim startup time (useful to detect slow plugins on initialization)
-vim --startuptime <report-file-path>
+# generate a file report of the startup time (useful to detect slow plugins on initialization)
+nvim --startuptime <report-file-path>
 
-# start vim with quickfix list populated with results from rg
-vim -q <(rg --vimgrep --ignore-case --hidden --follow '<rg-search-phase>') +copen
+# start with quickfix list populated with results from rg
+nvim -q <(rg --vimgrep --ignore-case --hidden --follow '<rg-search-phase>') +copen
 
+# interactive lsp logs
+tail -n 10 /home/tiago.lima/.local/state/nvim/lsp.log
