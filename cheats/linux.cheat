@@ -239,3 +239,52 @@ xdg-open https://github.com/bkendzior/cowfiles/tree/master/cowfiles
 # clear caches -- clear RAM and SWAP caches.
 sudo -- bash -c "echo -e '\nMEMORY STATS BEFORE:' && free -h && sync && echo $(echo -e '1 pagecache (this is safer on production machines)\n2 dentries_and_inodes\n3 pagecache+dentries_and_inodes' | fzf | awk '{print $1}') >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && echo -e '\n\nRAM cache and swap cleared.\n' && echo -e '\nMEMORY STATS NOW:' && free -h"
 
+# Generate public key from private key
+ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub
+
+# change user's shell - at "/etc/shells" are the valid login shells
+chsh -s <shell-path> <user>
+
+# run program with modified priority: -20 (most favorable) to +19: the higher the number, the lowest the priority
+nice -10 <program-path>
+
+# delete environment variable
+unset <VAR_NAME>
+
+# show all function names (on the current shell)
+declare -F
+
+# show all users
+compgen -u
+
+# show all groups
+compgen -g
+
+# Show cpu info
+ls cpu
+
+# show reboot history
+last reboot
+
+# show number of cores/processors
+nproc --all
+
+# hardware information summary
+sudo lshw -short
+
+# hardware information - as json
+sudo lshw -json
+
+# hardware information - as html
+sudo lshw -html
+
+# hard disks list (ROTA means rotational device / spinning hard disks (1 if true, 0 if false))
+lsblk -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROTA
+
+# list all PCI devices
+lspci
+
+# list all USB devices
+lsusb
+
+
