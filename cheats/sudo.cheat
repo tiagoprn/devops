@@ -5,3 +5,6 @@ sudo -E <command>
 
 # sudo edit a file preserving user environment variables (e.g. keeping $EDITOR)
 sudoedit <file>
+
+# sudo run multiple commands
+sudo bash -c '<commands-here>'
