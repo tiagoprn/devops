@@ -1,10 +1,16 @@
-% ffmpeg container
-
-# Download container
-docker pull jrottenberg/ffmpeg
-
-# Convert from input file to output file (it does automatically by extension)
-docker run --rm --user $(id -u):$(id -g) -v $PWD:/temp jrottenberg/ffmpeg -stats -i /temp/<input_file> /temp/<output_file>
+% ffmpeg
 
 # Select a timespace from a file and generate a new file from it. Timestamp e.g.: 00:03:43
-docker run --rm --user $(id -u):$(id -g) -v $PWD:/temp jrottenberg/ffmpeg -i <input-file> -ss <start-timestamp > -to <finish-timestamp> -c copy <output-file>
+ffmpeg -i <input-file> -ss <start-timestamp> -to <finish-timestamp> -c copy <output-file>
+
+# Extract the sound from a video and save it as MP3:
+ffmpeg -i <video.mp4> -vn <sound.mp3>
+
+# Save a video as GIF, scaling the height to (e.g. 1000) px and setting framerate (e.g. 15):
+ffmpeg -i <video.ext> -vf 'scale=-1:<height>' -r <framerate> <output.gif>
+
+# Quickly extract a single frame from a video at timestamp (e.g. 0:01:50) and save it as an image with given resolution (e.g. 128x128):
+ffmpeg -ss <timestamp> -i <video.ext> -frames 1 -s <image-resolution> -f image2 <image.png>
+
+# Convert IN_FILE to OUT_FILE based on its extension. e.g. mp3 to ogg, ogg to mp3, mkv to mp4 etc...
+ffmpeg -stats -i <in_file.ext> <out_file.ext>
