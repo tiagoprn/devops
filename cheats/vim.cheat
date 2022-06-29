@@ -27,5 +27,8 @@ nvim --startuptime <report-file-path>
 # start with quickfix list populated with results from rg
 nvim -q <(rg --vimgrep --ignore-case --hidden --follow '<rg-search-phase>') +copen
 
-# interactive lsp logs
-multitail -f /home/tiago.lima/.local/state/nvim/lsp.log /home/tiago.lima/.cache/nvim/null-ls.log
+# lsp logs
+tail -f /home/tiago.lima/.local/state/nvim/lsp.log
+
+# lsp null-ls (formatters, linters, etc...) logs
+tail -f /home/tiago.lima/.cache/nvim/null-ls.log | grep 'spawning command'
