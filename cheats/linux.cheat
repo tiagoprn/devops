@@ -287,4 +287,3 @@ lspci
 # list all USB devices
 lsusb
 
-
