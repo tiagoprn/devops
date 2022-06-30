@@ -122,3 +122,6 @@ fallocate -l <size> <file-path>
 
 # Press any key to continue
 read -rsp $'Press any key to continue...\n' -n1 key
+
+# Get all machines IP and MAC Addresses on the network you are connected to
+arp -a
