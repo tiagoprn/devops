@@ -287,3 +287,5 @@ lspci
 # list all USB devices
 lsusb
 
+# output list of files on current directory to file
+ls -lha --color=never | awk '{print $NF}' > <filename>
