@@ -7,7 +7,7 @@
 xargs -a <(awk '! /^ *(#|$)/' <file-path>) -r -- paru -S --noconfirm
 
 # list foreign packages
-sudo pacman -Qm
+/bin/bash -c 'INSTALLED_PACKAGES_OUTPUT_FILE=installed-packages.AUR.$(hostname).$(date +%Y%m%d-%H%M%S-%N) && paru -Qm > $INSTALLED_PACKAGES_OUTPUT_FILE && echo "The list of installed packages is at: $INSTALLED_PACKAGES_OUTPUT_FILE"'
 
 # list all packages
 sudo pacman -Q
