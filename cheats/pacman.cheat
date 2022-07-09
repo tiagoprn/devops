@@ -6,3 +6,11 @@
 # install packages from file
 xargs -a <(awk '! /^ *(#|$)/' <file-path>) -r -- paru -S --noconfirm
 
+# list foreign packages
+sudo pacman -Qm
+
+# list all packages
+sudo pacman -Q
+
+# list files in package
+sudo pacman -Ql <package-name>
