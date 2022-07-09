@@ -53,3 +53,6 @@ sudo systemctl status <pid>
 
 # troubleshoot/validate syntax of a failing service file due to "bad-setting"
 sudo systemd-analyze verify <service>
+
+# logs from x minutes ago
+sudo journalctl --since "<minutes> minutes ago"
