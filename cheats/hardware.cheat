@@ -1,0 +1,16 @@
+% hardware
+
+# get battery status and info
+acpi -V
+
+# get battery current charge only (as a number)
+cat /sys/class/power_supply/BAT0/capacity
+
+# pulseaudio - list sinks (audio volume sources)
+pactl list short sinks
+
+# pulseaudio - increase volume in 5%
+pactl set-sink-volume <sink-id> +5%
+
+# pulseaudio - decrease volume in 5%
+pactl set-sink-volume <sink-id> -5%
