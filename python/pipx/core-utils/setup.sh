@@ -2,9 +2,10 @@
 
 set -eou pipefail
 
-PACKAGES="ansible cookiecutter ipython s3cmd speedtest-cli tmuxp"
-for PACKAGE in $PACKAGES; do
-	echo -e "Installing $PACKAGE..."
-	pipx install "$PACKAGE" --include-deps
-done
+# jetty: alternative to jq
 
+PACKAGES="ansible cookiecutter ipython s3cmd speedtest-cli tmuxp jetty"
+for PACKAGE in $PACKAGES; do
+    echo -e "Installing $PACKAGE..."
+    pipx install "$PACKAGE" --include-deps
+done
