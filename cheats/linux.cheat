@@ -292,3 +292,7 @@ ls -lha --color=never | awk '{print $NF}' > <filename>
 
 # random string (e.g. to generate passwords)
 LC_ALL=C tr -dc A-Za-z0-9 </dev/urandom | head -c <number-of-characters>
+
+# run multiple commands as sudo with pipes, redirects, etc
+sudo -- bash -c "<command>"
+
