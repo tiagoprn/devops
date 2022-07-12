@@ -1,0 +1,18 @@
+session_name: 'default-widescreen'
+windows:
+- focus: 'true'
+  layout: 3876,309x45,0,0{86x45,0,0[86x22,0,0,0,86x22,0,23,3],143x45,87,0,1,78x45,231,0[78x22,231,0,2,78x22,231,23,4]}
+  options:
+    synchronize-panes: 'off'
+  panes:
+  - shell_command:
+    - clear && cd /storage/src/dot_files/
+  - shell_command:
+    - clear && cd /storage/src/devops
+  - focus: 'true'
+    shell_command: cd ~ && clear && ls -lha vault*
+  - shell_command:
+    - clear && cd /storage/src/dot_files
+  - shell_command:
+    - clear && cd /storage/src/devops
+  window_name: main
