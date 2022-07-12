@@ -291,7 +291,7 @@ lsusb
 ls -lha --color=never | awk '{print $NF}' > <filename>
 
 # random string (e.g. to generate passwords)
-LC_ALL=C tr -dc A-Za-z0-9 </dev/urandom | head -c <number-of-characters>
+tr -dc "a-zA-Z0-9_#@.-" < /dev/urandom | head -c <number-of-characters> | xclip -selection clipboard
 
 # run multiple commands as sudo with pipes, redirects, etc
 sudo -- bash -c "<command>"
