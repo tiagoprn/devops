@@ -8,7 +8,7 @@ windows:
       - source ~/.bashrc
     panes:
       - shell_command:
-        - cd /storage/docs/notes/ && nvim $(fd -H --exclude .git | fzf)
+        - cd /storage/docs/notes/ && SELECTED_FILE=$(find . -maxdepth 3 -type f | grep -v ".git/" | sort | fzf) && nvim $SELECTED_FILE
         focus: true
   - window_name: FLEETING NOTES
     layout: even-vertical
