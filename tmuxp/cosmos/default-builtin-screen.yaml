@@ -7,7 +7,7 @@ windows:
     synchronize-panes: 'off'
   panes:
   - focus: 'true'
-    shell_command: cd ~ && clear && ls -lha vault*
+    shell_command: cd ~ && clear
   - shell_command:
     - clear && cd /storage/src/dot_files
   - shell_command:
