@@ -15,3 +15,5 @@ sudo btrfs subvolume create <subvolume-path-on-filesystem>
 # move files/directories to subvolume - the subvolume is "kinda like" a folder, but it is not ;)
 sudo mv <files-or-directory-path> <subvolume-path-on-filesystem>
 
+# Show disk usage
+sudo btrfs filesystem df <mountpoint>
