@@ -1,0 +1,7 @@
+% chroot
+
+# mount bind devices before entering chroot:
+for i in /dev /dev/pts /proc /sys /run; do mount -B $i <mountpoint>$i; done
+
+# chroot into mountpoint
+chroot <mountpoint>

@@ -1,0 +1,10 @@
+% LVM
+
+# list physical volumes ("level" 1)
+sudo pvs
+
+# list volume groups ("level" 2)
+sudo vgs
+
+# list logical volumes ("level" 3)
+sudo lvs
