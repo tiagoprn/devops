@@ -4,11 +4,10 @@ windows:
     layout: even-vertical
     shell_command_before:
       - clear
-      - source ~/.bash_environment || true && source ~/.bash_profile || true && source ~/.bash_functions && source ~/.bash_aliases
+      - source ~/.bashrc
     panes:
-      - jlogs
+      - sudo journalctl -f
       - dmesg -wH
-      - i3-dump-log -f
-      - journalctl --user --since today -f | grep borg
+      - sudo tail -f /tmp/autostart*.log
       - journalctl --user --since today -f
 
