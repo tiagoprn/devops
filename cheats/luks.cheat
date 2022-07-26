@@ -6,12 +6,16 @@ ls /dev/mapper
 # [cryptsetup] mapped device status
 sudo cryptsetup status <dev-mapper-device>
 
-# check encrypted partition
+# check encrypted partition (can be used to discover the encrypted partitions)
 sudo cryptsetup luksDump <crypt-partition>
 
-# mount encrypted partition - e.g. PopOS encrypted partition "nvme0n1p3" as device "cryptdata"
+# open encrypted partition (required before mounting) - e.g. PopOS encrypted partition "nvme0n1p3" as device "cryptdata"
 sudo cryptsetup luksOpen <crypt-partition> <dev-mapper-device>
 
-# close encrypted mappings - e.g. on PopOS, I must close the LVM volume and the encrypted partition
+# mount decrypted partition (after luksOpen)
+sudo mount -t auto <full-path-to-dev-mapper-device> <mountpoint>
+
+# close encrypted partition - e.g. on PopOS, I must close the LVM volume and the encrypted partition
 sudo cryptsetup luksClose <full-path-to-dev-mapper-device>
+
 
