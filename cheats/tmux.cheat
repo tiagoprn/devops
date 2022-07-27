@@ -14,3 +14,9 @@ tmux attach -t <session-name> || tmux new -s <session-name>
 
 # show version
 tmux -V
+
+# output current window panes layout
+tmux display-message -p "#{window_layout}"
+
+# select a window panes layout (can be used with the output of display-message window_layout command above)
+tmux select-layout "<layout>"
