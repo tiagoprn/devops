@@ -27,3 +27,8 @@ time rsync --info=progress2 -e ssh --delete <remote_user>@<remote_host>:<remote_
 # sync directory and all its children over ssh from local to a remote:
 time rsync --info=progress2 -r -e ssh <local_directory> <remote_user>@<remote_host>:<remote_directory>/
 
+# rsync-time-backup - download
+/storage/src/devops/shellscripts/installers/download-rsync-time-backup.sh
+
+# rsync-time-backup - run (e.g. origin="/storage", destination="pi@engineering:/media/ETC-002-P5/BACKUPS/dft-archive/")
+time rsync-time-backup.sh -p 22 <origin> <destination>
