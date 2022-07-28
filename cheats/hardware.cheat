@@ -14,3 +14,12 @@ pactl set-sink-volume <sink-id> +5%
 
 # pulseaudio - decrease volume in 5%
 pactl set-sink-volume <sink-id> -5%
+
+# list devices (e.g. display/monitor) that have brightness available
+sudo brightnessctl -l
+
+# select device (e.g. display/monitor) to change brightness
+sudo brightnessctl -l | grep Device | fzf | awk '{print $2}' | sed s/\'//g | xclip -selection clipboard
+
+# set device (e.g. display/monitor) brightness
+sudo -- bash -c "brightnessctl -d '<device>' set <percentage>%"
