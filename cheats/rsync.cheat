@@ -1,4 +1,4 @@
-% rsync
+% rsync, backups
 
 # sync 2 directories locally in [a]rchive (to preserve attributes), and compressed ([z]ipped) mode with [v]erbose and [h]uman-readable [p]rogress:
 time rsync --info=progress2 -azvhP -r <source-dir>/ <destination-dir>/
