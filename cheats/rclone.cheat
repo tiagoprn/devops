@@ -1,4 +1,4 @@
-% rclone
+% rclone, backups
 
 # List buckets on remote
 rclone lsd $(cat ~/.config/rclone/rclone.conf | rg '^\[' | tr -d '[' | tr ']' ':' | fzf) | awk '{print $5, $2, $3}'

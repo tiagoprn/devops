@@ -1,4 +1,4 @@
-% restic, autorestic
+% restic, autorestic, backups
 
 # Validade syntax
 autorestic -c <configuration-file.yml> check
