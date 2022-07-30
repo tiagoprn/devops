@@ -12,3 +12,8 @@ xdotool type "sudo kill -9 ,,"
 # search term on current directory
 tree -afR . | fzf -e -i --layout=reverse-list --border=rounded --prompt='Enter Search Term: '
 
+# select file on current directory with colored preview using bat
+find . -type f | grep -v '.git' | fzf --prompt='Choose a file > ' --preview 'bat --style numbers,changes --color=always {} | head -n 30'
+
+# create a numbered options menu
+echo -e '1 - <option-one-description>\n2 - <option-two-description>' | fzf | awk '{print $1}'

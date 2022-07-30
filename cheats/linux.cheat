@@ -137,6 +137,9 @@ pstree -a -g
 # find files created/modified on the last x minutes
 find <path> -mmin -<minutes> -type f -exec ls -lha {} +
 
+# find files created/modified on the last x days with a given extension (e.g. number-of-days=7, file-extension=md)
+find . -type f -ctime -<number-of-days> -name '*.<file-extension>'
+
 # get formatted date
 date +%Y%m%d-%H%M%S-%N
 
