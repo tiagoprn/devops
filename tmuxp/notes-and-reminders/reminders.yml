@@ -1,0 +1,21 @@
+session_name: REMINDERS
+windows:
+  - window_name: editor
+    layout: even-vertical
+    start_directory: /storage/docs/reminders
+    shell_command_before:
+      - clear
+      - source ~/.bashrc
+    panes:
+      - shell_command:
+        - nvim personal.rem
+        focus: true
+  - window_name: git
+    layout: even-vertical
+    start_directory: /storage/docs/reminders
+    shell_command_before:
+      - clear
+      - source ~/.bashrc
+    panes:
+      - shell_command:
+        - lazygit

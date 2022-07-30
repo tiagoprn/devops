@@ -1,0 +1,21 @@
+session_name: NOTES
+windows:
+  - window_name: editor
+    layout: even-vertical
+    start_directory: /storage/docs/notes
+    shell_command_before:
+      - clear
+      - source ~/.bashrc
+    panes:
+      - shell_command:
+        - SELECTED_FILE=$(find . -maxdepth 3 -type f | grep -v ".git/" | sort | fzf) && nvim $SELECTED_FILE
+        focus: true
+  - window_name: git
+    layout: even-vertical
+    start_directory: /storage/docs/notes
+    shell_command_before:
+      - clear
+      - source ~/.bashrc
+    panes:
+      - shell_command:
+        - lazygit

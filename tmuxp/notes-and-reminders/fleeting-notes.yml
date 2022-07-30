@@ -1,0 +1,21 @@
+session_name: FLEETING-NOTES
+windows:
+  - window_name: editor
+    layout: even-vertical
+    start_directory: /storage/docs/fleeting-notes
+    shell_command_before:
+      - clear
+      - source ~/.bashrc
+    panes:
+      - shell_command:
+        - create-fleeting-note.sh
+        focus: true
+  - window_name: git
+    layout: even-vertical
+    start_directory: /storage/docs/fleeting-notes
+    shell_command_before:
+      - clear
+      - source ~/.bashrc
+    panes:
+      - shell_command:
+        - lazygit
