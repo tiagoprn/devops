@@ -20,3 +20,18 @@ tmux display-message -p "#{window_layout}"
 
 # select a window panes layout (can be used with the output of display-message window_layout command above)
 tmux select-layout "<layout>"
+
+# current session name
+tmux display-message -p '#S'
+
+# select (switch/change to) window by name on current session
+tmux select-window -t $(tmux list-windows -F '#W' | fzf)
+
+# List all tmux windows
+tmux list-windows
+
+# List all tmux windows (just their names)
+tmux list-windows -F '#W'
+
+# List all tmux commands
+tmux list-commands
