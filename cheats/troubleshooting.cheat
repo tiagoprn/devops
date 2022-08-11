@@ -1,0 +1,103 @@
+% statistics, troubleshooting, monitoring
+
+# single program ps usage statistics (RSS=real physical memory, VSZ=real+virtual memory)
+watch -n 1 ps -p $(ps aux | fzf | awk '{print $2}') -o pid,time,command,%cpu,%mem,stat,rss,vsz
+
+# single program ps usage statistics (simpler)
+watch -n 1 ps -p $(ps aux | fzf | awk '{print $2}') -o %cpu,%mem,rss,command
+
+# strace on a process
+sudo strace -p $(ps aux | fzf | awk '{print $2}')
+
+# friendly strace on a process
+sudo strace -fe trace=creat,open,openat,unlink,unlinkat -p $(ps aux | fzf | awk '{print $2}')
+
+# detailed time command to give execution statistics (like memory: "resident set size")
+/usr/bin/time -v "<command>"
+
+# show information regarding all partitions on all disks
+lsblk -f -o name,mountpoint,size,label,uuid | grep -v loop
+
+# Show cpu info
+lscpu
+
+# show number of cores/processors
+nproc --all
+
+# hardware information summary
+sudo lshw -short
+
+# hardware information - as json
+sudo lshw -json
+
+# hardware information - as html
+sudo lshw -html
+
+# hard disks list (ROTA means rotational device / spinning hard disks (1 if true, 0 if false))
+lsblk -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROTA
+
+# list all PCI devices
+lspci
+
+# list all USB devices
+lsusb
+
+# show the number of processors/cpus/cores available
+nproc
+
+# system information - list requisites
+inxi --recommends
+
+# system information summary
+inxi -F -A -I -u
+
+# detailed system information
+sudo inxi -b -A -C -f -D -n -G -l -M -r -P -I -S -d -f -i -m -o -s -u
+
+# top x processes by cpu
+inxi -t c<number>
+
+# top x processes by memory
+inxi -t m<number>
+
+# list all disk devices (without partitioning information)
+lsblk -d -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROTA
+
+# cpu usage, update each x seconds (all processors), "-o JSON" to output JSON on stdout
+mpstat <seconds>
+
+# cpu usage, update each x seconds (all processors and per processor), "-o JSON" to output JSON on stdout
+mpstat -P ALL <seconds>
+
+# virtual memory statistics
+vmstat -a -t --wide
+
+# virtual memory statistics, update each x seconds
+vmstat -a -t --wide <seconds>
+
+# cpu and device/partitions since boot, "-o JSON" to output JSON on stdout
+iostat --human --pretty
+
+# cpu  with x seconds interval, "-o JSON" to output JSON on stdout
+iostat -c --human --pretty <seconds>
+
+# device/partitions with x seconds interval, "-o JSON" to output JSON on stdout
+iostat -d --human --pretty <seconds>
+
+# per partition on disk, "-o JSON" to output JSON on stdout
+iostat -d --human --pretty -p nvme0n1 <seconds>
+
+# per disk, "-o JSON" to output JSON on stdout
+iostat -d --human --pretty -x nvme0n1 <seconds>
+
+# install iostat, vmstat and mpstat
+sudo apt install -y sysstat
+
+# device/partition usage - iostat - detailed columns description
+man iostat
+
+# cpu usage - mpstat - detailed columns description
+man mpstat
+
+# memory usage - vmstat - detailed columns description
+man vmstat

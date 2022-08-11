@@ -31,44 +31,14 @@ grep '\S'
 # tee: redirect command output (stdout and stderr) to file or another command. Better than '>' or '>>'
 <command> |& tee -a <file-or-command>
 
-# system information - list requisites
-inxi --recommends
-
-# system information summary
-inxi -F -A -I -u
-
-# detailed system information
-sudo inxi -b -A -C -f -D -n -G -l -M -r -P -I -S -d -f -i -m -o -s -u
-
-# top x processes by cpu
-inxi -t c<number>
-
-# top x processes by memory
-inxi -t m<number>
-
 # run indefinitely/infinitely in a loop
 while :; do sleep 59; echo -n ' ' >&2; done &
-
-# show information regarding all partitions on all disks
-lsblk -f -o name,mountpoint,size,label,uuid | grep -v loop
 
 # base64 encode
 echo -n "<text>" | base64 -w 0
 
 # base64 decode
 echo -n "<encoded-text>" | base64 -d -w 0
-
-# single program ps usage statistics (RSS=real physical memory, VSZ=real+virtual memory)
-watch -n 1 ps -p $(ps aux | fzf | awk '{print $2}') -o pid,time,command,%cpu,%mem,stat,rss,vsz
-
-# single program ps usage statistics (simpler)
-watch -n 1 ps -p $(ps aux | fzf | awk '{print $2}') -o %cpu,%mem,rss,command
-
-# strace on a process
-sudo strace -p $(ps aux | fzf | awk '{print $2}')
-
-# friendly strace on a process
-sudo strace -fe trace=creat,open,openat,unlink,unlinkat -p $(ps aux | fzf | awk '{print $2}')
 
 # list active kernel modules and their description
 lsmod | perl -nE 'BEGIN{ <> }; ($m) = /(\S+)/; printf "%-20s: %s\n", $m, qx/modinfo $m/ =~ /description:\s*(.*)/' | sort
@@ -109,12 +79,8 @@ speedtest-cli --simple
 # show files opened by a process (lsof)
 sudo lsof -p $(ps aux | fzf | awk '{print $2}')
 
-# detailed time command to give execution statistics (like memory: "resident set size")
-/usr/bin/time -v <command>
-
 # set/change locale
 echo 'Enable at least en_US.UTF-8 and pt_BR.UTF-8, so that mosh can work.' && sleep 5 && sudo dpkg-reconfigure locales &&  echo 'Now restart the system or open a new terminal.'
-
 
 # backup a device to a gzipped dd image:
 time sudo dd bs=4M if=<device-to-backup> | gzip > <gzipped-image-file>
@@ -209,9 +175,6 @@ mosh $(cat ~/.ssh/config | grep 'Host ' | cut -d ' ' -f 2 | fzf)
 # stopwatch timer (time e.g. 10m, 30s, 1h 5m 30s, 2020-01-01 14:00 UTC, etc...)
 termdown -B --font $(curl -s http://www.figlet.org/examples.html | grep 'Font:' | sed 's/Font: //g' | fzf --prompt 'choose a font for presenting the timer: ') -b -q 5 -t 'TIME IS UP!' <time>
 
-# show the number of processors/cpus available
-nproc
-
 # get words count
 wc -w <file>
 
@@ -263,32 +226,8 @@ compgen -u
 # show all groups
 compgen -g
 
-# Show cpu info
-ls cpu
-
 # show reboot history
 last reboot
-
-# show number of cores/processors
-nproc --all
-
-# hardware information summary
-sudo lshw -short
-
-# hardware information - as json
-sudo lshw -json
-
-# hardware information - as html
-sudo lshw -html
-
-# hard disks list (ROTA means rotational device / spinning hard disks (1 if true, 0 if false))
-lsblk -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROTA
-
-# list all PCI devices
-lspci
-
-# list all USB devices
-lsusb
 
 # output list of files on current directory to file
 ls -lha --color=never | awk '{print $NF}' > <filename>
