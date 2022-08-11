@@ -90,7 +90,7 @@ iostat -t -d --human --pretty -p $(lsblk -d -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROT
 # per disk, "-o JSON" to output JSON on stdout
 iostat -t -d --human --pretty -x $(lsblk -d -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROTA | fzf | awk '{print $1}') <seconds>
 
-# install iostat, vmstat and mpstat
+# install iostat, vmstat, mpstat and pidstat
 sudo apt install -y sysstat
 
 # device/partition usage - iostat - detailed columns description
@@ -101,3 +101,19 @@ man mpstat
 
 # memory usage - vmstat - detailed columns description
 man vmstat
+
+# process/pid usage - pidstat - detailed columns description
+man pidstat
+
+# show process usage of cpu resources with x seconds interval. "expression" can be a regex or string. E.g. "fox|bird"
+pidstat --human -C "<expression>" -p ALL <seconds>
+
+# show process usage of memory with x seconds interval. "expression" can be a regex or string. E.g. "fox|bird"
+pidstat --human -C "<expression>" -r -p ALL <seconds>
+
+# show pid usage of resources with x seconds interval.
+pidstat --human -p <pid> <seconds>
+
+# show pid usage of memory resources with x seconds interval.
+pidstat --human -r -p <pid> <seconds>
+
