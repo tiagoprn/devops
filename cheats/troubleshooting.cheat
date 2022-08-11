@@ -76,19 +76,19 @@ vmstat -a -t --wide
 vmstat -a -t --wide <seconds>
 
 # cpu and device/partitions since boot, "-o JSON" to output JSON on stdout
-iostat --human --pretty
+iostat -t --human --pretty
 
 # cpu  with x seconds interval, "-o JSON" to output JSON on stdout
-iostat -c --human --pretty <seconds>
+iostat -t -c --human --pretty <seconds>
 
 # device/partitions with x seconds interval, "-o JSON" to output JSON on stdout
-iostat -d --human --pretty <seconds>
+iostat -t -d --human --pretty <seconds>
 
 # per partition on disk, "-o JSON" to output JSON on stdout
-iostat -d --human --pretty -p nvme0n1 <seconds>
+iostat -t -d --human --pretty -p $(lsblk -d -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROTA | fzf | awk '{print $1}') <seconds>
 
 # per disk, "-o JSON" to output JSON on stdout
-iostat -d --human --pretty -x nvme0n1 <seconds>
+iostat -t -d --human --pretty -x $(lsblk -d -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROTA | fzf | awk '{print $1}') <seconds>
 
 # install iostat, vmstat and mpstat
 sudo apt install -y sysstat
