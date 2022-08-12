@@ -63,57 +63,81 @@ inxi -t m<number>
 # list all disk devices (without partitioning information)
 lsblk -d -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROTA
 
-# cpu usage, update each x seconds (all processors), "-o JSON" to output JSON on stdout
+# sysstat - cpu usage, update each x seconds (all processors), "-o JSON" to output JSON on stdout
 mpstat <seconds>
 
-# cpu usage, update each x seconds (all processors and per processor), "-o JSON" to output JSON on stdout
+# sysstat - cpu usage, update each x seconds (all processors and per processor), "-o JSON" to output JSON on stdout
 mpstat -P ALL <seconds>
 
-# virtual memory statistics
+# sysstat - virtual memory statistics
 vmstat -a -t --wide
 
-# virtual memory statistics, update each x seconds
+# sysstat - virtual memory statistics, update each x seconds
 vmstat -a -t --wide <seconds>
 
-# cpu and device/partitions since boot, "-o JSON" to output JSON on stdout
+# sysstat - cpu and device/partitions since boot, "-o JSON" to output JSON on stdout
 iostat -t --human --pretty
 
-# cpu  with x seconds interval, "-o JSON" to output JSON on stdout
+# sysstat - cpu  with x seconds interval, "-o JSON" to output JSON on stdout
 iostat -t -c --human --pretty <seconds>
 
-# device/partitions with x seconds interval, "-o JSON" to output JSON on stdout
+# sysstat - device/partitions with x seconds interval, "-o JSON" to output JSON on stdout
 iostat -t -d --human --pretty <seconds>
 
-# per partition on disk, "-o JSON" to output JSON on stdout
+# sysstat - per partition on disk, "-o JSON" to output JSON on stdout
 iostat -t -d --human --pretty -p $(lsblk -d -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROTA | fzf | awk '{print $1}') <seconds>
 
-# per disk, "-o JSON" to output JSON on stdout
+# sysstat - per disk, "-o JSON" to output JSON on stdout
 iostat -t -d --human --pretty -x $(lsblk -d -io KNAME,TYPE,MODEL,VENDOR,SIZE,ROTA | fzf | awk '{print $1}') <seconds>
 
-# install iostat, vmstat, mpstat and pidstat
+# sysstat - install iostat, vmstat, mpstat, pidstat and sar
 sudo apt install -y sysstat
 
-# device/partition usage - iostat - detailed columns description
+# sysstat - device/partition usage - iostat - detailed columns description
 man iostat
 
-# cpu usage - mpstat - detailed columns description
+# sysstat - cpu usage - mpstat - detailed columns description
 man mpstat
 
-# memory usage - vmstat - detailed columns description
+# sysstat - memory usage - vmstat - detailed columns description
 man vmstat
 
-# process/pid usage - pidstat - detailed columns description
+# sysstat - process/pid usage - pidstat - detailed columns description
 man pidstat
 
-# show process usage of cpu resources with x seconds interval. "expression" can be a regex or string. E.g. "fox|bird"
+# sysstat - sar (system activity report)
+man sar
+
+# sysstat - show process usage of cpu resources with x seconds interval. "expression" can be a regex or string. E.g. "fox|bird"
 pidstat --human -C "<expression>" -p ALL <seconds>
 
-# show process usage of memory with x seconds interval. "expression" can be a regex or string. E.g. "fox|bird"
+# sysstat - show process usage of memory with x seconds interval. "expression" can be a regex or string. E.g. "fox|bird"
 pidstat --human -C "<expression>" -r -p ALL <seconds>
 
-# show pid usage of resources with x seconds interval.
+# sysstat - show pid usage of resources with x seconds interval.
 pidstat --human -p <pid> <seconds>
 
-# show pid usage of memory resources with x seconds interval.
+# sysstat - show pid usage of memory resources with x seconds interval.
 pidstat --human -r -p <pid> <seconds>
+
+# sysstat - read a recorded sar (system activity report) from the past
+sar -h -u -f /var/log/sysstat/sa*
+
+# sysstat - cpu metrics
+sar -h -u <seconds>
+
+# sysstat - memory
+sar -h -r <seconds>
+
+# sysstat - swap
+sar -h -S <seconds>
+
+# sysstat - I/O (useful on slowdowns)
+sar -h -b <seconds>
+
+# sysstat - cpu frequency (MHz)
+sar -h -m CPU,FREQ <seconds>
+
+# sysstat - my post on it on writeloop
+xdg-open https://writeloop.dev/posts/sysstat/
 
