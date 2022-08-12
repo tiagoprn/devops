@@ -1,11 +1,14 @@
-session_name: default-builtin-screen
+session_name: 'default-builtin-screen'
 windows:
 - focus: 'true'
-  layout: d7d3,229x45,0,0{114x45,0,0,9,114x45,115,0[114x22,115,0,10,114x22,115,23,12]}
+  layout: 0146,229x45,0,0{74x45,0,0[74x22,0,0,16,74x22,0,23,17],82x45,75,0,18,71x45,158,0[71x22,158,0,19,71x22,158,23,20]}
   options:
-    automatic-rename: 'off'
     synchronize-panes: 'off'
   panes:
+  - shell_command:
+    - clear && cd /storage/src/dot_files/
+  - shell_command:
+    - clear && cd /storage/src/devops
   - focus: 'true'
     shell_command: cd ~ && clear
   - shell_command:
