@@ -114,29 +114,50 @@ pidstat --human -C "<expression>" -p ALL <seconds>
 # sysstat - show process usage of memory with x seconds interval. "expression" can be a regex or string. E.g. "fox|bird"
 pidstat --human -C "<expression>" -r -p ALL <seconds>
 
-# sysstat - show pid usage of resources with x seconds interval.
+# sysstat - show pid process usage of resources with x seconds interval.
 pidstat --human -p <pid> <seconds>
 
-# sysstat - show pid usage of memory resources with x seconds interval.
+# sysstat - show pid process usage of memory resources with x seconds interval.
 pidstat --human -r -p <pid> <seconds>
 
-# sysstat - read a recorded sar (system activity report) from the past
-sar -h -u -f /var/log/sysstat/sa*
+# sysstat - sar - CPU - historic metrics
+sar -h -u -f $(find /var/log/sysstat/ -maxdepth 1 -type f -print0 | while IFS= read -r -d $'\0' file; do echo "$file" ; done | fzf)
 
-# sysstat - cpu metrics
+# sysstat - sar - MEMORY - historic metrics
+sar -h -r -f $(find /var/log/sysstat/ -maxdepth 1 -type f -print0 | while IFS= read -r -d $'\0' file; do echo "$file" ; done | fzf)
+
+# sysstat - sar - SWAP - historic metrics
+sar -h -S -f $(find /var/log/sysstat/ -maxdepth 1 -type f -print0 | while IFS= read -r -d $'\0' file; do echo "$file" ; done | fzf)
+
+# sysstat - sar - I/O (useful on slowdowns) - historic metrics
+sar -h -b -f $(find /var/log/sysstat/ -maxdepth 1 -type f -print0 | while IFS= read -r -d $'\0' file; do echo "$file" ; done | fzf)
+
+# sysstat - sar - CPU - real-time metrics
 sar -h -u <seconds>
 
-# sysstat - memory
+# sysstat - sar - MEMORY - real-time metrics
 sar -h -r <seconds>
 
-# sysstat - swap
+# sysstat - sar - SWAP - real-time metrics
 sar -h -S <seconds>
 
-# sysstat - I/O (useful on slowdowns)
+# sysstat - sar - I/O (useful on slowdowns) - real-time metrics
 sar -h -b <seconds>
 
-# sysstat - cpu frequency (MHz)
+# sysstat - sar - CPU frequency (MHz) - real-time metrics
 sar -h -m CPU,FREQ <seconds>
+
+# sysstat - sar - CPU - today metrics
+sar -h -u
+
+# sysstat - sar - MEMORY - today metrics
+sar -h -r
+
+# sysstat - sar - SWAP - today metrics
+sar -h -S
+
+# sysstat - sar - I/O (useful on slowdowns) - today metrics
+sar -h -b
 
 # sysstat - my post on it on writeloop
 xdg-open https://writeloop.dev/posts/sysstat/
