@@ -69,10 +69,10 @@ mpstat <seconds>
 # sysstat - cpu usage, update each x seconds (all processors and per processor), "-o JSON" to output JSON on stdout
 mpstat -P ALL <seconds>
 
-# sysstat - virtual memory statistics
+# sysstat - SYSTEM OVERVIEW - processes, memory, swap, I/O and cpu
 vmstat -a -t --wide
 
-# sysstat - virtual memory statistics, update each x seconds
+# sysstat - SYSTEM OVERVIEW - processes, memory, swap, I/O and cpu - update each x seconds
 vmstat -a -t --wide <seconds>
 
 # sysstat - cpu and device/partitions since boot, "-o JSON" to output JSON on stdout
