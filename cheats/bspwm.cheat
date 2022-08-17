@@ -15,3 +15,12 @@ bspc desktop <desktop-number> -m $(bspc query -M --names | fzf)
 # get current monitors order/names
 bspc query -M --names
 
+# list all windows/nodes on desktop
+bspc query -N -d <desktop-number>
+
+# list all windows/nodes on monitor
+bspc query -N -m $(bspc query -M --names | fzf)
+
+# move all windows that do not have a desktop to current desktop
+bspc wm -o
+
