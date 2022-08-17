@@ -151,6 +151,9 @@ screenkey &
 # fzf file selection
 find <directory> -type f | fzf
 
+# show directories/subdirectories inside a directory (only their names)
+find <path>/ -maxdepth 1 ! -path <path>/ -type d | tr '/' ' ' | awk '{print $NF}'
+
 # top processes by memory consumption (ps)
 watch -n1 -e 'ps -axo rss,vsz,cmd --sort=-rss | head -6'
 
