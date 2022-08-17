@@ -8,3 +8,10 @@ bspc wm -d | jq '.monitors[].rectangle'
 
 # list all windows IDs (to use with bspc commands)
 wmctrl -l
+
+# move desktop to monitor
+bspc desktop <desktop-number> -m $(bspc query -M --names | fzf)
+
+# get current monitors order/names
+bspc query -M --names
+
