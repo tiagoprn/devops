@@ -241,3 +241,5 @@ tr -dc "a-zA-Z0-9_#@.-" < /dev/urandom | head -c <number-of-characters> | xclip 
 # run multiple commands as sudo with pipes, redirects, etc
 sudo -- bash -c "<command>"
 
+# search on files for regex or string and move them to another directory with xargs
+grep -rn '<regex-or-string>' | cut -d ':' -f 1 | uniq | sort | xargs -I % mv % <destination-folder>
