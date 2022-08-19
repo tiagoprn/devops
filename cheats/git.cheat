@@ -51,6 +51,15 @@ git log --stat --oneline
 # See summarized changes by author:
 git shortlog --pretty=format:"%ar%n  %h - %s %n" --no-merges
 
+# totally custom git log (last commit)
+git log -n 1 --pretty=format:"%cD by %an (%h)"
+
+# totally custom git log (full history)
+git log --pretty=format:"%cD by %an (%h)"
+
+# cheatsheet on what variables can be used o a custom git log
+xdg-open https://devhints.io/git-log-format
+
 # See summarized changes by author on file (you may also pass more than one file)
 git shortlog --pretty=format:"%ai%n  %h - %s %n" <files-separated-by-spaces> --no-merges
 
