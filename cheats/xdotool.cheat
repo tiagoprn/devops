@@ -6,3 +6,8 @@ xdotool getwindowfocus windowfocus --sync type <text>
 # send key combination to current window. combination e.g.: ctrl+shift+v
 xdotool getwindowfocus windowfocus --sync key <combination>
 
+# rename window (that appears in "xwindow" on polybar)
+xdotool search --name "<current_name>" set_window --name "<new_name>"
+
+# rename OBS window (which appears in "xwindow" on polybar)
+xdotool search --name "OBS" set_window --name "desktop"

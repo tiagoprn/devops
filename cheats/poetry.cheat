@@ -1,19 +1,40 @@
 % poetry
 
+# manually install poetry (the recommended method)
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+
 # show current configuration (virtualenv path, etc...):
 poetry config --list
+
+# list all virtualenvs current available:
+ls -lha $HOME/.cache/pypoetry/virtualenvs
 
 # create or enter virtualenv
 poetry shell
 
-# delete virtualenv
+# delete virtualenv (you can use case you wish to force deactivating a virtualenv)
 poetry env remove <python-version>
+
+# show current virtualenv
+poetry env list --full-path
+
+# get full path of python on virtualenv (IMPORTANT: both "python" and "python3" will point to the venv)
+poetry run which python
 
 # install dependencies
 poetry install
 
 # update dependencies
 poetry update
+
+# list all packages with their descriptions
+poetry show
+
+# show outdated packages
+poetry show --outdated
+
+# show each package's dependencies
+poetry show -t
 
 # add and install dependency (updates the lock file)
 poetry add <pypi-package-name>
