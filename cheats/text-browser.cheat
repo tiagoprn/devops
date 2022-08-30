@@ -1,0 +1,10 @@
+% w3m, surfraw, sr, elvi, elvis, browser, qutebrowser
+
+# list all surfraw engines
+sr -elvi
+
+# open bookmarks on browser
+sr -browser=$(echo -e "w3m\nfirefox\nqutebrowser.sh" | fzf --prompt="Select browser: ") "$(cat ~/.config/surfraw/bookmarks  | fzf --prompt='Select bookmark: ' | cut -d ' ' -f 1)"
+
+# open search engine on browser
+sr -browser=$(echo -e "w3m\nfirefox\nqutebrowser.sh" | fzf --prompt="Select browser: ") "$(sr -elvi | fzf --prompt='Select search engine: ' | awk '{print $1}')" "<query>"

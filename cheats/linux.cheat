@@ -243,3 +243,13 @@ sudo -- bash -c "<command>"
 
 # search on files for regex or string and move them to another directory with xargs
 grep -rn '<regex-or-string>' | cut -d ':' -f 1 | uniq | sort | xargs -I % mv % <destination-folder>
+
+# List all graphical application (.desktop files)
+find ~/.local/share/flatpak/exports/share/applications ~/.local/share/applications /usr/share/applications -name "*.desktop
+
+# Select a graphical application .desktop file path:
+find ~/.local/share/flatpak/exports/share/applications ~/.local/share/applications /usr/share/applications -name "*.desktop" | fzf -e --prompt "Select a program name: "
+
+# Open a graphical application .desktop file with nvim:
+xdotool type "nvim $(find ~/.local/share/flatpak/exports/share/applications ~/.local/share/applications /usr/share/applications -name '*.desktop' | fzf -e --prompt 'Select a program name: ')"
+
