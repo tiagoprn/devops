@@ -1,7 +1,13 @@
 % hardware
 
-# get battery status and info
-acpi -V
+# list devices with battery (I can grep anyone to get its' status and info with upower -i below)
+upower -e
+
+# get notebook battery status and info
+upower -i $(upower -e | grep 'BAT')
+
+# get notebook battery status (short)
+upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage"
 
 # get battery current charge only (as a number)
 cat /sys/class/power_supply/BAT0/capacity

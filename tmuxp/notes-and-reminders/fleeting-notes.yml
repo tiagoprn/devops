@@ -19,3 +19,12 @@ windows:
     panes:
       - shell_command:
         - lazygit
+  - window_name: scratchpad
+    layout: even-vertical
+    start_directory: /storage/docs/fleeting-notes
+    shell_command_before:
+      - clear
+      - source ~/.bashrc
+    panes:
+      - shell_command:
+        - ls
