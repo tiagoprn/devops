@@ -3,6 +3,9 @@
 # list devices with battery (I can grep anyone to get its' status and info with upower -i below)
 upower -e
 
+# detailed information on devices with battery
+upower -d
+
 # get notebook battery status and info
 upower -i $(upower -e | grep 'BAT')
 
