@@ -1,4 +1,4 @@
-% w3m, surfraw, sr, elvi, elvis, browser, qutebrowser
+% w3m, rdrview, surfraw, sr, elvi, elvis, browser, qutebrowser
 
 # list all surfraw engines
 sr -elvi
@@ -8,3 +8,6 @@ sr -browser=$(echo -e "w3m\nfirefox\nqutebrowser.sh" | fzf --prompt="Select brow
 
 # open search engine on browser
 sr -browser=$(echo -e "w3m\nfirefox\nqutebrowser.sh" | fzf --prompt="Select browser: ") "$(sr -elvi | fzf --prompt='Select search engine: ' | awk '{print $1}')" "<query>"
+
+# open URL using firefox reader mode on CLI
+rdrview -B w3m <url>
