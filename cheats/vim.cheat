@@ -28,7 +28,28 @@ nvim --startuptime <report-file-path>
 nvim -q <(rg --vimgrep --ignore-case --hidden --follow '<rg-search-phase>') +copen
 
 # lsp logs
-tail -f /home/tiago.lima/.local/state/nvim/lsp.log
+tail -f ~/.local/state/nvim/lsp.log
 
 # lsp null-ls (formatters, linters, etc...) logs
-tail -f /home/tiago.lima/.cache/nvim/null-ls.log | grep 'spawning command'
+tail -f ~/.cache/nvim/null-ls.log | grep 'spawning command'
+
+# Export mappings to file
+nvim +"redir >> /tmp/mappings.txt" +"map" +"redir END" +"qa!"
+
+# Export mappings to file (verbose)
+nvim +"redir >> /tmp/mappings-verbose.txt" +"verbose map" +"redir END" +"qa!"
+
+# Read harpoon.json (project navigation and marks)
+cat ~/.local/share/nvim/harpoon.json
+
+# zipped backup of nvim data (harpoon marks, telescope history, shada, etc...)
+export NVIM_BACKUP_DIR="/tmp/nvim.backups/$(date +%Y%m%d-%H%M%S-%N)" && \
+mkdir -p $NVIM_BACKUP_DIR && \
+tar cfjv $NVIM_BACKUP_DIR/home_.local_share_nvim.tar.bz2 --exclude={rplugin\.vim,site} ~/.local/share/nvim && \
+tar cfjv $NVIM_BACKUP_DIR/home_.local_state_nvim.tar.bz2 --exclude=\*log\* ~/.local/state/nvim && \
+cd $NVIM_BACKUP_DIR && \
+notify-send "Backup successfully finished at '$NVIM_BACKUP_DIR'" && \
+ls -lha
+
+# rsync backup of nvim data and others to engineering
+/storage/src/iac/zenbook/popOS/shellscripts/rsync-to-engineering.sh

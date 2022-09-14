@@ -14,3 +14,6 @@ xargs -a <(awk '! /^ *(#|$)/' <file-path>) -r -- sudo apt-get install -y
 
 # import missing gpg keys (fix to NO_PUBKEY GPG error on update)
 sudo apt update 2>&1 1>/dev/null | sed -ne 's/.*NO_PUBKEY //p' | while read key; do if ! [[ ${keys[*]} =~ "$key" ]]; then sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net:80 --recv-keys "$key"; keys+=("$key"); fi; done
+
+# update all packages and flatpaks
+sudo apt update -y && sudo apt full-upgrade -y && flatpak update -y
