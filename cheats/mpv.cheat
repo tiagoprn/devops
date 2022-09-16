@@ -1,0 +1,10 @@
+% mpv, audio, video
+
+# play audio (you can pass a video or audio file, anyway it will play as audio only)
+mpv --no-video <path-to-video-or-audio-file>
+
+# play video
+mpv <path-to-video-file>
+
+# play video without audio
+mpv --no-audio <path-to-video-file>
