@@ -14,3 +14,9 @@ ffmpeg -ss <timestamp> -i <video.ext> -frames 1 -s <image-resolution> -f image2 
 
 # Convert IN_FILE to OUT_FILE based on its extension. e.g. mp3 to ogg, ogg to mp3, mkv to mp4 etc...
 ffmpeg -stats -i <in_file.ext> <out_file.ext>
+
+# Batch generate mp3 (audio) files from mkv files on current directory
+mkdir audio && for i in *.mkv; do ffmpeg -i "${i}" -vn "audio/${i%%.*}.mp3"; done
+
+# Batch generate flac (audio) files from mkv files on current directory
+mkdir audio && for i in *.mkv; do ffmpeg -i "${i}" -vn "audio/${i%%.*}.flac"; done

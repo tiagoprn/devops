@@ -1,0 +1,3 @@
+# below installs for master, needed to use with vosk (it was not tagged on the last release, it is only on master)
+git+https://github.com/Uberi/speech_recognition
+vosk
