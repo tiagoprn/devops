@@ -8,3 +8,6 @@ cal <year>
 
 # calendar of a month / year
 cal <month> <year>
+
+# calendar of a month on the current year
+cal -m <month>
