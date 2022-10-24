@@ -108,12 +108,6 @@ head -c <number-of-characters> <file-path>
 # details on image files
 identify <file-path>
 
-# calendar - display current month
-cal
-
-# calendar - display a month (1..12)
-cal -m <month-number>
-
 # python simple http server
 python3 -m http.server
 

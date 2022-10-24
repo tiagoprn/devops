@@ -1,13 +1,16 @@
 % cal, calendar
 
+# current month calendar
+ncal -w
+
 # 3 months calendar (previous, current and next)
-cal -3
+ncal -3w
 
 # calendar of a given year
-cal <year>
+ncal <year> -w
 
 # calendar of a month / year
-cal <month> <year>
+cal <month> <year> -w
 
 # calendar of a month on the current year
-cal -m <month>
+ncal -m <month> -w
