@@ -14,3 +14,11 @@ gpg --export-secret-key -a <key-id>
 
 # batch decrypt gpg files on current directory
 mkdir -p tmp/decrypted && for i in *.gpg; do FILENAME=$(echo "tmp/decrypted/${i}" | sed 's/.gpg//g'); gpg --decrypt "${i}" > $FILENAME; done && echo -e '\n\nFINISHED!\n\nDecrypted files can be found here:\n' && tree tmp/decrypted
+
+# quickly decrypt text file on gpg repo
+FILE_TO_DECRYPT=$(find /storage/src/gpg -name "*.gpg" | fzf) && gpg --decrypt $FILE_TO_DECRYPT
+
+# quickly decrypt binary file on gpg repo
+FZF_FILE_TO_DECRYPT=$(find /storage/src/gpg -name "*.gpg" | fzf) && FZF_TMP_DECRYPTED_FILE=$(echo "/tmp/$(basename $FZF_FILE_TO_DECRYPT)" | sed 's/.gpg//g') && gpg --decrypt $FZF_FILE_TO_DECRYPT > $FZF_TMP_DECRYPTED_FILE && echo -e "\n\nFINISHED.\n\nDecrypted '$FZF_FILE_TO_DECRYPT' at '$FZF_TMP_DECRYPTED_FILE'.\n\nAfter done dealing with '$FZF_TMP_DECRYPTED_FILE', remember to delete it from the filesystem.\n\n"
+
+
