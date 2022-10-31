@@ -165,3 +165,5 @@ git reset --soft HEAD~1
 # git-auto-sync: manual sync (save an pull, using rebase when pulling)
 git-auto-sync sync
 
+# change permissions to allow sharing current repo between 2 local users:
+sudo chmod 664 .git/FETCH_HEAD
