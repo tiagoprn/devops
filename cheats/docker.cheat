@@ -1,10 +1,10 @@
 % docker
 
-# run container
-SHARED_FOLDER=/tmp/shared-docker-$(shell date +%Y%m%d_%H%M%S) && \
-echo "You can exchange files with this containers on the directory $(SHARED_FOLDER) on the host and /shared on the container." && \
-mkdir -p $(SHARED_FOLDER) && \
-@docker run --rm -d --network bridge --mount type=bind,source=$(SHARED_FOLDER),target=/shared <container-name>
+# run container - e.g. cpus=0.25 memory=300m
+export SHARED_FOLDER=/tmp/shared-docker-$(date +%Y%m%d_%H%M%S) && \
+echo "You can exchange files with this containers on the directory '$SHARED_FOLDER' on the host and /shared on the container." && \
+mkdir -p $SHARED_FOLDER && \
+docker run --cpus="<cpus>" --memory="<memory>" --rm -d --network bridge --mount type=bind,source=$SHARED_FOLDER,target=/shared <container-name>
 
 # copy container.id to the clipboard
 docker ps | fzf | awk '{print $1}' | xclip -i -selection clipboard
@@ -28,7 +28,7 @@ export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker inspect $CON
 export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker logs -f $CONTAINER_ID
 
 # containers cleanup (prune)
-docker system prune
+docker system prune -a
 
 # Remove docker volume
 export VOLUME_ID=$(docker volume ls | fzf | awk '{print $2}') && docker volume rm $VOLUME_ID
