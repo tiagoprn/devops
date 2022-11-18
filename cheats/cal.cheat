@@ -4,7 +4,7 @@
 ncal -w
 
 # 3 months calendar (previous, current and next)
-ncal -3w
+ncal -3w -M
 
 # calendar of a given year
 ncal <year> -w

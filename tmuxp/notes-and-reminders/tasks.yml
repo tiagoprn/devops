@@ -11,7 +11,7 @@ windows:
         - nvim index.md
         focus: true
       - shell_command:
-        - ncal -3w
+        - ncal -3w -M
       - shell_command:
         - cd /storage/src/tasks/ROADMAPS/2022/weekly && clear && pwd
   - window_name: git
