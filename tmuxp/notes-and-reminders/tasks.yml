@@ -22,7 +22,7 @@ windows:
       - source ~/.bashrc
     panes:
       - shell_command:
-        - lazygit
+        - /storage/src/dot_files/git-ui-with-ssh-agent.sh .
   - window_name: scratchpad
     layout: even-vertical
     start_directory: /storage/docs/tasks
