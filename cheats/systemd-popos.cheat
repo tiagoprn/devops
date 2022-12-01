@@ -1,0 +1,10 @@
+% popos, systemd, system76, scheduler
+
+# see the status of the system76-scheduler service (it hangs my ASUS Zenbook machine from time to time)
+sudo systemctl status com.system76.Scheduler.service
+
+# stop the system76-scheduler service (it hangs my ASUS Zenbook machine from time to time)
+sudo systemctl stop com.system76.Scheduler.service
+
+# start the system76-scheduler service (it hangs my ASUS Zenbook machine frequently)
+sudo systemctl start com.system76.Scheduler.service
