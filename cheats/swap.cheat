@@ -1,0 +1,13 @@
+% swap swapfile
+
+# Create swap file named "swapfile" on current directory with 12GB
+sudo dd if=/dev/zero of=swapfile bs=1024 count=12048576 && sudo chmod 0600 swapfile
+
+# Format the swapfile as swap
+sudo mkswap swapfile
+
+# Activate swapfile on vault
+sudo swapon /media/vault/swapfile
+
+# Deactivate swapfile on vault
+sudo swapoff /media/vault/swapfile
