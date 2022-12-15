@@ -1,6 +1,6 @@
-% luks cryptsetup
+% luks cryptsetup encryption
 
-# list mounted crypted partitions/devices (dev-mapper-devices)
+# list mounted crypted vaults/partitions/devices (dev-mapper-devices)
 ls /dev/mapper
 
 # [cryptsetup] mapped device status
@@ -9,13 +9,29 @@ sudo cryptsetup status <dev-mapper-device>
 # check encrypted partition (can be used to discover the encrypted partitions)
 sudo cryptsetup luksDump <crypt-partition>
 
-# open encrypted partition (required before mounting) - e.g. PopOS encrypted partition "nvme0n1p3" as device "cryptdata"
+# PopOS - open encrypted partition (required before mounting) - e.g. PopOS encrypted partition "nvme0n1p3" as device "cryptdata"
 sudo cryptsetup luksOpen <crypt-partition> <dev-mapper-device>
 
-# mount decrypted partition (after luksOpen)
+# PopOS - mount decrypted partition (after luksOpen)
 sudo mount -t auto <full-path-to-dev-mapper-device> <mountpoint>
 
-# close encrypted partition - e.g. on PopOS, I must close the LVM volume and the encrypted partition
+# PopOS - close encrypted partition - e.g. on PopOS, I must close the LVM volume and the encrypted partition
 sudo cryptsetup luksClose <full-path-to-dev-mapper-device>
 
+# 0 - create a luks vault on an external device  (e.g. sdb, sdc, etc..)
+sudo cryptsetup luksFormat /dev/<device-name>
 
+# 1 - OPEN A LUKS VAULT on an external device ("vault" is an "alias" and is static here, but it can could have a different name for it or to use with other encrypted vault)
+sudo cryptsetup open /dev/<device-name> vault && echo -e 'Vault opened (you can run "ls -la /dev/mapper" to check).\nNow you must mount it.'
+
+# 2 - create a filesystem on the external vault. e.g. label "UGREEN_VAULT"
+sudo mkfs.ext4 -L <label> /dev/mapper/<vault-name>
+
+# 3 - create the external vault mountpoint
+sudo mkdir /media/vault && sudo chown -R tiago:adm /media/vault && sudo chmod -R 770 /media/vault
+
+# 4 - MOUNT THE external VAULT to access the decrypted filesystem
+sudo mount $(find /dev/mapper -type l | fzf) /media/vault && cd /media/vault && ls -lha
+
+# 5 - UMOUNT AND CLOSE A luks external VAULT
+cd ~ && sudo umount /media/vault && sudo cryptsetup close vault && echo -e 'Vault successfully closed:' && ls -lha /media/vault && echo -e 'DONE'
