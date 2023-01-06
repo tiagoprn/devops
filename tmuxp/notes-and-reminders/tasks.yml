@@ -13,7 +13,7 @@ windows:
       - shell_command:
         - ncal -3w -M
       - shell_command:
-        - cd /storage/src/tasks/ROADMAPS/2022/weekly && clear && pwd
+        - cd /storage/src/tasks/ROADMAPS/2023/weekly && clear && pwd
   - window_name: git
     layout: even-vertical
     start_directory: /storage/docs/tasks
