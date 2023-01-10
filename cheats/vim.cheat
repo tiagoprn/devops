@@ -53,3 +53,7 @@ ls -lha
 
 # rsync backup of nvim data and others to engineering
 /storage/src/iac/zenbook/popOS/shellscripts/rsync-to-engineering.sh
+
+# List all plugins on plugins.lua
+grep -E -o '"{1}.*/.*"{1}' /storage/src/dot_files/nvim/lua/plugins.lua
+
