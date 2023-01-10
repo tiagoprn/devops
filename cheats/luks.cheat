@@ -22,7 +22,7 @@ sudo cryptsetup luksClose <full-path-to-dev-mapper-device>
 sudo cryptsetup luksFormat /dev/<device-name>
 
 # 1 - OPEN A LUKS VAULT on an external device ("vault" is an "alias" and is static here, but it can could have a different name for it or to use with other encrypted vault)
-sudo cryptsetup open /dev/<device-name> vault && echo -e 'Vault opened (you can run "ls -la /dev/mapper" to check).\nNow you must mount it.'
+sudo cryptsetup open /dev/$(lsblk | grep -E '^sd' | fzf | awk '{print $1}') vault && echo -e 'Vault opened (you can run "ls -la /dev/mapper" to check).\nNow you must mount it.'
 
 # 2 - create a filesystem on the external vault. e.g. label "UGREEN_VAULT"
 sudo mkfs.ext4 -L <label> /dev/mapper/<vault-name>
