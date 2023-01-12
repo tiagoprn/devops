@@ -1,7 +1,7 @@
 session_name: MONITORING
 windows:
   - window_name: editor
-    layout: 1179,229x46,0,0{114x46,0,0,16,114x46,115,0[114x28,115,0,17,114x17,115,29,18]}
+    layout: f302,229x46,0,0{114x46,0,0[114x33,0,0,1,114x12,0,34,30],114x46,115,0[114x28,115,0,2,114x17,115,29,3]}
     start_directory: /storage/src
     shell_command_before:
       - source ~/.bashrc
@@ -9,9 +9,10 @@ windows:
     panes:
       - shell_command:
         - sudo htop
-        focus: true
+      - shell_command:
+        - sudo intel_gpu_top
       - shell_command:
         - bpytop
       - shell_command:
         - echo "$(date '+%Y-%m-%d %H:%M:%S') $(whoami)@$(hostname) $(speedtest-cli --simple --single | sed s/://g | tr '\n' ' ')" >> ~/speedtest-history.txt && cat ~/speedtest-history.txt
-
+        focus: true
