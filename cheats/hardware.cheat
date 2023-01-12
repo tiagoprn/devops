@@ -32,3 +32,6 @@ sudo brightnessctl -l | grep Device | fzf | awk '{print $2}' | sed s/\'//g | xcl
 
 # change device (e.g. display/monitor) brightness
 sudo -- bash -c "brightnessctl -d $(brightnessctl -l | grep Device | awk '{print $2}' | fzf --prompt 'Select device to change brightness> ') set <percentage>%"
+
+# intel gpu top
+sudo intel_gpu_top
