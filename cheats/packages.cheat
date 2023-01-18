@@ -1,4 +1,4 @@
-% apt debian ubuntu xargs
+% apt debian ubuntu xargs flatpak nvim
 
 # list installed package contents:
 sudo dpkg -L <package-name>
