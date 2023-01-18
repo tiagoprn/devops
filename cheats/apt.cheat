@@ -17,3 +17,6 @@ sudo apt update 2>&1 1>/dev/null | sed -ne 's/.*NO_PUBKEY //p' | while read key;
 
 # upgrade all packages, flatpaks and update and compile nvim:
 sudo apt update -y && sudo apt full-upgrade -y && flatpak update -y && sync-neovim.sh
+
+# upgrade neovim plugins and flatpaks only
+nvim +PackerSync && flatpak --user update
