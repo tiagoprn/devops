@@ -59,3 +59,6 @@ grep -E -o '"{1}.*/.*"{1}' /storage/src/dot_files/nvim/lua/plugins.lua
 
 # Search/grep/select plugin on plugins.lua
 grep -E -o '"{1}.*/.*"{1}' /storage/src/dot_files/nvim/lua/plugins.lua | fzf | sed 's/"//g' | cb
+
+# Search/grep/select plugin on plugins.lua and copy its github repository
+grep -E -o '"{1}.*/.*"{1}' /storage/src/dot_files/nvim/lua/plugins.lua | fzf | echo "https://github.com/$(sed 's/\"//g')" | cb
