@@ -1,9 +1,13 @@
 - hosts: vm
   vars:
     controller_home_directory:  "{{ lookup('env','HOME') }}"
+  vars_files:
+    - ./vars/set-locale_vars.yml
+
   # strategy: debug  ## interactive debug console when a task fails.
   roles:
     - gather_custom_facts
+    - {role: set-locale, when: "ansible_local['set-locale_facts']['has_set-locale_passed'] == false" }
     - upgrade
     - {role: prepare, when: "ansible_local['prepare_facts']['has_prepare_passed'] == false" }
     - {role: utilities, when: "ansible_local['utilities_facts']['has_utilities_passed'] == false" }

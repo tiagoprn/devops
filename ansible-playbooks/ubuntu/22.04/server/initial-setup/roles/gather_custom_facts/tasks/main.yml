@@ -15,6 +15,12 @@
     dest: /etc/ansible/facts.d/utilities_facts.fact
     mode: 0755
 
+- name: Insert set-locale role fact file
+  copy:
+    src: files/set-locale_facts.fact
+    dest: /etc/ansible/facts.d/set-locale_facts.fact
+    mode: 0755
+
 - name: Insert set-sysctl role fact file
   copy:
     src: files/set-sysctl_facts.fact
