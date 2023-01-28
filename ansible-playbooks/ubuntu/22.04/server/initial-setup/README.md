@@ -1,4 +1,4 @@
-# Ubuntu 18.04 provisioning playbook
+# Ubuntu 22.04 provisioning playbook
 
 This is a modular ansible playbook, which can be used to setup a new Ubuntu 18.04 instance.
 
@@ -22,7 +22,7 @@ This setup does its best to provide security (although I'm by no means an expert
     - stress-ng
     - ioping
 
-On my [personal blog](https://tiagopr.nl), you can find instructions on how to use both of them.
+On my [personal site](https://writeloop.dev), you can find instructions on how to use both of them.
 
 - This playbook uses the ansible facts pattern to detect if it should or not run a role each time. Facts are a nice way to run rules in an idempotent way.
 

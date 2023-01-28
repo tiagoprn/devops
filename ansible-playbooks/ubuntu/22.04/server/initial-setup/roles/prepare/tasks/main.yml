@@ -32,13 +32,6 @@
       - tmux
       - qrencode
       - resolvconf
-      - acpid
-
-- name: Add configuration so we can shutdown "physically"
-  copy: src=files/powerbtn dest=/etc/acpi/events/powerbtn owner=root group=root mode=0700
-
-- name: Restart acpid
-  service: name=acpid state=restarted
 
 - name: Generate file to verify it passed through this role
   lineinfile:
