@@ -1,0 +1,16 @@
+- name: Set timezone
+  command: "{{item}}"
+  with_items:  # this is the only way to run more than one command with the ansible "command" module
+      - timedatectl set-timezone America/Sao_Paulo
+      - timedatectl
+
+
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/timezone_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644

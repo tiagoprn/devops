@@ -1,0 +1,19 @@
+- name: sysctl configuration (fs, kernel and net configuration for hardening)
+  copy: src=files/hardening.conf dest=/etc/sysctl.d/98-hardening.conf owner=root group=root
+
+- name: Add another bin dir to the user $PATH.
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH=$PATH:$HOME/local/bin'
+
+
+
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/set-sysctl_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644

@@ -1,0 +1,54 @@
+- name: Add docker repository apt signing key
+  apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+- name: Add docker repository
+  apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' state=present
+
+- name: Install docker
+  action: >
+      {{ ansible_pkg_mgr }} name=docker-ce state=present update_cache=yes
+
+- name: Start docker
+  service: name=docker state=started
+
+- name: Add docker config (logging driver and log format)
+  copy: src=files/docker-daemon.json dest=/etc/docker/daemon.json owner=root group=root
+
+- name: Add ubuntu user to the docker group for it to not require sudo
+  user:
+    name: ubuntu
+    groups: docker
+    append: yes
+
+- name: Restart docker
+  service: name=docker state=restarted
+
+- name: Run docker version
+  command: docker version
+  register: dockerversion
+  changed_when: False  # this make this task always run
+
+- name: Print docker version
+  debug: var=dockerversion.stdout
+
+- name: Run docker info
+  command: docker info
+  register: dockerinfo
+  changed_when: False  # this make this task always run
+
+- name: Print docker info
+  debug: var=dockerinfo.stdout
+
+- name: Upgrade pip
+  pip:
+    name:  # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html#examples
+      - pip
+    extra_args: --upgrade  # this also upgrades pip to the latest version
+    state: forcereinstall
+
+- name: Install docker-compose
+  pip:
+    name:
+      - docker-compose

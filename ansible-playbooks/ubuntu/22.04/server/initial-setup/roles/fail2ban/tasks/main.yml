@@ -1,0 +1,13 @@
+- name: Install pyinotify  # requirement to fail2ban
+  pip: name=pyinotify
+
+- name: Install fail2ban
+  action: >
+      {{ ansible_pkg_mgr }} name=fail2ban state=present update_cache=yes
+
+- name: Add fail2ban config
+  copy: src=files/jail.local dest=/etc/fail2ban owner=root group=root
+
+- name: Start fail2ban
+  service: name=fail2ban state=started
+

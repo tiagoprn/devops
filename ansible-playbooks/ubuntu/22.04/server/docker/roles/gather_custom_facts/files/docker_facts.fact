@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ls /usr/bin/docker > /dev/null 2>&1
+
+# If there is an error on the previous bash command, docker is not installed
+# below must result in a json formatted dict, so ansible can use it
+if [ $? -ne 0 ] ; then
+    echo "{\"has_docker_installed\": false}"
+else
+    echo "{\"has_docker_installed\": true}"
+fi
+

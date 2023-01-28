@@ -1,0 +1,21 @@
+- name: Install firewalld
+  action: >
+      {{ ansible_pkg_mgr }} name=firewalld state=present update_cache=yes
+
+- name: Add a firewall rule to allow mosh server to work
+  shell:
+    firewall-cmd --permanent --zone=public --add-port=60000-61000/tcp --add-port=60000-61000/udp
+  tags:
+      - firewall
+
+- name: Reload firewalld to apply the new configuration
+  shell:
+    firewall-cmd --reload
+  tags:
+      - firewall
+
+- name: Print firewalld configuration
+  shell:
+    firewall-cmd --list-all-zones
+  tags:
+      - firewall

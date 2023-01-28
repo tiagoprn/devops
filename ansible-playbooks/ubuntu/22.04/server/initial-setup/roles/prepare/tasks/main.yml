@@ -1,0 +1,51 @@
+- name: Install additional development libraries/tools
+  action: >
+      {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+      - build-essential
+      - dnsutils
+      - python3-pip
+      - libnet1
+      - libnet1-dev
+      - libcap2
+      - libcap-dev
+      - libpcre2-dev
+      - libnet1
+      - libnet1-dev
+      - libyaml-0-2
+      - libyaml-dev
+      - zlib1g
+      - zlib1g-dev
+      - file
+      - libcap-ng0
+      - libcap-ng-dev
+      - pkg-config
+      - libpcre3-dev
+      - libpcap0.8-dev
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - wget
+      - software-properties-common
+      - dialog
+      - mosh
+      - tmux
+      - qrencode
+      - resolvconf
+      - acpid
+
+- name: Add configuration so we can shutdown "physically"
+  copy: src=files/powerbtn dest=/etc/acpi/events/powerbtn owner=root group=root mode=0700
+
+- name: Restart acpid
+  service: name=acpid state=restarted
+
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/prepare_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644

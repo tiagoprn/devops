@@ -1,0 +1,27 @@
+- name: Install additional utilities
+  action: >
+      {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+      - vim
+      - ncdu
+      - bash-completion
+      - tree
+      - iotop
+      - htop
+      - lsof
+      - rsync
+      - man-db
+      - manpages
+      - unzip
+      - mtr
+
+- name: Generate file to verify it passed through this role
+  lineinfile:
+    dest: /var/log/utilities_passed.txt
+    line: "{{ ansible_date_time.iso8601 }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+

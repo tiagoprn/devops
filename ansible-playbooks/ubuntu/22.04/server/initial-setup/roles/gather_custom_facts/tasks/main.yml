@@ -1,0 +1,66 @@
+- name: Create custom fact directory to allow storing custom facts to be read by any playbook
+  file:
+    path: /etc/ansible/facts.d
+    state: directory
+
+- name: Insert prepare role fact file
+  copy:
+    src: files/prepare_facts.fact
+    dest: /etc/ansible/facts.d/prepare_facts.fact
+    mode: 0755
+
+- name: Insert utilities role fact file
+  copy:
+    src: files/utilities_facts.fact
+    dest: /etc/ansible/facts.d/utilities_facts.fact
+    mode: 0755
+
+- name: Insert set-sysctl role fact file
+  copy:
+    src: files/set-sysctl_facts.fact
+    dest: /etc/ansible/facts.d/set-sysctl_facts.fact
+    mode: 0755
+
+- name: Insert get-sysctl role fact file
+  copy:
+    src: files/get-sysctl_facts.fact
+    dest: /etc/ansible/facts.d/get-sysctl_facts.fact
+    mode: 0755
+
+- name: Insert timezone role fact file
+  copy:
+    src: files/timezone_facts.fact
+    dest: /etc/ansible/facts.d/timezone_facts.fact
+    mode: 0755
+
+- name: Insert ntp role fact file
+  copy:
+    src: files/ntp_facts.fact
+    dest: /etc/ansible/facts.d/ntp_facts.fact
+    mode: 0755
+
+- name: Insert fail2ban fact file
+  copy:
+    src: files/fail2ban_facts.fact
+    dest: /etc/ansible/facts.d/fail2ban_facts.fact
+    mode: 0755
+
+- name: Insert auth fact file
+  copy:
+    src: files/auth_facts.fact
+    dest: /etc/ansible/facts.d/auth_facts.fact
+    mode: 0755
+
+- name: Insert firewalld fact file
+  copy:
+    src: files/firewalld_facts.fact
+    dest: /etc/ansible/facts.d/firewalld_facts.fact
+    mode: 0755
+
+- name: Reload ansible local vars, to have the installed fact available to use
+  setup: filter=ansible_local
+
+- name: show ansible_local dict values
+  debug:
+    var: ansible_local
+    verbosity: 1

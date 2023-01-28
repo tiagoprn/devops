@@ -1,0 +1,47 @@
+- name: Authorize my ansible controller ssh public key to login on the host controlled by ansible - for root user there
+  authorized_key:
+      user: root
+      state: present
+      key: "{{ lookup('file', '{{ controller_home_directory }}/.ssh/id_rsa.pub') }}"
+
+- name: Create user
+  user: name=ops
+        state=present
+        shell=/bin/bash
+        home=/home/ops
+        groups=users,input,sudo
+        generate_ssh_key=yes
+        ssh_key_bits=4096
+
+- name: Get ssh public key
+  command: /bin/cat /home/ops/.ssh/id_rsa.pub
+  register: cat
+  changed_when: False
+
+- name: Print ssh public key
+  debug: var=cat.stdout
+
+- name: Authorized my ansible controller ssh public key to login on the host controlled by ansible - for ops user there
+  authorized_key:
+      user: ops
+      state: present
+      key: "{{ lookup('file', '{{ controller_home_directory }}/.ssh/id_rsa.pub') }}"
+
+- name: Set user sudo without password
+  copy: src=files/sudoers dest=/etc owner=root group=root mode=0440
+
+- name: Set sshd configuration only with keys without password
+  copy: src=files/sshd_config dest=/etc/ssh owner=root group=root mode=0600
+
+- name: Create the folder to hold custom binaries for the user
+  file:
+    path: /home/ops/local/bin
+    state: directory
+    owner: ops
+    group: ops
+    mode: 0775
+    recurse: yes
+
+- name: Restart sshd
+  service: name=sshd state=restarted
+
