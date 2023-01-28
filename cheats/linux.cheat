@@ -253,3 +253,5 @@ find ~/.local/share/flatpak/exports/share/applications ~/.local/share/applicatio
 # Open a graphical application .desktop file with nvim:
 xdotool type "nvim $(find ~/.local/share/flatpak/exports/share/applications ~/.local/share/applications /usr/share/applications -name '*.desktop' | fzf -e --prompt 'Select a program name: ')"
 
+# python expression calculator - use for mathematical calculations
+python3 -c "print(str(<expression>))"
