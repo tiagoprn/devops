@@ -15,6 +15,18 @@ docker images | fzf | awk '{print $3}' | xclip -i -selection clipboard
 # kill and remove container
 export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker kill $CONTAINER_ID && docker rm $CONTAINER_ID
 
+# kill container
+export CONTAINER_ID=$(docker ps -a | fzf | awk '{print $1}') && docker kill $CONTAINER_ID
+
+# remove container
+export CONTAINER_ID=$(docker ps -a | fzf | awk '{print $1}') && docker rm $CONTAINER_ID
+
+# start container
+export CONTAINER_ID=$(docker ps -a | fzf | awk '{print $1}') && docker start $CONTAINER_ID
+
+# stop container
+export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker stop $CONTAINER_ID
+
 # open bash shell inside container
 export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker exec -it $CONTAINER_ID /bin/bash
 
