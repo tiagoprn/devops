@@ -15,6 +15,7 @@
       - unzip
       - mtr
       - entr
+      - rclone
 
 - name: Generate file to verify it passed through this role
   lineinfile:
