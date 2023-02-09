@@ -45,8 +45,14 @@ git log '--pretty=%h by %aN at %aD'
 # Get all commit hashes with author and date and output to nvim to inspect
 git log '--pretty=%h by %aN at %aD' | nvim -
 
-# Select commit hash with fzf, with a preview of which files changed on each one
+# Select commit hash with fzf and copy to the clipboard - when browsing through the list shows a preview of which files changed on each commit
 git log '--pretty=%aI %h %aN' | fzf --preview "git diff-tree --no-commit-id --name-status {2} -r" | awk '{print $2}' | xclip -i -selection clipboard | notify-send "Commit hash copied to clipboard!"
+
+# List all branches that contain a commit (listed from the oldest to the newest commit date)
+git branch --sort=committerdate --contains <commit-hash>
+
+# List all branches that contain a commit (listed from the newest to the oldest commit date)
+git branch --sort=-committerdate --contains <commit-hash>
 
 # Show rank of most changed files on repository
 git rank
