@@ -1,28 +1,34 @@
 % ansible
 
-# setup ansible config file
-mkdir -p ~/ansible/conf || true && curl https://raw.githubusercontent.com/tiagoprn/dot_files/master/ansible/conf/ansible.cfg -o ~/ansible/conf/ansible.cfg
-
-# setup ansible hosts file
-mkdir -p ~/ansible/conf || true && curl https://raw.githubusercontent.com/tiagoprn/dot_files/master/ansible/conf/hosts -o ~/ansible/conf/hosts
-
 # edit config
-vim ~/ansible/conf/ansible.cfg
+nvim /storage/src/iac/ansible/ansible.cfg
 
-# edit hosts
-vim ~/ansible/conf/hosts
+# edit inventory group file
+nvim $(/storage/src/iac/ansible/groups-file.sh)
 
-# facts
-ansible -i ~/ansible/conf/hosts all -m setup
+# facts on all groups
+ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ansible all -i $(/storage/src/iac/ansible/groups-file.sh) -m setup
 
-# ping hosts
-ansible -i ~/ansible/conf/hosts all -m ping
+# facts on group
+ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ansible $(/storage/src/iac/ansible/groups-menu.sh) -i $(/storage/src/iac/ansible/groups-file.sh) -m setup
 
-# ping hosts debug
-ANSIBLE_DEBUG=1 ansible -vvvv -i ~/ansible/conf/hosts all -m ping
+# ping all groups
+ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ansible all -i $(/storage/src/iac/ansible/groups-file.sh) -m ping
 
-# play
-ANSIBLE_CONFIG=~/ansible/conf/ansible.cfg ansible-playbook -i ~/ansible/conf/hosts -vv <playbook>
+# ping all groups debug
+ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ANSIBLE_DEBUG=1 ansible all -vvvv -i $(/storage/src/iac/ansible/groups-file.sh) -m ping
 
-# play debug
-ANSIBLE_DEBUG=1 ansible-playbook -i ~/ansible/conf/hosts -vvvv <playbook>
+# ping group debug
+ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ANSIBLE_DEBUG=1 ansible $(/storage/src/iac/ansible/groups-menu.sh) -vvvv -i $(/storage/src/iac/ansible/groups-file.sh) -m ping
+
+# playbook
+ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ansible-playbook -i $(/storage/src/iac/ansible/groups-file.sh) -vv $(/storage/src/iac/ansible/select-playbook.sh)
+
+# playbook list hosts
+ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ansible-playbook -i $(/storage/src/iac/ansible/groups-file.sh) --list-hosts $(/storage/src/iac/ansible/select-playbook.sh)
+
+# playbook debug
+ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ANSIBLE_DEBUG=1 ansible-playbook -i $(/storage/src/iac/ansible/groups-file.sh) -vvvv $(/storage/src/iac/ansible/select-playbook.sh)
+
+# ansible generic command with custom config and inventory - e.g.: "-m ping"
+ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ansible $(/storage/src/iac/ansible/groups-menu.sh) -i $(/storage/src/iac/ansible/groups-file.sh) <command>
