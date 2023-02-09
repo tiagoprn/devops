@@ -1,6 +1,4 @@
 {
-  "bip" : "1.1.1.1/24",
-  "fixed-cidr": "1.1.1.1/25",
   "mtu": 1500,
   "log-driver": "journald" ,
   "log-opts": {

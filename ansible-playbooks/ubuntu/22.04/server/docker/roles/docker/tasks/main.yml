@@ -13,6 +13,15 @@
 - name: Start docker
   service: name=docker state=started
 
+- name: Create the folder to hold custom docker daemon configuration
+  file:
+    path: /etc/docker
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
 - name: Add docker config (logging driver and log format)
   copy: src=files/docker-daemon.json dest=/etc/docker/daemon.json owner=root group=root
 
@@ -41,14 +50,19 @@
 - name: Print docker info
   debug: var=dockerinfo.stdout
 
-- name: Upgrade pip
-  pip:
-    name:  # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html#examples
-      - pip
-    extra_args: --upgrade  # this also upgrades pip to the latest version
-    state: forcereinstall
+# IMPORTANT: docker-compose got removed from here on 2023-02-09 because at this time
+#            it is now automatically installed when you install docker, as a "plugin".
+#            It is run with "docker compose" subcommand.
+#            To not worry about that, I setup an alias "docker-compose" on my bashrc (initial-setup playbook, role "dot_files")
+#            to keep calling it with "docker-compose", but pointing it to the "docker compose" subcommand.
+# - name: Upgrade pip
+#   pip:
+#     name:  # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html#examples
+#       - pip
+#     extra_args: --upgrade  # this also upgrades pip to the latest version
+#     state: forcereinstall
 
-- name: Install docker-compose
-  pip:
-    name:
-      - docker-compose
+# - name: Install docker-compose
+#   pip:
+#     name:
+#       - docker-compose
