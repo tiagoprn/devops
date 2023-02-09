@@ -1,0 +1,84 @@
+[user]
+  email = tiagoprn@gmail.com
+  name = tiagoprn
+
+[alias]
+  # fetch:
+  f = fetch
+  # add:
+  a = add
+  # commit:
+  c = commit
+  # icdiff:
+  d = icdiff HEAD
+  # diff (default):
+  dd = diff
+  # checkout:
+  co = checkout
+  # status:
+  s = status --short
+  # branch:
+  b = branch
+  # list branches, with the most recent one on top:
+  bl = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
+  # push:
+  ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+  # pull:
+  pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+  # stash save (includes untracked files):
+  ss = stash save --include-untracked
+  # stash pop:
+  sp = stash pop
+  # log graph:
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  # log with changed files on each commit:
+  lf = log --date=iso --name-status --pretty=format:'%Cgreen(%ad) %Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset'
+  # simple log with timestamps:
+  ll = log --date=iso --pretty=format:'%Cgreen(%ad) %Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset'
+  # log graph on alternative format:
+  la = log --graph --format=format:\"%C(yellow)%h%C(red)%d%C(reset) - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)\"
+  # before fetching, remove remote-tracking references that no longer exist on the remote:
+  prune = fetch --prune
+  # undo the last commit (use only if not pushed):
+  undo = reset --soft HEAD^
+  # list changed files on each commit (verbose):
+  files-changed = log --name-status
+  # Sort the files in your project by their number of changes over time, and take the first 10:
+  file-changes-rank = "!git log --name-only | grep -v 'Author' |  grep -v '^$' | sort | uniq -c | sort -rg | head -10"
+  # Track files with a higher chance that will require more changes in the future:
+  files-rank = "!git file-changes-rank"
+  # outputs repository root folder:
+  root = rev-parse --show-toplevel
+
+
+[status]
+  showUntrackedFiles = all
+  # Sometimes a newly-added folder, since it's only one line in git status, can slip under the radar.
+  # https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
+
+[transfer]
+  fsckobjects = true
+  # To combat repository corruption!
+  # Note: this global option applies during receive and transmit
+  # https://git-scm.com/docs/git-config#git-config-transferfsckObjects
+  # via https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
+
+
+# A nice little github-like colorful, split diff right in the console.
+# via http://owen.cymru/github-style-diff-in-terminal-with-icdiff/
+[diff]
+  tool = icdiff
+
+[difftool]
+  prompt = false
+
+[difftool "icdiff"]
+  cmd = /usr/bin/icdiff --color-moved --line-numbers $LOCAL $REMOTE
+
+# On repeated merge conflicts, [re]use [re]corded [re]solution
+[rerere]
+  enabled = true
+
+[init]
+	defaultBranch = main
+

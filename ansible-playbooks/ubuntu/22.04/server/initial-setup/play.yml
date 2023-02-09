@@ -1,4 +1,4 @@
-- hosts: vm
+- hosts: all
   vars:
     controller_home_directory:  "{{ lookup('env','HOME') }}"
   vars_files:
@@ -22,3 +22,4 @@
     - services
     - reboot
     - cleanup
+    - dot_files

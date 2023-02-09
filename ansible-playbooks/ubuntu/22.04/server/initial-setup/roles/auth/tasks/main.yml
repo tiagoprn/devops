@@ -11,6 +11,7 @@
         home=/home/ops
         groups=users,input,sudo
         generate_ssh_key=yes
+        ssh_key_type=ed25519
         ssh_key_bits=4096
 
 - name: Get ssh public key
@@ -35,7 +36,16 @@
 
 - name: Create the folder to hold custom binaries for the user
   file:
-    path: /home/ops/local/bin
+    path: /home/ops/.local/bin
+    state: directory
+    owner: ops
+    group: ops
+    mode: 0775
+    recurse: yes
+
+- name: Create the folder to hold custom scripts for the user
+  file:
+    path: /home/ops/scripts
     state: directory
     owner: ops
     group: ops

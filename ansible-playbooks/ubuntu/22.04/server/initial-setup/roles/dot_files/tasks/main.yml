@@ -1,0 +1,22 @@
+# set the dot_files for the user ops
+
+- name: Set bash configuration file - bashrc
+  copy: src=files/.bashrc dest=/home/ops/.bashrc owner=ops group=ops mode=0700
+
+- name: Set tmux configuration file
+  copy: src=files/.tmux.conf dest=/home/ops/.tmux.conf owner=ops group=ops mode=0700
+
+- name: Set git configuration file
+  copy: src=files/.gitconfig dest=/home/ops/.gitconfig owner=ops group=ops mode=0700
+
+- name: Add scripts
+  copy: src=files/scripts/switch-tmux-session.sh dest=/home/ops/scripts/switch-tmux-session.sh owner=ops group=ops mode=0700
+
+- name: Create the folder to hold other configurations
+  file:
+    path: /home/ops/.config/
+    state: directory
+    owner: ops
+    group: ops
+    mode: 0700
+    recurse: yes

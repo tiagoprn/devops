@@ -30,6 +30,8 @@
       - dialog
       - mosh
       - tmux
+      - tmuxp
+      - icdiff
       - qrencode
       - resolvconf
 

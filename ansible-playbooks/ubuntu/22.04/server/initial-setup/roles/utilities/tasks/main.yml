@@ -16,6 +16,9 @@
       - mtr
       - entr
       - rclone
+      - ripgrep
+      - fd-find
+      - fzf
 
 - name: Generate file to verify it passed through this role
   lineinfile:
