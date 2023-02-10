@@ -118,6 +118,10 @@ fi
 
 # ---
 
+# PS1='[\u@\h \W]\$ '
+
+set -o vi
+
 # When using vim-mode, add beside the prompt and indicator if we are on visual or insert mode.
 bind 'set show-mode-in-prompt on'
 
@@ -155,4 +159,7 @@ alias tmk='tmux kill-session -t default'
 
 alias docker-compose='docker compose'
 
-echo -e '- Use the alias "tms" to open the default tmux session.\n'
+echo -e '--- HELLO THERE! =D ---'
+echo -e '- If this is your first login as the user "ops", do not forget to clone the iac repo into </storage/src>'
+echo -e '- Use the alias "tms" to open the default tmux session (needs </storage/src/iac> git repo cloned locally)'
+echo -e '--- NOW... HAVE FUN! \o/ ---\n'

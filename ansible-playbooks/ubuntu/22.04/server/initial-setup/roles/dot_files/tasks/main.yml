@@ -9,6 +9,9 @@
 - name: Set git configuration file
   copy: src=files/.gitconfig dest=/home/ops/.gitconfig owner=ops group=ops mode=0700
 
+- name: Add tmuxp default session
+  copy: src=files/scripts/switch-tmux-session.sh dest=/home/ops/scripts/switch-tmux-session.sh owner=ops group=ops mode=0700
+
 - name: Add scripts
   copy: src=files/scripts/switch-tmux-session.sh dest=/home/ops/scripts/switch-tmux-session.sh owner=ops group=ops mode=0700
 
@@ -19,4 +22,13 @@
     owner: ops
     group: ops
     mode: 0700
+    recurse: yes
+
+- name: Create the folder to hold source code
+  file:
+    path: /storage/src
+    state: directory
+    owner: ops
+    group: ops
+    mode: 0770
     recurse: yes
