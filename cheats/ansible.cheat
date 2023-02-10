@@ -24,6 +24,9 @@ ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ANSIBLE_DEBUG=1 ansible $(/s
 # playbook
 ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ansible-playbook -i $(/storage/src/iac/ansible/groups-file.sh) -vv $(/storage/src/iac/ansible/select-playbook.sh)
 
+# playbook start from specific task
+ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ansible-playbook -i $(/storage/src/iac/ansible/groups-file.sh) -vv $(/storage/src/iac/ansible/select-playbook.sh) --step --start-at-task='<task-name-as-on-a-tasks-main_yml-file>'
+
 # playbook list hosts
 ANSIBLE_CONFIG=/storage/src/iac/ansible/ansible.cfg ansible-playbook -i $(/storage/src/iac/ansible/groups-file.sh) --list-hosts $(/storage/src/iac/ansible/select-playbook.sh)
 
