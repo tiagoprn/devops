@@ -48,6 +48,9 @@ docker system prune -a
 # Remove docker volume
 export VOLUME_ID=$(docker volume ls | fzf | awk '{print $2}') && docker volume rm $VOLUME_ID
 
+# remove unused (dangling) volumes in Docker
+docker volume rm $(docker volume ls -q -f "dangling=true")
+
 # Remove docker network
 export NETWORK_ID=$(docker network ls | fzf | awk '{print $2}') && docker network rm $NETWORK_ID
 
