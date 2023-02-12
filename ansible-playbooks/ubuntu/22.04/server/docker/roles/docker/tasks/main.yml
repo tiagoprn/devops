@@ -50,6 +50,11 @@
 - name: Print docker info
   debug: var=dockerinfo.stdout
 
+- name: Add user to docker group
+  user: name=ops
+        groups=docker
+        append=yes
+
 # IMPORTANT: docker-compose got removed from here on 2023-02-09 because at this time
 #            it is now automatically installed when you install docker, as a "plugin".
 #            It is run with "docker compose" subcommand.
