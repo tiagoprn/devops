@@ -156,6 +156,7 @@ alias gf='git fetch'
 
 alias tms='tmuxp load /storage/src/iac/linode/xplab.dev/tmuxp/default.yaml'
 alias tmk='tmux kill-session -t default'
+alias tl='tmux list-sessions'
 
 alias docker-compose='docker compose'
 
