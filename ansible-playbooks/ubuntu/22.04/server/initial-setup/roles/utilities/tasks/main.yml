@@ -17,6 +17,7 @@
       - mtr
       - entr
       - rclone
+      - ssmtp
       - ripgrep
       - fd-find
       - fzf
