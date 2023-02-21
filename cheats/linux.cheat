@@ -255,3 +255,6 @@ xdotool type "nvim $(find ~/.local/share/flatpak/exports/share/applications ~/.l
 
 # python expression calculator - use for mathematical calculations
 python3 -c "print(str(<expression>))"
+
+# install starship (rust shell prompt)
+curl -sS https://starship.rs/install.sh | sh
