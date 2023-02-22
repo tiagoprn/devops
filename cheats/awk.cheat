@@ -21,3 +21,5 @@ awk 'BEGIN {x=100/3; y=6; z=x*y; print z}'
 # Set variable from shell, and print it together with metric from /sys divided by 1000:
 awk -v date="$(date)" '{print date, "--- TEMP:" ,$1/1000}' /sys/class/thermal/thermal_zone0/temp
 
+# Join lines 2 by 2
+awk 'NR % 2 == 0 {print (prev ? prev FS : "") $0} {prev = $0}'

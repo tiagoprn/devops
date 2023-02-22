@@ -172,6 +172,9 @@ echo <text> | cut -f <column-number>- -d ' '
 # ssh into host pre-configured on ~/.ssh/config
 ssh $(cat ~/.ssh/config | grep 'Host ' | cut -d ' ' -f 2 | fzf)
 
+# ssh/mosh: parse ~/.ssh/config and copy a host IP to the clipboard
+cat ~/.ssh/config | grep Host | sed 's/Hostname //g' | sed 's/  //g' | sed 's/Host //g' | awk 'NR % 2 == 0 {print (prev ? prev FS : "") $0} {prev = $0}' | fzf | awk '{print $2}' |  xclip -i -selection clipboard
+
 # mosh into host pre-configured on ~/.ssh/config
 mosh $(cat ~/.ssh/config | grep 'Host ' | cut -d ' ' -f 2 | fzf)
 
