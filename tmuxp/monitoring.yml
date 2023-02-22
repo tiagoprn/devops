@@ -1,18 +1,30 @@
 session_name: MONITORING
 windows:
-  - window_name: editor
-    layout: f302,229x46,0,0{114x46,0,0[114x33,0,0,1,114x12,0,34,30],114x46,115,0[114x28,115,0,2,114x17,115,29,3]}
+  - window_name: stats
+    layout: d1f1,229x46,0,0[229x10,0,0,18,229x35,0,11{104x35,0,11[104x21,0,11,19,104x13,0,33,25],124x35,105,11,20}]
     start_directory: /storage/src
     shell_command_before:
       - source ~/.bashrc
       - clear
     panes:
       - shell_command:
+        - sudo journalctl -f -k --since today | ccze -A
+      - shell_command:
         - sudo htop
       - shell_command:
         - sudo intel_gpu_top
       - shell_command:
         - bpytop
+  - window_name: interactive
+    layout: 0164,229x46,0,0[229x12,0,0,21,229x33,0,13,23]
+    start_directory: /storage/src/gpg
+    shell_command_before:
+      - source ~/.bashrc
+      - clear
+    panes:
       - shell_command:
         - echo "$(date '+%Y-%m-%d %H:%M:%S') $(whoami)@$(hostname) $(speedtest-cli --simple --single | sed s/://g | tr '\n' ' ')" >> ~/speedtest-history.txt && cat ~/speedtest-history.txt
+      - shell_command:
+        -
         focus: true
+
