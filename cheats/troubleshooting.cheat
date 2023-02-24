@@ -51,6 +51,9 @@ inxi --recommends
 # system information summary
 inxi -F -A -I -u
 
+# intermediate system formation
+sudo inxi -Fxxxza
+
 # detailed system information
 sudo inxi -b -A -C -f -D -n -G -l -M -r -P -I -S -d -f -i -m -o -s -u
 
