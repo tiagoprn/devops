@@ -1,7 +1,7 @@
 session_name: TASKS
 windows:
   - window_name: editor
-    layout: 18fe,160x39,0,0{103x39,0,0,55,56x39,104,0[56x16,104,0,56,56x22,104,17,59]}
+    layout: f83e,160x39,0,0{103x39,0,0[103x30,0,0,17,103x8,0,31,30],56x39,104,0[56x16,104,0,19,56x22,104,17,21]}
     start_directory: /storage/docs/tasks
     shell_command_before:
       - source ~/.bashrc
@@ -10,6 +10,8 @@ windows:
       - shell_command:
         - nvim index.md
         focus: true
+      - shell_command:
+        - cd $HOME/.local/share/nvim/sessions && clear && ls
       - shell_command:
         - ncal -3w -M
       - shell_command:
