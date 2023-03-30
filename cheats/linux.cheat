@@ -34,6 +34,9 @@ grep '\S'
 # run indefinitely/infinitely in a loop
 while :; do sleep 59; echo -n ' ' >&2; done &
 
+# run command in a loop until it fails:
+while true; do <command> && echo "Command succeeded" || break; done
+
 # base64 encode
 echo -n "<text>" | base64 -w 0
 
