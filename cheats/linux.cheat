@@ -266,10 +266,10 @@ python3 -c "print(str(<expression>))"
 curl -sS https://starship.rs/install.sh | sh
 
 # mount 2TB XTORAGE
-sudo mount -t auto $(blkid | grep 2TB | cut -d " " -f 1 | sed "s/://g") /media/XTORAGE-2TB && cd /media/XTORAGE-2TB && ls
+sudo mount -t ext4 /dev/$(lsblk | grep "2.4T" | cut -d " " -f 1 | sed "s/├\─//g") /media/XTORAGE-2TB && cd /media/XTORAGE-2TB && ls
 
 # mount 5TB XTORAGE
-sudo mount -t auto $(blkid | grep 5TB | cut -d " " -f 1 | sed "s/://g") /media/XTORAGE-5TB && cd /media/XTORAGE-5TB && ls
+sudo mount -t ext4 /dev/$(lsblk | grep "4.9T" | cut -d " " -f 1 | sed "s/└\─//g") /media/XTORAGE-5TB && cd /media/XTORAGE-5TB && ls
 
 # umount 2TB XTORAGE
 sudo umount /media/XTORAGE-2TB
