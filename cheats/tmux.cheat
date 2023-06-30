@@ -7,7 +7,7 @@ tmux list-clients -F "#{client_name}" | xargs -n1 -I{} tmux display-message -c {
 tmux show-messages | grep -e 'message:' | less
 
 # run command on popup window
-tmux popup -w 75% -h 75% -R '<command>'
+tmux popup -w 75% -h 75% '<command>'
 
 # create new or reattach to session
 tmux attach -t <session-name> || tmux new -s <session-name>
@@ -15,14 +15,14 @@ tmux attach -t <session-name> || tmux new -s <session-name>
 # show version
 tmux -V
 
-# output current window panes layout
+# output current window panes layout coordinates/numbers
 tmux display-message -p "#{window_layout}"
 
-# select a window panes layout (can be used with the output of display-message window_layout command above)
+# select a window panes layout coordinates/numbers (can be used with the output of display-message window_layout command above)
 tmux select-layout "<layout>"
 
-# current session name
-tmux display-message -p '#S'
+# current session name and window
+tmux display-message -p '#S #W'
 
 # select (switch/change to) window by name on current session
 tmux select-window -t $(tmux list-windows -F '#W' | fzf)
@@ -35,3 +35,9 @@ tmux list-windows -F '#W'
 
 # List all tmux commands
 tmux list-commands
+
+# create new tmux window on current session
+tmux neww -dn "<name>"
+
+# send command or key combination to session/window and pane - to send a key combination, you can input e.g.: "Ctrl+B" "C"
+tmux send-keys -t <session-name-or-number>:<window-name-or-number>.<pane-index> "<command>" Enter
