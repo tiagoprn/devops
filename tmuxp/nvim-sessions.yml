@@ -1,0 +1,9 @@
+session_name: nvim-sessions
+windows:
+  - window_name: main
+    layout: main-horizontal
+    options:
+      main-pane-height: 30
+    start_directory: /home/tds/.local/share/nvim/sessions
+    panes:
+        - clear && cd /home/tds/.local/share/nvim/sessions && g s
