@@ -276,3 +276,6 @@ sudo umount /media/XTORAGE-2TB
 
 # umount 5TB XTORAGE
 sudo umount /media/XTORAGE-5TB
+
+# chown tiago:adm
+sudo chown -R tiago:adm <file_or_directory> && sudo chmod -R u+rw,g+rw <file_or_directory>
