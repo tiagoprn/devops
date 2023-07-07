@@ -13,7 +13,7 @@ windows:
       - shell_command:
         - cd $HOME/.local/share/nvim/sessions && clear && ls
       - shell_command:
-        - ncal -3w -M
+        - ncal -3w
       - shell_command:
         - cd /storage/src/tasks/ROADMAPS/2023/weekly && clear && pwd
   - window_name: git
