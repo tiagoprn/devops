@@ -1,6 +1,6 @@
 % gnupg, gpg
 
-# crypt
+# encrypt
 gpg -r <key-id> -se <file>
 
 # decrypt
@@ -11,6 +11,9 @@ gpg --export -a <key-id>
 
 # export private key
 gpg --export-secret-key -a <key-id>
+
+# batch encrypt all files in directory
+find <directory_path> -type f -exec gpg -r <key-id> -se {} \;
 
 # batch decrypt gpg files on current directory
 mkdir -p tmp/decrypted && for i in *.gpg; do FILENAME=$(echo "tmp/decrypted/${i}" | sed 's/.gpg//g'); gpg --decrypt "${i}" > $FILENAME; done && echo -e '\n\nFINISHED!\n\nDecrypted files can be found here:\n' && tree tmp/decrypted
