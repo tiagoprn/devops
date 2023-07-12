@@ -14,3 +14,6 @@ find . -type f -print0 | while IFS= read -r -d $'\0' file; do echo "$file" ; don
 
 # loop on all files of current directory, limit subdirectories ("1" for just the current folder)
 find . -maxdepth <number-of-subdirectories> -type f -print0 | while IFS= read -r -d $'\0' file; do echo "$file" ; done
+
+# run command(s) on bash, with bash aliases and functions available
+bash -ic '<commands>'
