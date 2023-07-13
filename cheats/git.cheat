@@ -60,11 +60,14 @@ git rank
 # Show branches, with the most recent one on top
 git lb
 
-# See all commits' changes on file (you may also pass more than one file)
+# See all commits' history changes on file (you may also pass more than one file)
 git log <files-separated-by-spaces>
 
-# See all commits' changes on file - detailed with diff between changes
+# See all commits' history changes on file - detailed with diff between changes
 git log --follow -p --stat -- <file>
+
+# See all commits' history changes on file - with fzf preview
+git log --follow --date="format:%a %D %H:%M" --format="%h %ad %an" <file>  | fzf --prompt="Select a commit hash: " --preview "git show --format='' {1}:<file> -- | bat --color=always -p"
 
 # Show only merge commits:
 git log --merges
