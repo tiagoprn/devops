@@ -7,6 +7,7 @@ pylint_flask
 pylint_django
 python-lsp-server[all]
 python-lsp-black
+python-lsp-server[websockets]
 pylsp-rope
 pyls-isort
 pyls-memestra
