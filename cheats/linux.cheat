@@ -21,6 +21,12 @@ echo "$(hostname)" | figlet -cptk
 # figlet - list fonts
 curl -s http://www.figlet.org/examples.html | grep 'Font:' | sed 's/Font: //g'
 
+# curl download file from URL without specifying its name
+curl -O <url>
+
+# curl download file from URL specifying its name
+curl <url> -o <file-name>
+
 # toilet (alternative to figlet)
 # p>
 toilet -f mono12 -F metal "<text>"
