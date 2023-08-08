@@ -1,0 +1,9 @@
+session_name: quicknotes
+windows:
+  - window_name: main
+    layout: main-horizontal
+    options:
+      main-pane-height: 30
+    start_directory: "$HOME"
+    panes:
+        - j
