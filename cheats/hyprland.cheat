@@ -1,0 +1,4 @@
+% hyprland
+
+# logoff
+hyprctl dispatch exit
