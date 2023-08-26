@@ -3,32 +3,44 @@
 # Enable user timers to be run even when the user is not logged in:
 loginctl enable-linger $USER && loginctl show-user -p Linger $USER
 
-# Go to timers location:
+# Go to user timers location:
 cd ~/.config/systemd/$USER
 
 # Enable timer:
 systemctl --user enable <name>.timer && systemctl --user daemon-reload && echo -e 'Now you must manually start the timer.'
 
-# Start timer:
+# Start user timer:
 systemctl --user start <name>.timer
 
-# List timers:
+# List user timers:
 systemctl --user list-timers
 
-# Show timer status:
+# Show user timer status:
 systemctl --user status <name>.timer
 
-# Show service status:
+# Show user service status:
 systemctl --user status <name>
 
-# See timer service logs:
+# See user service logs:
 journalctl --user -f -u <name>
 
-# Stop timer:
+# Stop user timer:
 systemctl --user stop <name>.timer
 
-# Disable timer:
+# Disable user timer:
 systemctl --user disable <name>.timer && systemctl --user daemon-reload
+
+# List user services:
+systemctl --user list-unit-files --type=service
+
+# Start user service from fzf menu:
+systemctl --user start $(systemctl --user list-unit-files --type=service | cut -d " " -f 1 | fzf --exact)
+
+# Stop user service from fzf menu:
+systemctl --user stop $(systemctl --user list-unit-files --type=service | cut -d " " -f 1 | fzf --exact)
+
+# See user service status from fzf menu:
+systemctl --user status $(systemctl --user list-unit-files --type=service | cut -d " " -f 1 | fzf --exact)
 
 # logoff user session
 loginctl terminate-user $(whoami)
