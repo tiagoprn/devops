@@ -1,0 +1,12 @@
+session_name: 'NIXOS-CONFIG'
+windows:
+- layout: 32d1,235x65,0,0{117x65,0,0,3,117x65,118,0[117x32,118,0,4,117x32,118,33,5]}
+  panes:
+  - focus: 'true'
+    shell_command:
+    - cd /storage/src/nix
+  - shell_command:
+    - sudoedit /etc/nixos/configuration.nix
+  - shell_command:
+    - cd /home/tiago/.config/hypr
+    - nvim hyprland.conf
