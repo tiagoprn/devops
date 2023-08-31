@@ -2,3 +2,19 @@
 
 # logoff
 hyprctl dispatch exit
+
+# list monitor names
+hyprctl monitors | grep Monitor | cut -d " " -f 2
+
+# screenshot selected area, remove the border and copy to clipboard
+grim -g "$(slurp)" - | convert - -shave 1x1 PNG:- | wl-copy
+
+# screenshot selected area, remove the border and open with swappy for editing
+grim -g "$(slurp)" - | convert - -shave 1x1 PNG:- | swappy -f -
+
+# open current clipboard image on swappy
+wl-paste | swappy -f -
+
+# video record current screen selected area
+wf-recorder -g "$(slurp)" -f "record.mp4" --audio
+
