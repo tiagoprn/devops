@@ -4,7 +4,7 @@ windows:
   panes:
   - focus: 'true'
     shell_command:
-    - cd /storage/src/nix
+    - cd /storage/src/nix && make
   - shell_command:
     - sudoedit /etc/nixos/configuration.nix
   - shell_command:
