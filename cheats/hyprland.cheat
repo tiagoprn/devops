@@ -12,9 +12,11 @@ grim -g "$(slurp)" - | convert - -shave 1x1 PNG:- | wl-copy
 # screenshot selected area, remove the border and open with swappy for editing
 grim -g "$(slurp)" - | convert - -shave 1x1 PNG:- | swappy -f -
 
+# screenshot selected area on different monitor, remove the border and open with swappy for editing
+grim -o $(hyprctl monitors | grep Monitor | cut -d " " -f 2 | rofi -dmenu) -g "$(slurp)" - | convert - -shave 1x1 PNG:- | swappy -f -
+
 # open current clipboard image on swappy
 wl-paste | swappy -f -
 
 # video record current screen selected area
 wf-recorder -g "$(slurp)" -f "record.mp4" --audio
-
