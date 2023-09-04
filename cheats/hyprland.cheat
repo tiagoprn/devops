@@ -18,5 +18,11 @@ grim -o $(hyprctl monitors | grep Monitor | cut -d " " -f 2 | rofi -dmenu) -g "$
 # open current clipboard image on swappy
 wl-paste | swappy -f -
 
-# video record current screen selected area
+# video record current screen selected area, with audio and microphone
 wf-recorder -g "$(slurp)" -f "record.mp4" --audio
+
+# record a monitor's video output, including the audio and microphone
+wf-recorder -f output.mkv -x yuv420p -o eDP-1 --audio
+
+# check v4l2 (video4linux virtual camera) devices
+v4l2-ctl --list-devices
