@@ -158,7 +158,7 @@ screenkey &
 <command> >> <log-file> 2>&1
 
 # fzf file selection
-find <directory> -type f | fzf
+find <directory> -type f | fzf --exact
 
 # show directories/subdirectories inside a directory (only their names)
 find <path>/ -maxdepth 1 ! -path <path>/ -type d | tr '/' ' ' | awk '{print $NF}'
@@ -285,3 +285,6 @@ sudo umount /media/XTORAGE-5TB
 
 # chown tiago:adm
 sudo chown -R tiago:adm <file_or_directory> && sudo chmod -R u+rw,g+rw <file_or_directory>
+
+# select file on current folder and copy its relative path to the clipboard
+find . -type f  | fzf --exact | cb

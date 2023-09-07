@@ -1,0 +1,10 @@
+% wayland
+
+# copy to clipboard
+wl-copy
+
+# paste from clipboard
+wl-paste
+
+# show session type (wayland or x11)
+echo $XDG_SESSION_TYPE
