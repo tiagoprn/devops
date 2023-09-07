@@ -5,6 +5,8 @@ pylint==2.7.4
 isort
 pylint_flask
 pylint_django
+
+# pylsp language server (does not have workspace_symbols and codeAction)
 python-lsp-server[all]
 python-lsp-black
 python-lsp-server[websockets]
@@ -12,3 +14,5 @@ pylsp-rope
 pyls-isort
 pyls-memestra
 
+# jedi (has workspace_symbols and codeAction)
+jedi-language-server
