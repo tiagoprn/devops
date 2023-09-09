@@ -1,0 +1,6 @@
+[Unit]
+Description=Wake up the external drive
+
+[Service]
+Type=oneshot
+ExecStart=/bin/ls /media/XTORAGE-2TB
