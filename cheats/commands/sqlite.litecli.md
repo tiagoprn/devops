@@ -1,6 +1,5 @@
 # SQLite Database Cheatsheet for litecli
 
-
 - Change how the SELECT results are displayed:
 
     ```SQL
@@ -28,6 +27,31 @@
     ```SQL
 
     .schema 'your_table_name'
+
+    ```
+
+- SELECT specific key (e.g. stress ) from JSON VARCHAR field:
+    ``` SQL
+
+    SELECT
+        Time,
+        json_extract(Value, '$.avg_stress') as avg_stress
+    FROM
+        `20230901_6560258635_MiFitness_hlth_center_aggregated_fitness_data`
+    WHERE
+        Tag = 'daily_report'
+        AND Key = 'stress';
+
+    ```
+
+- Convert FLOAT value having a UNIX timestamp back to a datetime:
+    ``` SQL
+
+    SELECT
+        datetime(UpdateTime, 'unixepoch') AS converted_time
+    FROM
+        `20230901_6560258635_MiFitness_hlth_center_aggregated_fitness_data`
+    LIMIT 5;
 
     ```
 
