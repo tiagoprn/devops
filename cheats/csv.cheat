@@ -1,0 +1,17 @@
+% csv, sqlite
+
+# Install utility to convert csv into sqlite database and an analogous to mycli/pgcli
+pipx install csvkit litecli
+
+# list all utils on csvkit
+ls -lha ~/.local/bin/csv*
+
+# litecli / sqlite cheatsheet
+nvim /storage/src/devops/cheats/commands/sqlite.litecli.md
+
+# create sqlite database from csv files on current directory
+cp /storage/src/devops/shellscripts/databases/import-csv-files-into-sqlite-database.sh . && ./import-csv-files-into-sqlite-database.sh
+
+# open a sqlite database on litecli
+litecli <database-file>
+
