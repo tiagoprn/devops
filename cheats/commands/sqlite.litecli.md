@@ -1,5 +1,15 @@
 # SQLite Database Cheatsheet for litecli
 
+
+- Change how the SELECT results are displayed:
+
+    ```SQL
+
+    -- list all available options (fancy_grid, psql_unicode are nice)
+    .mode
+
+    ```
+
 - Show all tables:
     ```SQL
 
@@ -73,6 +83,23 @@
     CREATE TABLE 'copy_table_name' AS SELECT * FROM 'existing_table_name';
 
     ```
+
+- Export query to CSV file, separating columns using TABs:
+    ```SQL
+
+    -- other modes available are: json, html, quote
+    .mode csv-tab
+
+    .output your-file.csv
+
+    SELECT * FROM 'existing_table_name';
+
+    .mode fancy_grid
+
+    .output stdout
+
+    ```
+
 
 - Turn a field into the primary key of a table:
 
