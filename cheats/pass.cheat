@@ -40,4 +40,4 @@ pass git push -u --all
 pass git pull
 
 # fzf search for pasword and copy to clipboard
-cd ~/.password-store && pass show $(fd --glob *.gpg | fzf | sed 's/.gpg//g' | sed 's/\.\///g') | cb && cd -
+cd ~/.password-store && pass show $(fd --glob *.gpg | fzf --exact --prompt "Choose a password to copy to clipboard: " | sed 's/.gpg//g' | sed 's/\.\///g') | cb && cd -
