@@ -5,6 +5,9 @@ pylint==2.7.4
 isort
 pylint_flask
 pylint_django
+# below can be useful to convert tox.ini to python's pyproject.toml (used by ruff)
+flake8-to-ruff
+ruff
 
 # pylsp language server (does not have workspace_symbols and codeAction)
 python-lsp-server[all]
