@@ -8,3 +8,12 @@ sudo nixos-rebuild switch --force-rebuild
 
 # update/upgrade nvim and its plugins to latest version in master
 /storage/src/pde.nvim/scripts/sync-neovim.sh  --source-path $HOME/src/nvim --binary-path $HOME/local/bin/nvim && nvim +PackerSync
+
+# disk space used by emails on thunderbird flatpak (faster alternative to ncdu)
+dua ~/.var/app/org.mozilla.Thunderbird
+
+# disk space used by directory (faster alternative to ncdu)
+dua <folder>
+
+# partitions/disk space usage statistics (alternative to df)
+duf
