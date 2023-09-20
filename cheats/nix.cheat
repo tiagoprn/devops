@@ -1,0 +1,10 @@
+% nix
+
+# rebuild
+sudo nixos-rebuild switch
+
+# rebuild (force)
+sudo nixos-rebuild switch --force-rebuild
+
+# update/upgrade nvim and its plugins to latest version in master
+/storage/src/pde.nvim/scripts/sync-neovim.sh  --source-path $HOME/src/nvim --binary-path $HOME/local/bin/nvim && nvim +PackerSync
