@@ -119,3 +119,9 @@ read -rsp $'Press any key to continue...\n' -n1 key
 
 # Get all machines IP and MAC Addresses on the network you are connected to
 arp -a
+
+# Copy public IP address data to clipboard - complete
+/storage/src/dot_files/tiling-window-managers/scripts/public-ip-address.sh
+
+# Copy public IP address data to clipboard - ONLY IP
+/storage/src/dot_files/tiling-window-managers/scripts/public-ip-address.sh --only-ip
