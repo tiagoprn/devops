@@ -19,7 +19,7 @@ windows:
       - source ~/.bashrc
     panes:
       - shell_command:
-        - nvim personal.rem
+        - nvimai personal.rem
         focus: true
   - window_name: git
     layout: even-vertical

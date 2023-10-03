@@ -8,7 +8,7 @@ windows:
       - clear
     panes:
       - shell_command:
-        - nvim index.md
+        - nvimai index.md
         focus: true
       - shell_command:
         - cd $HOME/.local/share/nvim/sessions && clear && ls
