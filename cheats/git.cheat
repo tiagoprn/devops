@@ -197,3 +197,6 @@ git-auto-sync sync
 
 # change permissions to allow sharing current repo between 2 local users:
 sudo chmod 664 .git/FETCH_HEAD
+
+# see visual animation on the history of a repository
+gource <path-to-git-repository>
