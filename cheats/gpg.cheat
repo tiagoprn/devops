@@ -16,7 +16,7 @@ gpg --export-secret-key -a <key-id>
 find <directory_path> -type f -exec gpg -r <key-id> -se {} \;
 
 # batch decrypt gpg files on current directory
-mkdir -p tmp/decrypted && for i in *.gpg; do FILENAME=$(echo "tmp/decrypted/${i}" | sed 's/.gpg//g'); gpg --decrypt "${i}" > $FILENAME; done && echo -e '\n\nFINISHED!\n\nDecrypted files can be found here:\n' && tree tmp/decrypted
+echo "Make sure you are in the right directory before starting..." && sleep 3 && source /storage/src/dot_files/tiling-window-managers/scripts/batch_decrypt.sh
 
 # quickly decrypt text file on gpg repo
 FILE_TO_DECRYPT=$(find /storage/src/gpg -name "*.gpg" | fzf) && gpg --decrypt $FILE_TO_DECRYPT
