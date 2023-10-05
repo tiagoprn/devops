@@ -200,3 +200,6 @@ sudo chmod 664 .git/FETCH_HEAD
 
 # see visual animation on the history of a repository
 gource <path-to-git-repository>
+
+# get forks of a github repository (you can also add "/forks" on a repo url on the browser)
+curl https://api.github.com/repos/<repo-author-or-organization>/<repo-name>/forks
