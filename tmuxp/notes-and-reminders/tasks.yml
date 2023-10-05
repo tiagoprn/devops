@@ -10,12 +10,6 @@ windows:
       - shell_command:
         - nvimai index.md
         focus: true
-      - shell_command:
-        - cd $HOME/.local/share/nvim/sessions && clear && ls
-      - shell_command:
-        - ncal -3w
-      - shell_command:
-        - cd /storage/src/tasks/ROADMAPS/2023/weekly && clear && pwd
   - window_name: git
     layout: even-vertical
     start_directory: /storage/docs/tasks
@@ -33,4 +27,4 @@ windows:
       - source ~/.bashrc
     panes:
       - shell_command:
-        - ls
+        -
