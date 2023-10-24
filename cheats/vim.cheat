@@ -12,6 +12,15 @@ nvim +'normal Go' +'r!date' <file> +'normal!o-  '
 # pipe command output to nvim
 <command> | nvim -
 
+# open 2 or more files, each one on a tab
+nvim -p <file1> <file2>
+
+# open 2 or more files, on vertical splits
+nvim -O <file1> <file2>
+
+# open 2 or more files, on horizontal splits
+nvim -o <file1> <file2>
+
 # script initialization example 03 - run something before vimrc
 nvim --cmd 'echo "This runs before .vimrc"' -c ':call UltiSnips#ListSnippets()' -c '<Esc>' -c ':q!'
 
