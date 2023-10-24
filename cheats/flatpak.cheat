@@ -46,4 +46,4 @@ xdg-open https://flathub.org/apps
 flatpak --user update
 
 # open google chrome on google meet
-flatpak run org.chromium.Chromium --app=https://meet.google.com
+nohup flatpak run org.chromium.Chromium --app=https://meet.google.com

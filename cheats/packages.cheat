@@ -20,3 +20,6 @@ sudo apt update -y && sudo apt full-upgrade -y && flatpak update -y && /storage/
 
 # upgrade neovim plugins and flatpaks only
 nvim +PackerSync && flatpak --user update
+
+# nvim directory that holds the local repository copy of the packages (packer)
+cd $HOME/.local/share/nvim/site/pack/packer/start
