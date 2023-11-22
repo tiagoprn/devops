@@ -247,8 +247,11 @@ last reboot
 # output list of files on current directory to file
 ls -lha --color=never | awk '{print $NF}' > <filename>
 
-# random string (e.g. to generate passwords)
+# random string (e.g. to generate passwords or file names)
 tr -dc "a-zA-Z0-9_#@.-" < /dev/urandom | head -c <number-of-characters> | xclip -selection clipboard
+
+# random string (e.g. to generate passwords or file names - just numbers and letters)
+cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w <number-of-characters> | head -n 1 | xclip -selection clipboard
 
 # run multiple commands as sudo with pipes, redirects, etc
 sudo -- bash -c "<command>"
@@ -288,3 +291,6 @@ sudo chown -R tiago:adm <file_or_directory> && sudo chmod -R u+rw,g+rw <file_or_
 
 # select file on current folder and copy its relative path to the clipboard
 find . -type f  | fzf --exact | cb
+
+# generate a PDF without password from one with password:
+qpdf --password=<password> --decrypt <pdf-file-with-password-name> <pdf-file-with-password-name>.without-password.pdf
