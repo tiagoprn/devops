@@ -16,7 +16,7 @@ xargs -a <(awk '! /^ *(#|$)/' <file-path>) -r -- sudo apt-get install -y
 sudo apt update 2>&1 1>/dev/null | sed -ne 's/.*NO_PUBKEY //p' | while read key; do if ! [[ ${keys[*]} =~ "$key" ]]; then sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net:80 --recv-keys "$key"; keys+=("$key"); fi; done
 
 # upgrade all packages, flatpaks and update and compile nvim:
-sudo apt update -y && sudo apt full-upgrade -y && flatpak update -y && /storage/src/pde.nvim/scripts/sync-neovim.sh
+sudo apt update -y && sudo apt full-upgrade -y && flatpak update -y && /storage/src/pde.nvim/scripts/sync-neovim.sh && /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh
 
 # upgrade neovim plugins and flatpaks only
 nvim +PackerSync && flatpak --user update
