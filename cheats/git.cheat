@@ -189,8 +189,11 @@ git bisect good
 # squash commits (go to your branch first)
 git rebase <base-branch> --interactive
 
-# undo last local commit (it will undo the commit, but preserve changes done to your files)
-git reset --soft HEAD~1
+# undo last x commits (it will undo the commit, but PRESERVE CHANGES done to your files)
+git reset --soft HEAD~<number-of-commits>
+
+# remove all changes from last x commits (it will delete the commits and DELETE CHANGES done to your files)
+git reset --hard HEAD~<number-of-commits> && git push -f origin <your-branch-name>
 
 # git-auto-sync: manual sync (save an pull, using rebase when pulling)
 git-auto-sync sync
