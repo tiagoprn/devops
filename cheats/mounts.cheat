@@ -1,0 +1,7 @@
+% mounts, filesystem
+
+# Mount COSMOSBKP external backups SSD
+sudo mount -t auto $(blkid | grep COSMOSBKP | cut -d ':' -f 1) /media/COSMOSBKP && cd /media/COSMOSBKP
+
+# Run COSMOSBKP external backup (rsync-time-backup)
+/media/COSMOSBKP/cosmos-backup-here.sh
