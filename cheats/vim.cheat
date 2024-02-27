@@ -71,3 +71,6 @@ grep -E -o '"{1}.*/.*"{1}' /storage/src/dot_files/nvim/lua/plugins.lua | fzf | s
 
 # Search/grep/select plugin on plugins.lua and copy its github repository
 grep -E -o '"{1}.*/.*"{1}' /storage/src/dot_files/nvim/lua/plugins.lua | fzf | echo "https://github.com/$(sed 's/\"//g')" | cb
+
+# Update neovim pyenv virtualenv
+/storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh
