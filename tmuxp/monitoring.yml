@@ -1,7 +1,7 @@
 session_name: MONITORING
 windows:
   - window_name: stats
-    layout: d1f1,229x46,0,0[229x10,0,0,18,229x35,0,11{104x35,0,11[104x21,0,11,19,104x13,0,33,25],124x35,105,11,20}]
+    layout: f8a0,229x46,0,0[229x9,0,0,59,229x26,0,10,60,229x9,0,37,61]
     start_directory: /storage/src
     shell_command_before:
       - source ~/.bashrc
@@ -13,8 +13,8 @@ windows:
         - sudo htop
       - shell_command:
         - sudo intel_gpu_top
-      - shell_command:
-        - bpytop
+      # - shell_command:
+      #   - bpytop  -- it contumes too much memory, do not enable it again.
   - window_name: interactive
     layout: 0164,229x46,0,0[229x12,0,0,21,229x33,0,13,23]
     start_directory: /storage/src/gpg
