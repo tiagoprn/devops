@@ -1,0 +1,21 @@
+session_name: AI-PROMPTS
+windows:
+  - window_name: nvim
+    layout: even-vertical
+    start_directory: /storage/src/dot_files/AI-prompts
+    panes:
+      - shell_command:
+        - nvimai -c 'Telescope find_files'
+        focus: true
+  - window_name: git
+    layout: even-vertical
+    start_directory: /storage/src/dot_files/AI-prompts
+    panes:
+      - shell_command:
+        - /storage/src/dot_files/git-ui-with-ssh-agent.sh .
+  - window_name: scratchpad
+    layout: even-vertical
+    start_directory: /storage/src/dot_files/AI-prompts
+    panes:
+      - shell_command:
+        -
