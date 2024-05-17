@@ -1,26 +1,22 @@
 session_name: MONITORING
 windows:
-  - window_name: stats
-    layout: f8a0,229x46,0,0[229x9,0,0,59,229x26,0,10,60,229x9,0,37,61]
-    start_directory: /storage/src
-    shell_command_before:
-      - source ~/.bashrc
-      - clear
+  - window_name: overview
+    layout: even-vertical
     panes:
       - shell_command:
         - sudo journalctl -f -k --since today | ccze -A
       - shell_command:
         - sudo htop
+  - window_name: io-gpu
+    layout: even-vertical
+    panes:
+      - shell_command:
+        - sudo iotop -a -o -k
       - shell_command:
         - sudo intel_gpu_top
-      # - shell_command:
-      #   - bpytop  -- it contumes too much memory, do not enable it again.
   - window_name: interactive
-    layout: 0164,229x46,0,0[229x12,0,0,21,229x33,0,13,23]
+    layout: even-vertical
     start_directory: /storage/src/gpg
-    shell_command_before:
-      - source ~/.bashrc
-      - clear
     panes:
       - shell_command:
         - echo "$(date '+%Y-%m-%d %H:%M:%S') $(whoami)@$(hostname) $(speedtest-cli --simple --single | sed s/://g | tr '\n' ' ')" >> ~/speedtest-history.txt && cat ~/speedtest-history.txt
