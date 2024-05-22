@@ -9,8 +9,11 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 # list all available flatpaks
 flatpak remote-ls flathub
 
-# list installed flatpaks
+# list installed flatpaks (apps + dependencies)
 flatpak list
+
+# list installed flatpak apps (only the apps)
+ls -lha ~/.local/share/flatpak/app
 
 # install qutebrowser
 flatpak install --user https://flathub.org/repo/appstream/org.qutebrowser.qutebrowser.flatpakref
