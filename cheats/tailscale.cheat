@@ -1,0 +1,13 @@
+% tailscale
+
+# check status of the systemd service
+sudo systemctl status tailscaled
+
+# login
+sudo tailscale up
+
+# activate ssh
+sudo tailscale set --ssh && notify-send "Now you can ssh into this machine or any other one showed on the Tailscale Machines Page on the webUI."
+
+# enable routing traffic through this machine through out of the Wireguard Secure Tunnel
+sudo tailscale set --advertise-exit-node
