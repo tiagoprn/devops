@@ -1,13 +1,25 @@
 % flatpak
 
-# install
-apt install flatpak
+# add flathub repo (remote)
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && echo 'Now run the command to update all installed flatpaks.'
 
-# add flathub repo
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# update all installed flatpaks
+flatpak update --user
+
+# delete flathub remo
+flatpak remote-delete <name>
+
+# list flatpak repos
+flatpak remotes
 
 # list all available flatpaks
 flatpak remote-ls flathub
+
+# install package
+flatpak install --user <package>
+
+# search package on flathub and copy name to clipboard (from fzf menu)
+flatpak remote-ls flathub | fzf | awk '{print $(NF-2)}' | wl-copy && notify-send "Package '$(wl-paste)' copied to clipboard."
 
 # list installed flatpaks (apps + dependencies)
 flatpak list
@@ -15,26 +27,11 @@ flatpak list
 # list installed flatpak apps (only the apps)
 ls -lha ~/.local/share/flatpak/app
 
-# install qutebrowser
-flatpak install --user https://flathub.org/repo/appstream/org.qutebrowser.qutebrowser.flatpakref
+# update package
+flatpak --user update <package>
 
-# run qutebrowser (allowing the flatpak to access the home filesystem - which by default it does not, because of the flatpak sandbox)
-flatpak run --filesystem=host org.qutebrowser.qutebrowser -B ~/.local/share/qutebrowser/personal
-
-# update qutebrowser
-flatpak --user update org.qutebrowser.qutebrowser
-
-# uninstall qutebrowser
-flatpak --user uninstall org.qutebrowser.qutebrowser
-
-# install flameshot
-flatpak install flathub org.flameshot.Flameshot
-
-# install flatseal (to manage flatpak permissions on a GUI)
-flatpak install flathub com.github.tchx84.Flatseal
-
-# run flatpak from menu
-flatpak run --filesystem=host $(flatpak list | cut -f 2 | fzf)
+# uninstall package
+flatpak --user uninstall <package>
 
 # update flatpak from menu
 flatpak --user update $(flatpak list | cut -f 2 | fzf)
@@ -42,11 +39,11 @@ flatpak --user update $(flatpak list | cut -f 2 | fzf)
 # uninstall flatpak from menu
 flatpak --user uninstall $(flatpak list | cut -f 2 | fzf)
 
+# run flatpak from menu (allowing the flatpak to access the home filesystem - which by default it does not, because of the flatpak sandbox)
+flatpak run --filesystem=host $(flatpak list | cut -f 2 | fzf)
+
+# open google chromium flatpak on google meet
+nohup flatpak run org.chromium.Chromium --app=https://meet.google.com
+
 # browse website to search for apps
 xdg-open https://flathub.org/apps
-
-# update all installed flatpaks
-flatpak --user update
-
-# open google chrome on google meet
-nohup flatpak run org.chromium.Chromium --app=https://meet.google.com
