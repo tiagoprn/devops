@@ -4,6 +4,6 @@ windows:
     layout: main-horizontal
     options:
       main-pane-height: 30
-    start_directory: /home/tds/.local/share/nvim/sessions
+    start_directory: /home/tds/.local/share/nvim/possession
     panes:
-        - clear && cd /home/tds/.local/share/nvim/sessions && g s
+        - clear && cd /home/tds/.local/share/nvim/possession && g s
