@@ -18,8 +18,11 @@ sudo journalctl -o short-iso -f --all | ccze -A
 # see logs from specific service/app from today
 sudo journalctl -fu <app-name> --since=today | ccze -A
 
-# see real-time kernel (dmesg) logs from today
+# see real-time kernel logs (including dmesg) from today
 sudo journalctl -f -k --since today | ccze -A
+
+# see only dmesg logs in real-time
+sudo dmesg -w -d -T
 
 # see all boot logs available
 sudo journalctl --list-boots
