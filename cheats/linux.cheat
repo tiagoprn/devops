@@ -182,7 +182,7 @@ echo <text> | cut -f <column-number>- -d ' '
 ssh $(cat ~/.ssh/config | grep 'Host ' | cut -d ' ' -f 2 | fzf)
 
 # ssh/mosh: parse ~/.ssh/config and copy a host IP to the clipboard
-cat ~/.ssh/config | grep Host | sed 's/Hostname //g' | sed 's/  //g' | sed 's/Host //g' | awk 'NR % 2 == 0 {print (prev ? prev FS : "") $0} {prev = $0}' | fzf | awk '{print $2}' |  xclip -i -selection clipboard
+cat ~/.ssh/config | grep Host | sed 's/Hostname //g' | sed 's/  //g' | sed 's/Host //g' | awk 'NR % 2 == 0 {print (prev ? prev FS : "") $0} {prev = $0}' | fzf | awk '{print $2}' |  wl-copy
 
 # mosh into host pre-configured on ~/.ssh/config
 mosh $(cat ~/.ssh/config | grep 'Host ' | cut -d ' ' -f 2 | fzf)
@@ -248,10 +248,10 @@ last reboot
 ls -lha --color=never | awk '{print $NF}' > <filename>
 
 # random string (e.g. to generate passwords or file names)
-tr -dc "a-zA-Z0-9_#@.-" < /dev/urandom | head -c <number-of-characters> | xclip -selection clipboard
+tr -dc "a-zA-Z0-9_#@.-" < /dev/urandom | head -c <number-of-characters> | wl-copy
 
 # random string (e.g. to generate passwords or file names - just numbers and letters)
-cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w <number-of-characters> | head -n 1 | xclip -selection clipboard
+cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w <number-of-characters> | head -n 1 | wl-copy
 
 # run multiple commands as sudo with pipes, redirects, etc
 sudo -- bash -c "<command>"

@@ -7,10 +7,10 @@ mkdir -p $SHARED_FOLDER && \
 docker run --cpus="<cpus>" --memory="<memory>" --rm -d --network bridge --mount type=bind,source=$SHARED_FOLDER,target=/shared <container-name>
 
 # copy container.id to the clipboard
-docker ps | fzf | awk '{print $1}' | xclip -i -selection clipboard
+docker ps | fzf | awk '{print $1}' | wl-copy
 
 # copy image_id to the clipboard
-docker images | fzf | awk '{print $3}' | xclip -i -selection clipboard
+docker images | fzf | awk '{print $3}' | wl-copy
 
 # kill and remove container
 export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker kill $CONTAINER_ID && docker rm $CONTAINER_ID
@@ -37,7 +37,7 @@ docker rmi $(docker images | fzf | awk '{print $3}') -f
 export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID
 
 # copy container ip address to clipboard
-export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID | xclip -i -selection clipboard
+export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID | wl-copy
 
 # watch container logs
 export CONTAINER_ID=$(docker ps | fzf | awk '{print $1}') && docker logs -f $CONTAINER_ID

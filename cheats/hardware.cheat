@@ -28,7 +28,7 @@ pactl set-sink-volume <sink-id> -5%
 sudo brightnessctl -l
 
 # select device (e.g. display/monitor) to change brightness
-sudo brightnessctl -l | grep Device | fzf | awk '{print $2}' | sed s/\'//g | xclip -selection clipboard
+sudo brightnessctl -l | grep Device | fzf | awk '{print $2}' | sed s/\'//g | wl-copy
 
 # change device (e.g. display/monitor) brightness
 sudo -- bash -c "brightnessctl -d $(brightnessctl -l | grep Device | awk '{print $2}' | fzf --prompt 'Select device to change brightness> ') set <percentage>%"
