@@ -5,3 +5,9 @@ sudo mount -t auto $(blkid | grep COSMOSBKP | cut -d ':' -f 1) /media/COSMOSBKP 
 
 # Run COSMOSBKP external backup (rsync-time-backup)
 /media/COSMOSBKP/cosmos-backup-here.sh
+
+# Mount RED-ALERT external backups SSD
+sudo mount -t auto $(blkid | grep RED-ALERT | cut -d ':' -f 1) /media/RED-ALERT && cd /media/RED-ALERT
+
+# Run RED-ALERT external backup (rsync-time-backup)
+/media/RED-ALERT/plan-b.sh
