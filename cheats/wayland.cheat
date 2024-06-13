@@ -6,5 +6,8 @@ wl-copy
 # paste from clipboard
 wl-paste
 
+# watch changes from clipboard (e.g. command: "cliphist store")
+wl-paste --watch <command>
+
 # show session type (wayland or x11)
 echo $XDG_SESSION_TYPE

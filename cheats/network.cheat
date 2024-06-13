@@ -13,7 +13,7 @@ ip -c a
 ip r | grep -oP '(dev \w+\-*\w*)' | awk '{print $NF}' | sort | uniq
 
 # Select network interface
-ip r | grep -oP '(dev \w+\-*\w*)' | awk '{print $NF}' | sort | uniq | fzf --no-sort | xclip -i -selection clipboard
+ip r | grep -oP '(dev \w+\-*\w*)' | awk '{print $NF}' | sort | uniq | fzf --no-sort | wl-copy
 
 # Get IP on network interface
 ip r | grep "$(ip r | grep -oP '(dev \w+\-*\w*)' | awk '{print $NF}' | sort | uniq | fzf)" | grep -oP 'src (?:\d{1,3}\.){3}\d{1,3}' | awk '{print $NF}'

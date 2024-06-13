@@ -1,7 +1,7 @@
 % kubectl, k8s, k3s
 
 # Select pod name and copy to the clipboard
-kubectl get pods -o wide -n <NAMESPACE> | fzf --no-sort | awk '{print $1}' | xclip -i -selection clipboard
+kubectl get pods -o wide -n <NAMESPACE> | fzf --no-sort | awk '{print $1}' | wl-copy
 
 # Get pods on namespace
 watch -n 1 kubectl get pods -o wide -n <NAMESPACE>
