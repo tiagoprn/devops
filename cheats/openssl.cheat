@@ -1,0 +1,8 @@
+% openssl, encryption
+
+# Encrypt a file with password (using openssl) - deletes the original file when successful
+openssl enc -aes-256-cbc -pbkdf2 -salt -in <file_path> -out <file_path>.enc && rm -f <file_path>
+
+# Decrypt a file encrypted with password (using openssl)
+openssl enc -d -aes-256-cbc -pbkdf2 -in <encrypted_file_path> -out <decrypted_file_path>
+
