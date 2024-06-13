@@ -9,8 +9,8 @@ sudo duplicity restore --file-to-restore <file-path-from-duplicity-root-folder> 
 # List available backups on current host
 sudo duplicity collection-status file:///media/RED-ALERT/duplicity/$(hostname)/backups/$(echo -e "opt\netc\nhome\nstorage" | fzf)
 
-# Delete versions older than 1 year
-sudo duplicity remove-older-than 1Y --force file:///media/RED-ALERT/duplicity/$(hostname)/backups/$(echo -e "opt\netc\nhome\nstorage" | fzf)
+# Delete versions older than x time (e.g. YYYY-MM-DD, 48h[ours], 30D[ays], 4W[eeks], 3M[onths], 1Y[ear])
+sudo duplicity remove-older-than <time_notation> --force file:///media/RED-ALERT/duplicity/$(hostname)/backups/$(echo -e "opt\netc\nhome\nstorage" | fzf)
 
 # Restore files/directories
 echo "Update on duplicity.cheat when the need arises."
