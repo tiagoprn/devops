@@ -7,10 +7,10 @@ cd /storage/src/devops/shellscripts/multipass && ./create-and-start-multipass-vm
 multipass stop <vm> && multipass delete <vm> && multipass purge && echo -e "\n---\nVM successfully deleted and purged."
 
 # Select vm name
-multipass list | fzf | awk '{print $1}' | wl-copy
+multipass list | fzf | awk '{print $1}' | xclip -i -selection clipboard
 
 # Select vm ip
-multipass list | fzf | awk '{print $3}' | wl-copy
+multipass list | fzf | awk '{print $3}' | xclip -i -selection clipboard
 
 # List:
 multipass list
