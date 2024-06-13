@@ -1,0 +1,16 @@
+% duplicity, backups
+
+# List files on backup
+sudo duplicity list-current-files file:///media/RED-ALERT/duplicity/$(hostname)/backups/$(echo -e "opt\netc\nhome\nstorage" | fzf)
+
+# Check contents of file in backup (output to stdout)
+sudo duplicity restore --file-to-restore <file-path-from-duplicity-root-folder> file:///media/RED-ALERT/duplicity/$(hostname)/backups/$(echo -e "opt\netc\nhome\nstorage" | fzf) - | less
+
+# List available backups on current host
+sudo duplicity collection-status file:///media/RED-ALERT/duplicity/$(hostname)/backups/$(echo -e "opt\netc\nhome\nstorage" | fzf)
+
+# Delete versions older than 1 year
+sudo duplicity remove-older-than 1Y --force file:///media/RED-ALERT/duplicity/$(hostname)/backups/$(echo -e "opt\netc\nhome\nstorage" | fzf)
+
+# Restore files/directories
+echo "Update on duplicity.cheat when the need arises."

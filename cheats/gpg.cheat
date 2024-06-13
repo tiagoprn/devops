@@ -1,5 +1,8 @@
 % gnupg, gpg
 
+# list available keys
+gpg --list-keys --keyid-format SHORT
+
 # encrypt
 gpg -r <key-id> -se <file>
 
