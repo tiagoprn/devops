@@ -14,3 +14,6 @@ sudo duplicity remove-older-than <time_notation> --force file:///media/RED-ALERT
 
 # Restore files/directories
 echo "Update on duplicity.cheat when the need arises."
+
+# show the status of the last backup
+cat $(find /media/RED-ALERT/duplicity/cosmos/logs -type f -printf '%T+ %p\n' | sort -r | head -n 1 | awk '{print $2}') | grep 'Backup'
