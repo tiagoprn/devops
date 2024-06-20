@@ -1,0 +1,55 @@
+% ai
+
+# github repo
+xdg-open https://github.com/sigoden/aichat
+
+# install (cargo)
+cargo install aichat
+
+# install (arch linux)
+yay -S aichat --noconfirm
+
+# edit config file
+nvim $HOME/.config/aichat/config.yaml
+
+# output code from prompt
+aichat -c "<prompt>"
+
+# repl - new session
+aichat -s "$(date +'%Y%m%d-%H%M%S').<session_name>"
+
+# repl - reuse session
+aichat -s $(find "$HOME/.config/aichat/sessions" -type f -name "*.yaml" -exec basename {} .yaml \; | fzf --prompt 'Choose a session to reuse: ')
+
+# view system info
+aichat --info
+
+# list sessions
+aichat --list-sessions
+
+# view session
+aichat -s $(aichat --list-sessions | fzf --prompt 'Choose a session: ') --info
+
+# pipe input file to chat
+cat <input_file> | aichat -c "<prompt>"
+
+# pipe input file to chat and write on output_file
+cat <input_file> | aichat -c "<prompt>" > <output_file>
+
+# start webui
+aichat --serve 0.0.0.0:4321
+
+# open webui - chat (playground)
+xdg-open http://localhost:4321/playground
+
+# open webui - chat completions api
+xdg-open http://localhost:4321/v1/chat/completions
+
+# Get yaml session file as json
+export AICHAT_TEMP_JSON_FILE="/tmp/$(date +'%Y%m%d-%H%M%S').json" && cat $(find $HOME.config/aichat/sessions -type f | fzf --prompt "Choose an aichat yaml session file: ") | aichat -c "convert this yaml contents to json" > $AICHAT_TEMP_JSON_FILE && nvim "$AICHAT_TEMP_JSON_FILE"
+
+# list roles
+aichat --list-roles
+
+# view role info
+aichat -r $(aichat --list-roles | fzf --prompt 'Choose a role: ') --info
