@@ -1,0 +1,7 @@
+% hyprland
+
+# get information on all windows (kinda like "xprop" on X11)
+hyprctl clients
+
+# get information on connected monitors
+hyprctl monitors all
