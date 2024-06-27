@@ -1,5 +1,8 @@
 % hyprland
 
+# help (wiki) - select version
+xdg-open https://wiki.hyprland.org/version-selector/
+
 # get information on all windows (kinda like "xprop" on X11)
 hyprctl clients
 
@@ -43,5 +46,5 @@ hyprctl --batch "dispatch setfloating; dispatch centerwindow"
 # current window fullscreen  (toggle)
 hyprctl dispatch fullscreen
 
-# hyprland version
+# print version
 hyprctl version
