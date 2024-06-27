@@ -1,0 +1,22 @@
+session_name: REMOTE
+windows:
+  - window_name: TODO
+    layout: even-vertical
+    panes:
+      - nvim $HOME/TODO.md
+  - window_name: DOT_FILES
+    layout: even-vertical
+    shell_command_before:
+      - cd /storage/src/dot_files
+    panes:
+      - nvim
+  - window_name: DEVOPS
+    layout: even-vertical
+    shell_command_before:
+      - cd /storage/src/devops
+    panes:
+      - nvim
+  - window_name: bash
+    layout: even-vertical
+    panes:
+      -
