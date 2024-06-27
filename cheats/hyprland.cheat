@@ -3,8 +3,17 @@
 # help (wiki) - select version
 xdg-open https://wiki.hyprland.org/version-selector/
 
-# get information on all windows (kinda like "xprop" on X11)
+# jq - get all workspaces names
+hyprctl workspaces -j | jq -r '.[] | .name'
+
+# get information on all windows on all workspaces (kinda like "xprop" on X11)
 hyprctl clients
+
+# jq - get all windows on a given workspace
+hyprctl clients -j | jq -r '.[] | select(.workspace.name == "<workspace_number>") | "\\(.address) \\(.class) (\\(.title))"'
+
+# jq - get all windows
+hyprctl clients -j | jq -r '.[] | "\\(.address) \\(.class) (\\(.title)) ==> Workspace: \\(.workspace.name)"'
 
 # get information on connected monitors
 hyprctl monitors all
@@ -48,3 +57,6 @@ hyprctl dispatch fullscreen
 
 # print version
 hyprctl version
+
+# see windows on the special workspace (scratchpad-like)
+hyprctl dispatch togglespecialworkspace
