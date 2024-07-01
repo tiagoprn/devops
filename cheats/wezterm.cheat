@@ -1,0 +1,4 @@
+% wezterm
+
+# start with custom class and custom command
+wezterm start --class <class_name> -- "<command>"
