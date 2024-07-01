@@ -10,10 +10,10 @@ pactl list sources short | grep 'alsa_output' | grep '.monitor'
 pactl list sources short | grep 'alsa_input'
 
 # create a "virtual sync" combining desktop audio and microphone (run this before wl-screenrec)
-$HOME/wayland/scripts/capture-audio.sh
+$HOME/scripts/capture-audio.sh
 
 # "poor man OBS" - record a portion of the screen with audio
-wl-screenrec -g "$(slurp)" --audio --audio-device "VirtualSink.monitor" -f record.$(date "+%Y%m%d-%H%M%S").mp4
+wl-screenrec -g "$(slurp)" --audio --audio-device "VirtualSink.monitor" -f $HOME/tmp/recs/$(date "+%Y%m%d-%H%M%S").mp4
 
 # list modules (e.g. a "virtual sync" created)
 pactl -f json list modules  | jq
