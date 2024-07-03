@@ -206,3 +206,10 @@ git difftool -t difft <commit-hash>^..<commit-hash>
 
 # show diff files (I can use this to get the files that changed between a specific commit hash and the one prior to it , since the diff creates temporary file names based on the originals)
 git diff --name-only <commit-hash>^..<commit-hash>
+
+# open current diff with giftool (difftastic)
+git difftool --tool=difft
+
+# resolve merge conflicts with mergetool (meld)
+git mergetool --tool=meld
+
