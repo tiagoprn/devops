@@ -3,9 +3,6 @@
 # add flathub repo (remote)
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && echo 'Now run the command to update all installed flatpaks.'
 
-# update all installed flatpaks
-flatpak update --user
-
 # delete flathub remo
 flatpak remote-delete <name>
 
@@ -26,6 +23,9 @@ flatpak list
 
 # list installed flatpak apps (only the apps)
 ls -lha ~/.local/share/flatpak/app
+
+# update/upgrade user flatpaks only
+flatpak --user update
 
 # update package
 flatpak --user update <package>

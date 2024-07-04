@@ -1,4 +1,4 @@
-% apt debian ubuntu xargs flatpak nvim
+% apt debian ubuntu xargs
 
 # list installed package contents:
 sudo dpkg -L <package-name>
@@ -17,9 +17,3 @@ sudo apt update 2>&1 1>/dev/null | sed -ne 's/.*NO_PUBKEY //p' | while read key;
 
 # upgrade all packages, flatpaks and update and compile nvim:
 sudo apt update -y && sudo apt full-upgrade -y && flatpak update -y && /storage/src/pde.nvim/scripts/sync-neovim.sh && /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh
-
-# recompile neovim and upgrade user flatpaks only
-/storage/src/pde.nvim/scripts/sync-neovim.sh && flatpak --user update
-
-# nvim directory that holds the local repository copy of the packages (packer)
-cd $HOME/.local/share/nvim/site/pack/packer/start
