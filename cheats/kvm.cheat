@@ -1,5 +1,8 @@
 % kvm, libvirt, qemu, qcow2, virsh
 
+# Validate if the host has all it takes for virtualization
+sudo virt-host-validate
+
 # Create and enable a storage pool
 mkdir -p <path>  && sudo virsh pool-define-as <pool-name> dir - - - - <path> && sudo virsh pool-build <pool-name> && sudo virsh pool-start <pool-name> && sudo virsh pool-autostart <pool-name> && sudo virsh pool-list --all
 
@@ -34,7 +37,7 @@ sudo virsh net-start $(sudo virsh net-list --all | fzf | awk '{print $1}')
 sudo virsh net-dhcp-leases $(sudo virsh net-list --all | fzf | awk '{print $1}')
 
 # Show VM info
-sudo virsh download_fileminfo $(sudo virsh list --all | fzf | awk '{print $2}')
+sudo virsh dominfo $(sudo virsh list --all | fzf | awk '{print $2}')
 
 # Start a VM
 sudo virsh start $(sudo virsh list --all | fzf | awk '{print $2}')
@@ -83,3 +86,20 @@ sudo vim /etc/libvirt/hooks/qemu
 
 # desktop app
 virt-manager &
+
+# desktop app - simple viewer
+sudo virt-viewer $(sudo virsh list --all | fzf | awk '{print $2}')
+
+# ssh into VM
+/storage/src/devops/shellscripts/kvm/ssh.sh
+
+# live backup VM
+/storage/src/devops/shellscripts/kvm/live-backup.sh -n $(sudo virsh list --all | fzf | awk '{print $2}')
+
+# restore VM backup
+export VM_NAME=$(sudo virsh list --all | fzf --prompt 'choose a VM: ' | awk '{print $2}') && \
+	/storage/src/devops/shellscripts/kvm/restore-backup.py \
+	-x $(find /kvm/backups/$VM_NAME -name config.xml | fzf --prompt 'choose a VM config file: ') \
+	-b $(find /kvm/backups/$VM_NAME -name *.qcow2 | fzf --prompt 'choose a qcow2 disk: ') \
+	-n $VM_NAME \
+	-i "/kvm/$VM_NAME/disk/$VM_NAME.qcow2";

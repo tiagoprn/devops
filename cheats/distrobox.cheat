@@ -1,0 +1,28 @@
+% distrobox
+
+# create (assemble from ini file)
+distrobox assemble create --file $(find $HOME/boxes -name box.*.ini -type f | fzf --prompt 'select a distrobox assemble file: ')
+
+# export box app icon to host (run INSIDE a box)
+distrobox-export --app <app_name>
+
+# show/list all boxes
+distrobox list
+
+# show/list all boxes (watch)
+watch -n 1 -c 'distrobox list'
+
+# upgrade all boxes distros
+distrobox upgrade --all
+
+# stop a running box
+distrobox stop $(distrobox list | fzf --prompt 'Choose a running box: ' | awk '{print $1}')
+
+# start/enter an existing box
+distrobox enter $(distrobox list | fzf --prompt 'Choose a running box: ' | awk '{print $1}')
+
+# remove an existing box - CAUTION!!!
+distrobox rm $(distrobox list | fzf | cut -d '|' -f 2)
+
+# distrobox logs (through podman)
+podman logs -f $(distrobox list | fzf | cut -d '|' -f 1)
