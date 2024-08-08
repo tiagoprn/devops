@@ -1,9 +1,9 @@
 session_name: REMOTE
 windows:
-  - window_name: TODO
+  - window_name: bash
     layout: even-vertical
     panes:
-      - nvim $HOME/TODO.md
+      - clear && echo -e "\n\n\e[31mrun 'tp' and open the tmux session 'KVM-OCTERRA' to start working.\e[0m"
   - window_name: DOT_FILES
     layout: even-vertical
     shell_command_before:
@@ -16,7 +16,3 @@ windows:
       - cd /storage/src/devops
     panes:
       - nvim
-  - window_name: bash
-    layout: even-vertical
-    panes:
-      -
