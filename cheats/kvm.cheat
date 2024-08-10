@@ -103,3 +103,6 @@ export VM_NAME=$(sudo virsh list --all | fzf --prompt 'choose a VM: ' | awk '{pr
 	-b $(find /kvm/backups/$VM_NAME -name *.qcow2 | fzf --prompt 'choose a qcow2 disk: ') \
 	-n $VM_NAME \
 	-i "/kvm/$VM_NAME/disk/$VM_NAME.qcow2";
+
+# inspect disks attached to a VM
+sudo virsh -c qemu:///system domblklist $(sudo virsh list --all | fzf | awk '{print $2}')
