@@ -17,7 +17,6 @@ cloud-config.yaml
 *.img
 *.BKP
 root/
-boot/
 authorized_keys
 .terraform/
 *tfstate*

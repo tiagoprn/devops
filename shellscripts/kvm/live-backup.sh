@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # e.g.
-SYNTAX="./live-backup.sh -n [VM_NAME]"
-HELP="./live-backup.sh -n centos7-02"
+SYNTAX="./live-backup.sh -n [VM_NAME] -s [BACKUP-SUFFIX]"
+HELP="./live-backup.sh -n centos7-02 -s 'initial-backup'"
 
 while getopts n:b:r:c:s: option; do
     case "${option}" in
@@ -37,7 +37,7 @@ mkdir -p "$SNAPSHOTS_DIR"
 BACKUPS_ROOT=/kvm/backups/$VM_NAME
 BACKUPS_DIR=$BACKUPS_ROOT/$TIMESTAMP
 # Append the suffix to the backup directory if provided
-BACKUPS_DIR="${BACKUPS_DIR}${BACKUP_SUFFIX:+_$BACKUP_SUFFIX}"
+BACKUPS_DIR="${BACKUPS_DIR}${BACKUP_SUFFIX:+.$BACKUP_SUFFIX}"
 
 mkdir -p "$BACKUPS_DIR"
 
@@ -51,7 +51,7 @@ echo -e "VM disk path is '$VM_PATH'. \nMake sure it is not a snapshot. \nIf it i
 BACKUP_NAME="$VM_NAME.$TIMESTAMP"
 
 echo 'Creating the snapshot, so that the disk operations will be directed to it for you to copy the original disk file to a safe place...'
-sudo virsh snapshot-create-as --no-metadata --domain "$VM_NAME" "$BACKUP_NAME" --diskspec vda,file="$SNAPSHOTS_DIR"/"$VM_NAME" --disk-only --atomic --memspec
+sudo virsh snapshot-create-as --no-metadata --domain "$VM_NAME" "$BACKUP_NAME" --diskspec vda,file="$SNAPSHOTS_DIR"/"$VM_NAME" --disk-only --atomic
 
 echo "Backing up the original disk at $($VM_PATH)..."
 sudo cp -farv "$VM_PATH" "$BACKUPS_DIR"

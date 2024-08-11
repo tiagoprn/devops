@@ -94,7 +94,7 @@ sudo virt-viewer $(sudo virsh list --all | fzf | awk '{print $2}')
 /storage/src/devops/shellscripts/kvm/ssh.sh
 
 # live backup VM
-/storage/src/devops/shellscripts/kvm/live-backup.sh -n $(sudo virsh list --all | fzf | awk '{print $2}')
+/storage/src/devops/shellscripts/kvm/live-backup.sh -n $(sudo virsh list --all | fzf | awk '{print $2}') -s '<friendly-suffix>'
 
 # restore VM backup
 export VM_NAME=$(sudo virsh list --all | fzf --prompt 'choose a VM: ' | awk '{print $2}') && \
