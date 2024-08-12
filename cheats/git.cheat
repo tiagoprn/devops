@@ -30,15 +30,6 @@ git diff --name-only <reference-branch>
 # Show files changed on each commit
 git files-changed
 
-# Show files changed on specific commit (only their names)
-git diff-tree --no-commit-id --name-status <commit-hash> -r
-
-# Show files changed on specific commit (with their contents)
-git diff <commit-hash>^!
-
-# Show files changed on specific commit (with their contents) and output to nvim to inspect
-git diff "<commit-hash>^!" | nvim -
-
 # Show all commit hashes with author and date
 git log '--pretty=%h by %aN at %aD'
 
@@ -46,7 +37,7 @@ git log '--pretty=%h by %aN at %aD'
 git log '--pretty=%h by %aN at %aD' | nvim -
 
 # Select commit hash with fzf and copy to the clipboard - when browsing through the list shows a preview of which files changed on each commit
-git log '--pretty=%aI %h %aN' | fzf --preview "git diff-tree --no-commit-id --name-status {2} -r" | awk '{print $2}' | wl-copy | notify-send "Commit hash copied to clipboard!"
+git log '--pretty=%aI %h %aN' | fzf --preview "git diff-tree --no-commit-id --name-status {2} -r" | awk '{print $2}' | xclip -i -selection clipboard | notify-send "Commit hash copied to clipboard!"
 
 # List all branches that contain a commit (listed from the oldest to the newest commit date)
 git branch --sort=committerdate --contains <commit-hash>
@@ -89,9 +80,6 @@ xdg-open https://devhints.io/git-log-format
 
 # See summarized changes by author on file (you may also pass more than one file)
 git shortlog --pretty=format:"%ai%n  %h - %s %n" <files-separated-by-spaces> --no-merges
-
-# Search commits for specific message, by author:
-git shortlog --pretty=format:"%ai%n  %h - %s %n" -n --grep='^fix' --no-merges
 
 # See rank/top contributors, with respective e-mails
 git shortlog -sn --no-merges --email
@@ -159,9 +147,6 @@ export REPOS='<repositories-separated-with-space>' && export UPDATE_BRANCH=<bran
 # Select commit hash (pipe it manually to clipboard with `| cb` if you need)
 git log --date=iso --pretty=format:'%Cgreen(%ad) %Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' | fzf | awk '{print $4}'
 
-# Search for string on all repository commits and save commit/path where it was found into a file. The bigger the repo, much more time it takes to finish.
-git rev-list --all | xargs git grep "<string>" > found-list.txt
-
 # add note to commit
 git notes add "<note-text>"
 
@@ -206,3 +191,25 @@ gource <path-to-git-repository>
 
 # get forks of a github repository (you can also add "/forks" on a repo url on the browser)
 curl https://api.github.com/repos/<repo-author-or-organization>/<repo-name>/forks
+
+# search commits for specific message, by author:
+git shortlog --pretty=format:"%ai%n  %h - %s %n" -n --grep="<string-or-regex>" --no-merges
+
+# search for a string on all commit messages
+git log --all --grep="<string-or-regex>" --pretty=format:'%C(auto)%ad %C(bold blue)%an%C(reset) %C(auto)%h %C(auto)%s' --date=iso --decorate
+
+# show which files changed on specific commit - e.g. 15a6cbf6fb
+git show --stat <commit-hash>
+
+# show the diff between a specific commit hash and the one prior to it
+git difftool -t difft <commit-hash>^..<commit-hash>
+
+# show diff files (I can use this to get the files that changed between a specific commit hash and the one prior to it , since the diff creates temporary file names based on the originals)
+git diff --name-only <commit-hash>^..<commit-hash>
+
+# open current diff with giftool (difftastic)
+git difftool --tool=difft
+
+# resolve merge conflicts with mergetool (meld)
+git mergetool --tool=meld
+
