@@ -294,3 +294,12 @@ find . -type f  | fzf --exact | cb
 
 # generate a PDF without password from one with password:
 qpdf --password=<password> --decrypt <pdf-file-with-password-name> <pdf-file-with-password-name>.without-password.pdf
+
+# reuse/repeat *LAST ARGUMENT* of a previous bash command on a new one ( "!$" means last argument of previous command  )
+echo 'use: !$'
+
+# reuse/repeat *ALL ARGUMENTS* of a previous bash command on a new one ( "!$" means last argument of previous command  )
+echo 'use: !*'
+
+# reuse/repeat *NTH ARGUMENT* of a previous bash command on a new one ( "!$" means last argument of previous command  )
+echo 'use: ![NUMBER-HERE]'
