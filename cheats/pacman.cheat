@@ -14,3 +14,6 @@ sudo pacman -Q
 
 # list files in package
 sudo pacman -Ql <package-name>
+
+# force kernel recompilation (EndeavourOS)
+sudo dracut --force --regenerate-all
