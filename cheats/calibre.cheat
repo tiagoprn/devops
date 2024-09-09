@@ -1,0 +1,8 @@
+% calibre, pdf, markdown, ebook
+
+# convert from markdown to pdf
+ebook-convert <markdown-file> <pdf-file>
+
+# convert from epub to mobi (kindle format) - needs calibre installed
+ebook-convert <epub-file> <mobi-file>
+
