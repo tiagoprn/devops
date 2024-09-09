@@ -10,10 +10,10 @@ hyprctl workspaces -j | jq -r '.[] | .name'
 hyprctl clients
 
 # jq - get all windows on a given workspace
-hyprctl clients -j | jq -r '.[] | select(.workspace.name == "<workspace_number>") | "\\(.address) \\(.class) (\\(.title))"'
+hyprctl clients -j | jq -r '.[] | select(.workspace.name == "<workspace_number>") | "\(.address)|\(.class)|\(.title)"'
 
 # jq - get all windows
-hyprctl clients -j | jq -r '.[] | "\\(.address) \\(.class) (\\(.title)) ==> Workspace: \\(.workspace.name)"'
+hyprctl clients -j | jq -r '.[] | "\(.address)|\(.pid)|\(.class)|\(.title)| ==> Workspace: \(.workspace.name)"'
 
 # get information on connected monitors
 hyprctl monitors all
@@ -60,3 +60,13 @@ hyprctl version
 
 # see windows on the special workspace (scratchpad-like)
 hyprctl dispatch togglespecialworkspace
+
+# move specific workspace to monitor
+hyprctl dispatch moveworkspacetomonitor <workspace> $(hyprctl monitors all -j | jq -r '.[] | .name' | fzf)
+
+# move current workspace to monitor
+hyprctl dispatch movecurrentworkspacetomonitor $(hyprctl monitors all -j | jq -r '.[] | .name' | fzf)
+
+# wofi menu
+echo -e 'AAAA\nBBBB\nCCCC' | wofi --dmenu --prompt="<prompt_message>"
+

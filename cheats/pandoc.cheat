@@ -1,4 +1,4 @@
-% pandoc, calibre, ebook
+% pandoc
 
 # pandoc manual
 xdg-open https://pandoc.org/MANUAL.html
@@ -24,5 +24,3 @@ pandoc <markdown-file-path> -o <docx-file-path-with-extension> --pdf-engine=xela
 # markdown to epub
 pandoc -o <epub-file> --metadata title="<epub-title>" --metadata author="<epub-author>" <markdown-file>
 
-# convert from epub to mobi (kindle format) - needs calibre installed
-ebook-convert <epub-file> <mobi-file>
