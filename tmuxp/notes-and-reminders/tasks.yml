@@ -1,14 +1,14 @@
 session_name: TASKS
 windows:
   - window_name: editor
-    layout: f83e,160x39,0,0{103x39,0,0[103x30,0,0,17,103x8,0,31,30],56x39,104,0[56x16,104,0,19,56x22,104,17,21]}
+    layout: even-horizontal
     start_directory: /storage/docs/tasks
     shell_command_before:
       - source ~/.bashrc
       - clear
     panes:
       - shell_command:
-        - nvimai index.md
+        - nvim -O index.md current.md
         focus: true
   - window_name: git
     layout: even-vertical
@@ -26,5 +26,4 @@ windows:
       - clear
       - source ~/.bashrc
     panes:
-      - shell_command:
-        -
+      - shell_command: cal -3w
