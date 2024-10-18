@@ -1,0 +1,4 @@
+% chatgpt, curl, openai
+
+# Get models available
+curl https://api.openai.com/v1/models -H "Authorization: Bearer $(pass 'api-keys/OPENAI')"
