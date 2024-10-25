@@ -17,3 +17,9 @@ sudo pacman -Ql <package-name>
 
 # force kernel recompilation (EndeavourOS)
 sudo dracut --force --regenerate-all
+
+# regenerate the mirror list, exclude the ones from Brazil and the ones that fail during the refresh
+echo 'updating mirror list...' && \
+sudo reflector --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist --country $(reflector --list-countries | grep -v "Brazil" | awk '{print $2}' | tr '\n' ',' | sed 's/,$//') --latest 10 --score 20 && \
+echo 'Syncing the database and updating packages...' && \
+sudo pacman -Syyu
