@@ -1,4 +1,4 @@
-session_name: MONITORING
+session_name: SCRATCHPAD
 windows:
   - window_name: overview
     layout: even-vertical
@@ -7,20 +7,15 @@ windows:
         - sudo journalctl -f -k --since today | ccze -A
       - shell_command:
         - sudo htop
-  - window_name: io-gpu
+  - window_name: shell
     layout: even-vertical
     panes:
-      - shell_command:
-        - echo -e "To monitor the I/O, run:\n\nsudo iotop -a -o -k\n\n"
-      - shell_command:
-        - sudo intel_gpu_top
-  - window_name: interactive
-    layout: even-vertical
-    start_directory: /storage/src/gpg
-    panes:
-      - shell_command:
-        - echo "$(date '+%Y-%m-%d %H:%M:%S') $(whoami)@$(hostname) $(speedtest-cli --simple --single | sed s/://g | tr '\n' ' ')" >> ~/speedtest-history.txt && cat ~/speedtest-history.txt
       - shell_command:
         -
         focus: true
+  - window_name: interactive
+    layout: even-vertical
+    panes:
+      - shell_command:
+        - echo "$(date '+%Y-%m-%d %H:%M:%S') $(whoami)@$(hostname) $(speedtest-cli --simple --single | sed s/://g | tr '\n' ' ')" >> ~/speedtest-history.txt && cat ~/speedtest-history.txt
 
