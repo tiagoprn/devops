@@ -1,19 +1,19 @@
 session_name: SCRATCHPAD
 windows:
-  - window_name: overview
-    layout: even-vertical
-    panes:
-      - shell_command:
-        - sudo journalctl -f -k --since today | ccze -A
-      - shell_command:
-        - sudo htop
   - window_name: shell
     layout: even-vertical
     panes:
       - shell_command:
         -
         focus: true
-  - window_name: interactive
+  - window_name: monitoring
+    layout: even-vertical
+    panes:
+      - shell_command:
+        - sudo journalctl -f -k --since today | ccze -A
+      - shell_command:
+        - sudo htop
+  - window_name: network
     layout: even-vertical
     panes:
       - shell_command:
