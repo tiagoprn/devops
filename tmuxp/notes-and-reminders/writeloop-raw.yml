@@ -1,0 +1,20 @@
+session_name: WRITELOOP-RAW
+windows:
+  - window_name: editor
+    layout: even-horizontal
+    start_directory: /storage/src/writeloop-raw
+    panes:
+      - shell_command:
+        - nvim
+        focus: true
+  - window_name: git
+    layout: even-vertical
+    start_directory: /storage/src/writeloop-raw
+    panes:
+      - shell_command:
+        - /storage/src/dot_files/git-ui-with-ssh-agent.sh .
+  - window_name: scratchpad
+    layout: even-vertical
+    start_directory: /storage/src/writeloop-raw
+    panes:
+      - shell_command:
