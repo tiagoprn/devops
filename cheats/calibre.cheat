@@ -1,7 +1,7 @@
 % calibre, pdf, markdown, ebook
 
 # convert from markdown to pdf
-ebook-convert <markdown-file> <pdf-file>
+ebook-convert <markdown-file> <pdf-file> --extra-css $(find /storage/src/dot_files/calibre/epub-convert/css -type f | fzf --prompt "Select a css stylesheet to customize the PDF output" --exact) --markdown-extensions extra --paper-size a4
 
 # convert from epub to mobi (kindle format) - needs calibre installed
 ebook-convert <epub-file> <mobi-file>
