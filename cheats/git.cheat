@@ -1,4 +1,4 @@
-% git
+% git, gh
 
 # Get current branch
 git branch | grep ^* | cut -d ' ' -f 2
@@ -215,3 +215,15 @@ git mergetool --tool=meld
 
 # diff 2 different branches using difftool (difftastic) - I can also change the tool to meld if needed
 git difftool --tool=difft <branch_01>..<branch_02>
+
+# gh - login
+gh auth login --web
+
+# gh - checkout PR
+gh pr checkout <pr_number>
+
+# gh - create patch file with the PR changes (you must be on the branch that has your feature/fix/etc...)
+git diff <base-branch> --unified=5 > pr_changes.patch  # 5 is the number of context lines around the changes, change here if needed
+
+# gh - apply a patch file (if you need to do that for reviewing)
+git apply <patch-file>
