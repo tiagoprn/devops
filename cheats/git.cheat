@@ -1,4 +1,4 @@
-% git
+% git, gh
 
 # Get current branch
 git branch | grep ^* | cut -d ' ' -f 2
@@ -23,12 +23,6 @@ cat $(git rev-parse --show-toplevel)/.git/config | grep url | cut -d "=" -f 2 | 
 
 # Copy git repository remote url to clipboard
 cat $(git rev-parse --show-toplevel)/.git/config | grep url | cut -d "=" -f 2 | tr "\n" " " | cb
-
-# Show files changed on current branch, comparing to another one
-git diff --name-only <reference-branch>
-
-# Show files changed on each commit
-git files-changed
 
 # Show all commit hashes with author and date
 git log '--pretty=%h by %aN at %aD'
@@ -198,6 +192,9 @@ git shortlog --pretty=format:"%ai%n  %h - %s %n" -n --grep="<string-or-regex>" -
 # search for a string on all commit messages
 git log --all --grep="<string-or-regex>" --pretty=format:'%C(auto)%ad %C(bold blue)%an%C(reset) %C(auto)%h %C(auto)%s' --date=iso --decorate
 
+# Show files changed on each commit
+git files-changed
+
 # show which files changed on specific commit - e.g. 15a6cbf6fb
 git show --stat <commit-hash>
 
@@ -215,3 +212,21 @@ git mergetool --tool=meld
 
 # diff 2 different branches using difftool (difftastic) - I can also change the tool to meld if needed
 git difftool --tool=difft <branch_01>..<branch_02>
+
+# Show files changed between 2 branches
+GIT_DIFF_TOOL=vimdiff git difftool --name-only <branch_01>..<branch_02>
+
+# Show files changed on current branch, comparing to another one
+GIT_DIFF_TOOL=vimdiff git difftool --name-only <reference-branch>
+
+# gh - cli - login
+gh auth login --web
+
+# gh - cli - checkout PR
+gh pr checkout <pr_number>
+
+# gh - cli - create patch file with the PR changes (you must be on the branch that has your feature/fix/etc...)
+git diff <base-branch> --unified=5 > pr_changes.patch  # 5 is the number of context lines around the changes, change here if needed
+
+# gh - cli - apply a patch file (if you need to do that for reviewing)
+git apply <patch-file>
