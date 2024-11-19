@@ -1,4 +1,4 @@
-% pacman yay arch manjaro xargs
+% pacman yay arch xargs
 
 # list all installed packages and dump to file
 /bin/bash -c 'INSTALLED_PACKAGES_OUTPUT_FILE=/tmp/installed-packages.$(hostname).$(date +%Y%m%d-%H%M%S-%N) && yay -Q > $INSTALLED_PACKAGES_OUTPUT_FILE && echo "The list of installed packages is at: $INSTALLED_PACKAGES_OUTPUT_FILE"'
@@ -23,3 +23,7 @@ echo 'updating mirror list...' && \
 sudo reflector --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist --country $(reflector --list-countries | grep -v "Brazil" | awk '{print $2}' | tr '\n' ',' | sed 's/,$//') --latest 10 --score 20 && \
 echo 'Syncing the database and updating packages...' && \
 sudo pacman -Syyu
+
+# upgrade all packages, flatpaks and update and compile nvim:
+yay -Syu --noconfirm && flatpak update -y && /storage/src/pde.nvim/scripts/sync-neovim.sh && /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh
+
