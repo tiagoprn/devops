@@ -216,6 +216,9 @@ git difftool --tool=difft <branch_01>..<branch_02>
 # Show files changed between 2 branches
 GIT_DIFF_TOOL=vimdiff git difftool --name-only <branch_01>..<branch_02>
 
+# open nvim with files changed between 2 branches
+nvim -p $(GIT_DIFF_TOOL=vimdiff git difftool --name-only <branch_01>..<branch_02>)
+
 # Show files changed on current branch, comparing to another one
 GIT_DIFF_TOOL=vimdiff git difftool --name-only <reference-branch>
 
