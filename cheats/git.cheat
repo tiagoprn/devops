@@ -233,3 +233,6 @@ git diff <base-branch> --unified=5 > pr_changes.patch  # 5 is the number of cont
 
 # gh - cli - apply a patch file (if you need to do that for reviewing)
 git apply <patch-file>
+
+# get changes from another branch without merging or putting into the staging area (just changing the files so they can be reviewed on a git diff tool)
+git restore --source="<other_branch_name>" .
