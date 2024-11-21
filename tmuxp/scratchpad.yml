@@ -13,6 +13,14 @@ windows:
         - sudo journalctl -f -k --since today | ccze -A
       - shell_command:
         - sudo htop
+  - window_name: pipewire
+    layout: even-vertical
+    panes:
+      - shell_command:
+        - pw-top
+        focus: true
+      - shell_command:
+        - man pw-top
   - window_name: network
     layout: even-vertical
     panes:
