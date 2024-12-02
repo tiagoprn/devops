@@ -236,3 +236,6 @@ git apply <patch-file>
 
 # get changes from another branch without merging or putting into the staging area (just changing the files so they can be reviewed on a git diff tool)
 git restore --source="<other_branch_name>" .
+
+# maintenance - check repository integrity; perform garbage collection and prune
+git fsck --full && git gc --prune=now --aggressive
