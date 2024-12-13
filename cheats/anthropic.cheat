@@ -1,0 +1,20 @@
+% AI, anthropic, claude
+
+# list of available models to use on the API
+xdg-open https://docs.anthropic.com/en/docs/about-claude/models
+
+# make a request to the API
+curl -s https://api.anthropic.com/v1/messages \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
+  -d '{
+    "model": "claude-3-sonnet-20240229",
+    "max_tokens": 1024,
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello, how are you?"
+      }
+    ]
+  }' | jq
