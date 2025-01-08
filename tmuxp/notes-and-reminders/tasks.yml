@@ -8,7 +8,7 @@ windows:
       - clear
     panes:
       - shell_command:
-        - nvim -o index.md current.md
+        - nvim -p index.md current.md
         focus: true
   - window_name: git
     layout: even-vertical
