@@ -57,7 +57,7 @@ echo "Backing up the original disk at $($VM_PATH)..."
 sudo cp -farv "$VM_PATH" "$BACKUPS_DIR"
 
 echo 'Creating a compressed copy of the backup...'
-tar cfjv "$BACKUPS_ROOT/$BACKUP_NAME.tar.bz2" "$BACKUPS_DIR"
+tar cfjv "$BACKUPS_ROOT/$BACKUP_NAME.$BACKUP_SUFFIX.tar.bz2" "$BACKUPS_DIR"
 
 echo 'Redirecting disk operations to the original disk...'
 sudo virsh blockcommit "$VM_NAME" vda --active --pivot --shallow --verbose
