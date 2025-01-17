@@ -43,14 +43,12 @@ uv run <script_path>
 uv run --python <python_version> -- <command>
 
 $ python_version: echo "3.11"
-$ command: echo "python --version"
 
 # Run a command with specific Python version and dependencies
-uv run --python <python_version> --with <package_names> <command>
+uv run --python <python_version> --with <package_names> -- <command>
 
 $ python_version: echo "3.11"
 $ package_names: echo "ipython,pandas"
-$ command: echo "ipython"
 
 # Install Python tool (like pipx)
 uv tool install <tool_name>
