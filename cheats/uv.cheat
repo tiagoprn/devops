@@ -23,11 +23,11 @@ uv python list --only-installed --python-preference only-managed | awk '{print $
 # list python versions available for installation
 uv python list --all-versions | awk '{print $1}' | fzf --exact
 
-# create virtualenv
+# create virtualenv (on the current folder with the default ".venv" path)
 uv venv
 
-# create virtualenv with specific Python version
-uv venv --python <python_version>
+# create virtualenv with specific python version and on specific path
+uv venv --python <python_version> <path>
 
 # install packages from requirements.txt
 uv pip sync <requirements_txt>
