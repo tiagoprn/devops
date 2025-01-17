@@ -27,7 +27,7 @@ uv python list --all-versions | awk '{print $1}' | fzf --exact
 uv venv
 
 # create virtualenv with specific python version and on specific path
-uv venv --python <python_version> <path>
+uv venv --python <python_version> $HOME/.pyenv/versions/<name>
 
 # install packages from requirements.txt
 uv pip sync <requirements_txt>
