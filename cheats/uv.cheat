@@ -1,88 +1,74 @@
 % uv, python
 
-# Install uv using curl
+# install uv using curl ("standalone installer")
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Update uv to latest version (if installed via standalone installer)
+# update uv to latest version (if installed via curl)
 uv self update
 
-# Install specific python versions
+# install specific python versions
 uv python install <versions>
 
 $ versions: echo "3.10 3.11 3.12 3.13"
 
-# Install specific python version (fzf)
+# install specific python version (fzf)
 uv python install $(uv python list --all-versions | awk '{print $1}' | fzf --exact)
 
-# Show installed python versions
-uv python list --only-installed
+# list installed python versions
+uv python list --only-installed | awk '{print $1}' | fzf --exact
 
-# Show python versions available for installation
+# list python versions available for installation
 uv python list --all-versions | awk '{print $1}' | fzf --exact
 
-# Initialize a new project
-uv init <project_name>
-
-# Add a package to project
-uv add <package_name>
-
-$ package_name: echo "requests"
-
-# Add a package with specific version to project
-uv add <package_name>@<version>
-
-$ version: echo "latest"
-
-# Add dependency to a script
-uv add --script <script_path> <package_name>
-
-# Run a script with dependencies
-uv run <script_path>
-
-# Run a command with specific Python version
-uv run --python <python_version> -- <command>
-
-$ python_version: echo "3.11"
-
-# Run a command with specific Python version and dependencies
-uv run --python <python_version> --with <package_names> -- <command>
-
-$ python_version: echo "3.11"
-$ package_names: echo "ipython,pandas"
-
-# Install Python tool (like pipx)
-uv tool install <tool_name>
-
-$ tool_name: echo "ruff"
-
-# Run tool in ephemeral environment (try out a tool or one-off command once, without installing it)
-uvx <tool_name> <args>
-
-# Pin Python version for current directory
-uv python pin <version>
-
-# Create virtual environment
+# create virtualenv
 uv venv
 
-# Create virtual environment with specific Python version
+# create virtualenv with specific Python version
 uv venv --python <python_version>
 
-# Compile requirements (pip-tools style)
+# install packages from requirements.txt
+uv pip sync <requirements_txt>
+
+# compile requirements (pip-tools style)
 uv pip compile <requirements_in> --output-file <requirements_txt>
 
 $ requirements_in: ls requirements*.in
 $ requirements_txt: echo "requirements.txt"
 
-# Install packages from requirements.txt
-uv pip sync <requirements_txt>
+# run script with dependencies (you can use "inline script dependencies", as on PEP 723)
+uv run <script_path>
 
-# Build project for distribution
+# run command with specific python version
+uv run --python <python_version> -- <command>
+
+# run command with specific python version and dependencies (package names must be separated by ,)
+uv run --python <python_version> --with <package_names> -- <command>
+
+# install python tool (like pipx)
+uv tool install <tool_name>
+
+$ tool_name: echo "ruff"
+
+# run tool in ephemeral environment (try out a tool or one-off command once, without installing it)
+uvx <tool_name> <args>
+
+# initialize a new project
+uv init <project_name>
+
+# add package to project
+uv add <package_name>
+
+# add package with specific version to project (you can use "latest" as "version")
+uv add <package_name>@<version>
+
+# add dependency to script
+uv add --script <script_path> <package_name>
+
+# pin python version for current directory
+uv python pin <version>
+
+# build project for distribution
 uv build
 
-# Publish project to PyPI
+# publish project to PyPI
 uv publish
-
-# Show help for any command
-uv help <command>
-
-$ command: echo "venv | pip | python | tool | run | add"
