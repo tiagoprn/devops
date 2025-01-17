@@ -6,6 +6,22 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # Update uv to latest version (if installed via standalone installer)
 uv self update
 
+# Install specific python versions
+uv python install <versions>
+
+$ versions: echo "3.10 3.11 3.12 3.13"
+
+# Install specific python version (fzf)
+uv python install <version>
+
+$ version: uv python list --all-versions | awk '{print $1}' | fzf
+
+# Show installed python versions
+uv python list --only-installed
+
+# Show python versions available for installation
+uv python list --all-versions | awk '{print $1}' | fzf
+
 # Initialize a new project
 uv init <project_name>
 
@@ -42,11 +58,6 @@ $ tool_name: echo "ruff"
 
 # Run tool in ephemeral environment (uvx - pipx-like)
 uvx <tool_name> <args>
-
-# Install specific Python versions
-uv python install <versions>
-
-$ versions: echo "3.10 3.11 3.12"
 
 # Pin Python version for current directory
 uv python pin <version>
