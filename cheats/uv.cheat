@@ -12,9 +12,7 @@ uv python install <versions>
 $ versions: echo "3.10 3.11 3.12 3.13"
 
 # Install specific python version (fzf)
-uv python install <version>
-
-$ version: uv python list --all-versions | awk '{print $1}' | fzf
+uv python install $(uv python list --all-versions | awk '{print $1}' | fzf)
 
 # Show installed python versions
 uv python list --only-installed
