@@ -29,7 +29,10 @@ uv venv
 # create virtualenv with specific python version and on specific path
 uv venv --python <python_version> $HOME/.pyenv/versions/<name>
 
-# install packages from requirements.txt
+# install packages from requirements.txt (IMPORTANT: activate the virtualenv you created first!)
+uv pip install -r <requirements_txt>
+
+# sync packages from requirements.txt (useful for reproducibility, since it install exactly the packages on the file, no more and no less)
 uv pip sync <requirements_txt>
 
 # compile requirements (pip-tools style)
