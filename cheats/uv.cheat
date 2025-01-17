@@ -15,6 +15,9 @@ $ versions: echo "3.10 3.11 3.12 3.13"
 uv python install $(uv python list --all-versions | awk '{print $1}' | fzf --exact)
 
 # list installed python versions
+uv python list --only-installed
+
+# list installed python versions (fzf)
 uv python list --only-installed | awk '{print $1}' | fzf --exact
 
 # list python versions available for installation
