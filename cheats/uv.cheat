@@ -49,8 +49,8 @@ $ command: echo "python --version"
 uv run --python <python_version> --with <package_names> -- <command>
 
 $ python_version: echo "3.11"
-$ package_names: "ipython pandas"
-$ command: echo "python --version"
+$ package_names: echo "ipython pandas"
+$ command: echo "ipython"
 
 # Install Python tool (like pipx)
 uv tool install <tool_name>
