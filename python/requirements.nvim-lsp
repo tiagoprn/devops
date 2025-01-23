@@ -20,5 +20,3 @@ pyls-memestra
 
 # jedi (has workspace_symbols and codeAction)
 jedi-language-server
-
-ruff-lsp
