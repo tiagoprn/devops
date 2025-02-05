@@ -1,0 +1,10 @@
+% llms, chatgpt, curl, openai, anthropic
+
+# openai/chatgpt - Get models available
+curl https://api.openai.com/v1/models -H "Authorization: Bearer $(pass 'api-keys/OPENAI')"
+
+# anthropic/claude - Get models available
+curl https://api.anthropic.com/v1/models \
+	-H "x-api-key: $(pass 'api-keys/anthropic')" \
+	-H "anthropic-version: 2023-06-01"
+
