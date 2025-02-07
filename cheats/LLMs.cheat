@@ -8,3 +8,16 @@ curl https://api.anthropic.com/v1/models \
 	-H "x-api-key: $(pass 'api-keys/anthropic')" \
 	-H "anthropic-version: 2023-06-01"
 
+# deepseek - Chat - models available: deepseek-chat, deepseek-reasoner
+curl https://api.deepseek.com/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $(pass 'api-keys/deepseek')" \
+  -d '{
+        "model": "deepseek-chat",
+        "messages": [
+          {"role": "system", "content": "You are a helpful assistant."},
+          {"role": "user", "content": "Hello!"}
+        ],
+        "stream": false
+      }'
+
