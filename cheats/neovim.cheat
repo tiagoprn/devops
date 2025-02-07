@@ -3,6 +3,9 @@
 # show version
 nvim --version
 
+# run bare nvim (ignoring init.lua and plugins)
+nvim -u NONE <file>
+
 # script initialization example 01
 nvim <filename> +'normal!ggIztk'
 
