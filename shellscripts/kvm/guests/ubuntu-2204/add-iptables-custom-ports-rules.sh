@@ -6,6 +6,10 @@ VM_IP=$(ip -o -4 addr show dev $(ip -o link show | awk '/enp/{print $2}' | sed '
 sudo iptables -t nat -A PREROUTING -p tcp --dport 3306 -j DNAT --to-destination $VM_IP:3306
 sudo iptables -t nat -A POSTROUTING -p tcp -d $VM_IP --dport 3306 -j MASQUERADE
 
+sudo iptables -t nat -A PREROUTING -p tcp --dport 4200 -j DNAT --to-destination $VM_IP:4200
+sudo iptables -t nat -A POSTROUTING -p tcp -d $VM_IP --dport 4200 -j MASQUERADE
+
 echo 'Listing rules on port to make sure it worked:'
 
 /storage/src/devops/shellscripts/kvm/guests/ubuntu-2204/list-iptables-custom-ports.sh 3306
+/storage/src/devops/shellscripts/kvm/guests/ubuntu-2204/list-iptables-custom-ports.sh 4200

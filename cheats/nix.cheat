@@ -1,0 +1,16 @@
+% nix
+
+# test configuration (useful after updating .nix files)
+home-manager build
+
+# apply (switch to) updated configuration (useful after updating .nix files):
+home-manager switch
+
+# update nixpkgs channel (useful to get new versions of packages)
+nix-channel --update
+
+# test and apply updated configuration
+home-manager build && home-manager switch
+
+# update packages
+nix-channel --update && home-manager build && home-manager switch
