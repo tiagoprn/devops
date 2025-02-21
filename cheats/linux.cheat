@@ -303,3 +303,6 @@ echo 'use: !*'
 
 # reuse/repeat *NTH ARGUMENT* of a previous bash command on a new one ( "!$" means last argument of previous command  )
 echo 'use: ![NUMBER-HERE]'
+
+# diff 2 files: show only lines that are on file B but not on file A
+comm -13 <(sort <file-a>) <(sort <file-b>)
