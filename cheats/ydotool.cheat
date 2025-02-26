@@ -1,0 +1,94 @@
+% ydotool, wayland
+
+# Move the mouse cursor to the specified (x, y) coordinates.
+ydotool mousemove <x> <y>
+
+# Click the mouse (`0x110` for left click, `0x111` for right click, `0x112` for middle click)
+ydotool click <button>
+
+# Double-click the mouse (`0x110` for left click, `0x111` for right click, `0x112` for middle click)
+ydotool click --repeat 2 <button>
+
+# Simulate pressing and releasing a key. Replace <key> with the key name (e.g., `a`, `ctrl`, `shift`, `enter`).
+ydotool key <key>
+
+# Type a string
+ydotool type "<text>"
+
+# Move the mouse cursor by the specified (x, y) offset relative to its current position.
+ydotool mousemove_relative <x> <y>
+
+# Simulate scrolling the mouse wheel. Replace <amount> with a positive (up) or negative (down) value.
+ydotool mousemove --wheel <amount>
+
+# Type a key combination <e.g.: ctrl+c>
+ydotool key <key-combination>
+
+# Right-click at the current mouse position
+ydotool click 0x111
+
+# Middle-click at the current mouse position
+ydotool click 0x112
+
+# Simulate pressing the Power key.
+ydotool key power
+
+# Simulate pressing the Sleep key.
+ydotool key sleep
+
+# Simulate pressing the Wake key.
+ydotool key wake
+
+# Simulate pressing the Audio Mute key
+ydotool key audiomute
+
+# Simulate pressing the Audio Lower Volume key
+ydotool key audiolowervolume
+
+# Simulate pressing the Audio Raise Volume key
+ydotool key audioraisevolume
+
+# Simulate pressing the Audio Play key
+ydotool key audioplay
+
+# Simulate pressing the Audio Stop key
+ydotool key audiostop
+
+# Simulate pressing the Audio Previous key
+ydotool key audioprev
+
+# Simulate pressing the Audio Next key
+ydotool key audionext
+
+# Simulate pressing the Audio Rewind key
+ydotool key audiorewind
+
+# Simulate pressing the Audio Fast Forward key
+ydotool key audiofastforward
+
+# Simulate pressing the Brightness Down key
+ydotool key brightnessdown
+
+# Simulate pressing the Brightness Up key
+ydotool key brightnessup
+
+# Simulate pressing the Brightness Toggle key
+ydotool key brightnesstoggle
+
+# Simulate pressing the Brightness Minimum key
+ydotool key brightnessmin
+
+# Simulate pressing the Brightness Maximum key
+ydotool key brightnessmax
+
+# Simulate pressing the Brightness Auto key
+ydotool key brightnessauto
+
+# Simulate pressing the Brightness Reset key
+ydotool key brightnessreset
+
+# Simulate pressing the Brightness On key
+ydotool key brightnesson
+
+# Simulate pressing the Brightness Off key
+ydotool key brightnessoff

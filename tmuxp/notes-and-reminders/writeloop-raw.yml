@@ -5,7 +5,7 @@ windows:
     start_directory: /storage/src/writeloop-raw
     panes:
       - shell_command:
-        - nvim
+        - nvim -p PERSONAL/career/index.md PERSONAL/career/interviews/prospects/2025/index.md
         focus: true
   - window_name: git
     layout: even-vertical
