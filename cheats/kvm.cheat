@@ -21,8 +21,9 @@ sudo virsh list --all
 # get running vms (watch)
 watch -n 1 sudo virsh list --all
 
-# remove vm (first you have to stop it)
+# remove vm
 sudo virsh undefine $(sudo virsh list --all | fzf | awk '{print $2}') --snapshots-metadata
+@ (first you have to stop it)
 
 # list all networks and their statuses
 sudo virsh net-list --all
@@ -45,8 +46,9 @@ sudo virsh start $(sudo virsh list --all | fzf | awk '{print $2}')
 # stop a vm
 sudo virsh shutdown $(sudo virsh list --all | fzf | awk '{print $2}')
 
-# kill a vm (first it must be stopped)
+# kill a vm
 sudo virsh destroy $(sudo virsh list --all | fzf | awk '{print $2}')
+@ (first it must be stopped)
 
 # pause a vm
 sudo virsh suspend $(sudo virsh list --all | fzf | awk '{print $2}')
