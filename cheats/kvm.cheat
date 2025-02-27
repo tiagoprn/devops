@@ -1,87 +1,87 @@
 % kvm, libvirt, qemu, qcow2, virsh
 
-# Validate if the host has all it takes for virtualization
+# validate if the host has all it takes for virtualization
 sudo virt-host-validate
 
-# Create and enable a storage pool
+# create and enable a storage pool
 mkdir -p <path>  && sudo virsh pool-define-as <pool-name> dir - - - - <path> && sudo virsh pool-build <pool-name> && sudo virsh pool-start <pool-name> && sudo virsh pool-autostart <pool-name> && sudo virsh pool-list --all
 
-# KVM environment information
+# kvm environment information
 sudo virsh version --daemon
 
-# Show available storage pools
+# show available storage pools
 sudo virsh pool-list --all
 
-# Stop a storage pool, release its' resources, remove its' directory and definition:
+# stop a storage pool, release its' resources, remove its' directory and definition:
 sudo virsh pool-destroy <pool-name> && sudo virsh pool-delete <pool-name> && sudo virsh pool-undefine <pool-name>
 
-# Get running VMs
+# get running vms
 sudo virsh list --all
 
-# Get running VMs (watch)
+# get running vms (watch)
 watch -n 1 sudo virsh list --all
 
-# Remove VM (first you have to stop it)
+# remove vm (first you have to stop it)
 sudo virsh undefine $(sudo virsh list --all | fzf | awk '{print $2}') --snapshots-metadata
 
-# List all networks and their statuses
+# list all networks and their statuses
 sudo virsh net-list --all
 
-# Stop a network
+# stop a network
 sudo virsh net-destroy $(sudo virsh net-list --all | fzf | awk '{print $1}')
 
-# Start a network
+# start a network
 sudo virsh net-start $(sudo virsh net-list --all | fzf | awk '{print $1}')
 
-# Get all IPs on a network (used by VMs)
+# get all IPs on a network (used by VMs)
 sudo virsh net-dhcp-leases $(sudo virsh net-list --all | fzf | awk '{print $1}')
 
-# Show VM info
+# show vm info
 sudo virsh dominfo $(sudo virsh list --all | fzf | awk '{print $2}')
 
-# Start a VM
+# start a vm
 sudo virsh start $(sudo virsh list --all | fzf | awk '{print $2}')
 
-# Stop a VM
+# stop a vm
 sudo virsh shutdown $(sudo virsh list --all | fzf | awk '{print $2}')
 
-# Kill a VM (first it must be stopped)
+# kill a vm (first it must be stopped)
 sudo virsh destroy $(sudo virsh list --all | fzf | awk '{print $2}')
 
-# Pause a VM
+# pause a vm
 sudo virsh suspend $(sudo virsh list --all | fzf | awk '{print $2}')
 
-# Resume a paused VM
+# resume a paused vm
 sudo virsh resume $(sudo virsh list --all | fzf | awk '{print $2}')
 
-# Enable VM on boot
+# enable vm on boot
 sudo virsh autostart $(sudo virsh list --all | fzf | awk '{print $2}')
 
-# Disable VM from boot
+# disable vm from boot
 sudo virsh autostart $(sudo virsh list --all | fzf | awk '{print $2}') --disable
 
-# Show VM network configuration (MAC address etc.)
+# show vm network configuration (mac address etc.)
 sudo virsh domiflist $(sudo virsh list --all | fzf | awk '{print $2}')
 
-# Info on qcow2/img disk
+# info on qcow2/img disk
 qemu-img info <disk-file>
 
-# Info on qcow2/img disk (fdisk)
+# info on qcow2/img disk (fdisk)
 fdisk -l <disk-file>
 
-# Resize disk. E.g.: sudo virsh blockresize /storage/kvm/storage_pools/ubuntu18/ubuntu18-qcow2 15G
+# resize disk. e.g.: sudo virsh blockresize /storage/kvm/storage_pools/ubuntu18/ubuntu18-qcow2 15g
 sudo virsh blockresize <domain-name> <disk-file> <size>
 
-# Create qcow2 disk (size e.g. 10G)
+# create qcow2 disk (size e.g. 10g)
 qemu-img create -f qcow2 <qcow2-disk-file> -o size=<size>,preallocation=metadata
 
-# Convert image from qcow2 to img
+# convert image from qcow2 to img
 qemu-img convert <qcow2-image> <img-image>
 
-# Convert image from img to qcow2
+# convert image from img to qcow2
 qemu-img convert -f raw -O qcow2 <img-image> <qcow2-image>
 
-# Configure port forwarding:
+# configure port forwarding:
 sudo vim /etc/libvirt/hooks/qemu
 
 # desktop app
