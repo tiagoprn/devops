@@ -1,6 +1,9 @@
 % notifications, ntfy
 
-# send message (use a private topic for privacy)
+# send message (uses a private topic)
 curl -H "Authorization: Bearer $(pass api-keys/ntfy)" \
      -H "Title: <title>" \
-     -d "<message>" ntfy.sh/<topic>
+     -d "<message>" ntfy.sh/"$(cat $HOME/.config/ntfy-topics.txt | fzf --prompt 'Select a topic: ')"
+
+# show all available topics
+cat $HOME/.config/ntfy-topics.txt
