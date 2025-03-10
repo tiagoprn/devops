@@ -1,0 +1,6 @@
+% notifications, ntfy
+
+# send message (use a private topic for privacy)
+curl -H "Authorization: Bearer $(pass api-keys/ntfy)" \
+     -H "Title: <title>" \
+     -d "<message>" ntfy.sh/<topic>
