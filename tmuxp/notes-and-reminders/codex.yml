@@ -5,7 +5,7 @@ windows:
     start_directory: /storage/src/codex
     panes:
       - shell_command:
-        - nvim
+        - nvim -p 1-projects/index.md 2-areas/index.md
         focus: true
   - window_name: git
     layout: even-vertical
