@@ -1,0 +1,30 @@
+% aider, AI
+
+# install (uv)
+uv tool install --force --python python3.12 aider-chat@latest
+
+# install (pipx) - needs python 3.12 as of 2025-03-14 to work
+pipx install aider-chat@latest --force
+
+# launch in "code" mode - will directly edit files
+echo -e "NOTES:\n  - add '--verbose --no-pretty' to see all the raw information being sent to/from the LLM in the conversation;\n  - '--read' is a 'system prompt' file you can use with more specific instructions if needed." \
+	&& read -p "Press Enter to continue..." \
+	&& aider --vim \
+		--no-gitignore \
+		--watch-files \
+		--chat-mode code \
+		--openai-api-key $(pass api-keys/OPENAI) \
+		--anthropic-api-key $(pass api-keys/anthropic) \
+		--aiderignore /storage/src/dot_files/aider/ignore-list \
+		--config /storage/src/dot_files/aider/conf.yaml \
+		--read /storage/src/dot_files/AI-prompts/python-code-reviewer.txt
+
+# TODO: scripting aider e.g. for code reviews, comparing the current branch with a base one
+echo 'See instructions here: https://aider.chat/docs/scripting.html#scripting-aider'
+
+# generate repositoty map (repomap) - It contains the files and functions/classes definitions with their params
+aider --map-tokens 4096 \
+        --no-gitignore \
+	--aiderignore /storage/src/dot_files/aider/ignore-list \
+	--config /storage/src/dot_files/aider/conf.yaml \
+	--show-repo-map > repomap.txt
