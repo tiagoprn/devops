@@ -26,9 +26,14 @@ echo -e "
 		--config /storage/src/dot_files/aider/conf.yaml \
 		--read /storage/src/dot_files/AI-prompts/system/default-coding.md
 
+# (aider prompt command) comparing the current branch with a base one (useful e.g. for code reviews):
+echo '/run git diff <pr-branch>..<base-branch>' > /tmp/copied.txt && echo 'copied to clipboard file /tmp/copied.txt.'
 
-# TODO: scripting aider e.g. for code reviews, comparing the current branch with a base one
-echo 'See instructions here: https://aider.chat/docs/scripting.html#scripting-aider ; https://aider.chat/docs/faq.html#how-can-i-add-all-the-files-to-the-chat'
+# (aider prompt command) add last commit history to the chat context
+echo '/run git diff HEAD~1' > /tmp/copied.txt && echo 'copied to clipboard file /tmp/copied.txt.'
+
+# (aider prompt command) add last n commits history to the chat context
+echo '/run git diff HEAD~<number-of-commits>' > /tmp/copied.txt && echo 'copied to clipboard file /tmp/copied.txt.'
 
 # generate repositoty map (repomap) - It contains the files and functions/classes definitions with their params
 aider --map-tokens 4096 \
