@@ -28,7 +28,7 @@ echo -e "
 
 
 # TODO: scripting aider e.g. for code reviews, comparing the current branch with a base one
-echo 'See instructions here: https://aider.chat/docs/scripting.html#scripting-aider'
+echo 'See instructions here: https://aider.chat/docs/scripting.html#scripting-aider ; https://aider.chat/docs/faq.html#how-can-i-add-all-the-files-to-the-chat'
 
 # generate repositoty map (repomap) - It contains the files and functions/classes definitions with their params
 aider --map-tokens 4096 \
@@ -36,3 +36,4 @@ aider --map-tokens 4096 \
 	--aiderignore /storage/src/dot_files/aider/ignore-list \
 	--config /storage/src/dot_files/aider/conf.yaml \
 	--show-repo-map > repomap.txt
+

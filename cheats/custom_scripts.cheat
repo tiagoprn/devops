@@ -1,0 +1,5 @@
+% custom scripts
+
+# convert webpage url (html) to markdown:
+uv run /storage/src/dot_files/wayland/scripts/convert_url_to_markdown.py --output-file <md-file-path> <url> \
+	&& bat <md-file-path>

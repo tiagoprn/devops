@@ -55,6 +55,15 @@ uv tool install <tool_name>
 
 $ tool_name: echo "ruff"
 
+# list all tools installed with "uv tool"
+ls -lha $HOME/.local/share/uv/tools/
+
+# get python path of tool installed with "uv tool":
+ls -lha $(find $HOME/.local/share/uv/tools/ -maxdepth 1 -type d | grep -v '^\.' | fzf --prompt='Choose a uv tool > ')/bin/python
+
+# get path of all binaries/scripts of a tool installed with "uv tool"
+ls -lha $(find $HOME/.local/share/uv/tools/ -maxdepth 1 -type d | grep -v '^\.' | fzf --prompt='Choose a uv tool > ')/bin
+
 # run tool in ephemeral environment (try out a tool or one-off command once, without installing it)
 uvx <tool_name> <args>
 
