@@ -309,3 +309,6 @@ comm -13 <(sort <file-a>) <(sort <file-b>)
 
 # tree - 2 levels deep and only directories
 tree -d -L 2
+
+# distro information
+cat /etc/os-release
