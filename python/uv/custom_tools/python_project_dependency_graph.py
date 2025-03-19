@@ -14,6 +14,9 @@ Self-contained UV script to generate a Python module dependency graph.
 Usage:
     uv run dependency_graph.py --project-dir /path/to/project --namespace my_project --ignore auth,common,v0
 
+Note:
+    You need the following packages installed on your distro for it to work: `graphviz libgraphviz-dev` (on Ubuntu)
+
 This script:
 - Finds all `.py` files in the given `--project-dir`.
 - Analyzes imports matching the `--namespace`.
