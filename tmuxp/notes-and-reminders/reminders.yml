@@ -1,17 +1,6 @@
 session_name: REMINDERS
 windows:
-  - window_name: dashboard
-    layout: tiled
-    start_directory: /storage/docs/reminders
-    shell_command_before:
-      - clear
-      - source ~/.bashrc
-    panes:
-      - clear && ncal -3w -M
-      - watch -n 1 "/storage/src/dot_files/text_snippets/now.sh | figlet -c"
-      - /storage/src/reminders/scripts/notify-personal.sh && watch -n 1 /storage/src/reminders/scripts/personal.sh
-      - /storage/src/reminders/scripts/notify-tds.sh && watch -n 1 /storage/src/reminders/scripts/tds.sh
-  - window_name: editor
+  - window_name: nvim
     layout: even-vertical
     start_directory: /storage/docs/reminders
     shell_command_before:

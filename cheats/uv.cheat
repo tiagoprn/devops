@@ -50,6 +50,9 @@ uv run --python <python_version> -- <command>
 # run command with specific python version and dependencies (package names must be separated by ,)
 uv run --python <python_version> --with <package_names> -- <command>
 
+# generate python project dependency graph
+uv run /storage/src/devops/python/uv/custom_tools/python_project_dependency_graph.py
+
 # install python tool (like pipx)
 uv tool install <tool_name>
 
