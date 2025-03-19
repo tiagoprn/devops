@@ -50,8 +50,12 @@ uv run --python <python_version> -- <command>
 # run command with specific python version and dependencies (package names must be separated by ,)
 uv run --python <python_version> --with <package_names> -- <command>
 
-# generate python project dependency graph
-uv run /storage/src/devops/python/uv/custom_tools/python_project_dependency_graph.py
+# generate python project dependency tree/graph for "questrya" project
+uv run --python 3.12 -- /storage/src/devops/python/uv/custom_tools/python_project_dependency_graph.py \
+	--project-dir /storage/src/questrya/questrya \
+	--namespace questrya \
+	--ignore tests,migrations,auth,common,commons,v0 \
+	--output /storage/src/questrya/tmp/dependency_graph.svg
 
 # install python tool (like pipx)
 uv tool install <tool_name>

@@ -12,11 +12,12 @@
 Self-contained UV script to generate a Python module dependency graph.
 
 Usage:
-    uv run dependency_graph.py --project-dir /path/to/my_project --namespace my_project
+    uv run dependency_graph.py --project-dir /path/to/project --namespace my_project --ignore auth,common,v0
 
 This script:
 - Finds all `.py` files in the given `--project-dir`.
 - Analyzes imports matching the `--namespace`.
+- **Ignores directories listed in `--ignore` (recursively).**
 - Generates an **editable SVG** where nodes can be moved manually in Inkscape.
 """
 
@@ -26,10 +27,9 @@ import sys
 import typer
 import ast
 import networkx as nx
-import matplotlib.pyplot as plt
 import pygraphviz as pgv
 from pathlib import Path
-from typing import Set
+from typing import Set, List
 
 # Logging Configuration
 CURRENT_SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
@@ -69,16 +69,30 @@ def find_imports(filepath: Path, namespace: str) -> Set[str]:
     return imports
 
 
-def build_dependency_graph(root_dir: Path, namespace: str) -> nx.DiGraph:
+def build_dependency_graph(
+    root_dir: Path, namespace: str, ignore_dirs: List[str]
+) -> nx.DiGraph:
     """Create a directed graph of internal module dependencies."""
     graph = nx.DiGraph()
-    python_files = list(root_dir.rglob("*.py"))
+    ignore_paths = {
+        root_dir / d for d in ignore_dirs
+    }  # Convert to full paths for comparison
+
+    python_files = [
+        f
+        for f in root_dir.rglob("*.py")
+        if not any(ignored in f.parents for ignored in ignore_paths)
+    ]
 
     if not python_files:
-        logging.error(f"❌ No Python files found under: {root_dir}")
+        logging.error(
+            f"❌ No Python files found under: {root_dir} (after ignoring {ignore_dirs})"
+        )
         return graph
 
-    logging.info(f"✅ Found {len(python_files)} Python files under: {root_dir}")
+    logging.info(
+        f"✅ Found {len(python_files)} Python files under: {root_dir}"
+    )
 
     for filepath in python_files:
         module = (
@@ -88,7 +102,9 @@ def build_dependency_graph(root_dir: Path, namespace: str) -> nx.DiGraph:
             .rstrip(".py")
         )
         if module.endswith("__init__"):
-            module = module.rsplit(".", 1)[0]
+            module = module.rsplit(".", 1)[
+                0
+            ]  # Normalize __init__ module names
 
         imports = find_imports(filepath, namespace)
         if imports:
@@ -103,22 +119,56 @@ def build_dependency_graph(root_dir: Path, namespace: str) -> nx.DiGraph:
 def save_graphviz_svg(graph: nx.DiGraph, output_file: Path) -> None:
     """Generate an SVG with Graphviz (editable in Inkscape)."""
     A = nx.nx_agraph.to_agraph(graph)
-    A.layout(prog="dot")  # Use Graphviz's 'dot' layout engine
+
+    # Apply layout settings
+    A.graph_attr.update(
+        rankdir="TB",  # Top-to-bottom layout
+        nodesep="1.0",  # Increase spacing between nodes
+        ranksep="1.2",  # Increase spacing between levels
+    )
+
+    A.node_attr.update(
+        fontsize="14",  # Bigger fonts for better readability
+        shape="box",  # Boxed nodes for better visibility
+        style="filled",  # Filled background for contrast
+        fillcolor="lightblue",  # Light blue for modules
+    )
+
+    A.edge_attr.update(
+        arrowsize="1.2",  # Larger arrowheads
+        penwidth="1.5",  # Thicker edges for better visibility
+    )
+
+    A.layout(prog="dot")  # Use Graphviz 'dot' layout engine
     A.draw(output_file, format="svg")
-    logging.info(f"✅ Editable dependency graph saved as: {output_file}")
+
+    logging.info(f"✅ Improved dependency graph saved as: {output_file}")
 
 
 @app.command()
 def generate(
-    project_dir: Path = typer.Option(..., "--project-dir", help="Path to the Python project"),
-    namespace: str = typer.Option(..., "--namespace", help="Namespace to track"),
-    output_file: Path = typer.Option("dependency_graph.svg", "--output", help="Output SVG file"),
+    project_dir: Path = typer.Option(
+        ..., "--project-dir", help="Path to the Python project"
+    ),
+    namespace: str = typer.Option(
+        ..., "--namespace", help="Namespace to track"
+    ),
+    ignore: str = typer.Option(
+        "", "--ignore", help="Comma-separated list of subdirectories to ignore"
+    ),
+    output_file: Path = typer.Option(
+        "dependency_graph.svg", "--output", help="Output SVG file"
+    ),
 ):
     """Generate a dependency graph for the given Python project."""
     project_dir = project_dir.resolve()
+    ignore_dirs = ignore.split(",") if ignore else []
 
     logging.info(f"📂 Scanning project at: {project_dir}")
-    graph = build_dependency_graph(project_dir, namespace)
+    if ignore_dirs:
+        logging.info(f"🚫 Ignoring directories: {ignore_dirs}")
+
+    graph = build_dependency_graph(project_dir, namespace, ignore_dirs)
 
     if not graph.nodes:
         logging.error("❌ No dependencies found. The graph is empty.")
