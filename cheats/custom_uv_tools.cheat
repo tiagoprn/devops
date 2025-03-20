@@ -1,0 +1,12 @@
+% uv, custom, tools
+
+# convert (scrape) webpage url (html) to markdown:
+uv run /storage/src/devops/python/uv/custom_tools/convert_url_to_markdown.py --output-file <md-file-path> <url> \
+	&& bat <md-file-path>
+
+# generate python project dependency tree/graph for "questrya" project
+uv run --python 3.12 -- /storage/src/devops/python/uv/custom_tools/python_project_dependency_graph.py \
+	--project-dir /storage/src/questrya/questrya \
+	--namespace questrya \
+	--ignore tests,migrations,auth,common,commons,v0 \
+	--output $HOME/tmp/dependency_graph.svg
