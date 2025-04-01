@@ -5,3 +5,4 @@ yamllint
 pudb
 watchpoints
 icecream
+debugpy

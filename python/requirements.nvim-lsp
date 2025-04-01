@@ -1,14 +1,20 @@
 neovim
 pynvim
-black
-pylint==2.7.4
-isort
-pylint_flask
-pylint_django
+# black
+# pylint==2.7.4
+# isort
+# pylint_flask
+# pylint_django
 # below can be useful to convert tox.ini to python's pyproject.toml (used by ruff)
-flake8-to-ruff
-ruff
-mypy
+# flake8-to-ruff
+
+# prefer to install ruff globally if possible
+# ruff
+
+# mypy
+
+# needed by nvim-dap for debugging
+debugpy
 
 # pylsp language server (does not have workspace_symbols and codeAction)
 python-lsp-server[all]
