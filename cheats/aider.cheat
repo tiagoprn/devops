@@ -3,8 +3,8 @@
 # install (uv)
 uv tool install --force --python python3.12 aider-chat@latest
 
-# install (pipx) - needs python 3.12 as of 2025-03-14 to work
-pipx install aider-chat@latest --force
+# install (pyenv) - needs **python 3.12 pyenv venv** as of 2025-03-14 to work
+pip install aider-chat --force
 
 # launch in "ask" mode
 echo -e "
