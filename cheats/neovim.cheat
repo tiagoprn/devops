@@ -6,6 +6,9 @@ nvim --version
 # run bare nvim (ignoring init.lua and plugins)
 nvim -u NONE <file>
 
+# run without a UI, executes a lua command to get obsidian version and then quits (useful for automation, scripts or debugging)
+nvim --headless -c 'lua print("v" .. require("obsidian").VERSION)' -c q
+
 # script initialization example 01
 nvim <filename> +'normal!ggIztk'
 
