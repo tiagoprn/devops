@@ -21,6 +21,15 @@ nvm ls --no-colors | grep -v 'N/A' | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | sort -
 # nvm: activate node environment on current project folder (must have a ".nvmrc" file there)
 nvm use
 
+# nvm: show default node version
+nvm alias default
+
+# nvm: activate default node version
+nvm use default
+
+# nvm: change default node version
+nvm alias default $(nvm ls --no-colors | grep -v 'N/A' | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | sort -u | fzf | sed 's/v//g')
+
 # nvm: activate local node version (with fzf)
 nvm use $(nvm ls --no-colors | grep -v 'N/A' | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | sort -u | fzf | sed 's/v//g')
 
@@ -49,4 +58,5 @@ ls -lha $(nvm cache dir)/*
 # nvm: clear cache dir
 nvm cache clear
 
-
+# npx: run tool on ephemeral environment
+npx <@package-name> <command>
