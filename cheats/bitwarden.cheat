@@ -1,0 +1,10 @@
+% bitwarden, bw
+
+# install (please activate a node version with nvm first, to not pollute the system/distro node install)
+npm install -g @bitwarden/cli
+
+# login
+rm $HOME/.config/bw/.bw_session; bw logout && bw-login.sh
+
+# search
+bw --session $(cat $HOME/.config/bw/.bw_session) list items --search <text> | jq 'map({id, name, login, notes} | walk(if type == "object" then del(.fido2Credentials, .match, .totp) else . end))'

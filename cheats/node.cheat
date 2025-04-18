@@ -33,7 +33,7 @@ nvm alias default $(nvm ls --no-colors | grep -v 'N/A' | grep -oE 'v[0-9]+\.[0-9
 # nvm: activate local node version (with fzf)
 nvm use $(nvm ls --no-colors | grep -v 'N/A' | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | sort -u | fzf | sed 's/v//g')
 
-# nvm: show active node version details
+# node/npm/npx: show active node version details
 clear \
 	&& echo "Active node version: $(nvm current)" \
 	&& echo "Active node path: $(which node)" \
@@ -60,3 +60,12 @@ nvm cache clear
 
 # npx: run tool on ephemeral environment
 npx <@package-name> <command>
+
+# npm: install a package on YOUR PROJECT's dir (under `node_modules`)
+npm install <package-name>
+
+# npm: install a package on the GLOBAL SPACE FOR THE ACTIVE NODE VERSION (check your current node version first)
+npm install -g <package-name>
+
+# node: current version
+node --version && which node
