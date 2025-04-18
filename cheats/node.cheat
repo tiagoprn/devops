@@ -1,0 +1,42 @@
+% node, npm, nvm
+
+# codex doc on node basics
+bat /storage/src/codex/2-areas/coding/20250418-Fri-101858-local-node-versions-management.md
+
+# nvm: get latest release available on github:
+curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r .tag_name
+
+# nvm: install latest release (PROFILE is to not edit .bashrc, since I already have NVM_DIR setup there at the end)
+PROFILE=/dev/null bash -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r .tag_name)/install.sh | bash"
+
+# nvm: show version
+nvm --version
+
+# nvm: activate node environment on current project folder (must have a ".nvmrc" file there)
+nvm use
+
+# nvm: list available local node versions
+nvm ls
+
+# nvm: show which node version is active and its' path
+nvm current && which node
+
+# nvm: install a specific node version
+nvm install $(nvm ls-remote | fzf --exact --prompt 'select version: ' | awk '{print $1}' | sed 's/v//g')
+
+# nvm: install a specific node version (only Latest LTS versions)
+nvm install $(nvm ls-remote | grep 'Latest LTS' | fzf --exact --prompt 'select version: ' | awk '{print $1}' | sed 's/v//g')
+
+# nvm: remove, delete, or uninstall - just remove the local folder
+rm -fr $NVM_DIR
+
+# nvm: show path of the cache dir
+nvm cache dir
+
+# nvm: list contents of the cache dir
+ls -lha $(nvm cache dir)/*
+
+# nvm: clear cache dir
+nvm cache clear
+
+
