@@ -4,7 +4,10 @@
 npm install -g @bitwarden/cli
 
 # login
-rm $HOME/.config/bw/.bw_session; bw logout && bw-login.sh
+rm $HOME/.config/bw/.bw_session; bw logout; bw-login.sh
 
 # search
 bw --session $(cat $HOME/.config/bw/.bw_session) list items --search <text> | jq 'map({id, name, login, notes} | walk(if type == "object" then del(.fido2Credentials, .match, .totp) else . end))'
+
+# enter custom bitwarden config folder
+cd $HOME/.config/bw && ls -lha
