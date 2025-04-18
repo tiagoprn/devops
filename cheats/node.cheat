@@ -12,14 +12,24 @@ PROFILE=/dev/null bash -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm
 # nvm: show version
 nvm --version
 
+# nvm: list available local node versions (verbose)
+nvm ls
+
+# nvm: list available local node versions (only the versions)
+nvm ls --no-colors | grep -v 'N/A' | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | sort -u
+
 # nvm: activate node environment on current project folder (must have a ".nvmrc" file there)
 nvm use
 
-# nvm: list available local node versions
-nvm ls
+# nvm: activate local node version (with fzf)
+nvm use $(nvm ls --no-colors | grep -v 'N/A' | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | sort -u | fzf | sed 's/v//g')
 
-# nvm: show which node version is active and its' path
-nvm current && which node
+# nvm: show active node version details
+clear \
+	&& echo "Active node version: $(nvm current)" \
+	&& echo "Active node path: $(which node)" \
+	&& echo "npm version: $(npm --version)" \
+	&& echo "npx version: $(npx --version)";
 
 # nvm: install a specific node version
 nvm install $(nvm ls-remote | fzf --exact --prompt 'select version: ' | awk '{print $1}' | sed 's/v//g')
