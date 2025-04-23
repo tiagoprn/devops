@@ -24,6 +24,9 @@ tmux select-layout "<layout>"
 # current session name and window
 tmux display-message -p '#S #W'
 
+# send a notification/ message
+tmux display-message "<message>"
+
 # select (switch/change to) window by name on current session
 tmux select-window -t $(tmux list-windows -F '#W' | fzf)
 
