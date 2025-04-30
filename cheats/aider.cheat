@@ -6,25 +6,14 @@ uv tool install --force --python python3.12 aider-chat@latest
 # install (pyenv) - needs **python 3.12 pyenv venv** as of 2025-03-14 to work
 pip install aider-chat --force
 
-# launch in "ask" mode
-echo -e "
+# run for python assistance
+/storage/src/dot_files/aider/wrappers/default-coding-python.sh
 
-  NOTES:
-  - add '--verbose --no-pretty' to see all the raw information being sent to/from the LLM in the conversation;
-  - '--read' is a 'system prompt' file you can use with more specific instructions if needed;
-  - The chat starts in "ask" mode - change to "/code" or "/architect" to be able to edit code.
+# run for lua neovim assistance
+/storage/src/dot_files/aider/wrappers/default-coding-lua-neovim.sh
 
-  " \
-	&& read -p "Press Enter to continue..." \
-	&& aider --vim \
-		--no-gitignore \
-		--watch-files \
-		--chat-mode ask\
-		--openai-api-key $(pass api-keys/OPENAI) \
-		--anthropic-api-key $(pass api-keys/anthropic) \
-		--aiderignore /storage/src/dot_files/aider/ignore-list \
-		--config /storage/src/dot_files/aider/conf.yaml \
-		--read /storage/src/dot_files/AI-prompts/system/default-coding.md
+# run for general assistance (no-specific, not related to coding)
+/storage/src/dot_files/aider/wrappers/default.sh
 
 # (aider prompt command) comparing the current branch with a base one (useful e.g. for code reviews):
 echo '/run git diff <pr-branch>..<base-branch>' > /tmp/copied.txt && echo 'copied to clipboard file /tmp/copied.txt.'
