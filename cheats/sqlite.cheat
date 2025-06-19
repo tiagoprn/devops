@@ -1,0 +1,7 @@
+% sqlite
+
+# Dump a database (this is the way, simply copying the file can result in corrupted dbs if they change during the copy command - also, the text file is smaller because it has instructions to re-create the indexes, not the indexes per se)
+sqlite3 <db-file> .dump > <db-file>.txt
+
+# Restore the database (the indexes will be re-created)
+cat <dump-txt-file> | sqlite3 <db-file>
