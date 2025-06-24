@@ -35,3 +35,24 @@ sudo -- bash -c "brightnessctl -d $(brightnessctl -l | grep Device | awk '{print
 
 # intel gpu top
 sudo intel_gpu_top
+
+# list all devices, including touchpads (each device has a "eventX" property I must use to get its' properties)
+sudo libinput list-devices
+
+# list all touchpad device names
+sudo libinput list-devices | grep Touchpad | sed "s/Device://g"
+
+# show all input events (touchpad, mouse, keyboard)
+sudo libinput debug-events
+
+# reload udev rules (inhibit touchpad, etc...)
+sudo udevadm control --reload-rules && sudo udevadm trigger
+
+# check if the touchpad is inhibited
+cat /sys/class/input/event<number>/device/inhibited
+
+# enable/disable the touchpad
+sudoedit /sys/class/input/event<number>/device/inhibited
+
+# list udev rules (touchpad, etc...)
+ls -lha /etc/udev/rules.d
