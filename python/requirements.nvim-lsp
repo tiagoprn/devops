@@ -1,5 +1,12 @@
 neovim
 pynvim
+# jedi language server (has workspace_symbols and codeAction)
+jedi-language-server
+# needed by nvim-dap for debugging
+debugpy
+
+# --- Archived dependencies below:
+
 # black
 # pylint==2.7.4
 # isort
@@ -10,19 +17,13 @@ pynvim
 
 # prefer to install ruff globally if possible
 # ruff
-
 # mypy
 
-# needed by nvim-dap for debugging
-debugpy
-
 # pylsp language server (does not have workspace_symbols and codeAction)
-python-lsp-server[all]
-python-lsp-black
-python-lsp-server[websockets]
-pylsp-rope
-pyls-isort
-pyls-memestra
+# python-lsp-server[all]
+# python-lsp-black
+# python-lsp-server[websockets]
+# pylsp-rope
+# pyls-isort
+# pyls-memestra
 
-# jedi (has workspace_symbols and codeAction)
-jedi-language-server
