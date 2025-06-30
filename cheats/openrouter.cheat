@@ -1,0 +1,32 @@
+% AI, openrouter
+
+# (browser) list of available models to use on the API
+xdg-open https://openrouter.ai/models
+
+# (curl - full) list of available models to use on the API
+curl https://openrouter.ai/api/v1/models
+
+# (curl - summary) search of available models to use on the API
+curl -s https://openrouter.ai/api/v1/models | jq -r '.data[] | {id}' | fzf
+
+# (curl - summary) list of available models to use on the API
+curl -s https://openrouter.ai/api/v1/models | jq -r '.data[] | {id, canonical_slug, name}'
+
+# make a request to the API
+curl https://openrouter.ai/api/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENROUTER_API_KEY" \
+  -d '{
+  "model": "google/gemini-2.5-flash",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Hi, how are you?"
+        }
+      ]
+    }
+  ]
+}' | jq

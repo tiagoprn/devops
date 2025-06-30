@@ -307,6 +307,9 @@ echo 'use: ![NUMBER-HERE]'
 # diff 2 files: show only lines that are on file B but not on file A
 comm -13 <(sort <file-a>) <(sort <file-b>)
 
+# diff 2 directories - show only the names of the files that are different
+diff -r --brief <first_dir> <second_dir>
+
 # tree - 2 levels deep and only directories
 tree -d -L 2
 
