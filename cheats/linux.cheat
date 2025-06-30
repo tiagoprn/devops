@@ -315,3 +315,4 @@ tree -d -L 2
 
 # distro information
 cat /etc/os-release
+
