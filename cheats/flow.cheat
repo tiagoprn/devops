@@ -41,3 +41,6 @@ flow dashboard
 
 # export: for invoicing or analysis
 flow export --month <year>-<month> --format csv
+
+# flow backup
+/media/vault/host-backups/flow/backup.sh
