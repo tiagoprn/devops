@@ -3,24 +3,24 @@
 # pandoc manual
 xdg-open https://pandoc.org/MANUAL.html
 
+# install with typst to generate the final PDF (arch-derived distros)
+sudo pacman -S pandoc typst --noconfirm
+
 # pandoc samples (contains css for epub generation, epub metadata, etc...)
 xdg-open https://github.com/learnbyexample/learnbyexample.github.io/tree/master/files/pandoc_pdf
-
-# from markdown with TOC support (output-file-path-with-extension: pdf, epub, doc, docx, ... ; embedded-code-language: javascript, python, ...)
-pandoc <markdown-file-path> -o <output-file-path-with-extension> --table-of-contents --pdf-engine=xelatex --from=markdown --number-sections --indented-code-classes=<embedded-code-language> --highlight-style=monochrome -V mainfont="Ubuntu" -V documentclass=report -V papersize=A4
-
-# simple pdf file from markdown (simple document)
-pandoc <markdown-file-path> -o <pdf-file-path-with-extension> -H $(find /storage/src/dot_files/latex/templates/miscelaneous -name *.tex | fzf) --pdf-engine=xelatex --from=markdown+yaml_metadata_block --highlight-style=monochrome -V mainfont="Ubuntu" -V papersize=A4 && xdg-open <pdf-file-path-with-extension>
-
-# simple html file from markdown (simple document)
-pandoc <markdown-file-path> -o <html-file-path-with-extension> --pdf-engine=xelatex --from=markdown --highlight-style=monochrome -V mainfont="Ubuntu" -V papersize=A4 && xdg-open <html-file-path-with-extension>
 
 # site html to markdown
 pandoc -f html -t markdown --request-header User-Agent:"Mozilla/5.0" <site-url>
 
-# simple docx (MS Word) file from markdown (simple document)
-pandoc <markdown-file-path> -o <docx-file-path-with-extension> --pdf-engine=xelatex --from=markdown --highlight-style=monochrome -V mainfont="Ubuntu" -V papersize=A4 && xdg-open <docx-file-path-with-extension>
-
 # markdown to epub
 pandoc -o <epub-file> --metadata title="<epub-title>" --metadata author="<epub-author>" <markdown-file>
 
+# about typst and how it relates to pandoc
+bat /storage/src/dot_files/typst/README.md
+
+# markdown -> typst -> pdf
+pandoc <input-file-md> -t typst -o /tmp/<input-file-md>.typ && \
+	cat /storage/src/dot_files/typst/templates/minimal-note.typ /tmp/<input-file-md>.typ > /tmp/<input-file-md>.final.typ && \
+	rm /tmp/<input-file-md>.typ && \
+	typst compile /tmp/<input-file-md>.final.typ <output-file-pdf> && \
+	xdg-open <output-file-pdf>

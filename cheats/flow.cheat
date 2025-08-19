@@ -9,12 +9,6 @@ xdg-open https://github.com/e6a5/flow?tab=readme-ov-file#-flow-a-terminal-based-
 # etc: version
 flow version
 
-# day: set daily goal (e.g. 4h)
-flow goal --set <desired_time>
-
-# day: check current progress of the daily goal
-flow goal
-
 # day: review today's progress
 flow recent
 

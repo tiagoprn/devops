@@ -31,3 +31,22 @@ aider --map-tokens 4096 \
 	--config /storage/src/dot_files/aider/conf.yaml \
 	--show-repo-map > repomap.txt
 
+# aider - natural language
+echo -e "
+
+  NOTES:
+  - add '--verbose --no-pretty' to see all the raw information being sent to/from the LLM in the conversation;
+  - '--read' is a 'system prompt' file you can use with more specific instructions if needed;
+  - The chat starts in "ask" mode - change to "/code" or "/architect" to be able to edit code.
+
+  " \
+	&& read -p "To submit messages to the LLM on multiline mode (which we are using), use [Alt-Enter].\n\nNow, press Enter to continue..." \
+	&& aider --vim \
+		--no-git \
+		--chat-mode ask\
+		--config /storage/src/dot_files/aider/conf.yaml \
+		--dark-mode \
+		--code-theme solarized-dark \
+		--read /storage/src/ai-prompts/_persona.md \
+		--read /storage/src/ai-prompts/_system_natural_language.md
+
