@@ -4,10 +4,13 @@
 ffmpeg -i <input-file> -ss <start-timestamp> -to <finish-timestamp> -c copy <output-file>
 
 # Extract the sound from a video and save it as MP3:
-ffmpeg -i <video.mp4> -vn <sound.mp3>
+ffmpeg -i <video.mp4> -vn -acodec mp3 <sound.mp3>
 
 # Save a video as GIF, scaling the height to (e.g. 1000) px and setting framerate (e.g. 15):
 ffmpeg -i <video.ext> -vf 'scale=-1:<height>' -r <framerate> <output.gif>
+
+# generate a GIF from a video, with custom width and automatic proportional height, using lanczos compression algorithm
+ffmpeg -i <video.mp4> -vf "fps=<width>:-1:flags=lanczos" -c:v gif
 
 # Quickly extract a single frame from a video at timestamp (e.g. 0:01:50) and save it as an image with given resolution (e.g. 128x128):
 ffmpeg -ss <timestamp> -i <video.ext> -frames 1 -s <image-resolution> -f image2 <image.png>
@@ -20,3 +23,12 @@ mkdir audio && for i in *.mkv; do ffmpeg -i "${i}" -vn "audio/${i%%.*}.mp3"; don
 
 # Batch generate flac (audio) files from mkv files on current directory
 mkdir audio && for i in *.mkv; do ffmpeg -i "${i}" -vn "audio/${i%%.*}.flac"; done
+
+# shrink an image to a given width, automatic proportional height
+ffmpeg -i <input-file.png> -vf scale=<width>:-1 <output-file.jpg>
+
+# compress video
+ffmpeg -i <input-file.mp4> -vcodec libx264 -crf 23 -preset fast <output.mp4>
+
+# put text on a video (e.g. watermarks)
+ffmpeg -i <input.mp4> -vf "drawtext=text='<text>':fontcolor=white:fontsize=24:x=10:y=10"
