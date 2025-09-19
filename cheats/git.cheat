@@ -239,3 +239,6 @@ git restore --source="<other_branch_name>" .
 
 # maintenance - check repository integrity; perform garbage collection and prune
 git fsck --full && git gc --prune=now --aggressive
+
+# Create a new branch from a specific commit on the current branch, and switch to it
+git checkout -b <new-branch-name> <commit-hash-from-current-branch>
