@@ -1,0 +1,23 @@
+% gh, git
+
+# gh - cli - login
+gh auth login --web
+
+# gh - cli - list all open PRs
+gh pr list --repo <repo-owner>/<repo-name>
+
+# gh - cli - list files on a PR (manually inform PR number)
+gh api repos/<repo-owner>/<repo-name>/pulls/<pr_number>/files --paginate -q '.[] | [.filename, .status] | @tsv'
+
+# gh - cli - list files on a PR (fzf to select the PR)
+gh api repos/<repo-owner>/<repo-name>/pulls/$(gh pr list --repo <repo-owner>/<repo-name> | fzf | awk '{print $1}')/files --paginate -q '.[] | [.filename, .status] | @tsv'
+
+# gh - cli - checkout PR
+gh pr checkout <pr_number>
+
+# gh - cli - create patch file with the PR changes (you must be on the branch that has your feature/fix/etc...)
+git diff <base-branch> --unified=5 > pr_changes.patch  # 5 is the number of context lines around the changes, change here if needed
+
+# gh - cli - apply a patch file (if you need to do that for reviewing)
+git apply <patch-file>
+

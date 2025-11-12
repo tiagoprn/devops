@@ -1,4 +1,4 @@
-% git, gh
+% git
 
 # Get current branch
 git branch | grep ^* | cut -d ' ' -f 2
@@ -221,12 +221,6 @@ nvim -p $(GIT_DIFF_TOOL=vimdiff git difftool --name-only <branch_01>..<branch_02
 
 # Show files changed on current branch, comparing to another one
 GIT_DIFF_TOOL=vimdiff git difftool --name-only <reference-branch>
-
-# gh - cli - login
-gh auth login --web
-
-# gh - cli - checkout PR
-gh pr checkout <pr_number>
 
 # gh - cli - create patch file with the PR changes (you must be on the branch that has your feature/fix/etc...)
 git diff <base-branch> --unified=5 > pr_changes.patch  # 5 is the number of context lines around the changes, change here if needed
