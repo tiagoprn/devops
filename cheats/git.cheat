@@ -222,12 +222,6 @@ nvim -p $(GIT_DIFF_TOOL=vimdiff git difftool --name-only <branch_01>..<branch_02
 # Show files changed on current branch, comparing to another one
 GIT_DIFF_TOOL=vimdiff git difftool --name-only <reference-branch>
 
-# gh - cli - create patch file with the PR changes (you must be on the branch that has your feature/fix/etc...)
-git diff <base-branch> --unified=5 > pr_changes.patch  # 5 is the number of context lines around the changes, change here if needed
-
-# gh - cli - apply a patch file (if you need to do that for reviewing)
-git apply <patch-file>
-
 # get changes from another branch without merging or putting into the staging area (just changing the files so they can be reviewed on a git diff tool)
 git restore --source="<other_branch_name>" .
 
@@ -236,3 +230,12 @@ git fsck --full && git gc --prune=now --aggressive
 
 # Create a new branch from a specific commit on the current branch, and switch to it
 git checkout -b <new-branch-name> <commit-hash-from-current-branch>
+
+# difftastic: file diff from current branch to target
+export COMPARE_FILE="<file_path>" && \
+export TMP_DEV=$(mktemp) &&\
+export TMP_HEAD=$(mktemp) &&\
+git show origin/<target-branch>:"$COMPARE_FILE" > $TMP_DEV &&\
+git show HEAD:"$COMPARE_FILE" > $TMP_HEAD &&\
+difft $TMP_DEV $TMP_HEAD &&\
+rm $TMP_DEV $TMP_HEAD
