@@ -1,6 +1,6 @@
 % sudo
 
-# sudo run command preserving user environment variables
+# sudo run command preserving user environment variables (useful to also run wayland apps on the CLI like e.g. gparted and rpi-imager)
 sudo -E <command>
 
 # sudo edit a file preserving user environment variables (e.g. keeping $EDITOR)

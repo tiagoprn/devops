@@ -11,3 +11,6 @@ sudo tailscale set --ssh && notify-send "Now you can ssh into this machine or an
 
 # enable routing traffic through this machine through out of the Wireguard Secure Tunnel
 sudo tailscale set --advertise-exit-node
+
+# status of tailscale nodes
+sudo tailscale status
