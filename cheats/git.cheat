@@ -239,3 +239,6 @@ git show origin/<target-branch>:"$COMPARE_FILE" > $TMP_DEV &&\
 git show HEAD:"$COMPARE_FILE" > $TMP_HEAD &&\
 difft $TMP_DEV $TMP_HEAD &&\
 rm $TMP_DEV $TMP_HEAD
+
+# tars git server (rpi 400): create new repo on the server and clone locally
+ssh tars "cd /srv/git && git init --bare /srv/git/<repo-name>.git" && git clone tiago@tars:/srv/git/<repo-name>.git && cd <repo-name>
