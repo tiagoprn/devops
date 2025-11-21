@@ -1,10 +1,22 @@
 % rust, cargo
 
+# list all binaries/tools installed with cargo
+cargo install --list
+
 # install the update manager tool
-cargo install cargo-update
+cargo install cargo-update --locked
+
+# install tool/package/binary
+cargo install <tool-name> --locked  # "locked" forces cargo to use the exact dependency versions as specified in the lockfile
+
+# install tool/package/binary on specific version
+cargo install <tool-name> --locked --version <version>  # "locked" forces cargo to use the exact dependency versions as specified in the lockfile
 
 # update all packages installed with cargo to the latest version (requires "cargo-update" tool installed)
 cargo install-update -a
 
 # update a single package (e.g. gitui)
 cargo install-update <tool-name>
+
+# upgrade cargo/rustc to latest stable version
+echo 'OLD VERSION: ' && rustc --version && rustup update stable && rustup default stable && echo 'NEW VERSION: ' && rustc --version
