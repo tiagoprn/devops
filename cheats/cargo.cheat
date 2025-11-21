@@ -1,0 +1,10 @@
+% rust, cargo
+
+# install the update manager tool
+cargo install cargo-update
+
+# update all packages installed with cargo to the latest version (requires "cargo-update" tool installed)
+cargo install-update -a
+
+# update a single package (e.g. gitui)
+cargo install-update <tool-name>
