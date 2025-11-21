@@ -241,7 +241,7 @@ difft $TMP_DEV $TMP_HEAD &&\
 rm $TMP_DEV $TMP_HEAD
 
 # tars git server (rpi 400): create new repo on the server and clone locally
-ssh tars "cd /srv/git && git init --bare /srv/git/<repo-name>.git" && git clone tiago@tars:/srv/git/<repo-name>.git && cd <repo-name>
+ssh tars "cd /srv/git && git init --bare /srv/git/<repo-name>.git" && git clone ssh://tiago@tars:/srv/git/<repo-name>.git && cd <repo-name>
 
 # tars git server (rpi 400): add as origin for local repo
-git remote add origin tiago@tars:/srv/git/<repo-name>.git
+git remote add origin ssh://tiago@tars:/srv/git/<repo-name>.git
