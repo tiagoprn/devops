@@ -27,6 +27,9 @@ nvim -O <file1> <file2>
 # open 2 or more files, on horizontal splits
 nvim -o <file1> <file2>
 
+# open all files on current directory with a specific pattern on a tab (e.g. pattern: "*.sh")
+find . -name "<pattern>" -print0 | xargs -0 nvim -p
+
 # script initialization example 03 - run something before vimrc
 nvim --cmd 'echo "This runs before .vimrc"' -c ':call UltiSnips#ListSnippets()' -c '<Esc>' -c ':q!'
 
