@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  magicmirror:
+    image: bastilimbach/docker-magicmirror:latest
+    container_name: magicmirror
+    ports:
+      - "2814:8080"
+    restart: unless-stopped
+    environment:
+      - TZ=America/Sao_Paulo
+    user: "${UID}:${GID}"
+    volumes:
+      - ./config:/opt/magic_mirror/config  # Persistent config
+      - ./modules:/opt/magic_mirror/modules  # Persistent custom modules (optional)
