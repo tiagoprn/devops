@@ -18,12 +18,18 @@ sudo pacman -Ql <package-name>
 # force kernel recompilation (EndeavourOS)
 sudo dracut --force --regenerate-all
 
-# regenerate the mirror list, exclude the ones from Brazil and the ones that fail during the refresh
-echo 'updating mirror list...' && \
-sudo reflector --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist --country $(reflector --list-countries | grep -v "Brazil" | awk '{print $2}' | tr '\n' ',' | sed 's/,$//') --latest 10 --score 20 && \
+# regenerate/update pacman mirrorlist (needs package "rate-mirrors" installed through pacman)
+echo 'updating mirror list (arch ones)...' && \
+rate-mirrors --disable-comments-in-file --entry-country=BR --protocol=https arch | sudo tee /etc/pacman.d/mirrorlist && \
+echo 'updating mirror list (endeavouros ones)...' && \
+rate-mirrors --disable-comments-in-file --entry-country=BR --protocol=https endeavouros | sudo tee /etc/pacman.d/endeavouros-mirrorlist && \
 echo 'Syncing the database and updating packages...' && \
-sudo pacman -Syyu
+sudo pacman -Syy && \
+echo 'DONE. Getting list of upgradable packages now...' && \
+yay -Qu
 
 # upgrade all packages, flatpaks and update and compile nvim:
 yay -Syu --noconfirm && flatpak update -y && /storage/src/pde.nvim/scripts/sync-neovim.sh && /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh
 
+# see a list of outdated/upgradable/updatable packages
+yay -Qu
