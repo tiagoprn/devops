@@ -1,0 +1,28 @@
+% presentation, board, wayscriber
+
+# install (do this with my normal user)
+cd /opt/src && git clone https://github.com/devmobasa/wayscriber.git && cd wayscriber && RUSTUP_TOOLCHAIN=nightly cargo build --release && sudo install -Dm755 target/release/wayscriber /usr/local/bin/wayscriber && wayscriber --version
+
+# update (do this with my normal user)
+wayscriber --version && cd /opt/src/wayscriber && git pull && RUSTUP_TOOLCHAIN=nightly cargo build --release && sudo install -Dm755 target/release/wayscriber /usr/local/bin/wayscriber && wayscriber --version
+
+# one-shot mode (can be bind to hyprland)
+wayscriber --active
+
+# one-shot mode - whiteboard (can be bind to hyprland)
+wayscriber --active --mode whiteboard
+
+# one-shot mode - blackboard (can be bind to hyprland)
+wayscriber --active --mode blackboard
+
+# configurator
+wayscriber-configurator
+
+# Inspect saved sessions
+wayscriber --session-info
+
+# Remove stored boards
+wayscriber --clear-session
+
+# Open github repository
+xdg-open https://github.com/devmobasa/wayscriber
