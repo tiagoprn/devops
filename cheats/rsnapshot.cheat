@@ -1,0 +1,13 @@
+% rsnapshot
+
+# Do backup
+rsnapshot -V -c /storage/src/iac/raspberries/tars/shellscripts/rsnapshot/enterprise-d/rsnapshot.conf $(cat /storage/src/iac/raspberries/tars/shellscripts/rsnapshot/enterprise-d/rsnapshot.conf | grep retain | cut -f 2 | fzf --prompt "Select an interval: " --height 1%)
+
+# Diff between 2 backups (only what changed)
+rsnapshot-diff -H -v /BACKUPS/rsnapshot/enterprise-d/3hourly.1 /BACKUPS/rsnapshot/enterprise-d/3hourly.0
+
+# Diff between 2 backups (what changed + did not change)
+rsnapshot-diff -H -V /BACKUPS/rsnapshot/enterprise-d/3hourly.1 /BACKUPS/rsnapshot/enterprise-d/3hourly.0
+
+# Space used in all snapshots (backups_path example: )
+du -shc /BACKUPS/rsnapshot/enterprise-d/*
