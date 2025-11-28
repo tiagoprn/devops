@@ -9,5 +9,5 @@ rsnapshot-diff -H -v /BACKUPS/rsnapshot/enterprise-d/3hourly.1 /BACKUPS/rsnapsho
 # Diff between 2 backups (what changed + did not change)
 rsnapshot-diff -H -V /BACKUPS/rsnapshot/enterprise-d/3hourly.1 /BACKUPS/rsnapshot/enterprise-d/3hourly.0
 
-# Space used in all snapshots (backups_path example: )
+# Space used in all snapshots
 du -shc /BACKUPS/rsnapshot/enterprise-d/*
