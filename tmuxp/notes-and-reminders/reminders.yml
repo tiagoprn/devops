@@ -8,7 +8,7 @@ windows:
       - source ~/.bashrc
     panes:
       - shell_command:
-        - nvimai personal.rem
+        - nvim appointments.rem
         focus: true
   - window_name: git
     layout: even-vertical
