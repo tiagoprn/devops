@@ -1,10 +1,16 @@
-% aider, AI
+% aider, AI, playwright
 
-# install (uv)
+# aider install (uv)
 uv tool install --force --python python3.12 aider-chat@latest
 
-# install (pyenv) - needs **python 3.12 pyenv venv** as of 2025-03-14 to work
-pip install aider-chat --force
+# aider install (pipx)
+pipx install aider-chat
+
+# playwright install (uv) - useful to run web searches with /web
+uv tool install playwright
+
+# playwright install (pipx) - useful to run web searches with /web
+pipx install playwright
 
 # run for python assistance
 /storage/src/dot_files/aider/wrappers/default-coding-python.sh
