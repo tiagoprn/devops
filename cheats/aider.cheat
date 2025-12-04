@@ -58,3 +58,6 @@ echo -e "
 
 # ask a question and quit (leverage the "a" bash alias)
 a --message "<task-or-question>"
+
+# provide file with message/messages and quit (leverage the "a" bash alias)
+a -f <path-to-messages-file>
