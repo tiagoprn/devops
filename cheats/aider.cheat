@@ -57,4 +57,4 @@ echo -e "
 		--read /storage/src/ai-prompts/_system_natural_language.md
 
 # ask a question and quit (leverage the "a" bash alias)
-a --message "<your message here>"
+a --message "<task-or-question>"
