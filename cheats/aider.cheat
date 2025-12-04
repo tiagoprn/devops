@@ -1,4 +1,4 @@
-% aider, AI, playwright
+% aider
 
 # aider install (uv)
 uv tool install --force --python python3.12 aider-chat@latest
@@ -6,11 +6,15 @@ uv tool install --force --python python3.12 aider-chat@latest
 # aider install (pipx)
 pipx install aider-chat
 
-# playwright install (uv) - useful to run web searches with /web
-uv tool install playwright
+# install playwright
+clear && echo -e "
+	This must be installed on the same uv/pipx env where aider is installed, so that it can locate and use it properly.
 
-# playwright install (pipx) - useful to run web searches with /web
-pipx install playwright
+	So, use the following prompt on aider to trigger the process (you can just confirm the prompts for it to do that automatically):
+
+	Please read https://aider.chat/docs/usage/tips.html and summarize the main tips.
+
+"
 
 # run for python assistance
 /storage/src/dot_files/aider/wrappers/default-coding-python.sh
