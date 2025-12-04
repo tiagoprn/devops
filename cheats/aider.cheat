@@ -31,7 +31,7 @@ aider --map-tokens 4096 \
 	--config /storage/src/dot_files/aider/conf.yaml \
 	--show-repo-map > repomap.txt
 
-# aider - natural language
+# natural language
 echo -e "
 
   NOTES:
@@ -50,3 +50,5 @@ echo -e "
 		--read /storage/src/ai-prompts/_persona.md \
 		--read /storage/src/ai-prompts/_system_natural_language.md
 
+# ask a question and quit (leverage the "a" bash alias)
+a --message "<your message here>"
