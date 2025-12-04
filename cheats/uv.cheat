@@ -55,8 +55,14 @@ uv tool install <tool_name>
 
 $ tool_name: echo "ruff"
 
-# list all tools installed with "uv tool"
-ls -lha $HOME/.local/share/uv/tools/
+# list all uv tools
+uv tool list
+
+# upgrade all uv tools
+uv tool upgrade --all
+
+# reinstall all uv tools (e.g. on a new python version)
+uv tool upgrade --all --reinstall
 
 # get python path of tool installed with "uv tool":
 ls -lha $(find $HOME/.local/share/uv/tools/ -maxdepth 1 -type d | grep -v '^\.' | fzf --prompt='Choose a uv tool > ')/bin/python
