@@ -1,0 +1,10 @@
+% android
+
+# connect via USB to device (faster and lowest latency - prefer this over Wi-Fi)
+scrcpy
+
+# connect via USB to device (limits the larger side - width or height - to 1440 pixels & scales other side proportionally, preserving the aspect ratio)
+scrcpy --max-size 1440  #
+
+# show devices that are connected
+adb devices
