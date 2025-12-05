@@ -16,23 +16,17 @@ clear && echo -e "
 
 "
 
+# run for general assistance (no-specific, not related to coding) - bash alias "a"
+a
+
 # run for python assistance
 /storage/src/dot_files/aider/wrappers/default-coding-python.sh
 
 # run for lua neovim assistance
 /storage/src/dot_files/aider/wrappers/default-coding-lua-neovim.sh
 
-# run for general assistance (no-specific, not related to coding)
-/storage/src/dot_files/aider/wrappers/default.sh
-
-# (aider prompt command) comparing the current branch with a base one (useful e.g. for code reviews):
-echo '/run git diff <pr-branch>..<base-branch>' > /tmp/copied.txt && echo 'copied to clipboard file /tmp/copied.txt.'
-
-# (aider prompt command) add last commit history to the chat context
-echo '/run git diff HEAD~1' > /tmp/copied.txt && echo 'copied to clipboard file /tmp/copied.txt.'
-
-# (aider prompt command) add last n commits history to the chat context
-echo '/run git diff HEAD~<number-of-commits>' > /tmp/copied.txt && echo 'copied to clipboard file /tmp/copied.txt.'
+# run for bash (shellscript) assistance
+/storage/src/dot_files/aider/wrappers/default-coding-bash.sh
 
 # generate repositoty map (repomap) - It contains the files and functions/classes definitions with their params
 aider --map-tokens 4096 \
