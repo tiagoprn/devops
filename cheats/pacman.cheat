@@ -29,7 +29,7 @@ echo 'DONE. Getting list of upgradable packages now...' && \
 yay -Qu
 
 # upgrade all packages, flatpaks and update and compile nvim:
-yay -Syu --noconfirm && flatpak update -y && /storage/src/pde.nvim/scripts/sync-neovim.sh && /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh
+yay -Syu --noconfirm && flatpak update -y && /storage/src/pde.nvim/scripts/sync-neovim.sh && /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh && pipx upgrade-all && uv tool upgrade --all
 
 # see a list of outdated/upgradable/updatable packages
 yay -Qu
