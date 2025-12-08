@@ -5,7 +5,7 @@ windows:
     start_directory: /storage/src/ai-prompts
     panes:
       - shell_command:
-        - nvim -c 'Telescope find_files'
+        - nvim
         focus: true
   - window_name: git
     layout: even-vertical
