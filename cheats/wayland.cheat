@@ -20,3 +20,17 @@ vkcube  # installed with package vulkan-tools
 
 # open gparted with sudo permissions on wayland
 pkexec env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR gparted
+
+# install wayscriber (screenshots/black-white board)
+cd ~/.cargo/src \
+	&& git clone https://github.com/devmobasa/wayscriber.git \
+	&& cd wayscriber \
+	&& cargo build --release \
+	&& sudo cp -farv target/release/wayscriber /usr/local/bin/wayscriber
+
+# update wayscriber (screenshots/black-white board)
+cd ~/.cargo/src/wayscriber \
+	&& git pull \
+	&& cargo build --release \
+	&& sudo cp -farv /usr/local/bin/wayscriber /usr/local/bin/wayscriber.OLD
+	&& sudo cp -farv target/release/wayscriber /usr/local/bin/wayscriber
