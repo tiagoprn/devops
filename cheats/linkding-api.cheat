@@ -4,3 +4,16 @@
 curl -s \
   -H "Authorization: Token $(pass xplab.dev/linkding_api_token)" \
   "http://192.168.122.85:7171/api/bookmarks/?limit=5" | jq
+
+# create bookmark - e.g. tags: "test1", "test2"
+curl -X POST "http://192.168.122.85:7171/api/bookmarks/" \
+  -H "Authorization: Token $(pass xplab.dev/linkding_api_token)" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "<url>",
+    "title": "<title>",
+    "description": "<description>",
+    "notes": "<notes>",
+    "unread": <unread_bool>,
+    "tags": [<tags_separated_by_comma>]
+  }'
