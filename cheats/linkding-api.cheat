@@ -1,0 +1,6 @@
+% linkding, api
+
+# get bookmarks
+curl -s \
+  -H "Authorization: Token $(pass xplab.dev/linkding_api_token)" \
+  "http://192.168.122.85:7171/api/bookmarks/?limit=5" | jq
