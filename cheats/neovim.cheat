@@ -81,11 +81,11 @@ grep -E -o '"{1}.*/.*"{1}' /storage/src/dot_files/nvim/lua/plugins.lua | fzf | s
 # Search/grep/select plugin on plugins.lua and copy its github repository
 grep -E -o '"{1}.*/.*"{1}' /storage/src/dot_files/nvim/lua/plugins.lua | fzf | echo "https://github.com/$(sed 's/\"//g')" | cb
 
-# Update/upgrade/(re)compile nvim and its' pyenv virtualenv (pipx upgrade upgrades also ruff and other tools installed with pipx)
-/storage/src/pde.nvim/scripts/sync-neovim.sh && /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh && pipx upgrade-all
+# Update/upgrade/(re)compile nvim and its' pyenv virtualenv (pipx upgrade upgrades also ruff and other tools installed with pipx and cargo)
+/storage/src/pde.nvim/scripts/sync-neovim.sh && /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh && pipx upgrade-all && cargo install-update -a
 
-# Update/upgrade/(re)compile nvim, its' uv virtualenv, ruff and all uv tools
-/storage/src/pde.nvim/scripts/sync-neovim.sh && uv tool upgrade ruff && uv self update && /storage/src/pde.nvim/scripts/update-neovim-uv-virtualenv.sh && uv tool upgrade --all
+# Update/upgrade/(re)compile nvim, its' uv virtualenv, ruff and all uv and cargo tools
+/storage/src/pde.nvim/scripts/sync-neovim.sh && uv tool upgrade ruff && uv self update && /storage/src/pde.nvim/scripts/update-neovim-uv-virtualenv.sh && uv tool upgrade --all && cargo install-update -a
 
 # Compile from updated master branch
 /storage/src/pde.nvim/scripts/sync-neovim.sh
