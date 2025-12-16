@@ -13,14 +13,16 @@ gh api repos/<repo-owner>/<repo-name>/pulls/<pr_number>/files --paginate -q '.[]
 gh api repos/<repo-owner>/<repo-name>/pulls/$(gh pr list --repo <repo-owner>/<repo-name> | fzf | awk '{print $1}')/files --paginate -q '.[] | [.filename, .status] | @tsv'
 
 # gh - cli - checkout PR
-gh pr checkout <pr_number>
+gh pr --repo <repo-owner>/<repo-name> checkout <pr_number>
 
 # get target branch of a PR (fzf to select the PR)
-gh pr view $(gh pr list --repo <repo-owner>/<repo-name> | fzf | awk '{print $1}') --json baseRefName --jq .baseRefName
+gh pr --repo <repo-owner>/<repo-name> view $(gh pr list --repo <repo-owner>/<repo-name> | fzf | awk '{print $1}') --json baseRefName --jq .baseRefName
+
+# get PR contents (diff) as a file
+gh pr --repo <repo-owner>/<repo-name> diff $(gh pr list --repo <repo-owner>/<repo-name> | fzf | awk '{print $1}') --patch > /tmp/diff.patch && echo -e '\nFINISHED! The PR contents is at /tmp/diff.patch\n\n'
 
 # gh - cli - create patch file with the PR changes (you must be on the branch that has your feature/fix/etc...)
 git diff <base-branch> --unified=5 > pr_changes.patch  # 5 is the number of context lines around the changes, change here if needed
 
 # gh - cli - apply a patch file (if you need to do that for reviewing)
 git apply <patch-file>
-
