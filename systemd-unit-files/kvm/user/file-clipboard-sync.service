@@ -1,0 +1,6 @@
+[Unit]
+Description=Sync clipboard file to kvm host
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /storage/src/dot_files/wayland/scripts/copy-clipboard-file-to-kvm-host.sh
