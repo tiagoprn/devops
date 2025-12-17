@@ -70,3 +70,8 @@ hyprctl dispatch movecurrentworkspacetomonitor $(hyprctl monitors all -j | jq -r
 # wofi menu
 echo -e 'AAAA\nBBBB\nCCCC' | wofi --dmenu --prompt="<prompt_message>"
 
+# recent logs
+tail -n 50 ls "$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log"
+
+# clipboard file logs
+tail -f -n 1000 ~/.local/state/hyprland/monitor-clipboard-file.log
