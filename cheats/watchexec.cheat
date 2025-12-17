@@ -1,0 +1,13 @@
+% watchexec, entr, files
+
+# install watchexec
+cargo install watchexec-cli --locked
+
+# usage examples
+xdg-open https://github.com/watchexec/watchexec/tree/main/crates/cli#usage-examples
+
+# watch file ~/tmp/copied.txt and trigger wayland clipboard update
+watchexec --watch ~/tmp --filter 'copied.txt' /storage/src/dot_files/wayland/scripts/copy-file-clipboard-to-wayland-clipboard.sh
+
+# debug watchexec: whow current open files and inotify instances & watches
+/storage/src/dot_files/wayland/scripts/open-files-inotify-instances.sh
