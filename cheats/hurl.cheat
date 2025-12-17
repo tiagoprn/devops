@@ -1,0 +1,4 @@
+% hurl, API
+
+# install
+cargo install hurl --locked
