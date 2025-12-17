@@ -6,7 +6,7 @@ cargo install watchexec-cli --locked
 # usage examples
 xdg-open https://github.com/watchexec/watchexec/tree/main/crates/cli#usage-examples
 
-# watch file ~/tmp/clipboard/copied.txt and trigger wayland clipboard update (debug mode: add '-vvvv')
+# watch file /tmp/clipboard/copied.txt and trigger wayland clipboard update (debug mode: add '-vvvv')
 watchexec --watch /tmp/clipboard --filter 'copied.txt' /storage/src/dot_files/wayland/scripts/copy-file-clipboard-to-wayland-clipboard.sh
 
 # debug watchexec: whow current open files and inotify instances & watches
