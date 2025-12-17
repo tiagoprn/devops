@@ -2,7 +2,7 @@
 
 TIMESTAMP=$(date '+%Y%m%d.%H%M%S')
 
-COPY="/tmp/copied.$TIMESTAMP.txt"
+COPY="/tmp/clipboard/copied.$TIMESTAMP.txt"
 
-cp /tmp/copied.txt $COPY
-echo "Backup of '/tmp/copied.txt' is available at '$COPY'."
+cp /tmp/clipboard/copied.txt $COPY
+echo "Backup of '/tmp/clipboard/copied.txt' is available at '$COPY'."
