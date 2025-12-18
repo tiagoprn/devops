@@ -28,8 +28,14 @@ sudo pacman -Syy && \
 echo 'DONE. Getting list of upgradable packages now...' && \
 yay -Qu
 
-# upgrade all packages, flatpaks and update and compile nvim:
-yay -Syu --noconfirm && flatpak update -y && /storage/src/pde.nvim/scripts/sync-neovim.sh && /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh && pipx upgrade-all && uv tool upgrade --all
+# upgrade all packages, flatpaks, update and compile nvim, upgrade all packages installed wityh pipx, uv tool and cargo:
+yay -Syu --noconfirm \
+&& flatpak update -y \
+&& /storage/src/pde.nvim/scripts/sync-neovim.sh \
+&& /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh \
+&& pipx upgrade-all \
+&& uv tool upgrade --all \
+&& cargo install-update -a
 
 # see a list of outdated/upgradable/updatable packages
 yay -Qu
