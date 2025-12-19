@@ -1,12 +1,12 @@
 % flow (deep work, one task at a time)
 
-# etc: install / update
+# install / update
 curl -sSL https://raw.githubusercontent.com/e6a5/flow/main/install.sh | bash
 
-# etc: go to github repository
+# open github repository
 xdg-open https://github.com/e6a5/flow?tab=readme-ov-file#-flow-a-terminal-based-tool-for-deep-work
 
-# etc: version
+# show current version
 flow version
 
 # day: review today's progress
