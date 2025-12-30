@@ -1,0 +1,13 @@
+% AI, fabric
+
+# install
+yay -S fabric-ai --noconfirm
+
+# setup
+fabric-ai --setup
+
+# list all custom modules (created by me)
+ls -lha /storage/src/ai-prompts/fabric
+
+# (custom module) convert from celsius to fahrenheit - e.g. text: Today is 25C, yesterday was -3.5C.
+echo "<text>" | fabric-ai -p convert_c_to_f
