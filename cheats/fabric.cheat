@@ -3,6 +3,9 @@
 # install (must have yt-dlp installed for the YouTube related features)
 yay -S fabric-ai --noconfirm
 
+# open git repo url
+xdg-open https://github.com/danielmiessler/Fabric
+
 # setup
 fabric-ai --setup
 
@@ -23,3 +26,12 @@ fabric-ai -y '<youtube-video-url>' --stream --pattern summarize
 
 # Extract wisdom from youtube video (it automatically gets the transcript)
 fabric-ai -y '<youtube-video-url>' --stream --pattern extract_wisdom
+
+# get (scrape) URL contents as markdown
+fabric-ai -u '<url>' > <markdown-file-path>
+
+# summarize URL contents
+fabric-ai -u '<url>' -p summarize
+
+# extract wisdom from URL contents
+fabric-ai -u '<url>' -p extract_wisdom
