@@ -35,3 +35,6 @@ fabric-ai -u '<url>' -p summarize
 
 # extract wisdom from URL contents
 fabric-ai -u '<url>' -p extract_wisdom
+
+# process monthly hours report
+cat <report-txt-file> | fabric-ai -p monthly_hours_invoice
