@@ -56,3 +56,6 @@ sudoedit /sys/class/input/event<number>/device/inhibited
 
 # list udev rules (touchpad, etc...)
 ls -lha /etc/udev/rules.d
+
+# mechanical keyboard corne v4 linux app vial documentation
+xdg-open https://get.vial.today/manual/
