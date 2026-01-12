@@ -1,0 +1,26 @@
+session_name: ZK-CODEX-HOME
+windows:
+  - window_name: editor
+    layout: even-horizontal
+    start_directory: /home/tiago/codex/
+    panes:
+      - shell_command:
+        - nvim
+        focus: true
+  - window_name: AI
+    layout: even-horizontal
+    start_directory: /home/tiago/codex/
+    panes:
+      - shell_command:
+  - window_name: git
+    layout: even-vertical
+    start_directory: /home/tiago/codex
+    panes:
+      - shell_command:
+        - /storage/src/dot_files/git-ui-with-ssh-agent.sh .
+  - window_name: scratchpad
+    layout: even-vertical
+    start_directory: /home/tiago/codex
+    panes:
+      - shell_command:
+

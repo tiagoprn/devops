@@ -1,0 +1,13 @@
+% zk, writing
+
+# create repo
+zk init
+
+# create note on inbox
+zk in "<title>"
+
+# create journal
+zk journal
+
+# create task
+zk task "<title>"

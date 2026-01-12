@@ -1,0 +1,25 @@
+session_name: MINDSHARDS
+windows:
+  - window_name: editor
+    layout: even-horizontal
+    start_directory: /storage/src/mindshards
+    panes:
+      - shell_command:
+        - tree .
+        focus: true
+  - window_name: AI
+    layout: even-vertical
+    start_directory: /storage/src/mindshards
+    panes:
+      - shell_command:
+  - window_name: git
+    layout: even-vertical
+    start_directory: /storage/src/mindshards
+    panes:
+      - shell_command:
+        - /storage/src/dot_files/git-ui-with-ssh-agent.sh .
+  - window_name: scratchpad
+    layout: even-vertical
+    start_directory: /storage/src/mindshards
+    panes:
+      - shell_command:
