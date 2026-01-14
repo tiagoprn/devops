@@ -3,11 +3,20 @@
 # create repo
 zk init
 
-# create note on inbox
+# (alias) codex - create note on inbox
 zk in "<title>"
 
-# create journal
+# (alias) codex - create journal
 zk journal
 
-# create task
+# (alias) codex - create task
 zk task "<title>"
+
+# (alias) mindshards - fzf edit previous note
+zk ei
+
+# (alias) mindshards - push to git
+zk w
+
+# (alias) mindshards - pull from git
+zk f
