@@ -20,3 +20,6 @@ zk w
 
 # (alias) mindshards - pull from git
 zk f
+
+# (alias) mindshards - open config file in nvim
+zk c
