@@ -316,3 +316,5 @@ tree -d -L 2
 # distro information
 cat /etc/os-release
 
+# list all files with a given extension on the current directory, recursively and with their relative path
+find . -type f -name '*.<extension>' -print
