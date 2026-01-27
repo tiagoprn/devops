@@ -20,3 +20,6 @@ ls -lha $HOME/.local/share/repeater/cards.db
 
 # cli to the database (litecli)
 litecli $HOME/.local/share/repeater/cards.db
+
+# official docs website
+xdg-open https://shaankhosla.github.io/repeater/quick-start.html
