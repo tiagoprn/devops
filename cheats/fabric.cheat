@@ -33,6 +33,15 @@ fabric-ai -u '<url>' -p summarize
 # (INPUT=URL): extract wisdom from contents
 fabric-ai -u '<url>' -p extract_wisdom
 
+# (INPUT=CLIPBOARD_FILE): summarize text on clipboard file
+cat /tmp/clipboard/copied.txt | fabric-ai -p summarize > /tmp/clipboard/ai.txt && nvim -o /tmp/clipboard/copied.txt /tmp/clipboard/ai.txt
+
+# (INPUT=CLIPBOARD_FILE): CUSTOM PATTERN: spell check on clipboard file
+cat /tmp/clipboard/copied.txt | fabric-ai -p custom_spell_check > /tmp/clipboard/ai.txt && nvim -o /tmp/clipboard/copied.txt /tmp/clipboard/ai.txt
+
+# (INPUT=CLIPBOARD_FILE): CUSTOM PATTERN: rewrite text on clipboard file
+cat /tmp/clipboard/copied.txt | fabric-ai -p rewrite_text > /tmp/clipboard/ai.txt && nvim -o /tmp/clipboard/copied.txt /tmp/clipboard/ai.txt
+
 # (INPUT=TEXT): CUSTOM PATTERN: convert from celsius to fahrenheit - e.g. text: Today is 25C, yesterday was -3.5C.
 echo "<text>" | fabric-ai -p convert_c_to_f
 
