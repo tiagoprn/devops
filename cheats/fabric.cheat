@@ -12,32 +12,35 @@ fabric-ai --setup
 # list all custom modules (created by me)
 ls -lha /storage/src/ai-prompts/fabric
 
-# (custom pattern) convert from celsius to fahrenheit - e.g. text: Today is 25C, yesterday was -3.5C.
-echo "<text>" | fabric-ai -p convert_c_to_f
-
 # list all available patterns (builtin and custom)
 fabric-ai --listpatterns
 
-# get transcript from youtube video (no LLM involved, this is pure fabric)
+# (INPUT=YOUTUBE): get transcript from youtube video (no LLM involved, this is pure fabric)
 fabric-ai -y '<youtube-video-url>' --transcript
 
-# summarize youtube video (it automatically gets the transcript)
+# (INPUT=YOUTUBE): summarize youtube video (it automatically gets the transcript)
 fabric-ai -y '<youtube-video-url>' --stream --pattern summarize
 
-# Extract wisdom from youtube video (it automatically gets the transcript)
+# (INPUT=YOUTUBE): Extract wisdom from youtube video (it automatically gets the transcript)
 fabric-ai -y '<youtube-video-url>' --stream --pattern extract_wisdom
 
-# get (scrape) URL contents as markdown
+# (INPUT=URL): get (scrape) contents as markdown
 fabric-ai -u '<url>' > <markdown-file-path>
 
-# summarize URL contents
+# (INPUT=URL): summarize contents
 fabric-ai -u '<url>' -p summarize
 
-# extract wisdom from URL contents
+# (INPUT=URL): extract wisdom from contents
 fabric-ai -u '<url>' -p extract_wisdom
 
-# create remind cli entries
+# (INPUT=TEXT): CUSTOM PATTERN: convert from celsius to fahrenheit - e.g. text: Today is 25C, yesterday was -3.5C.
+echo "<text>" | fabric-ai -p convert_c_to_f
+
+# (INPUT=FILE): CUSTOM PATTERN: process monthly hours report
+cat <report-txt-file> | fabric-ai -p monthly_hours_invoice
+
+# (INPUT=TEXT): CUSTOM PATTERN: create remind cli entries
 fabric-ai -p remind '<description-of-the-alarm-here>'
 
-# process monthly hours report
-cat <report-txt-file> | fabric-ai -p monthly_hours_invoice
+# -- FIXME: not possible with fabric-ai: transcribe local file (if that is a video, convert to mp3 audio to use less tokens)
+fabric-ai --transcribe-file "<local-audio-file-path>" --transcribe-model "openai/gpt-4o-mini-transcribe"
