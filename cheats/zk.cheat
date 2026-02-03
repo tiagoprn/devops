@@ -23,3 +23,9 @@ zk f
 
 # (alias) mindshards - open config file in nvim
 zk c
+
+# list recent notes
+zk list recents --limit 15
+
+# interactively select a recent note for editing
+zk edit recents --interactive
