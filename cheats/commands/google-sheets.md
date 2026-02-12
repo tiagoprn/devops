@@ -1,0 +1,1 @@
+- Alternate row colors (white/gray): Select the range (upper left rectangle between the A and 1 cells), **Format -> Alternating Colors**. Type the range again manually, choose a style and click "Done".

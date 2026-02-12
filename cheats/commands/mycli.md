@@ -1,4 +1,4 @@
-## Autocomplete from previous query
-
 - search in history: `<C-r>`
-- complete: `right arrow (->)`
+- auto-complete from previous query: `right arrow (->)`
+- show one column per line (better for legibility): `\T vertical`
+- export a query result as a CSV file: `\T csv; \o /tmp/output.csv;`. Then, type and run the query.
