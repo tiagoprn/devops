@@ -21,10 +21,10 @@ if [[ -z $VM_NAME ]]; then
 fi
 
 # TODO: change the color of the words "VM" and "shut off" below to yellow
-echo -e 'Make sure that:\n\n1) the VM is shut off;'
+echo -e 'Make sure that:\n\n1) the \033[33mVM\033[0m is \033[33mshut off\033[0m;'
 
 # TODO: change the color of the words "external SSD", "KVM BACUPS" and "/media/temp" below to yellow
-echo -e '2) You have inserted the external SSD labeled as "KVM BACKUPS" and that it is mounted at "/media/temp".'
+echo -e '2) You have inserted the \033[33mexternal SSD\033[0m labeled as "\033[33mKVM BACKUPS\033[0m" and that it is mounted at "\033[33m/media/temp\033[0m".'
 
 echo -e '\nPress ENTER when ready to continue.'
 read -r
@@ -42,11 +42,12 @@ echo 'Backing up VM configuration...'
 sudo virsh -c qemu:///system dumpxml "$VM_NAME" >"$BACKUPS_DIR/config.xml"
 
 echo 'Identifying VM disk path...'
-VM_PATH=$(sudo virsh -c qemu:///system domblklist "$VM_NAME" | grep vda | awk '{print $2}')
-echo -e "VM disk path is '$VM_PATH'."
+VM_DISK_FILE="/kvm/$VM_NAME/disk/$VM_NAME.qcow2"
+echo -e "VM disk path is '$VM_DISK_FILE'."
 
-echo "Backing up the VM disk at $VM_PATH..."
-sudo cp -farv "$VM_PATH" "$BACKUPS_DIR"
+echo "Backing up the VM disk at $VM_DISK_FILE..."
+# TODO: change the command below to an rsync with a progress bar.
+sudo cp -farv "$VM_DISK_FILE" "$BACKUPS_DIR"
 
 if [ $? -ne 0 ]; then
     exit 1
