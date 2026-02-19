@@ -1,0 +1,56 @@
+% pi-coding-agent, AI
+
+# install (please activate a node version with nvm use first, to not pollute the system/distro node install)
+npm install -g @mariozechner/pi-coding-agent  && pi --version
+
+# update (please activate the node "venv" with "nvm use" first)
+npm install -g @mariozechner/pi-coding-agent@latest
+
+# install specific/previous version (please activate the node "venv" with "nvm use" first)
+npm install -g @mariozechner/pi-coding-agent@<version-number>
+
+# show version
+pi --version
+
+# continue most recent session
+pi -c
+
+# browse and select from past session
+pi -r
+
+# read-only mode
+pi --tools read,grep,find,ls
+
+# temp session (will not be saved)
+pi --no-session
+
+# custom session dir
+pi --session-dir <dir>
+
+# print response and exit
+pi --print
+
+# output as json
+pi --mode json
+
+# load prompt template
+pi --prompt-template <path>
+
+# load skill
+pi --skill <path>
+
+# ask question about image
+pi -p @<image-file-path> "<question>"
+
+# doc - context files (AGENTS.md, system prompt)
+xdg-open https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent#context-files
+
+# doc - prompt templates
+xdg-open https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent#prompt-templates
+
+# doc - skills
+xdg-open https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/skills.md#skill-structure
+
+# doc - extensions
+xdg-open https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent#extensions
+
