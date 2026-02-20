@@ -1,5 +1,11 @@
 session_name: SCRATCHPAD
 windows:
+  - window_name: AI
+    layout: even-vertical
+    panes:
+      - shell_command:
+        -
+        focus: true
   - window_name: shell
     layout: even-vertical
     panes:
@@ -10,9 +16,12 @@ windows:
     layout: even-vertical
     panes:
       - shell_command:
-        - sudo journalctl -f -k --since today | ccze -A
+        - sudo btop
+  - window_name: logs
+    layout: even-vertical
+    panes:
       - shell_command:
-        - sudo htop
+        - sudo journalctl -f -k --since today | ccze -A
   - window_name: pipewire
     layout: even-vertical
     panes:
@@ -26,4 +35,3 @@ windows:
     panes:
       - shell_command:
         - echo "$(date '+%Y-%m-%d %H:%M:%S') $(whoami)@$(hostname) $(speedtest-cli --simple --single | sed s/://g | tr '\n' ' ')" >> ~/speedtest-history.txt && cat ~/speedtest-history.txt
-
