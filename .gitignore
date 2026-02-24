@@ -21,3 +21,6 @@ authorized_keys
 .terraform/
 *tfstate*
 **/vars/main.yml
+node_modules/
+package.json
+package-lock.json
