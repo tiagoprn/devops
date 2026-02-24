@@ -9,6 +9,9 @@ npm install -g @mariozechner/pi-coding-agent@<version-number> && pi --version
 # install playwright and its own chromium browser (so the web related skills work)
 npm install -D @playwright/test@latest && npx playwright install chromium && npx playwright --version
 
+# install html-to-markdown cli (https://github.com/kreuzberg-dev/html-to-markdown/tree/main?tab=readme-ov-file)
+cargo install html-to-markdown-cli
+
 # show version
 pi --version
 
