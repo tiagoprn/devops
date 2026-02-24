@@ -1,13 +1,13 @@
 % pi-coding-agent, AI
 
-# install (please activate a node version with nvm use first, to not pollute the system/distro node install)
-npm install -g @mariozechner/pi-coding-agent  && pi --version
-
-# update (please activate the node "venv" with "nvm use" first)
-npm install -g @mariozechner/pi-coding-agent@latest
+# install or update (please activate a node version with nvm use first, to not pollute the system/distro node install)
+npm install -g @mariozechner/pi-coding-agent@latest && pi --version
 
 # install specific/previous version (please activate the node "venv" with "nvm use" first)
-npm install -g @mariozechner/pi-coding-agent@<version-number>
+npm install -g @mariozechner/pi-coding-agent@<version-number> && pi --version
+
+# install playwright and its own chromium browser (so the web related skills work)
+npm install -D @playwright/test@latest && npx playwright install chromium && npx playwright --version
 
 # show version
 pi --version
