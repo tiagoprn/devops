@@ -45,6 +45,9 @@ pi --skill <path>
 # ask question about image
 pi -p @<image-file-path> "<question>"
 
+# doc - root
+xdg-open https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent
+
 # doc - context files (AGENTS.md, system prompt)
 xdg-open https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent#context-files
 
