@@ -231,6 +231,9 @@ git fsck --full && git gc --prune=now --aggressive
 # Create a new branch from a specific commit on the current branch, and switch to it
 git checkout -b <new-branch-name> <commit-hash-from-current-branch>
 
+# BRANCHES CLEANUP: deletes all local branches that have already been merged into origin/main, except main, develop, and your current branch
+git branch --merged origin/main | grep -vE "^\s*(\*|main|develop)" | xargs -n 1 git branch -d
+
 # difftastic: file diff from current branch to target
 export COMPARE_FILE="<file_path>" && \
 export TMP_DEV=$(mktemp) &&\
