@@ -53,7 +53,7 @@ mkdir -p /storage/temp/yt && \
 yt-dlp -q --restrict-filenames \
   -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" \
   --merge-output-format mp4 \
-  -o "/storage/temp/yt/%(upload_date)s.%(title)s.%(uploader)s.%(playlist)s.%(ext)s" \
+  -o "/storage/temp/yt/%(upload_date)s.%(uploader)s.%(playlist)s.%(title)s.%(ext)s" \
   "<url>" \
   --exec 'echo {} > /tmp/url.txt' && \
 notify-send -t 5000 "Finished downloading at $(cat /tmp/url.txt)" && \
