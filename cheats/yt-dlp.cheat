@@ -1,0 +1,60 @@
+% yt-dlp, youtube, video, audio, transcript
+
+# Download a YouTube video as MP4 (best quality, H.264/AAC)
+yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" \
+  --merge-output-format mp4 \
+  -S "vcodec:h264,acodec:aac" \
+  "<url>"
+
+# Download a YouTube video as MP3 (best quality)
+yt-dlp -x --audio-format mp3 --audio-quality 0 "<url>"
+
+# Download a YouTube video as M4A (lossless, no transcode)
+yt-dlp -x --audio-format m4a --audio-quality 0 "<url>"
+
+# Download transcript as clean text (no timestamps)
+yt-dlp --skip-download \
+  --write-auto-subs \
+  --sub-lang en \
+  --sub-format vtt \
+  --convert-subs srt \
+  -o "transcript.%(ext)s" \
+  "<url>" \
+  && sed '/^[0-9]/d; /^$/d; s/<[^>]*>//g' transcript.en.srt \
+  | sort -u > transcript.md \
+  && echo "Saved to transcript.md"
+
+# Download transcript with timestamps (.srt)
+yt-dlp --skip-download \
+  --write-auto-subs \
+  --sub-lang en \
+  --sub-format vtt \
+  --convert-subs srt \
+  -o "transcript_timestamped.%(ext)s" \
+  "<url>"
+
+# List all available formats for a video
+yt-dlp -F "<url>"
+
+# List all available subtitle languages for a video
+yt-dlp --list-subs "<url>"
+
+# Get youtube channel id
+xdg-open https://commentpicker.com/youtube-channel-id.php
+
+# Get youtube channel rss feed
+xdg-open https://www.youtube.com/feeds/videos.xml?channel_id=<youtube-channel-id>
+
+# Run mpv from youtube download folder
+cd /storage/temp/yt && mpv $(fzf)
+
+# Download and run on mpv
+mkdir -p /storage/temp/yt && \
+yt-dlp -q --restrict-filenames \
+  -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" \
+  --merge-output-format mp4 \
+  -o "/storage/temp/yt/%(title)s---%(uploader)s---%(upload_date)s---%(playlist)s---.%(ext)s" \
+  "<url>" \
+  --exec 'echo {} > /tmp/url.txt' && \
+notify-send -t 5000 "Finished downloading at $(cat /tmp/url.txt)" && \
+mpv "$(cat /tmp/url.txt)"
