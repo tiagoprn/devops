@@ -1,4 +1,4 @@
-% pi-coding-agent, AI
+% pi, agents, AI
 
 # install or update (please activate a node version with nvm use first, to not pollute the system/distro node install)
 npm install -g @mariozechner/pi-coding-agent@latest && pi --version
@@ -15,35 +15,38 @@ cargo install html-to-markdown-cli
 # show version
 pi --version
 
+# run an agent
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi
+
 # continue most recent session
-pi -c
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi -c
 
 # browse and select from past session
-pi -r
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi -r
 
 # read-only mode
-pi --tools read,grep,find,ls
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi --tools read,grep,find,ls
 
 # temp session (will not be saved)
-pi --no-session
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi --no-session
 
 # custom session dir
-pi --session-dir <dir>
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi --session-dir <dir>
 
 # print response and exit
-pi --print
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi --print
 
 # output as json
-pi --mode json
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi --mode json
 
 # load prompt template
-pi --prompt-template <path>
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi --prompt-template <path>
 
 # load skill
-pi --skill <path>
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi --skill <path>
 
 # ask question about image
-pi -p @<image-file-path> "<question>"
+PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi -p @<image-file-path> "<question>"
 
 # doc - root
 xdg-open https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent
