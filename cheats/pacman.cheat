@@ -34,6 +34,7 @@ yay -Syu --noconfirm \
 && /storage/src/pde.nvim/scripts/sync-neovim.sh \
 && /storage/src/pde.nvim/scripts/update-neovim-pyenv-virtualenv.sh \
 && pipx upgrade-all \
+&& uv self update \
 && uv tool upgrade --all \
 && cargo install-update -a
 
