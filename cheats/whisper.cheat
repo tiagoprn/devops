@@ -1,0 +1,15 @@
+% speech-to-text, whisper, audio
+
+# install whisper.cpp
+yay -S whisper.cpp --noconfirm
+
+# download the "almost large" model manually from HuggingFace (better than medium and a bit worse than large - results in better accuracy)
+mkdir ~/.local/share/whisper-cpp && \
+wget -P ~/.local/share/whisper-cpp/ https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo-q8_0.bin
+
+# transcript audio (wav) file
+whisper-cli \
+  -m ~/.local/share/whisper-cpp/ggml-large-v3-turbo-q8_0.bin \
+  -f <audio-wav-file> \
+  -l en -t 4 --output-txt --print-progress \
+  --suppress-nst # suppress non-speech tokens like [MUSIC], [LAUGHTER]
