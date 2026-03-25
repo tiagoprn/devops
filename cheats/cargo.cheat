@@ -12,6 +12,9 @@ cargo install <tool-name> --locked  # "locked" forces cargo to use the exact dep
 # install tool/package/binary on specific version
 cargo install <tool-name> --locked --version <version>  # "locked" forces cargo to use the exact dependency versions as specified in the lockfile
 
+# install tool/package/binary from git repo e.g. github (when it does not have a dedicated command) - e.g. https://github.com/shaankhosla/repeater
+cargo install --git <full-repo-url>
+
 # update all packages installed with cargo to the latest version (requires "cargo-update" tool installed)
 cargo install-update -a
 

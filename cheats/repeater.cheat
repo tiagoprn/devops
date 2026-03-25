@@ -1,10 +1,7 @@
 % repeater, flashcards
 
 # install
-curl --proto '=https' --tlsv1.2 -LsSf https://github.com/shaankhosla/repeater/releases/latest/download/repeater-installer.sh | sh && echo -e '\n\nNow, open litecli on the database and run: \n\nDELETE * FROM cards '
-
-# update
-repeater-update
+cargo install --git https://github.com/shaankhosla/repeater
 
 # add cards and open the interactive dashboard
 repeater check <path-to-file-or-directory>
