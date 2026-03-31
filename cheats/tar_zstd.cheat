@@ -3,6 +3,9 @@
 # Create backup archive with zstd compression
 tar -I zstd -cvf <folder_name>_$(date +%Y%m%d-%H%M%S).tar.zst <folder_name>
 
+# Create backup archive with zstd compression for all dirs on the current folder
+for dir in */; do tar -I zstd -cvf "${dir%/}.tar.zst" "${dir%/}"; done
+
 # Generate SHA256 checksum for the backup
 sha256sum <zst-file> > <zst-file>.sha256
 
