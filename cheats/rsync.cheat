@@ -1,34 +1,13 @@
 % rsync, backups
 
-# sync 2 directories locally in [a]rchive (to preserve attributes), and compressed ([z]ipped) mode with [v]erbose and [h]uman-readable [p]rogress:
-time rsync --info=progress2 -azvhP -r <source-dir>/ <destination-dir>/
-
-# sync file from local to remote host:
-time rsync --info=progress2 <local_file> <remote_user>@<remote_host>:<remote_directory>
-
-# sync file from remote host to local:
-time rsync --info=progress2 <remote_host>:<remote_file> <local_directory>
-
-# sync file in [a]rchive (to preserve attributes) from local to a remote, and compressed ([z]ipped) mode with [v]erbose and [h]uman-readable [p]rogress:
-time rsync --info=progress2 -azvhP <local_file> <remote_user>@<remote_host>:<remote_directory>
-
-# sync a directory and all its children from a remote to local:
-time rsync --info=progress2 -r <remote_user>@<remote_host>:<remote_directory> <local_directory>
-
-# sync directory contents (but not the directory itself) from a remote to local:
-time rsync --info=progress2 -r <remote_user>@<remote_host>:<remote_directory>/ <local_directory>
-
-# sync a directory [r]ecursively from a remote to local, in [a]rchive to preserve attributes, resolving contained soft[l]inks , and ignoring already transferred files [u]nless newer:
-time rsync --info=progress2 -rauL <remote_user>@<remote_host>:<remote_file> <local_directory>
-
-# sync file over ssh from a remote to local, and delete local files that do not exist on remote host:
-time rsync --info=progress2 -e ssh --delete <remote_user>@<remote_host>:<remote_file> <local_file>
-
-# sync directory and all its children over ssh from local to a remote:
-time rsync --info=progress2 -r -e ssh <local_directory> <remote_user>@<remote_host>:<remote_directory>/
-
-# rsync-time-backup - download
-/storage/src/devops/shellscripts/installers/download-rsync-time-backup.sh
-
-# rsync-time-backup - run (e.g. origin="/storage", destination="pi@engineering:/media/ETC-002-P5/BACKUPS/dft-archive/")
-time rsync-time-backup.sh -p 22 <origin> <destination>
+# fully synhronizes the contents of 2 folders locally. Remove --dry-run when executing "for real".
+time sudo rsync -av --info=progress2 \
+    --inplace \
+    --delete \
+    --ignore-errors \
+    --itemize-changes \
+    --stats \
+    --human-readable \
+    --dry-run \
+    <source-folder-without-trailing-slash>/ \
+    <destination-folder-without-trailing-slash>/

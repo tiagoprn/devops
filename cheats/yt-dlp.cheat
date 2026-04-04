@@ -58,3 +58,6 @@ yt-dlp -q --restrict-filenames \
   --exec 'echo {} > /tmp/url.txt' && \
 notify-send -t 5000 "Finished downloading at $(cat /tmp/url.txt)" && \
 mpv "$(cat /tmp/url.txt)"
+
+# Get YouTube Channel ID - e.g.: @ThePrimeTimeagen
+curl -s "https://www.youtube.com/<human-channel-id>" | grep -o '"channelId":"[^"]*"' | head -1
