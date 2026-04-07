@@ -1,7 +1,7 @@
 % gh, git
 
 # gh - cli - login
-gh auth login --web
+BROWSER=false gh auth login --web
 
 # gh - cli - list all open PRs
 gh pr list --repo <repo-owner>/<repo-name>
@@ -18,11 +18,19 @@ gh pr --repo <repo-owner>/<repo-name> checkout <pr_number>
 # get target branch of a PR (fzf to select the PR)
 gh pr --repo <repo-owner>/<repo-name> view $(gh pr list --repo <repo-owner>/<repo-name> | fzf | awk '{print $1}') --json baseRefName --jq .baseRefName
 
-# get PR contents (diff) as a file
-gh pr --repo <repo-owner>/<repo-name> diff $(gh pr list --repo <repo-owner>/<repo-name> | fzf | awk '{print $1}') --patch > /tmp/diff.patch && echo -e '\nFINISHED! The PR contents is at /tmp/diff.patch\n\n'
-
 # gh - cli - create patch file with the PR changes (you must be on the branch that has your feature/fix/etc...)
 git diff <base-branch> --unified=5 > pr_changes.patch  # 5 is the number of context lines around the changes, change here if needed
 
 # gh - cli - apply a patch file (if you need to do that for reviewing)
 git apply <patch-file>
+
+# Show PR diff filtered by path pattern (e.g. watson/)
+PR=<pr> && \
+export PR_DIFF_FILE=/tmp/$(date +%Y%m%d-%H%M%S-%N).pr.$PR.diff && \
+gh pr diff "$PR" | awk -v pat="<pattern>" '
+  /^diff --git / { in_block = ($0 ~ "^diff --git a/" pat) }
+  in_block { print }
+' > "$PR_DIFF_FILE" && nvim "$PR_DIFF_FILE"
+
+$ pr: gh pr list --json number,title --jq '.[] | "\(.number)\t\(.title)"' --- --column 1 --delimiter '\t' --header pr_number
+$ pattern: echo -e "watson/\nwatson/business/\nwatson/api/"
