@@ -1,11 +1,11 @@
 session_name: TNG-LCARS-OPS
 windows:
-  - window_name: pi
+  - window_name: pi-session
     layout: even-horizontal
     start_directory: /storage/src/pi-session
     panes:
       - shell_command:
-        - tree .
+        - ls -lha
         focus: true
   - window_name: git
     layout: even-vertical
@@ -16,6 +16,5 @@ windows:
   - window_name: scratchpad
     layout: even-vertical
     start_directory: /storage/src/pi-session
-
     panes:
       - shell_command:
