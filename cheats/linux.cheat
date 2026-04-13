@@ -320,5 +320,5 @@ cat /etc/os-release
 find . -type f -name '*.<extension>' -print
 
 # upgrade all python and rust/cargo related binaries/tools
-uv self update && uv tool upgrade --all && cargo install-update -a && pipx upgrade-all || /bin/true
+uv self update && uv tool upgrade --all && cargo install-update -a -g && pipx upgrade-all || /bin/true
 

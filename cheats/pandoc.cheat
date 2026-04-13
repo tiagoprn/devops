@@ -24,3 +24,6 @@ pandoc <input-file-md> -t typst -o /tmp/<input-file-md>.typ && \
 	rm /tmp/<input-file-md>.typ && \
 	typst compile /tmp/<input-file-md>.final.typ <output-file-pdf> && \
 	xdg-open <output-file-pdf>
+
+# markdown -> typst -> pdf (octerra template)
+pandoc <input-file-md> -t typst | cat /home/tiago/contractors/files/octerra/typst/templates/minimal-doc-to-send-to-external-company.typ - | typst compile - <input-file-md>.pdf && xdg-open <input-file-md>.pdf

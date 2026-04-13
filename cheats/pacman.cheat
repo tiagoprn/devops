@@ -36,7 +36,7 @@ yay -Syu --noconfirm \
 && pipx upgrade-all \
 && uv self update \
 && uv tool upgrade --all \
-&& cargo install-update -a
+&& cargo install-update -a -g
 
 # see a list of outdated/upgradable/updatable packages
 yay -Qu
