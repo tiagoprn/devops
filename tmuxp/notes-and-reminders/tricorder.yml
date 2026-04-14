@@ -1,0 +1,21 @@
+session_name: TRICORDER
+windows:
+  - window_name: editor
+    layout: even-horizontal
+    start_directory: /storage/src/tricorder
+    panes:
+      - shell_command:
+        - nvim
+        focus: true
+  - window_name: git
+    layout: even-vertical
+    start_directory: /storage/src/tricorder
+    panes:
+      - shell_command:
+        - /storage/src/dot_files/git-ui-with-ssh-agent.sh .
+  - window_name: shell
+    layout: even-vertical
+    start_directory: /storage/src/tricorder
+    panes:
+      - shell_command: repeater --help
+      - shell_command: cat /storage/src/devops/cheats/repeater.cheat
