@@ -7,6 +7,11 @@ windows:
       - shell_command:
         - ls -lha
         focus: true
+  - window_name: AI
+    layout: even-vertical
+    start_directory: /storage/src/aikt/pi
+    panes:
+      - shell_command:
   - window_name: git
     layout: even-vertical
     start_directory: /storage/src/aikt/pi
