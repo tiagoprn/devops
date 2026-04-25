@@ -1,0 +1,17 @@
+% tv, television
+
+# install
+cargo install --locked television
+
+# documentation
+xdg-open https://alexpasmantier.github.io/television/
+
+# list channels
+tv list-channels
+
+# update channels
+tv update-channels
+
+# list tmux sessions
+tv tmux-sessions
+
