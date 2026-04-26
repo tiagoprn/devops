@@ -18,7 +18,7 @@ pi --version
 # run an agent
 PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi
 
-# continue most recent session
+# continue/resume most recent session
 PI_CODING_AGENT_DIR="$(find ~/.pi -maxdepth 1 -type l | fzf | xargs readlink -f)" pi -c
 
 # browse and select from past session
