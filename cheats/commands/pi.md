@@ -5,6 +5,8 @@
 
 - cycle through scoped models: `<C-p>`
 
+- token usage: `/tokens`
+
 ## WHEN & HOW TO USE `/tree` AND `/fork`:
 
 - Keep a *clean mainline branch for decision and implementation*.
