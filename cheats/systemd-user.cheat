@@ -1,4 +1,4 @@
-% systemd, user, timers, loginctl
+% systemd, user, secrets, timers, loginctl
 
 # Enable user timers to be run even when the user is not logged in:
 loginctl enable-linger $USER && loginctl show-user -p Linger $USER
@@ -35,3 +35,10 @@ systemctl --user disable <name>.timer && systemctl --user daemon-reload
 
 # logoff user session
 loginctl terminate-user $USER
+
+# create a secret - more details here: https://writeloop.dev/posts/systemd-creds-user-secrets/
+mkdir -p $HOME/.config/credstore && \
+echo -n "<key-value-here>" | systemd-creds --user encrypt - $HOME/.config/credstore/<key-name-here>.cred
+
+# get the value of a secret
+systemd-creds --user decrypt "$(find $HOME/.config/credstore/ -type f -name '*.cred' | fzf | xargs realpath)" -
