@@ -1,0 +1,64 @@
+% rtk, AI
+
+# install rtk
+cargo install --git https://github.com/rtk-ai/rtk
+
+# show version
+rtk --version
+
+# show token savings summary stats
+rtk gain
+
+# show ASCII graph (last 30 days) stats
+rtk gain --graph
+
+# Recent command history
+rtk gain --history
+
+# Day-by-day breakdown stats
+rtk gain --daily
+
+# Token-optimized directory tree
+rtk ls .
+
+# Smart file reading
+rtk read file.rs
+
+# Signatures only (strips bodies)
+rtk read file.rs -l aggressive
+
+# 2-line heuristic code summary
+rtk smart file.rs
+
+# Compact find results
+rtk find "*.rs" .
+
+# Grouped search results
+rtk grep "pattern" .
+
+# Condensed diff
+rtk diff file1 file2
+
+# compact git status
+rtk git status
+
+# compact python tests results
+rtk pytest
+
+# Compact container list
+rtk docker ps
+
+# JSON structure without values
+rtk json config.json
+
+# compact view logs
+rtk log app.log                 # Deduplicated logs
+
+# rtk truncate + save full output
+rtk curl <url>
+
+# rtk download, strip progress bars
+rtk wget <url>
+
+# general heuristic summary of any command
+rtk summary <long command>
