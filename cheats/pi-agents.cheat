@@ -12,6 +12,9 @@ npm install -g @earendil-works/pi-coding-agent@<version-number> && pi --version
 # install html-to-markdown cli (https://github.com/kreuzberg-dev/html-to-markdown/tree/main?tab=readme-ov-file)
 cargo install html-to-markdown-cli
 
+# install rtk optimizer (requires installing rtk through cargo first - see the rtk cheat for that)
+pi install git:github.com/MasuRii/pi-rtk-optimizer
+
 # show version
 pi --version
 
