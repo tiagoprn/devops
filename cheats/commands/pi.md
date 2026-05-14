@@ -1,3 +1,12 @@
+## CODING WORFLOW
+
+- `/codeflow [path]` — Start a new session (no path) or resume an existing one (inform path of the artifact file from `pi-session` repo)
+- `/briefing`, `/research`, `/plan`, `/code` — Navigate between phases
+- `/status` — Show current phase and artifact info
+- `/cancel` — Cancel the current session
+
+More details here: </storage/src/aikt/pi/agent/extensions/codeflow/README.md>
+
 ## SCOPED MODELS
 
 - choose a set of models to switch to with `<C-p>`: `/scoped-models`
