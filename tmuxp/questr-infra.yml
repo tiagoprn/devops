@@ -4,7 +4,7 @@ windows:
     layout: even-vertical
     start_directory: /storage/src/questr
     panes:
-      - docker ps
+      - watch -n 1 'docker ps'
       - make
   - window_name: app
     layout: even-vertical
