@@ -3,6 +3,9 @@
 # show version
 nvim --version
 
+# start neovim and capture initialization logs (useful to help debugging when it can't even load my plugins)
+cd $HOME/.cache/nvim && nvim --headless +qa 2>&1 | tee startup_errors.txt
+
 # run bare nvim (ignoring init.lua and plugins)
 nvim -u NONE <file>
 
