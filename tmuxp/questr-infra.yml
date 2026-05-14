@@ -1,0 +1,23 @@
+session_name: questr-infra
+windows:
+  - window_name: docker
+    layout: even-vertical
+    start_directory: /storage/src/questr
+    panes:
+      - docker ps
+      - make
+  - window_name: app
+    layout: even-vertical
+    start_directory: /storage/src/questr
+    shell_command_before:
+      - source .venv/bin/activate && clear
+    panes:
+      - make
+  - window_name: db
+    layout: even-vertical
+    start_directory: /storage/src/questr
+    shell_command_before:
+      - source .venv/bin/activate && clear
+    panes:
+      - cd ops/dev/infra/db/backups && clear
+      - make
