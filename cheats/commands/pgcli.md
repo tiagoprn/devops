@@ -1,0 +1,6 @@
+- list all tables....................: `\dt`
+- list all indexes...................: `\di`
+- list all users/roles...............: `\du`
+- describe table.....................: `\d <table>`
+- output query to csv................: `\copy (FULL-QUERY-HERE) TO '/tmp/output.csv' WITH (FORMAT CSV, HEADER)`
+- expanded display (for side rows)...: `\x`
