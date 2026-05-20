@@ -9,6 +9,14 @@ npm install -g @earendil-works/pi-coding-agent@<version-number> && pi --version
 # install playwright and its own chromium browser (so the web related skills work)
 /storage/src/aikt/pi && npm install -D @playwright/test@latest && npx playwright install chromium && npx playwright --version
 
+# Update node to latest version and reinstall pi
+echo "UPDATING NODE VERSION... (1/3)" && \
+node -v && nvm install 22 && nvm alias default 22 && nvm use 22 && node -v && \
+echo "INSTALLING PLAYWRIGHT... (2/3)" && \
+npm install -D @playwright/test@latest && npx playwright install chromium && npx playwright --version && \
+echo "INSTALLING PI... (3/3)" && \
+npm install -g @earendil-works/pi-coding-agent@latest && pi --version
+
 # install html-to-markdown cli (https://github.com/kreuzberg-dev/html-to-markdown/tree/main?tab=readme-ov-file)
 cargo install html-to-markdown-cli
 
