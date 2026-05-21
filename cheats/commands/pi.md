@@ -24,3 +24,7 @@ More details here: </storage/src/aikt/pi/agent/extensions/codeflow/README.md>
 - Use *branch summarization when leaving heavy branches*.
 - Use `/fork` once a *branch becomes a separate long-running mission*, or when you need to *diverge into a completely different topic* or one that *diverges at least partially* from the current one.
 - Use `git` for *code rollback*: `/tree` **DOES NOT handle files**.
+
+## ETC
+
+- run bash commands inside pi: `! <command>`
