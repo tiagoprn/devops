@@ -7,9 +7,37 @@ yay -S whisper.cpp --noconfirm
 mkdir ~/.local/share/whisper-cpp && \
 wget -P ~/.local/share/whisper-cpp/ https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo-q8_0.bin
 
-# transcript audio (wav) file
-whisper-cli \
-  -m ~/.local/share/whisper-cpp/ggml-large-v3-turbo-q8_0.bin \
-  -f <audio-wav-file> \
-  -l en -t 4 --output-txt --print-progress \
-  --suppress-nst # suppress non-speech tokens like [MUSIC], [LAUGHTER]
+# transcript long audio file with whisper-cli (split into 4min chunks + context chaining)
+MODEL=$HOME/.local/share/whisper-cpp/ggml-large-v3-turbo-q8_0.bin && \
+CHUNKS=$(mktemp -d) && \
+OUTPUT="<audio_file>.transcript.txt" && \
+echo "[1/5] Temporary directory created: $CHUNKS" && \
+echo "      -> Output transcript: $OUTPUT" && \
+ffmpeg -i <audio_file> \
+  -ar 16000 -ac 1 \
+  -f segment \
+  -segment_time 240 \
+  "$CHUNKS/chunk_%03d.wav" && \
+echo "[2/5] Audio split into chunks successfully." && \
+rm -f "$CHUNKS/transcript.txt" && \
+echo "[3/5] Starting transcription loop..." && \
+for f in "$CHUNKS"/chunk_*.wav; do \
+  echo "      -> Transcribing $f..."; \
+  whisper-cli \
+    -m "$MODEL" \
+    -f "$f" \
+    -l en -t 4 \
+    --output-txt \
+    --output-file /tmp/wsp_out \
+    --suppress-nst \
+    --no-speech-thold 0.3 \
+    --beam-size 5 --best-of 5 \
+    --prompt "$(tail -c 500 "$CHUNKS/transcript.txt" 2>/dev/null)"; \
+  cat /tmp/wsp_out.txt >> "$CHUNKS/transcript.txt"; \
+  echo "      -> Done. Appended to transcript."; \
+done && \
+echo "[4/5] All chunks transcribed. Saving final transcript..." && \
+cp "$CHUNKS/transcript.txt" "$OUTPUT" && \
+rm -rf "$CHUNKS" && \
+echo "[5/5] Done! Transcript saved to: $OUTPUT"
+
