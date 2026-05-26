@@ -2,3 +2,42 @@
 
 # install
 cargo install hurl --locked
+
+# run a hurl file
+hurl <hurl_file>
+
+# run in test mode with progress report
+hurl --test <hurl_files>
+
+# run with verbose output for debugging
+hurl --verbose <hurl_file>
+
+# follow redirects
+hurl --location <hurl_file>
+
+# include HTTP headers in output
+hurl --include <hurl_file>
+
+# write output to file
+hurl -o <output> <hurl_file>
+
+# pipe input via stdin
+echo "<request>" | hurl
+
+# run with custom header
+hurl --header "<header>" <hurl_file>
+
+# run tests continuing on error
+hurl --test --continue-on-error <hurl_files>
+
+# run with variables
+hurl --variable <name=value> <hurl_file>
+
+# ignore SSL errors (insecure)
+hurl --insecure <url>
+
+# run tests in parallel (default in test mode)
+hurl --test --parallel <hurl_files>
+
+# generate HTML report from test run
+hurl --test --report-html <dir> <hurl_files>
