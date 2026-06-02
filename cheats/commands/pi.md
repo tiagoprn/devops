@@ -28,3 +28,10 @@ More details here: </storage/src/aikt/pi/agent/extensions/codeflow/README.md>
 ## ETC
 
 - run bash commands inside pi: `! <command>`
+
+- `pi-insights` extension commands:
+    > NOTE: the html/md files are located at <aikt/pi/agent/usage-data>
+    - normal run...........................: `/pi-insights`
+    - forces re-extraction of all facets...: `/pi-insights --refresh`
+    - only analyze the last 7 days.........: `/pi-insights --since 7d`
+    - export as markdown...................: `/pi-insights --md`

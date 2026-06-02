@@ -1,7 +1,7 @@
 session_name: TRICORDER
 windows:
   - window_name: editor
-    layout: even-horizontal
+    layout: even-vertical
     start_directory: /storage/src/tricorder
     panes:
       - shell_command:
