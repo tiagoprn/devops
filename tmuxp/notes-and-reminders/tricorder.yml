@@ -32,4 +32,4 @@ windows:
     layout: even-vertical
     start_directory: /storage/src/tricorder
     panes:
-      - shell_command: repeater --help
+      - shell_command: clear && echo -e "AVAILABLE CARDS:\n\n " && navi --query "repeater recursively show how many" --best-match && echo -e "\n---\n" && repeater --help
