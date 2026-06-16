@@ -15,6 +15,12 @@ sudo pacman -Q
 # list files in package
 sudo pacman -Ql <package-name>
 
+# list packages installed from AUR (with their dependencies)
+sudo pacman -Qm
+
+# list packages installed from AUR (explicit install, without their dependencies)
+sudo pacman -Qme
+
 # force kernel recompilation (EndeavourOS)
 sudo dracut --force --regenerate-all
 
