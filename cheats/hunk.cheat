@@ -1,0 +1,22 @@
+% hunk, diff, review, annotations
+
+# List live hunk sessions
+hunk session list --json
+
+# Full diff model with patch text and inline notes
+hunk session review --repo . --json --include-patch --include-notes
+
+# Current focus (file + hunk)
+hunk session context --repo . --json
+
+# Navigate to a specific file and hunk
+hunk session navigate --repo . --file <file> --hunk <n>
+
+# Navigate to a specific new line
+hunk session navigate --repo . --file <file> --new-line <n>
+
+# Add a single review comment (navigates user to the line)
+hunk session comment add --repo . --file <file> --new-line <n> --summary "<text>"
+
+# Apply a batch of review comments via JSON on stdin
+hunk session comment apply --repo . --stdin
