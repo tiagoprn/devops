@@ -27,6 +27,8 @@ More details here: </storage/src/aikt/pi/agent/extensions/codeflow/README.md>
 
 ## ETC
 
+- <shit+tab>: change the thinking level of a model
+
 - run bash commands inside pi: `! <command>`
 
 - `pi-insights` extension commands:
