@@ -5,7 +5,7 @@ windows:
     start_directory: /storage/src/aikt/pi
     panes:
       - shell_command:
-        - ls -lha
+        - nvim agent/extensions/codeflow/models.md
         focus: true
   - window_name: AI
     layout: even-vertical
