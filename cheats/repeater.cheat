@@ -9,6 +9,12 @@ repeater check <path-to-file-or-directory>
 # add and reindex cards and print a plain-text summary
 repeater check <path-to-file-or-directory> --plain
 
+# see status of a card deck - only the ones that were imported (including pending cards to drill)
+repeater check $(cat /storage/src/tricorder/imported-flashcards.txt | fzf --prompt 'Select an imported cheatsheet: ')
+
+# drill pending cards - only the ones that were imported
+repeater drill $(cat /storage/src/tricorder/imported-flashcards.txt | fzf --prompt 'Select an imported cheatsheet: ')
+
 # start a session to use the cards
 repeater drill <path-to-file-or-directory> --card-limit <max-number-of-cards>
 
