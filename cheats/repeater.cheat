@@ -4,25 +4,35 @@
 cargo install --git https://github.com/shaankhosla/repeater
 
 # add cards and open the interactive dashboard
-repeater check <path-to-file-or-directory>
+/storage/src/tricorder/utils/backup_sqlite.sh pre-check-or-add-new-cards && \
+repeater check <path-to-file-or-directory> && \
+/storage/src/tricorder/utils/backup_sqlite.sh pos-check-or-add-new-cards
 
 # add and reindex cards and print a plain-text summary
-repeater check <path-to-file-or-directory> --plain
+/storage/src/tricorder/utils/backup_sqlite.sh pre-check-or-add-new-cards && \
+repeater check <path-to-file-or-directory> --plain && \
+/storage/src/tricorder/utils/backup_sqlite.sh pos-check-or-add-new-cards
 
 # see status of a card deck - only the ones that were imported (including pending cards to drill)
 repeater check $(cat /storage/src/tricorder/imported-flashcards.txt | fzf --prompt 'Select an imported cheatsheet: ')
 
 # drill pending cards - only the ones that were imported
-repeater drill $(cat /storage/src/tricorder/imported-flashcards.txt | fzf --prompt 'Select an imported cheatsheet: ')
+/storage/src/tricorder/utils/backup_sqlite.sh pre-drill-cards && \
+repeater drill $(cat /storage/src/tricorder/imported-flashcards.txt | fzf --prompt 'Select an imported cheatsheet: ') && \
+/storage/src/tricorder/utils/backup_sqlite.sh pos-drill-cards
 
 # start a session to use the cards
-repeater drill <path-to-file-or-directory> --card-limit <max-number-of-cards>
+/storage/src/tricorder/utils/backup_sqlite.sh pre-drill-cards && \
+repeater drill <path-to-file-or-directory> --card-limit <max-number-of-cards> && \
+/storage/src/tricorder/utils/backup_sqlite.sh pos-drill-cards
 
 # show db file path (move between machines to keep the progress)
 ls -lha $HOME/.local/share/repeater/cards.db
 
 # cli to the database (litecli)
-litecli $HOME/.local/share/repeater/cards.db
+/storage/src/tricorder/utils/backup_sqlite.sh pre-litecli-interaction && \
+litecli $HOME/.local/share/repeater/cards.db && \
+/storage/src/tricorder/utils/backup_sqlite.sh pos-litecli-interaction
 
 # official docs website
 xdg-open https://shaankhosla.github.io/repeater/quick-start.html

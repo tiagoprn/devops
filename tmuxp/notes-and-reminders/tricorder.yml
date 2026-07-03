@@ -23,6 +23,7 @@ windows:
     start_directory: /home/tiago/.local/share/repeater
     panes:
       - shell_command: ls -lha
+      - shell_command: cd backups && ls -lha
   - window_name: cheatsheet
     layout: even-vertical
     start_directory: /storage/src/tricorder
