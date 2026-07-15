@@ -39,3 +39,6 @@ xdg-open https://shaankhosla.github.io/repeater/quick-start.html
 
 # recursively show how many cards there are on each file
 fd '\.md$' | xargs grep -c 'Q:' | awk -F: '{sum += $NF; printf "%-40s %s\n", $1, $NF} END{printf "%-40s %s\n", "TOTAL", sum}'
+
+# due now summary
+/storage/src/tricorder/utils/due-now-summary.sh
