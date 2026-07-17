@@ -31,7 +31,7 @@ hurl --header "<header>" <hurl_file>
 hurl --test --continue-on-error <hurl_files>
 
 # run with variables
-hurl --variable <name=value> <hurl_file>
+hurl --very-verbose --variable <var_name>=<var_value> <hurl_file>
 
 # ignore SSL errors (insecure)
 hurl --insecure <url>
