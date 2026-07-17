@@ -319,6 +319,9 @@ cat /etc/os-release
 # list all files with a given extension on the current directory, recursively and with their relative path
 find . -type f -name '*.<extension>' -print
 
+# find & delete: list all files with a given extension on the current directory, recursively and with their relative path
+find . -name "<pattern>" -type f -delete  # e.g. pattern: *.BKP.*
+
 # upgrade all python and rust/cargo related binaries/tools
 uv self update && uv tool upgrade --all && cargo install-update -a -g && pipx upgrade-all || /bin/true
 
