@@ -1,5 +1,14 @@
 % hunk, diff, review, annotations
 
+# show current diff
+hunk diff
+
+# show current diff (with auto-reload)
+hunk diff --watch
+
+# show last commit diff
+hunk show
+
 # List live hunk sessions
 hunk session list --json
 
