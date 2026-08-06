@@ -1,4 +1,4 @@
-% firefox, chrome, chromium, kiosk
+% firefox, chrome, chromium, kiosk, pwa, pake
 
 # Firefox in Kiosk mode:
 firefox -kiosk URL
@@ -17,3 +17,12 @@ chromium-browser -kiosk URL
 
 # Chromium in Kiosk mode (private window):
 chromium-browser -kiosk -private-window URL
+
+# Install/Update pake (PWA creator)
+npm i -g pake-cli
+
+# Create PWA window for url/site
+mkdir -p $HOME/.tauri && cd $HOME/.tauri && \
+pake "<url>" --name "<app-name>" && \
+cp -farv *.AppImage $HOME/AppImages && \
+echo -e '\n\n---\n\nNow, install the AppImage (from ~/AppImages) using Gear Lever on the App menu.\n'
