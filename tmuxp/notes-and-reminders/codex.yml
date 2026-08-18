@@ -9,9 +9,13 @@ windows:
         focus: true
   - window_name: flow
     layout: even-vertical
-    start_directory: /storage/src/codex
+    start_directory: /home/tiago/.local/share/flow/logs
     panes:
       - shell_command:
+        - flow dashboard
+        focus: true
+      - shell_command:
+        - ls
   - window_name: git
     layout: even-vertical
     start_directory: /storage/src/codex
