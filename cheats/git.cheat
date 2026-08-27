@@ -250,4 +250,7 @@ ssh tars "cd /srv/git && git init --bare /srv/git/<repo-name>.git" && git clone 
 git remote add origin ssh://tiago@tars:/srv/git/<repo-name>.git
 
 # create git tag with description
-git tag -a v<version_number> -m "<message>"
+git tag -a v<version_number> -m "<message>" && git push --follow-tags
+
+# list all tags (including description)
+git tag -n
