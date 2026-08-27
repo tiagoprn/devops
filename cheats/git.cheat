@@ -248,3 +248,6 @@ ssh tars "cd /srv/git && git init --bare /srv/git/<repo-name>.git" && git clone 
 
 # tars git server (rpi 400): add as origin for local repo
 git remote add origin ssh://tiago@tars:/srv/git/<repo-name>.git
+
+# create git tag with description
+git tag -a v<version_number> -m "<message>"
