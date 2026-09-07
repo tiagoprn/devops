@@ -1,0 +1,25 @@
+% magicmirror, smart-home, curl
+
+; MMM-CarouselNav HTTP API on the tars MagicMirror container.
+; pause/resume are the same toggle underneath.
+
+# check the mirror is up
+curl http://tars:2814/
+
+# show magicmirror version
+curl http://tars:2814/version
+
+# go to next carousel page
+curl http://tars:2814/carousel/next
+
+# go to previous carousel page
+curl http://tars:2814/carousel/previous
+
+# jump to a carousel page by name (fzf menu)
+curl "http://tars:2814/carousel/goto?slide=$(echo -e 'Reminders\nAchievements\nNews\nToday' | fzf --prompt 'Choose a carousel page: ')"
+
+# stop carousel auto-rotation
+curl http://tars:2814/carousel/pause
+
+# re-enable carousel auto-rotation
+curl http://tars:2814/carousel/resume
