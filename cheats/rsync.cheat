@@ -11,3 +11,15 @@ time sudo rsync -av --info=progress2 \
     --dry-run \
     <source-folder-without-trailing-slash>/ \
     <destination-folder-without-trailing-slash>/
+
+# fully synchronizes the contents of the current local folder to a remote folder over SSH. Remove --dry-run when executing "for real".
+time rsync -av --info=progress2 \
+    --inplace \
+    --delete \
+    --ignore-errors \
+    --itemize-changes \
+    --stats \
+    --human-readable \
+    --dry-run \
+    ./ \
+    <user>@<remote-host>:<destination-folder-without-trailing-slash>/
