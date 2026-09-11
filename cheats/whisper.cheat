@@ -3,5 +3,17 @@
 # manually compile whisper.cpp with the best transcript ML model (needed because the AUR version is CPU-only, and AUR is not safe anyway)
 /storage/src/dot_files/wayland/scripts/compile-whisper-cpp.sh
 
-# transcript audio file with whisper-cli
+# STEP 01/03: transcript audio file with whisper-cli
 whisper-cli -m /opt/src/whisper.models/ggml-large-v3-turbo-q8_0.bin -f <audio-wav-input-file-path> -t 8 -l auto -pp -of <transcript-file-name-without-extension> -otxt -tdrz
+
+# TRANSCRIPT CLEANUP: Install llama.cpp
+sudo pacman -S llama-cpp
+
+# TRANSCRIPT CLEANUP: download the transcript cleanup model locally from huggingface:
+mkdir -p ~/models && curl -L -o ~/models/s1-mini-q4_k_m.gguf "https://huggingface.co/superwhisper/s1-mini-GGUF/resolve/main/s1-mini-q4_k_m.gguf"
+
+# STEP 02/03: TRANSCRIPT CLEANUP: Run llama server with the cleanup model -- **WILL HOLD THE TERMINAL**
+llama-server -m ~/models/s1-mini-q4_k_m.gguf --port 8080 --jinja --chat-template-kwargs '{"enable_thinking":false}' --temp 0
+
+# STEP 03/03: TRANSCRIPT CLEANUP: Run script (the last 3 parameters can be changed, check the script source code comment section "USAGE")
+cleanup-audio-transcripts.sh <path-to-folder-with-the-whisper-transcript-text-files> semi-formal prose general
