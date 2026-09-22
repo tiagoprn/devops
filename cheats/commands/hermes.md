@@ -1,0 +1,1 @@
+- When I need a *second opinion* about anything, ask hermes to *"Check with the delegate model"*, and then *use their consensus as the final answer* to present to me.
