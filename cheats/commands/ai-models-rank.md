@@ -1,9 +1,9 @@
 Models rank:
-(last updated: 20260827-113239)
+(last updated: 20260922-090633)
 
-- DEFAULT MODEL: **GLM 5.3 flash (reasons: cheap, fast, near to Kimi K3 on the benchmarks)**
+- DEFAULT MODEL: **MiMo 2.6 Flash (reasons: cheap, fast, top of Artificial Analysis as of 2026-09-22)**
 
-- Planning (pricing+quality order, cheapest first)...: Qwen 3.8 27B, GLM 5.3, Kimi K3
+- Planning (pricing+quality order, cheapest first)...: MiMo 2.6 Pro, GLM 5.3, Qwen 3.8 Max (0902)
 
-- Coding (pricing order, cheapest first).............: Deepseek V4 Flash 0731, GLM 5.3 flash, Qwen 3.8 Flash
+- Coding (pricing order, cheapest first).............: MiMo 2.6 Flash, GLM 5.3 Flash, Qwen 3.8 Flash
 
