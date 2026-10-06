@@ -8,7 +8,7 @@ windows:
         - nvim
         focus: true
   - window_name: flow
-    layout: even-vertical
+    layout: even-horizontal
     start_directory: /home/tiago/.local/share/flow/logs
     panes:
       - shell_command:
