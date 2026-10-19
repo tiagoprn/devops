@@ -40,7 +40,7 @@ tmux list-windows -F '#W'
 tmux list-commands
 
 # create new tmux window on current session
-tmux neww -dn "<name>"
+tmux new -dn "<name>"
 
 # send command or key combination to session/window and pane - to send a key combination, you can input e.g.: "Ctrl+B" "C"
 tmux send-keys -t <session-name-or-number>:<window-name-or-number>.<pane-index> "<command>" Enter
