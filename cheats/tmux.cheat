@@ -44,3 +44,21 @@ tmux neww -dn "<name>"
 
 # send command or key combination to session/window and pane - to send a key combination, you can input e.g.: "Ctrl+B" "C"
 tmux send-keys -t <session-name-or-number>:<window-name-or-number>.<pane-index> "<command>" Enter
+
+# dump/get current pane visible screen contents to stdout (you can use 'session:window.<pane-number>' for the other panes)
+tmux capture-pane -p -t <session>:<window>
+
+# dump/get current pane last 200 lines to stdout, with wrapped lines joined back together (you can use 'session:window.<pane-number>' for the other panes)
+tmux capture-pane -p -J -S -200 -t <session>:<window>
+
+# dump/get current pane entire scrollback to stdout (you can use 'session:window.<pane-number>' for the other panes)
+tmux capture-pane -p -J -S - -t <session>:<window>
+
+# dump/get current pane content to stdout, keeping the colour escape sequences (you can use 'session:window.<pane-number>' for the other panes)
+tmux capture-pane -p -e -t <session>:<window>
+
+# (01/02) start redirecting pane live output to log file
+tmux pipe-pane -o -t <session>:<window> 'cat >> <path-to-log-file>'
+
+# (02/02) stop redirecting pane live output to log file
+tmux pipe-pane -t <session>:<window>
