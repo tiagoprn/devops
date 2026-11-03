@@ -1,5 +1,12 @@
 Models rank:
-(last updated: 20261017-080637)
+(last updated: 20261103-064327)
+
+# OPENCODE GO
+
+The current strategy now is *default to use the opencode go subscription with the flash models* available (deepseek v4.1 flash as default).
+For the *big/pro models* (e.g. `pi rpi review phase IR#2`), use my *openrouter credits*.
+
+# OPENROUTER
 
 reference: <https://openrouter.ai/compare/z-ai/glm-5.3-flash/xiaomi/mimo-v2.6-flash/deepseek/deepseek-v4.1-flash-1017/qwen/qwen3.8-flash>
 
