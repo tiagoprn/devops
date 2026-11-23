@@ -7,6 +7,11 @@ windows:
       - shell_command:
         - nvim
         focus: true
+  - window_name: AI
+    layout: even-vertical
+    start_directory: /storage/src/codex
+    panes:
+      - shell_command:
   - window_name: flow
     layout: even-horizontal
     start_directory: /home/tiago/.local/share/flow/logs
