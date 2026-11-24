@@ -1,0 +1,34 @@
+session_name: CONSTRUCTS
+windows:
+  - window_name: editor
+    layout: even-horizontal
+    start_directory: /storage/src/codex
+    panes:
+      - shell_command:
+        - nvim
+        focus: true
+  - window_name: AI
+    layout: even-vertical
+    start_directory: /storage/src/codex
+    panes:
+      - shell_command:
+  - window_name: flow
+    layout: even-horizontal
+    start_directory: /home/tiago/.local/share/flow/logs
+    panes:
+      - shell_command:
+        - flow dashboard
+        focus: true
+      - shell_command:
+        - ls
+  - window_name: git
+    layout: even-vertical
+    start_directory: /storage/src/codex
+    panes:
+      - shell_command:
+        - /storage/src/dot_files/git-ui-with-ssh-agent.sh .
+  - window_name: scratchpad
+    layout: even-vertical
+    start_directory: /storage/src/codex
+    panes:
+      - shell_command:
